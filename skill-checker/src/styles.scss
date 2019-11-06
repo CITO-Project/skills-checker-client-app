@@ -6,6 +6,9 @@ body{
   font-style: normal;
   font-weight: lighter;
   background-color: $color-background;
-  word-break: break-all;
   padding: $header-height 0 $bottom-height 0;
+}
+
+.holder {
+  @include holder;
 }

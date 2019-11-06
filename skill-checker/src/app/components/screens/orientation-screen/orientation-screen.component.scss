@@ -1,0 +1,54 @@
+@import '../../../../_imports.scss';
+
+#video {
+  width: 100vw;
+  height: 200px;
+  background-color: $color-grey;
+  text-align: center;
+
+  // Placeholder styling
+  padding-top: 33px;
+  font-size: 5em;
+}
+
+#description {
+  color: $color-font;
+  text-align: center;
+  padding: 40px 20px;
+
+  .main {
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: 100;
+  }
+
+  .text {
+    font-weight: 400;
+  }
+
+  .features {
+    padding: 40px 20px;
+
+    .icon {
+      $size: 55px;
+      width: $size;
+      height: $size;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 1.3em;
+      background-color: $color-grey;
+      i {
+        margin: 15px auto;
+        color: $color-font-light;
+      }
+    }
+
+    .text {
+      margin-top: 15px;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: .8em;
+      letter-spacing: 1px;
+    }
+  }
+}
