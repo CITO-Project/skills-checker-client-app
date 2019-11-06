@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { OrientationScreenComponent } from './components/screens/orientation-screen/orientation-screen.component';
+
 
 const routes: Routes = [
   {
     path: '',
+    component: OrientationScreenComponent,
     pathMatch: 'full'
   },
   {

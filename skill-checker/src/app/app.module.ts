@@ -4,10 +4,14 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { OrientationScreenComponent } from './components/screens/orientation-screen/orientation-screen.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OrientationScreenComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

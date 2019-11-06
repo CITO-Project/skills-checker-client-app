@@ -1,0 +1,45 @@
+@mixin font-awesome ($secondary:'Ubuntu', $tertiary: 'Roboto') {
+  font-family: 'Font Awesome\ 5 Free', $secondary, $tertiary;
+  font-weight: 900;
+}
+@mixin font-awesome-first ($secondary:'Ubuntu', $tertiary: 'Roboto') {
+  ::first-letter{
+    font-family: 'Font Awesome\ 5 Free', $secondary, $tertiary;
+    font-weight: 900;
+  }
+}
+
+@mixin no-borders{
+  outline: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+@mixin hide-element{
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+@mixin holder{
+  height: 1px;
+  width: 1px;
+  clear: both;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+@mixin body{
+  padding-top: $header-height;
+  padding-bottom: $bottom-height;
+}
+
+@mixin limits{
+  // Only for testing
+  border: 1px red solid;
+}

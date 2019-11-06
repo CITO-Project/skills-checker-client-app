@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@import './_imports.scss';
+@import './_fonts.scss';
+
+body{
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: lighter;
+  background-color: $color-background;
+  padding: $header-height 0 $bottom-height 0;
+}
+
+.holder {
+  @include holder;
+}
