@@ -8,6 +8,7 @@ import { OrientationScreenComponent } from './components/screens/orientation-scr
 import { HeaderComponent } from './components/header/header.component';
 import { NavigateButtonComponent } from './components/navigate-button/navigate-button.component';
 import { InterestsScreenComponent } from './components/screens/interests-screen/interests-screen.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { InterestsScreenComponent } from './components/screens/interests-screen/
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [],
