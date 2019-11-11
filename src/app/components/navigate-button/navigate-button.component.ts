@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigate-button',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigateButtonComponent implements OnInit {
 
-  constructor() { }
+  @Input('text') text: String;
+  @Input('destination') destination: String;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    console.log(this.text, this.destination);
+  }
+
+  btnClick() {
+    console.log('check');
+    this.router.navigateByUrl('/' + this.destination);
   }
 
 }
