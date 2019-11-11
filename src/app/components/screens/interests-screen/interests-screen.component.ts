@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InterestService } from 'src/app/service/interest.service';
 
 @Component({
   selector: 'app-interests-screen',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InterestsScreenComponent implements OnInit {
 
-  constructor() { }
+  public interests;
+
+  constructor(private interestService: InterestService) { }
 
   ngOnInit() {
+    this.interestService.getInterests().subscribe( data => {
+      this.interests = data;
+    });
   }
 
 }
