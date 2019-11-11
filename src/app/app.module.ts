@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OrientationScreenComponent } from './components/screens/orientation-screen/orientation-screen.component';
 import { HeaderComponent } from './components/header/header.component';
-import { NavigateButtonComponent } from './navigate-button/navigate-button.component';
+import { NavigateButtonComponent } from './components/navigate-button/navigate-button.component';
 
 @NgModule({
   declarations: [
