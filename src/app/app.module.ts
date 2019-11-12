@@ -7,17 +7,21 @@ import { AppComponent } from './app.component';
 import { OrientationScreenComponent } from './components/screens/orientation-screen/orientation-screen.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigateButtonComponent } from './components/navigate-button/navigate-button.component';
+import { InterestsScreenComponent } from './components/screens/interests-screen/interests-screen.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     OrientationScreenComponent,
     HeaderComponent,
-    NavigateButtonComponent
+    NavigateButtonComponent,
+    InterestsScreenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [],
