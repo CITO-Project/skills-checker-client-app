@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavigateButtonComponent } from './components/navigate-button/navigate-button.component';
 import { InterestsScreenComponent } from './components/screens/interests-screen/interests-screen.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HowToScreenComponent } from './components/screens/how-to-screen/how-to-screen.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     OrientationScreenComponent,
     HeaderComponent,
     NavigateButtonComponent,
-    InterestsScreenComponent
+    InterestsScreenComponent,
+    HowToScreenComponent
   ],
   imports: [
     BrowserModule,
