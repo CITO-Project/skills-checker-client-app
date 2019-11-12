@@ -1,0 +1,20 @@
+@import '../../../_imports.scss';
+
+$padding: 10px;
+
+#app-header {
+  background-color: $color-header;
+  color: $color-font;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  text-align: center;
+  padding: $padding;
+  font-family: 'Roboto';
+  border-bottom: lightgray 1px solid;
+
+  .more {
+    position: absolute;
+    left: $padding;
+  }
+}

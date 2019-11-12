@@ -1,0 +1,12 @@
+@import '../../../_imports.scss';
+
+.button {
+  width: 100vw;
+  height: $bottom-height;
+  position: fixed;
+  bottom: 0;
+
+  background-color: $color-button;
+  color: $color-white;
+  font-size: 1.3em;
+}
