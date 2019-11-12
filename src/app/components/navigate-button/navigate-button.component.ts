@@ -13,12 +13,9 @@ export class NavigateButtonComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
-    console.log(this.text, this.destination);
-  }
+  ngOnInit() { }
 
   btnClick() {
-    console.log('check');
     this.router.navigateByUrl('/' + this.destination);
   }
 
