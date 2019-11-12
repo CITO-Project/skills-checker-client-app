@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InterestService } from 'src/app/service/interest.service';
+import { InterestService } from 'src/app/services/interest.service';
 
 @Component({
   selector: 'app-interests-screen',
