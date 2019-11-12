@@ -1,8 +1,18 @@
 <app-header></app-header>
 <div class="heading">Pick your Interest</div>
-<div *ngFor="let interest of interests" class="interest-container">
-  <div class="container">
-    {{ interest.text }}
+<div class="container">
+  <div class="row">
+    <div *ngFor="let interest of interests" class="interest col-6">
+      <div class="icon d-flex column justify-content-center align-items-center">
+        <div>
+          <i class="far fa-image"></i>
+          <div>{{ interest.name }}</div>
+        </div>
+      </div>
+      <div class="text">
+        {{ interest.text }}
+      </div>
+    </div>
   </div>
 </div>
 <app-navigate-button text="Go back"></app-navigate-button>
