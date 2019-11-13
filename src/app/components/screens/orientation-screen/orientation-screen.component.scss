@@ -1,0 +1,64 @@
+@import '../../../../_imports.scss';
+
+#video {
+  width: 100vw;
+  height: 170px;
+  background-color: $color-grey;
+  text-align: center;
+
+  // Placeholder styling
+  padding-top: 30px;
+  font-size: 5em;
+}
+
+#description {
+  color: $color-font;
+  text-align: center;
+  padding: 30px 20px;
+
+  .main {
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: 100;
+  }
+
+  .text {
+    font-weight: 400;
+  }
+
+  .features {
+    padding: 40px 20px;
+
+    > .feature {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .icon {
+        // Size
+        $size: 55px;
+        width: $size;
+        height: $size;
+
+        // Alignment
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 1.3em;
+        background-color: $color-grey;
+        i {
+          color: $color-font-light;
+        }
+      }
+
+      .text {
+        margin-top: 15px;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: .8em;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}
