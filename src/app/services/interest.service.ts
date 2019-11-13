@@ -9,7 +9,12 @@ export class InterestService {
 
   constructor(private http: HttpClient, private common: CommonService) { }
 
-  getInterests() {
-        return this.http.get(this.common.getApiUrl() + 'interests');
+  getInterest(interestId: number) {
+    return this.http.get(this.common.getApiUrl() + 'interests/' + interestId);
   }
+
+  getInterests() {
+    return this.http.get(this.common.getApiUrl() + 'interests');
+  }
+
 }
