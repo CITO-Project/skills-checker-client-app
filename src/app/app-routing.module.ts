@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { OrientationScreenComponent } from './components/screens/orientation-screen/orientation-screen.component';
 import { InterestsScreenComponent } from './components/screens/interests-screen/interests-screen.component';
 import { HowToScreenComponent } from './components/screens/how-to-screen/how-to-screen.component';
+import { ScenariosScreenComponent } from './components/screens/scenarios-screen/scenarios-screen.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: 'how-to',
     component: HowToScreenComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'scenarios',
+    component: ScenariosScreenComponent,
     pathMatch: 'full'
   },
   {
