@@ -10,6 +10,7 @@ import { NavigateButtonComponent } from './components/navigate-button/navigate-b
 import { InterestsScreenComponent } from './components/screens/interests-screen/interests-screen.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HowToScreenComponent } from './components/screens/how-to-screen/how-to-screen.component';
+import { ScenariosScreenComponent } from './components/screens/scenarios-screen/scenarios-screen.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HowToScreenComponent } from './components/screens/how-to-screen/how-to-
     HeaderComponent,
     NavigateButtonComponent,
     InterestsScreenComponent,
-    HowToScreenComponent
+    HowToScreenComponent,
+    ScenariosScreenComponent
   ],
   imports: [
     BrowserModule,
