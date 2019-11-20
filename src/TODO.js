@@ -6,3 +6,6 @@
 // TODO: Make the video/animation a component with height and resource properties
 // TODO: Change the bottom button for a actual button. Right now it is just a div
 // TODO: Need to update test-results service so if you go back it overrides the question instead of writing it again
+// TODO: Some objects in the result JSON object are repeated. Look into this
+// TODO: Remove console.log from header to print the results object
+// TODO: Add something in test-results service to reset the result object
