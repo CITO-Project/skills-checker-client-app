@@ -1,1 +1,47 @@
-<p>scenarios-screen works!</p>
+<app-header></app-header>
+<div id="video">
+  <i class="fas fa-play-circle"></i>
+</div>
+<div class="content d-flex flex-column align-items-center text-center">
+  <div id="header">
+    <div class="heading" *ngIf="!!interest">{{ interest.text }}</div>
+    <div class="description" *ngIf="!!question">{{ question.description }}</div>
+  </div>
+
+  <div id="question">
+    <!-- Question text -->
+    <div class="heading">Your skills</div>
+    <div class="question" *ngIf="!!question">{{ question.question }}</div>
+    <!-- End question text -->
+    <!-- Answer -->
+    <div class="answer" *ngIf="!!question" [ngSwitch]="question.type">
+      <!-- Slider option -->
+      <div class="slider" *ngSwitchCase="'slider'">
+        <div class="thumbs d-flex justify-content-between">
+          <div class="far fa-thumbs-up fa-rotate-180"></div>
+          <div class="far fa-thumbs-up"></div>
+        </div>
+
+        <input type="range" min="0" max="{{ question.answers.length - 1 }}" steps="1" value="0" (input)="retrieveAnswer($event)">
+
+        <table>
+          <tr>
+            <td *ngFor="let answer of question.answers; let first = first; let last = last;">
+              <div class="answerOptions" [ngClass]="{'float-left': first, 'float-right': last }">
+                {{ answer }}
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <div class="instructions">
+          Drag the slider to share your level of knowledge
+        </div>
+      </div>
+      <!-- End slider option -->
+    </div>
+    <button class="next" type="button" mdbBtn color="dark" mdbWavesEffect (click)="saveAnswer()">Next >></button>
+    <!-- End answer -->
+  </div>
+</div>
+<app-navigate-button text="Back" destination="how-to"></app-navigate-button>

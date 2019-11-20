@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 })
 export class NavigateButtonComponent implements OnInit {
 
-  @Input('text') text: String;
-  @Input('destination') destination: String;
+  @Input() text: string;
+  @Input() destination: string;
 
   constructor(private router: Router) { }
 

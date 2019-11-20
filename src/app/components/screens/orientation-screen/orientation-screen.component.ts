@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TestResultsService } from 'src/app/services/test-results.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-orientation-screen',
@@ -8,11 +9,11 @@ import { TestResultsService } from 'src/app/services/test-results.service';
 })
 export class OrientationScreenComponent implements OnInit {
 
-  constructor(private testResults: TestResultsService) { }
+  constructor(private testResults: TestResultsService, private productService: ProductService) { }
 
   ngOnInit() {
-    if (!this.testResults.getProductId()) {
-      this.testResults.setProductId(1);
+    if (!this.testResults.getProduct()) {
+      this.productService.setProduct();
     }
   }
 

@@ -22,8 +22,8 @@ export class InterestsScreenComponent implements OnInit {
   }
 
   selectInterest(interest: Interest) {
-    this.testResults.setInterestId(interest.id);
-    if (this.testResults.getInterestId() === interest.id) {
+    this.testResults.setInterest(interest);
+    if (this.testResults.getInterest().id === interest.id) {
       this.router.navigate(['how-to']);
     }
   }

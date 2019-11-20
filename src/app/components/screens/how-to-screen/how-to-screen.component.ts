@@ -20,17 +20,15 @@ export class HowToScreenComponent implements OnInit {
   }
 
   btnClick() {
-    this.router.navigate(['']);
+    this.router.navigate(['scenarios']);
   }
 
   retrieveInterest() {
-    const interestId = this.testResults.getInterestId();
-    if (!interestId) {
+    const interest = this.testResults.getInterest();
+    if (!interest) {
       this.router.navigate(['interests']);
     } else {
-      this.interestService.getInterest(interestId).subscribe( (data: Interest) => {
-        this.selectedInterest = data.text;
-      });
+      this.selectedInterest = interest.text;
     }
   }
 

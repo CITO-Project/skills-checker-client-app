@@ -1,0 +1,257 @@
+{
+	"scenarios": [
+		{
+
+			"product": 1,
+			"interest": 3,
+			"name": "first_scenario",
+			"text": "First scenario",
+			"level": 1,
+			"description": "This is the first scenario for the shopping interest",
+			"resource": "first_scenario.svg"
+		},
+		{
+
+			"product": 1,
+			"interest": 3,
+			"name": "second_scenario",
+			"text": "Second scenario",
+			"level": 2,
+			"description": "This is the second scenario for the shopping interest",
+			"resource": "second_scenario.svg"
+		},
+		{
+
+			"product": 1,
+			"interest": 3,
+			"name": "third_scenario",
+			"text": "Third scenario",
+			"level": 3,
+			"description": "This is the third scenario for the shopping interest",
+			"resource": "third_scenario.svg"
+		},
+		{
+
+			"product": 1,
+			"interest": 3,
+			"name": "forth_scenario",
+			"text": "Forth scenario",
+			"level": 4,
+			"description": "This is the forth scenario for the shopping interest",
+			"resource": "forth_scenario.svg"
+		}
+	],
+	"questions": [
+		{
+
+			"product": 1,
+			"scenario": 1,
+			"type": "slider",
+			"question": "Question about literacy 1",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for literacy 1",
+			"skill": 1
+		},
+		{
+
+			"product": 1,
+			"scenario": 1,
+			"type": "slider",
+			"question": "Question about numeracy 1",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for numeracy 1",
+			"skill": 2
+		},
+		{
+
+			"product": 1,
+			"scenario": 1,
+			"type": "slider",
+			"question": "Question about digital skills 1",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for digital skills 1",
+			"skill": 3
+		},
+		{
+
+			"product": 1,
+			"scenario": 2,
+			"type": "slider",
+			"question": "Question about literacy 2",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for literacy 2",
+			"skill": 1
+		},
+		{
+
+			"product": 1,
+			"scenario": 2,
+			"type": "slider",
+			"question": "Question about numeracy 2",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for numeracy 2",
+			"skill": 2
+		},
+		{
+
+			"product": 1,
+			"scenario": 2,
+			"type": "slider",
+			"question": "Question about digital skills 2",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for digital skills 2",
+			"skill": 3
+		},
+		{
+
+			"product": 1,
+			"scenario": 3,
+			"type": "slider",
+			"question": "Question about literacy 3",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for literacy 3",
+			"skill": 1
+		},
+		{
+
+			"product": 1,
+			"scenario": 3,
+			"type": "slider",
+			"question": "Question about numeracy 3",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for numeracy 3",
+			"skill": 2
+		},
+		{
+
+			"product": 1,
+			"scenario": 3,
+			"type": "slider",
+			"question": "Question about digital skills 3",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for digital skills 3",
+			"skill": 3
+		},
+		{
+
+			"product": 1,
+			"scenario": 4,
+			"type": "slider",
+			"question": "Question about literacy 4",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for literacy 4",
+			"skill": 1
+		},
+		{
+
+			"product": 1,
+			"scenario": 4,
+			"type": "slider",
+			"question": "Question about numeracy 4",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for numeracy 4",
+			"skill": 2
+		},
+		{
+
+			"product": 1,
+			"scenario": 4,
+			"type": "slider",
+			"question": "Question about digital skills 4",
+			"answers": [
+				"Very difficult",
+				"Difficult",
+				"Middling",
+				"Easy"
+			],
+			"description": "Description for digital skills 4",
+			"skill": 3
+		}
+	],
+	"skills": [
+		{
+			"product": 1,
+			"name": "literacy",
+			"text": "Literacy",
+			"illustration": "skills/literacy.jpg",
+			"description": "Test reading understanding"
+		},
+		{
+			"product": 1,
+			"name": "numeracy",
+			"text": "Numeracy",
+			"illustration": "skills/numeracy.jpg",
+			"description": "Test numbers understanding"
+		},
+		{
+			"product": 1,
+			"name": "digital_skills",
+			"text": "Digital skills",
+			"illustration": "skills/digital_skills.jpg",
+			"description": "Test digital skills understanding"
+		}
+	],
+	"foo": {
+	"id": 4,
+	"product": 1,
+	"name": "bank",
+	"text": "Filling forms",
+	"illustration": null,
+	"description": null
+  }
+}

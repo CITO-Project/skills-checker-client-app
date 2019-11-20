@@ -3,3 +3,6 @@
 // TODO: Need to move node_modules to the parent directory. It is not working right now for some reason.
 // TODO: Add models to Interests
 // TODO: Remove console.log() in navigate-button
+// TODO: Make the video/animation a component with height and resource properties
+// TODO: Change the bottom button for a actual button. Right now it is just a div
+// TODO: Need to update test-results service so if you go back it overrides the question instead of writing it again
