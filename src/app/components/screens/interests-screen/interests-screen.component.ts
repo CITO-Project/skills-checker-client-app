@@ -19,6 +19,7 @@ export class InterestsScreenComponent implements OnInit {
     this.interestService.getInterests().subscribe( data => {
       this.interests = data;
     });
+    // this.testResults.resetInterest();
   }
 
   selectInterest(interest: Interest) {

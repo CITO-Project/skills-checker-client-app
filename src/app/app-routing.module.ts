@@ -4,6 +4,7 @@ import { OrientationScreenComponent } from './components/screens/orientation-scr
 import { InterestsScreenComponent } from './components/screens/interests-screen/interests-screen.component';
 import { HowToScreenComponent } from './components/screens/how-to-screen/how-to-screen.component';
 import { ScenariosScreenComponent } from './components/screens/scenarios-screen/scenarios-screen.component';
+import { ResultsScreenComponent } from './components/screens/results-screen/results-screen.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'scenarios',
     component: ScenariosScreenComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'results',
+    component: ResultsScreenComponent,
     pathMatch: 'full'
   },
   {
