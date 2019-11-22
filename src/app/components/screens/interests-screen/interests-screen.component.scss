@@ -1,0 +1,35 @@
+@import '../../../../_imports.scss';
+
+* {
+  color: $color-font;
+}
+
+.heading {
+  text-align: center;
+  padding: 15px;
+  font-size: 1.3em;
+}
+
+.row {
+  padding: 10px;
+}
+
+.interest {
+  margin: 10px 0;
+  text-align: center;
+  cursor: pointer;
+
+  > .icon {
+    width: 100%;
+    height: 130px;
+    background-color: $color-images-background;
+    i {
+      color: $color-font-light;
+      font-size: 3em;
+    }
+  }
+
+  > .text {
+    margin-top: 5px;
+  }
+}

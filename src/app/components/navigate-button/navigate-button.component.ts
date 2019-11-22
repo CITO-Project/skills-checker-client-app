@@ -8,17 +8,14 @@ import { Router } from '@angular/router';
 })
 export class NavigateButtonComponent implements OnInit {
 
-  @Input('text') text: String;
-  @Input('destination') destination: String;
+  @Input() text: string;
+  @Input() destination: string;
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
-    console.log(this.text, this.destination);
-  }
+  ngOnInit() { }
 
   btnClick() {
-    console.log('check');
     this.router.navigateByUrl('/' + this.destination);
   }
 

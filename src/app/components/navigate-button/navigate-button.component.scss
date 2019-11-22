@@ -1,6 +1,7 @@
 @import '../../../_imports.scss';
 
 .button {
+  z-index: 1;
   width: 100vw;
   height: $bottom-height;
   position: fixed;
@@ -9,4 +10,5 @@
   background-color: $color-button;
   color: $color-white;
   font-size: 1.3em;
+  cursor: pointer;
 }
