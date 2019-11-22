@@ -1,2 +1,36 @@
 <app-header></app-header>
-<app-navigate-button text="Start now" destination="interests"></app-navigate-button>
+<div id="content">
+  <div id="result">
+    <div class="heading">Results</div>
+    <div class="message d-flex">
+      <div class="avatar">
+        <img src="/assets/img/assistant.png" alt="assistant_image">
+      </div>
+      <div class="dialog">
+        <div class="heading">Awesome, we have great news!!</div>
+        <div class="message">You're very confident about booking. However, we would like to recommend new digital skills for you to feel even more confident using a booking website</div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div id="pathway">
+    <div class="heading">
+      <img src="/assets/img/arrows.png" alt="arrows">
+      My Learning Pathway
+    </div>
+    <div class="message">
+      If you want to develop your digital skills maybe save to your favourites or try one of these courses below:
+    </div>
+    <div class="courses container">
+      <div class="row no-gutters">
+        <div *ngFor="let course of courses; let i = index" class="col-6">
+          <div class="course {{ i%2 === 0 ? 'add-margin-right' : 'add-margin-left' }}">
+            <div class="text">{{ course.text }}</div>
+            <div class="more"(click)="loadLink(course.link)"><div class="fas fa-plus-circle"></div> More info</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-navigate-button text="New interest" destination="interests"></app-navigate-button>

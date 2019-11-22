@@ -9,3 +9,4 @@
 // TODO: Some objects in the result JSON object are repeated. Look into this
 // TODO: Remove console.log from header to print the results object
 // TODO: Add something in test-results service to reset the result object
+// TODO: Remove every *{} in the SCSS files
