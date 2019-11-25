@@ -29,4 +29,8 @@ export class InterestsScreenComponent implements OnInit {
     }
   }
 
+  test() {
+    console.log('test');
+  }
+
 }
