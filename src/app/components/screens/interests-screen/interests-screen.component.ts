@@ -19,6 +19,7 @@ export class InterestsScreenComponent implements OnInit {
     this.interestService.getInterests().subscribe( data => {
       this.interests = data;
     });
+    // this.testResults.resetInterest();
   }
 
   selectInterest(interest: Interest) {
@@ -26,6 +27,10 @@ export class InterestsScreenComponent implements OnInit {
     if (this.testResults.getInterest().id === interest.id) {
       this.router.navigate(['how-to']);
     }
+  }
+
+  test() {
+    console.log('test');
   }
 
 }

@@ -11,6 +11,7 @@ import { InterestsScreenComponent } from './components/screens/interests-screen/
 import { HttpClientModule } from '@angular/common/http';
 import { HowToScreenComponent } from './components/screens/how-to-screen/how-to-screen.component';
 import { ScenariosScreenComponent } from './components/screens/scenarios-screen/scenarios-screen.component';
+import { ResultsScreenComponent } from './components/screens/results-screen/results-screen.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ScenariosScreenComponent } from './components/screens/scenarios-screen/
     NavigateButtonComponent,
     InterestsScreenComponent,
     HowToScreenComponent,
-    ScenariosScreenComponent
+    ScenariosScreenComponent,
+    ResultsScreenComponent
   ],
   imports: [
     BrowserModule,

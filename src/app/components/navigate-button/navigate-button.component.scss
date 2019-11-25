@@ -1,6 +1,6 @@
 @import '../../../_imports.scss';
 
-.button {
+.buttons {
   z-index: 1;
   width: 100vw;
   height: $bottom-height;
@@ -11,4 +11,15 @@
   color: $color-white;
   font-size: 1.3em;
   cursor: pointer;
+  text-align: center;
+
+  .button {
+    margin: 0;
+    height: $bottom-height;
+    background-color: $color-button;
+  }
+
+  button:hover{
+      color: $color-font-light;
+  }
 }

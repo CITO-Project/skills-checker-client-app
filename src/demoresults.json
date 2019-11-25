@@ -1,0 +1,215 @@
+{
+  "product": null,
+  "interest": {
+    "id": 3,
+    "product": 1,
+    "name": "shop",
+    "text": "Using a digital catalogue",
+    "illustration": null,
+    "description": null
+  },
+  "scenarios": [
+    {
+      "id": 1,
+      "product": 1,
+      "interest": 3,
+      "name": "first_scenario",
+      "text": "First scenario",
+      "description": "This is the first scenario for the shopping interest",
+      "level": 1,
+      "resource": "first_scenario.svg"
+    },
+    {
+      "id": 2,
+      "product": 1,
+      "interest": 3,
+      "name": "second_scenario",
+      "text": "Second scenario",
+      "description": "This is the second scenario for the shopping interest",
+      "level": 2,
+      "resource": "second_scenario.svg"
+    },
+    {
+      "id": 3,
+      "product": 1,
+      "interest": 3,
+      "name": "third_scenario",
+      "text": "Third scenario",
+      "description": "This is the third scenario for the shopping interest",
+      "level": 3,
+      "resource": "third_scenario.svg"
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "product": 1,
+      "scenario": 1,
+      "type": "slider",
+      "question": "Question about numeracy 1",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for numeracy 1",
+      "skill": 2
+    },
+    {
+      "id": 2,
+      "product": 1,
+      "scenario": 1,
+      "type": "slider",
+      "question": "Question about digital skills 1",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for digital skills 1",
+      "skill": 3
+    },
+    {
+      "id": 3,
+      "product": 1,
+      "scenario": 1,
+      "type": "slider",
+      "question": "Question about literacy 1",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for literacy 1",
+      "skill": 1
+    },
+    {
+      "id": 4,
+      "product": 1,
+      "scenario": 2,
+      "type": "slider",
+      "question": "Question about literacy 2",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for literacy 2",
+      "skill": 1
+    },
+    {
+      "id": 5,
+      "product": 1,
+      "scenario": 2,
+      "type": "slider",
+      "question": "Question about numeracy 2",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for numeracy 2",
+      "skill": 2
+    },
+    {
+      "id": 6,
+      "product": 1,
+      "scenario": 2,
+      "type": "slider",
+      "question": "Question about digital skills 2",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for digital skills 2",
+      "skill": 3
+    },
+    {
+      "id": 7,
+      "product": 1,
+      "scenario": 3,
+      "type": "slider",
+      "question": "Question about literacy 3",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for literacy 3",
+      "skill": 1
+    },
+    {
+      "id": 8,
+      "product": 1,
+      "scenario": 3,
+      "type": "slider",
+      "question": "Question about numeracy 3",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for numeracy 3",
+      "skill": 2
+    },
+    {
+      "id": 9,
+      "product": 1,
+      "scenario": 3,
+      "type": "slider",
+      "question": "Question about digital skills 3",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for digital skills 3",
+      "skill": 3
+    }
+  ],
+  "answers": [
+    {
+      "questionid": 1,
+      "answer": 0
+    },
+    {
+      "questionid": 2,
+      "answer": 0
+    },
+    {
+      "questionid": 3,
+      "answer": 0
+    },
+    {
+      "questionid": 4,
+      "answer": 0
+    },
+    {
+      "questionid": 5,
+      "answer": 0
+    },
+    {
+      "questionid": 6,
+      "answer": 0
+    },
+    {
+      "questionid": 7,
+      "answer": 0
+    },
+    {
+      "questionid": 8,
+      "answer": 0
+    }
+  ],
+  "result": null
+}
