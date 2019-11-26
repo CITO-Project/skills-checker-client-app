@@ -22,7 +22,7 @@
           <div class="far fa-thumbs-up"></div>
         </div>
 
-        <input type="range" min="0" max="{{ question.answers.length - 1 }}" steps="1" value="0" (input)="retrieveAnswer($event)">
+        <input type="range" min="0" max="{{ question.answers.length - 1 }}" steps="1" value="0" (input)="retrieveAnswer($event.target.value)">
 
         <table>
           <tr>
@@ -40,8 +40,12 @@
       </div>
       <!-- End slider option -->
     </div>
-    <button class="next" type="button" mdbBtn color="dark" mdbWavesEffect (click)="saveAnswer()">Next >></button>
     <!-- End answer -->
   </div>
 </div>
-<app-navigate-button text="Back" destination="how-to"></app-navigate-button>
+<app-navigate-button
+  backText="{{ btnBack }}"
+  forwardText="{{ btnForward }}"
+  (backEvent)="previousQuestion()"
+  (forwardEvent)="saveAnswer()"
+  ></app-navigate-button>

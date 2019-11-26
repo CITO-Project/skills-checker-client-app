@@ -4,6 +4,7 @@ import { Scenario } from '../models/scenario';
 import { Question } from '../models/question';
 import { Result } from '../models/result';
 import { Product } from '../models/product';
+import { QuestionService } from './question.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,26 @@ export class TestResultsService {
   private results: Result;
 
   constructor() {
+    this.initializeResults();
+  }
+
+
+  /* .I need to find the way to go back and forth in the scenario questions.
+      When going back to a question in the same scenario
+        Load the question and answer from test-results
+      When going back to the previous scenario
+        Load the last question from the array in test-results and its answer
+      When going forward to the next question in the same scenario
+        Load the question and its answer. If the questions hasn't been loaded yet, get it from the
+        API and save it
+      When going forward to the next question in the next scenario
+        Load the scenario from test-results and load the questions from test-results along with its
+        answers. If it hasn't been loaded yet, get it from the API and save it
+  */
+
+
+
+  initializeResults() {
     this.results = {
       product: null,
       interest: null,
@@ -24,7 +45,6 @@ export class TestResultsService {
   }
 
   setProduct(product: Product): void {
-    // delete this.results;
     this.results.product = product;
   }
 
@@ -33,10 +53,6 @@ export class TestResultsService {
   }
 
   setInterest(interest: Interest): void {
-    // delete this.results.scenarios;
-    // delete this.results.questions;
-    // delete this.results.answers;
-    // delete this.results.result;
     this.results.interest = interest;
   }
 
@@ -47,18 +63,33 @@ export class TestResultsService {
   setScenario(scenario: Scenario): void {
     const index = this.getNextIndex(this.results.scenarios);
     this.results.scenarios[index] = scenario;
-    // delete this.results.questions[index];
-    // delete this.results.answers[index];
   }
 
   getScenario(index: number): Scenario {
     return this.results.scenarios[index];
   }
 
+  getScenarioById(scenarioid: number): Scenario {
+    this.results.scenarios.forEach( (scenario: Scenario) => {
+      if (scenario.id === scenarioid) {
+        return scenario;
+      }
+    });
+    return null;
+  }
+
   setQuestion(question: Question): void {
     const index = this.getNextIndex(this.results.questions);
     this.results.questions[index] = question;
-    // delete this.results.answers[index];
+  }
+
+  getQuestionById(questionid: number): Question {
+    this.results.questions.forEach( (question: Question) => {
+      if (question.id === questionid) {
+        return question;
+      }
+    });
+    return null;
   }
 
   // getQuestion(scenarioid: number, skill: number): Question {
@@ -95,7 +126,7 @@ export class TestResultsService {
     }
   }
 
-  getAll() {
+  getAll(): Result {
     return this.results;
   }
 

@@ -18,13 +18,15 @@ export class ScenariosScreenComponent implements OnInit {
   public scenario: Scenario;
   public question: Question;
 
+  public btnBack = 'Go back';
+  public btnForward = 'Next';
 
   private scenarios: number[] = [];
   private nScenario = 0;
   private questions: number[] = [];
   private nQuestion = 0;
 
-  private currentAnswer: number = 0;
+  private currentAnswer = 0;
 
   constructor(
     private testResultsService: TestResultsService,
@@ -35,6 +37,7 @@ export class ScenariosScreenComponent implements OnInit {
 
   ngOnInit() {
     this.getScenarios();
+    this.testResultsService.initializeResults();
   }
 
   getScenarios() {
@@ -66,7 +69,7 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   nextScenario() {
-    if (this.nScenario === this.scenarios.length - 1 ) {
+    if (this.nScenario === this.scenarios.length ) {
       this.router.navigate(['results']);
     } else {
       const scenarioId = this.scenarios[this.nScenario++];
@@ -74,25 +77,29 @@ export class ScenariosScreenComponent implements OnInit {
     }
   }
 
-  loadScenario(scenarioId: number) {
+  loadScenario(scenarioId: number, loadFromPrevious = false) {
     this.scenarioService.getScenario(scenarioId).subscribe( (scenario: Scenario) => {
       this.scenario = scenario;
       this.testResultsService.setScenario(scenario);
-      this.getQuestions(scenario.id);
+      this.getQuestions(scenario.id).subscribe( (questions: {
+        id: number
+      }[]) => {
+        questions.forEach( question => {
+          this.questions.push(question.id);
+        });
+        if (loadFromPrevious) {
+          this.nQuestion = questions.length - 1;
+        } else {
+          this.nQuestion = 0;
+        }
+        this.nextQuestion();
+      });
     });
   }
 
   getQuestions(scenarioId: number) {
-    this.nQuestion = 0;
     this.questions = [];
-    this.questionService.getQuestions(scenarioId).subscribe( (questions: {
-      id: number
-    }[]) => {
-      questions.forEach( question => {
-        this.questions.push(question.id);
-      });
-      this.nextQuestion();
-    });
+    return this.questionService.getQuestions(scenarioId);
   }
 
   nextQuestion() {
@@ -111,13 +118,21 @@ export class ScenariosScreenComponent implements OnInit {
     });
   }
 
-  retrieveAnswer(answer: any) {
-    this.currentAnswer = answer.target.value;
+  retrieveAnswer(answer: number) {
+    this.currentAnswer = answer;
   }
 
   saveAnswer() {
     this.testResultsService.setAnswer(this.question.id, this.currentAnswer);
     this.nextQuestion();
+    console.log('Scenario', this.scenarios.length, this.nScenario, 'Questions', this.questions.length, this.nQuestion);
+    if (this.scenarios.length === this.nScenario && this.questions.length === this.nQuestion - 1) {
+      this.btnForward = 'See results';
+    }
+  }
+
+  previousQuestion() {
+
   }
 
 }
