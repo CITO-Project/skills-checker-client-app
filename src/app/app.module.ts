@@ -14,6 +14,7 @@ import { InterestsScreenComponent } from './components/screens/interests-screen/
 import { HowToScreenComponent } from './components/screens/how-to-screen/how-to-screen.component';
 import { ScenariosScreenComponent } from './components/screens/scenarios-screen/scenarios-screen.component';
 import { ResultsScreenComponent } from './components/screens/results-screen/results-screen.component';
+import { QuestionComponent } from './components/question/question.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ResultsScreenComponent } from './components/screens/results-screen/resu
     InterestsScreenComponent,
     HowToScreenComponent,
     ScenariosScreenComponent,
-    ResultsScreenComponent
+    ResultsScreenComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
