@@ -120,10 +120,6 @@ export class ScenariosScreenComponent implements OnInit {
     });
   }
 
-  retrieveAnswer(answer: number): void {
-    this.currentAnswer = answer;
-  }
-
   saveAnswer() {
     this.testResultsService.setAnswer(this.question.id, this.currentAnswer);
     this.nextQuestion();
@@ -135,6 +131,10 @@ export class ScenariosScreenComponent implements OnInit {
 
   previousQuestion() {
 
+  }
+
+  check(data: any): void {
+    console.log(data);
   }
 
 }

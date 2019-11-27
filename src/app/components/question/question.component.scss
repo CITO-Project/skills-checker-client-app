@@ -1,0 +1,44 @@
+@import '../../../_imports.scss';
+
+#question {
+  .heading {
+    padding: 10px 0;
+    font-size: 1.4em;
+  }
+  .question {
+    text-align: left;
+  }
+  .answer {
+    padding: 20px 0;
+    .slider {
+      input[type=range] {
+        width: 100%;
+        padding: 20px 0 10px;
+      }
+      table {
+        width: 100%;
+        table-layout: fixed;
+        .answerOptions {
+          text-align: center;
+          font-size: .85em;
+          color: black;
+        }
+      }
+      .instructions{
+        padding-top: 10px;
+        text-align: left;
+        font-size: .7em;
+      }
+    }
+    .single {
+      text-align: left;
+      .answerOptions {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .next {
+    background-color: $color-button !important;
+  }
+}
