@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { TestResultsService } from 'src/app/services/test-results.service';
-import { Interest } from 'src/app/models/interest';
-import { ScenarioService } from 'src/app/services/scenario.service';
-import { Scenario } from 'src/app/models/scenario';
-import { QuestionService } from 'src/app/services/question.service';
-import { Question } from 'src/app/models/question';
 import { Router } from '@angular/router';
+
+import { Interest } from 'src/app/models/interest';
+import { Scenario } from 'src/app/models/scenario';
+import { Question } from 'src/app/models/question';
+
+import { TestResultsService } from 'src/app/services/test-results.service';
+import { ScenarioService } from 'src/app/services/scenario.service';
+import { QuestionService } from 'src/app/services/question.service';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -118,7 +120,7 @@ export class ScenariosScreenComponent implements OnInit {
     });
   }
 
-  retrieveAnswer(answer: number) {
+  retrieveAnswer(answer: number): void {
     this.currentAnswer = answer;
   }
 
