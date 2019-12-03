@@ -1,13 +1,6 @@
 {
   "product": null,
-  "interest": {
-    "id": 3,
-    "product": 1,
-    "name": "shop",
-    "text": "Using a digital catalogue",
-    "illustration": null,
-    "description": null
-  },
+  "interest": null,
   "scenarios": [
     {
       "id": 1,
@@ -15,9 +8,9 @@
       "interest": 3,
       "name": "first_scenario",
       "text": "First scenario",
-      "description": "This is the first scenario for the shopping interest",
       "level": 1,
-      "resource": "first_scenario.svg"
+      "resource": "first_scenario.svg",
+      "description": "This is the first scenario for the shopping interest"
     },
     {
       "id": 2,
@@ -25,9 +18,9 @@
       "interest": 3,
       "name": "second_scenario",
       "text": "Second scenario",
-      "description": "This is the second scenario for the shopping interest",
       "level": 2,
-      "resource": "second_scenario.svg"
+      "resource": "second_scenario.svg",
+      "description": "This is the second scenario for the shopping interest"
     },
     {
       "id": 3,
@@ -35,9 +28,19 @@
       "interest": 3,
       "name": "third_scenario",
       "text": "Third scenario",
-      "description": "This is the third scenario for the shopping interest",
       "level": 3,
-      "resource": "third_scenario.svg"
+      "resource": "third_scenario.svg",
+      "description": "This is the third scenario for the shopping interest"
+    },
+    {
+      "id": 4,
+      "product": 1,
+      "interest": 3,
+      "name": "forth_scenario",
+      "text": "Forth scenario",
+      "level": 4,
+      "resource": "forth_scenario.svg",
+      "description": "This is the forth scenario for the shopping interest"
     }
   ],
   "questions": [
@@ -46,170 +49,220 @@
       "product": 1,
       "scenario": 1,
       "type": "slider",
-      "question": "Question about numeracy 1",
+      "pedagogical_type": "task_question",
+      "question": "For me, finding the pharmacy opening hours is:",
       "answers": [
         "Very difficult",
         "Difficult",
         "Middling",
         "Easy"
       ],
-      "description": "Description for numeracy 1",
-      "skill": 2
+      "description": "Description for numeracy 1"
     },
     {
       "id": 2,
       "product": 1,
       "scenario": 1,
-      "type": "slider",
-      "question": "Question about digital skills 1",
+      "type": "single",
+      "pedagogical_type": "challenging_skill",
+      "question": "In this task, which skill did you find most challenging?",
       "answers": [
-        "Very difficult",
-        "Difficult",
-        "Middling",
-        "Easy"
+        "Reading the text",
+        "Estimating the cost",
+        "Finding the website online",
+        "None"
       ],
-      "description": "Description for digital skills 1",
-      "skill": 3
+      "description": "Description for digital skills 1"
     },
     {
       "id": 3,
       "product": 1,
-      "scenario": 1,
-      "type": "slider",
-      "question": "Question about literacy 1",
+      "scenario": 0,
+      "type": "single",
+      "pedagogical_type": "dimension_independence",
+      "question": "How difficult do you find this task?",
       "answers": [
-        "Very difficult",
-        "Difficult",
-        "Middling",
-        "Easy"
+        "Without help",
+        "With help"
       ],
-      "description": "Description for literacy 1",
-      "skill": 1
+      "description": "Description for literacy 1"
     },
     {
       "id": 4,
       "product": 1,
-      "scenario": 2,
-      "type": "slider",
-      "question": "Question about literacy 2",
+      "scenario": 0,
+      "type": "single",
+      "pedagogical_type": "dimension_confidence",
+      "question": "How confident are you performing this task?",
       "answers": [
-        "Very difficult",
-        "Difficult",
-        "Middling",
-        "Easy"
+        "In public",
+        "When no one is watching"
       ],
-      "description": "Description for literacy 2",
-      "skill": 1
+      "description": "Description for literacy 2"
     },
     {
       "id": 5,
       "product": 1,
-      "scenario": 2,
-      "type": "slider",
-      "question": "Question about numeracy 2",
+      "scenario": 0,
+      "type": "single",
+      "pedagogical_type": "dimension_fluency",
+      "question": "How long do you think I may take you?",
       "answers": [
-        "Very difficult",
-        "Difficult",
-        "Middling",
-        "Easy"
+        "It takes me 5 minutes",
+        "It takes me 30 minutes"
       ],
-      "description": "Description for numeracy 2",
-      "skill": 2
+      "description": "Description for numeracy 2"
     },
     {
       "id": 6,
       "product": 1,
       "scenario": 2,
       "type": "slider",
-      "question": "Question about digital skills 2",
+      "pedagogical_type": "task_question",
+      "question": "For me, selecting the month with less chance of raining by looking at the graph in the scenario is:",
       "answers": [
         "Very difficult",
         "Difficult",
         "Middling",
         "Easy"
       ],
-      "description": "Description for digital skills 2",
-      "skill": 3
+      "description": "Description for digital skills 2"
     },
     {
       "id": 7,
       "product": 1,
-      "scenario": 3,
-      "type": "slider",
-      "question": "Question about literacy 3",
+      "scenario": 2,
+      "type": "single",
+      "pedagogical_type": "challenging_skill",
+      "question": "In this task, which skill did you find most challenging?",
       "answers": [
-        "Very difficult",
-        "Difficult",
-        "Middling",
-        "Easy"
+        "Reading the text",
+        "Estimating the cost",
+        "Finding the website online",
+        "None"
       ],
-      "description": "Description for literacy 3",
-      "skill": 1
+      "description": "Description for literacy 3"
+    },
+    {
+      "id": 3,
+      "product": 1,
+      "scenario": 0,
+      "type": "single",
+      "pedagogical_type": "dimension_independence",
+      "question": "How difficult do you find this task?",
+      "answers": [
+        "Without help",
+        "With help"
+      ],
+      "description": "Description for literacy 1"
+    },
+    {
+      "id": 4,
+      "product": 1,
+      "scenario": 0,
+      "type": "single",
+      "pedagogical_type": "dimension_confidence",
+      "question": "How confident are you performing this task?",
+      "answers": [
+        "In public",
+        "When no one is watching"
+      ],
+      "description": "Description for literacy 2"
     },
     {
       "id": 8,
       "product": 1,
       "scenario": 3,
       "type": "slider",
-      "question": "Question about numeracy 3",
+      "pedagogical_type": "task_question",
+      "question": "For me, finding the correct dose I have to prepare for my child is:",
       "answers": [
         "Very difficult",
         "Difficult",
         "Middling",
         "Easy"
       ],
-      "description": "Description for numeracy 3",
-      "skill": 2
+      "description": "Description for numeracy 3"
     },
     {
-      "id": 9,
+      "id": 10,
       "product": 1,
-      "scenario": 3,
+      "scenario": 4,
       "type": "slider",
-      "question": "Question about digital skills 3",
+      "pedagogical_type": "task_question",
+      "question": "For me, selecting the month with less chance of rain by looking at the graph in the scenario is:",
       "answers": [
         "Very difficult",
         "Difficult",
         "Middling",
         "Easy"
       ],
-      "description": "Description for digital skills 3",
-      "skill": 3
+      "description": "Description for numeracy 4"
+    },
+    {
+      "id": 11,
+      "product": 1,
+      "scenario": 4,
+      "type": "single",
+      "pedagogical_type": "challenging_skill",
+      "question": "In this task, which skill did you find most challenging?",
+      "answers": [
+        "Reading the text",
+        "Estimating the cost",
+        "Finding the website online",
+        "None"
+      ],
+      "description": "Description for literacy 4"
+    },
+    {
+      "id": 3,
+      "product": 1,
+      "scenario": 0,
+      "type": "single",
+      "pedagogical_type": "dimension_independence",
+      "question": "How difficult do you find this task?",
+      "answers": [
+        "Without help",
+        "With help"
+      ],
+      "description": "Description for literacy 1"
+    },
+    {
+      "id": 4,
+      "product": 1,
+      "scenario": 0,
+      "type": "single",
+      "pedagogical_type": "dimension_confidence",
+      "question": "How confident are you performing this task?",
+      "answers": [
+        "In public",
+        "When no one is watching"
+      ],
+      "description": "Description for literacy 2"
     }
   ],
   "answers": [
-    {
-      "questionid": 1,
-      "answer": 0
-    },
-    {
-      "questionid": 2,
-      "answer": 0
-    },
-    {
-      "questionid": 3,
-      "answer": 0
-    },
-    {
-      "questionid": 4,
-      "answer": 0
-    },
-    {
-      "questionid": 5,
-      "answer": 0
-    },
-    {
-      "questionid": 6,
-      "answer": 0
-    },
-    {
-      "questionid": 7,
-      "answer": 0
-    },
-    {
-      "questionid": 8,
-      "answer": 0
-    }
+    1,
+    2,
+    0,
+    0,
+    1,
+    2,
+    3,
+    0,
+    1,
+    3,
+    0,
+    2,
+    0,
+    1
+  ],
+  "question_order": [
+    "task_question",
+    "challenging_skill",
+    "dimension_independence",
+    "dimension_confidence",
+    "dimension_fluency"
   ],
   "result": null
 }

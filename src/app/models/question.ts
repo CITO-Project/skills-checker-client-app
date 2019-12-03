@@ -6,5 +6,5 @@ export interface Question {
   question: string;
   answers: string[];
   description: string;
-  skill: number;
+  pedagogical_type: string;
 }

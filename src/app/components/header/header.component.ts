@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TestResultsService } from 'src/app/services/test-results.service';
+import { DataLogService } from 'src/app/services/data-log.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ import { TestResultsService } from 'src/app/services/test-results.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, private testResultsService: TestResultsService) { }
+  constructor(private router: Router, private dataLogService: DataLogService) { }
 
   ngOnInit() { }
 
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   }
 
   showMore() {
-    console.log(this.testResultsService.getAll());
+    console.log(this.dataLogService.getAll());
   }
 
 }
