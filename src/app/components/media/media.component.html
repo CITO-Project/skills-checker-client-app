@@ -1,1 +1,8 @@
-<p>media works!</p>
+<div id="media" [ngSwitch]=type>
+  <div id="image" *ngSwitchCase="'image'">
+    <img src="{{ resourceFile }}" alt="{{ type + ' resource'}}">
+  </div>
+  <div id="default" *ngSwitchDefault>
+      <i class="fas fa-play-circle"></i>
+  </div>
+</div>
