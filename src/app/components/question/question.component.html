@@ -3,15 +3,16 @@
 
   <!-- Question text -->
   <div class="heading">Your skills</div>
-  <div class="question" *ngIf="!!question">{{ question.question + 'fasf fa fas fs fas as fdsa fds fasd fsda fas' }}</div>
+  <div class="question" *ngIf="!!question">{{ question.question }}</div>
   <!-- End question text -->
 
   <!-- Answer -->
   <div class="answer" *ngIf="!!question" [ngSwitch]="question.type">
+    <div class="error animated shake" *ngIf="error !== ''">{{ error }}</div>
 
 
     <!-- Slider option -->
-    <div class="slider" *ngSwitchCase="'foo'"> <!-- Change ngSwitchCase to 'slider' -->
+    <div class="slider" *ngSwitchCase="'slider'">
       <div class="thumbs d-flex justify-content-between">
         <div class="far fa-thumbs-up fa-rotate-180"></div>
         <div class="far fa-thumbs-up"></div>
@@ -38,11 +39,11 @@
 
 
     <!-- Single option -->
-    <div class="single" *ngSwitchCase="'slider'"> <!-- Change ngSwitchCase to 'single' -->
+    <div class="single" *ngSwitchCase="'single'">
         <form>
             <div class="custom-control custom-radio answerOptions" *ngFor="let answer of question.answers; let i = index">
                <input id="{{ i }}" type="radio" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswer($event.target.id)">
-               <label class="custom-control-label" for="{{ i }}">{{ answer }}</label>
+               <label class="custom-control-label" [ngClass]="{error: error !== ''}" for="{{ i }}">{{ answer }}</label>
             </div>
          </form>
     </div>

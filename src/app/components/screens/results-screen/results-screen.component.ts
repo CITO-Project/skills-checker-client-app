@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TestResultsService } from 'src/app/services/test-results.service';
-import { ResultsProcessingService } from 'src/app/services/results-processing.service';
+import { DataLogService } from 'src/app/services/data-log.service';
+import { DataProcessingService } from 'src/app/services/data-processing.service';
 
 @Component({
   selector: 'app-results-screen',
@@ -11,7 +11,7 @@ export class ResultsScreenComponent implements OnInit {
 
   public courses;
 
-  constructor(private resultsProcessing: ResultsProcessingService) { }
+  constructor(private dataProcessingService: DataProcessingService) { }
 
   ngOnInit() {
     this.courses = [

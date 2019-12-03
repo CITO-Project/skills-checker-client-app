@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ResultsProcessingService } from './results-processing.service';
+import { DataProcessingService } from './data-processing.service';
 
 describe('ResultsProcessingService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ResultsProcessingService = TestBed.get(ResultsProcessingService);
+    const service: DataProcessingService = TestBed.get(DataProcessingService);
     expect(service).toBeTruthy();
   });
 });

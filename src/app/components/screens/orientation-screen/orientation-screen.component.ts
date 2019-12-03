@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TestResultsService } from 'src/app/services/test-results.service';
+import { DataLogService } from 'src/app/services/data-log.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -9,10 +9,10 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class OrientationScreenComponent implements OnInit {
 
-  constructor(private testResults: TestResultsService, private productService: ProductService) { }
+  constructor(private dataLogService: DataLogService, private productService: ProductService) { }
 
   ngOnInit() {
-    if (!this.testResults.getProduct()) {
+    if (!this.dataLogService.getProduct()) {
       this.productService.setProduct();
     }
   }

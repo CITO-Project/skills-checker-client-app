@@ -9,6 +9,7 @@ import { Question } from 'src/app/models/question';
 export class QuestionComponent implements OnInit {
 
   @Input() question: Question;
+  @Input() error: string;
   @Output() answer = new EventEmitter<number>();
 
 
