@@ -31,12 +31,17 @@ export class MediaComponent implements OnInit {
       switch (this.type) {
         case 'image':
           this.resourceFile = this.RESOURCE_PATH + this.resource + '.png';
+          console.log(this.resourceFile);
           break;
         case 'video':
           console.log('type video');
           break;
       }
     }
+  }
+
+  ngChange() {
+    console.log('change');
   }
 
 }
