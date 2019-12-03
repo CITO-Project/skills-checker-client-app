@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-media',
   templateUrl: './media.component.html',
   styleUrls: ['./media.component.scss']
 })
-export class MediaComponent implements OnInit {
+export class MediaComponent implements OnInit, OnChanges {
 
   private RESOURCE_PATH = '/assets/resources/';
 
@@ -23,25 +23,23 @@ export class MediaComponent implements OnInit {
     el.style.height = this.height;
   }
 
+  ngOnChanges() {
+    this.loadResource();
+  }
+
   loadResource() {
     if (this.type !== undefined && this.resource === undefined) {
+      console.error('Need to provide resource to show.', 'Type: ', this.type, ' > ', this.resource);
       this.type = '';
-      console.error('Need to provide resource to show');
     } else {
       switch (this.type) {
         case 'image':
           this.resourceFile = this.RESOURCE_PATH + this.resource + '.png';
-          console.log(this.resourceFile);
           break;
         case 'video':
-          console.log('type video');
           break;
       }
     }
-  }
-
-  ngChange() {
-    console.log('change');
   }
 
 }
