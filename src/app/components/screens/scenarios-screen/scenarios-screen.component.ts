@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { TestResultsService } from 'src/app/services/test-results.service';
-import { Interest } from 'src/app/models/interest';
-import { ScenarioService } from 'src/app/services/scenario.service';
-import { Scenario } from 'src/app/models/scenario';
-import { QuestionService } from 'src/app/services/question.service';
-import { Question } from 'src/app/models/question';
 import { Router } from '@angular/router';
+
+import { Interest } from 'src/app/models/interest';
+import { Scenario } from 'src/app/models/scenario';
+import { Question } from 'src/app/models/question';
+
+import { DataLogService } from 'src/app/services/data-log.service';
+import { ScenarioService } from 'src/app/services/scenario.service';
+import { QuestionService } from 'src/app/services/question.service';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -17,17 +19,19 @@ export class ScenariosScreenComponent implements OnInit {
   public interest: Interest;
   public scenario: Scenario;
   public question: Question;
+  public errorMessage = '';
 
+  public btnBack = 'Go back';
+  public btnForward = 'Next';
 
-  private scenarios: number[] = [];
-  private nScenario = 0;
-  private questions: number[] = [];
-  private nQuestion = 0;
+  private currentScenario = -1;
+  private currentQuestion = -1;
 
-  private currentAnswer: number = 0;
+  private currentAnswer = -1;
+  private currentIndex = -1;
 
   constructor(
-    private testResultsService: TestResultsService,
+    private dataLogService: DataLogService,
     private scenarioService: ScenarioService,
     private questionService: QuestionService,
     private router: Router
@@ -35,10 +39,11 @@ export class ScenariosScreenComponent implements OnInit {
 
   ngOnInit() {
     this.getScenarios();
+    this.dataLogService.initializeLog();
   }
 
   getScenarios() {
-    // Retrieve selected interest
+    // TODO Retrieve selected interest
     // const interestid = this.testResults.getInterestId();
     // this.interestService.getInterest(interestid).subscribe( (data: Interest) => {
     //   interest = data;
@@ -55,69 +60,75 @@ export class ScenariosScreenComponent implements OnInit {
     };
     this.interest = interest;
 
-    this.scenarioService.getScenarios(interest.id).subscribe( (scenarios: {
-      id: number
-    }[]) => {
-      scenarios.forEach( scenario => {
-        this.scenarios.push(scenario.id);
-      });
+    this.scenarioService.getScenarios(interest.id).subscribe( () => {
+      this.currentScenario = -1;
       this.nextScenario();
     });
   }
 
   nextScenario() {
-    if (this.nScenario === this.scenarios.length - 1 ) {
+    if (this.currentScenario === this.scenarioService.getCount() - 1 ) {
       this.router.navigate(['results']);
     } else {
-      const scenarioId = this.scenarios[this.nScenario++];
-      this.loadScenario(scenarioId);
+      ++this.currentScenario;
+      this.loadScenario(this.currentScenario);
     }
   }
 
-  loadScenario(scenarioId: number) {
-    this.scenarioService.getScenario(scenarioId).subscribe( (scenario: Scenario) => {
-      this.scenario = scenario;
-      this.testResultsService.setScenario(scenario);
-      this.getQuestions(scenario.id);
-    });
-  }
-
-  getQuestions(scenarioId: number) {
-    this.nQuestion = 0;
-    this.questions = [];
-    this.questionService.getQuestions(scenarioId).subscribe( (questions: {
-      id: number
-    }[]) => {
-      questions.forEach( question => {
-        this.questions.push(question.id);
-      });
+  loadScenario(order: number, loadFromPrevious = false) {
+    this.scenario = this.scenarioService.getScenarioByOrder(order);
+    this.dataLogService.setScenario(this.scenario);
+    this.questionService.getQuestions(this.scenario.id).subscribe( () => {
+      this.currentQuestion = -1;
       this.nextQuestion();
     });
   }
 
   nextQuestion() {
-    if (this.nQuestion === this.questions.length ) {
+    if (this.currentQuestion === this.questionService.getCount() - 1 ) {
       this.nextScenario();
     } else {
-      const questionId = this.questions[this.nQuestion++];
-      this.loadQuestion(questionId);
+      ++this.currentQuestion;
+      ++this.currentIndex;
+      this.loadQuestion(this.currentQuestion);
     }
   }
 
-  loadQuestion(questionId: number) {
-    this.questionService.getQuestion(questionId).subscribe( (question: Question) => {
-      this.testResultsService.setQuestion(question);
-      this.question = question;
-    });
-  }
-
-  retrieveAnswer(answer: any) {
-    this.currentAnswer = answer.target.value;
+  loadQuestion(order: number) {
+    this.question = this.questionService.getQuestionByOrder(order);
+    if (this.question.type === 'slider') {
+      this.currentAnswer = 0;
+    } else {
+      this.currentAnswer = -1;
+    }
+    this.errorMessage = '';
+    this.dataLogService.setQuestion(this.question, this.currentIndex);
   }
 
   saveAnswer() {
-    this.testResultsService.setAnswer(this.question.id, this.currentAnswer);
-    this.nextQuestion();
+    if (this.currentAnswer < 0) {
+      this.showError('Please, select one of the options bellow');
+    } else {
+      this.dataLogService.setAnswer(this.currentIndex, this.currentAnswer);
+      if ( this.questionService.shouldSkipScenario(this.currentQuestion, this.currentAnswer) ) {
+        this.nextScenario();
+      } else {
+        this.nextQuestion();
+      }
+    }
+  }
+
+  previousQuestion() {
+
+  }
+
+  showError(message: string): void {
+    this.errorMessage = message;
+
+  }
+
+  processAnswer(answer: number): void {
+    this.currentAnswer = answer;
   }
 
 }

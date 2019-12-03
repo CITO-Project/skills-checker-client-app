@@ -1,0 +1,56 @@
+<div id="question">
+  <hr>
+
+  <!-- Question text -->
+  <div class="heading">Your skills</div>
+  <div class="question" *ngIf="!!question">{{ question.question }}</div>
+  <!-- End question text -->
+
+  <!-- Answer -->
+  <div class="answer" *ngIf="!!question" [ngSwitch]="question.type">
+    <div class="error animated shake" *ngIf="error !== ''">{{ error }}</div>
+
+
+    <!-- Slider option -->
+    <div class="slider" *ngSwitchCase="'slider'">
+      <div class="thumbs d-flex justify-content-between">
+        <div class="far fa-thumbs-up fa-rotate-180"></div>
+        <div class="far fa-thumbs-up"></div>
+      </div>
+
+      <input type="range" min="0" max="{{ question.answers.length - 1 }}" steps="1" value="0" (input)="retrieveAnswer($event.target.value)">
+
+      <table>
+        <tr>
+          <td *ngFor="let answer of question.answers; let first = first; let last = last;">
+            <div class="answerOptions" [ngClass]="{'float-left': first, 'float-right': last }">
+              {{ answer }}
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <div class="instructions">
+        Drag the slider to share your level of knowledge
+      </div>
+    </div>
+    <!-- End slider option -->
+
+
+
+    <!-- Single option -->
+    <div class="single" *ngSwitchCase="'single'">
+        <form>
+            <div class="custom-control custom-radio answerOptions" *ngFor="let answer of question.answers; let i = index">
+               <input id="{{ i }}" type="radio" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswer($event.target.id)">
+               <label class="custom-control-label" [ngClass]="{error: error !== ''}" for="{{ i }}">{{ answer }}</label>
+            </div>
+         </form>
+    </div>
+    <!-- End single option -->
+
+
+
+  </div>
+  <!-- End answer -->
+</div>
