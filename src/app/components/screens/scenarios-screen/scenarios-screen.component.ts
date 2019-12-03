@@ -103,6 +103,8 @@ export class ScenariosScreenComponent implements OnInit {
     }
     this.errorMessage = '';
     this.dataLogService.setQuestion(this.question, this.currentIndex);
+
+    this.isLastQuestion();
   }
 
   saveAnswer() {
@@ -116,6 +118,16 @@ export class ScenariosScreenComponent implements OnInit {
         this.nextQuestion();
       }
     }
+  }
+
+  isLastQuestion(): boolean {
+    this.btnForward = 'Next';
+    const isIt = (this.currentScenario === this.scenarioService.getCount() - 1
+      && this.currentQuestion === this.questionService.getCount() - 1);
+    if (isIt) {
+      this.btnForward = 'See results';
+    }
+    return isIt;
   }
 
   previousQuestion() {
