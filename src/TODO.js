@@ -1,6 +1,6 @@
 /* Free commnents
 
-
+O que tenho que facer ahora é cargar todas as preguntas dende o principio. Probablemente a mellor forma é gardalas todas no servicio de preguntas. Cando haxa que cargar unha pregunta, haberá unha funcion que reciba o tipo de pregunta como parametro e busque nas preguntas que ten cargadas, unha pregunta dese tipo e a devolva. Cada vez que se carga un novo escenario recarganse as preguntas e cando se acaba o test tamen.
 
 */
 // TODO: Need to move header and bottom button as components. Also use flex containers to center. DO NOT USE MARGIN / PADDING
@@ -18,3 +18,4 @@
 // TODO: Add input to the header. It the input is empty, show SkillsChecker
 // TODO: Remove the answers after the last index. After all questions have been answered
 // TODO: Add documentation to the code
+// TODO: When you skip a slider, it has to reset the value and move the slider position aswell

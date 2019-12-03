@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataLogService } from 'src/app/services/data-log.service';
 
@@ -9,9 +9,15 @@ import { DataLogService } from 'src/app/services/data-log.service';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() text: string;
+
   constructor(private router: Router, private dataLogService: DataLogService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    if (this.text === undefined) {
+      this.text = 'SkillsChecker';
+    }
+  }
 
   goToIndex() {
     this.router.navigate(['']);
