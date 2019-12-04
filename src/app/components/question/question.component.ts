@@ -27,6 +27,7 @@ export class QuestionComponent implements OnInit, OnChanges {
 
   resetSlider(changes: SimpleChanges): void {
     if (
+      !!changes.question &&
       !changes.question.isFirstChange() &&
       changes.question.previousValue.type === 'slider' &&
       changes.question.currentValue.type === 'slider'
