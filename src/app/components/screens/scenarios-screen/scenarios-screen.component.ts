@@ -95,6 +95,7 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   loadQuestion(order: number) {
+    this.question = null;
     this.question = this.questionService.getQuestionByOrder(order);
     if (this.question.type === 'slider') {
       this.currentAnswer = 0;
@@ -131,7 +132,7 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   previousQuestion() {
-
+    this.router.navigate(['how-to']);
   }
 
   showError(message: string): void {
