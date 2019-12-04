@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, DoCheck, AfterContentChecked, AfterContentInit, AfterViewInit } from '@angular/core';
 import { Question } from 'src/app/models/question';
 
 @Component({
@@ -6,7 +6,7 @@ import { Question } from 'src/app/models/question';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss']
 })
-export class QuestionComponent implements OnInit {
+export class QuestionComponent implements OnInit, OnChanges {
 
   @Input() question: Question;
   @Input() error: string;
@@ -17,8 +17,23 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() { }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.resetSlider(changes);
+  }
+
   retrieveAnswer(answer: number): void {
     this.answer.emit(answer);
+  }
+
+  resetSlider(changes: SimpleChanges): void {
+    if (
+      !!changes.question &&
+      !changes.question.isFirstChange() &&
+      changes.question.previousValue.type === 'slider' &&
+      changes.question.currentValue.type === 'slider'
+      ) {
+      document.getElementById('slider')['value'] = 0;
+    }
   }
 
 
