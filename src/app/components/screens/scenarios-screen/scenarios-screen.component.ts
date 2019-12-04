@@ -95,6 +95,7 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   loadQuestion(order: number) {
+    this.question = null;
     this.question = this.questionService.getQuestionByOrder(order);
     if (this.question.type === 'slider') {
       this.currentAnswer = 0;
@@ -103,6 +104,8 @@ export class ScenariosScreenComponent implements OnInit {
     }
     this.errorMessage = '';
     this.dataLogService.setQuestion(this.question, this.currentIndex);
+
+    this.isLastQuestion();
   }
 
   saveAnswer() {
@@ -118,8 +121,18 @@ export class ScenariosScreenComponent implements OnInit {
     }
   }
 
-  previousQuestion() {
+  isLastQuestion(): boolean {
+    this.btnForward = 'Next';
+    const isIt = (this.currentScenario === this.scenarioService.getCount() - 1
+      && this.currentQuestion === this.questionService.getCount() - 1);
+    if (isIt) {
+      this.btnForward = 'See results';
+    }
+    return isIt;
+  }
 
+  previousQuestion() {
+    this.router.navigate(['how-to']);
   }
 
   showError(message: string): void {

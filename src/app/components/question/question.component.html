@@ -18,7 +18,7 @@
         <div class="far fa-thumbs-up"></div>
       </div>
 
-      <input type="range" min="0" max="{{ question.answers.length - 1 }}" steps="1" value="0" (input)="retrieveAnswer($event.target.value)">
+      <input id='slider' type="range" min="0" max="{{ question.answers.length - 1 }}" steps="1" value="0" (input)="retrieveAnswer($event.target.value)">
 
       <table>
         <tr>

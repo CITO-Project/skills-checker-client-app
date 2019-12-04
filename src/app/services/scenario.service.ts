@@ -21,7 +21,6 @@ export class ScenarioService {
     return this.http.get(this.common.getApiUrl() + url).pipe(map(
       (data: Scenario[]) => {
         this.scenarios = data;
-        console.log(data);
       }
     ));
   }
