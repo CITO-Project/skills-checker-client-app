@@ -1,0 +1,18 @@
+@import '../../../../_imports.scss';
+
+* {
+  color: $color-font;
+}
+
+.content {
+  margin: 30px 40px;
+  font-size: 0.9em;
+  #header {
+    .description {
+      padding: 10px 0 20px;
+    }
+  }
+  .heading {
+    font-size: 1.4em;
+  }
+}

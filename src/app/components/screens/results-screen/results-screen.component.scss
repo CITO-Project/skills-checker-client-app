@@ -1,0 +1,97 @@
+@import '../../../../_imports.scss';
+
+$separator-between-courses: 20px;
+
+
+#content {
+  padding: 0 20px;
+}
+
+.avatar > img {
+  height: 150px;
+}
+
+#result {
+  text-align: center;
+
+  > .heading {
+    color: $color-font;
+    padding: 10px 0;
+    font-size: 1.4em;
+  }
+}
+
+.dialog {
+  color: $color-white;
+  position: relative;
+  background-color: $color-background-dark;
+  border-radius: 5px;
+  padding: 15px;
+  margin-left: 15px;
+  font-size: .75em;
+
+  > .heading {
+    font-size: 1.3em;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+}
+
+.dialog:after {
+	right: 100%;
+	top: 70px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	border-right-color: $color-background-dark;
+	border-width: 10px;
+	margin-top: -10px;
+}
+
+hr {
+  margin: 25px 0;
+}
+
+#pathway {
+  text-align: center;
+  color: $color-font;
+  .heading {
+    font-size: 1.5em;
+    color: $color-font;
+    margin-bottom: 10px;
+    > img {
+      margin-right: 10px;
+      height: .7em;
+    }
+  }
+  .message {
+    margin-bottom: 20px;
+  }
+  .courses{
+    padding: 0;
+    .course {
+      margin-bottom: 20px;
+      background-color: $color-background-secondary;
+      font-size: .8em;
+      > .text {
+        padding: 20px 10px;
+      }
+      > .more {
+        width: 100%;
+        color: $color-font-light;
+        background-color: $color-background-dark;
+        padding: 10px;
+      }
+    }
+  }
+}
+
+.add-margin-right {
+  margin-right: $separator-between-courses/2;
+}
+
+.add-margin-left {
+  margin-left: $separator-between-courses/2;
+}

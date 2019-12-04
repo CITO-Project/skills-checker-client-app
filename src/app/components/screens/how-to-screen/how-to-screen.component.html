@@ -1,0 +1,22 @@
+<app-header></app-header>
+<app-media resource='how-to' type='image'></app-media>
+<div id="description">
+  <div class="main">
+    How to use
+  </div>
+  <div class="text">
+    Learn how to use the app to set your interests and to improve your skills
+  </div>
+  <div class="feedback">
+    You have selected:
+    <div class="interest">
+      {{ selectedInterest }}
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="start" (click)="btnClick()">
+      Go
+    </div>
+  </div>
+</div>
+<app-navigate-button text="Select another interest" destination="interests"></app-navigate-button>
