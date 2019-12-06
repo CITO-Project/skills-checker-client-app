@@ -32,7 +32,7 @@ export class QuestionComponent implements OnInit, OnChanges {
       changes.question.previousValue.type === 'slider' &&
       changes.question.currentValue.type === 'slider'
       ) {
-      document.getElementById('slider')['value'] = 0;
+      (document.getElementById('slider') as HTMLInputElement).value = '0';
     }
   }
 
