@@ -1,1 +1,15 @@
-<p>categories-screen works!</p>
+<app-header></app-header>
+<div class="heading">Pick a Category</div>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let category of categories" class="category col-6" (click)="selectCategory(category)">
+      <div class="icon d-flex column justify-content-center align-items-center">
+        <div>
+          <i class="far fa-image"></i>
+          <div>{{ category.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-navigate-button text="Go back" destination=""></app-navigate-button>

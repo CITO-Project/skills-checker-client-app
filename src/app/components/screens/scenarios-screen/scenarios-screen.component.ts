@@ -63,6 +63,7 @@ export class ScenariosScreenComponent implements OnInit {
       description: null
     };
     this.interest = interest;
+    this.dataLogService.setInterest(interest);
 
     this.scenarioService.getScenarios(this.categoryService.getCategory().id, interest.id).subscribe( () => {
       this.currentScenario = -1;
