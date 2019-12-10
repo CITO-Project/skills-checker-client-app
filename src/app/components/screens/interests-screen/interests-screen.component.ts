@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { InterestService } from 'src/app/services/interest.service';
+
 import { Interest } from 'src/app/models/interest';
+
+import { InterestService } from 'src/app/services/interest.service';
 import { DataLogService } from 'src/app/services/data-log.service';
-import { Router } from '@angular/router';
-import { CategoryService } from 'src/app/services/category.service';
 import { CommonService } from 'src/app/services/common.service';
+
 
 @Component({
   selector: 'app-interests-screen',
@@ -16,27 +17,32 @@ export class InterestsScreenComponent implements OnInit {
   public interests: Interest[];
 
   constructor(
-    private categoryService: CategoryService,
     private interestService: InterestService,
     private dataLogService: DataLogService,
     private commonService: CommonService) { }
 
   ngOnInit() {
-    this.interestService.getInterests(this.categoryService.getCategory().id).subscribe( data => {
-      this.interests = data;
-    });
-    // this.testResults.resetInterest();
+    const category = this.dataLogService.getCategory();
+    if (category === null) {
+      this.commonService.goTo('categories');
+    } else {
+      this.interestService.getInterests(category.id).subscribe( (data: Interest[]) => {
+        this.interests = data;
+      });
+    }
   }
 
   selectInterest(interest: Interest): void {
+    interest = {
+      id: 3,
+      product: 1,
+      name: 'static_interest',
+      text: 'Static interest. Change afterwards'
+    }
     this.dataLogService.setInterest(interest);
     if (this.dataLogService.getInterest().id === interest.id) {
       this.commonService.goTo('how-to');
     }
-  }
-
-  test() {
-    console.log('test');
   }
 
 }

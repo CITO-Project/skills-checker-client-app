@@ -24,6 +24,11 @@ export class CommonService {
   }
 
   goTo(url: string): void {
-    this.router.navigate([url]);
+    this.router.navigate(['/' + url]);
   }
+
+  log(data: any): void {
+    console.log( !!data ? data : 'test' );
+  }
+
 }

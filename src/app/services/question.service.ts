@@ -24,11 +24,11 @@ export class QuestionService {
 
   getQuestions(categoryid: number, interestid: number, scenarioId: number): Observable<void> {
     if (categoryid < 1) {
-      this.common.goTo('/categories');
+      this.common.goTo('categories');
     } else if (interestid < 1) {
-      this.common.goTo('/interests');
+      this.common.goTo('interests');
     } else if (scenarioId < 1) {
-      this.common.goTo('/how-to');
+      this.common.goTo('how-to');
     } else {
       const url = `/categories/${categoryid}/interests/${interestid}/scenarios/${scenarioId}/questions`;
       return this.http.get(this.common.getApiUrl() + url)

@@ -35,8 +35,12 @@ export class DataLogService {
 
 
   initializeLog() {
+    let product = null;
+    if (!!this.log && !!this.log.product) {
+      product = this.log.product;
+    }
     this.log = {
-      product: null,
+      product,
       category: null,
       interest: null,
       scenarios: [],
@@ -163,6 +167,12 @@ export class DataLogService {
     } else {
       return array.length;
     }
+  }
+
+  resetInterest(): void {
+    this.log.scenarios = [];
+    this.log.questions = [];
+    this.log.answers = [];
   }
 
   getAll(): Log {
