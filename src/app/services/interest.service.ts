@@ -4,6 +4,7 @@ import { CommonService } from './common.service';
 import { Interest } from '../models/interest';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,17 @@ export class InterestService {
 
   constructor(private http: HttpClient, private common: CommonService) { }
 
-  getInterests(): Observable<Interest[]> {
-    return this.http.get(this.common.getApiUrl() + 'interests').pipe(map(
-      (data: Interest[]) => {
-        return data;
-      }
-    ));
+  getInterests(categoryid: number): Observable<Interest[]> {
+    if (categoryid < 1) {
+      this.common.goTo('/categories');
+    } else {
+      const url = `/categories/${categoryid}/interests`;
+      return this.http.get(this.common.getApiUrl() + url).pipe(map(
+        (data: Interest[]) => {
+          return data;
+        }
+      ));
+    }
   }
 
   setInterest(interest: Interest): void {
