@@ -1,0 +1,16 @@
+<app-header></app-header>
+<app-media *ngIf="!!scenario" [resource]='"scenario" + scenario.id' type='image'></app-media>
+<div class="content d-flex flex-column align-items-center text-center">
+  <div id="header">
+    <div class="heading" *ngIf="!!interest">{{ interest.text }}</div>
+    <div class="description" *ngIf="!!question">{{ question.description }}</div>
+  </div>
+  <app-question *ngIf="!!question" [(question)]="question" [(error)]="errorMessage" (answer)="processAnswer($event)"></app-question>
+
+</div>
+<app-navigate-button
+  backText="{{ btnBack }}"
+  forwardText="{{ btnForward }}"
+  (backEvent)="previousQuestion()"
+  (forwardEvent)="saveAnswer()"
+  ></app-navigate-button>

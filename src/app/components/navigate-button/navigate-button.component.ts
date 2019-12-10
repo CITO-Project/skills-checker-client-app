@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,15 +8,44 @@ import { Router } from '@angular/router';
 })
 export class NavigateButtonComponent implements OnInit {
 
-  @Input('text') text: String;
-  @Input('destination') destination: String;
+  @Input() backText: string;
+  @Input() backDestination: string;
+  @Output() backEvent = new EventEmitter();
+
+  @Input() forwardText: string;
+  @Input() forwardDestination: string;
+  @Output() forwardEvent = new EventEmitter();
+
+  @Input() text: string;
+  @Input() destination: string;
+  @Output() event =  new EventEmitter();
 
   constructor(private router: Router) { }
 
   ngOnInit() { }
 
   btnClick() {
-    this.router.navigateByUrl('/' + this.destination);
+    if (this.destination !== undefined) {
+      this.router.navigate([this.destination]);
+    } else {
+      this.event.emit();
+    }
+  }
+
+  btnClickBack() {
+    if (this.backDestination !== undefined) {
+      this.router.navigate([this.backDestination]);
+    } else {
+      this.backEvent.emit();
+    }
+  }
+
+  btnClickForward() {
+    if (this.forwardDestination !== undefined) {
+      this.router.navigate([this.forwardDestination]);
+    } else {
+      this.forwardEvent.emit();
+    }
   }
 
 }

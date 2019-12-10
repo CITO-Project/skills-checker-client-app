@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { InterestService } from 'src/app/services/interest.service';
+
 import { Interest } from 'src/app/models/interest';
-import { TestResultsService } from 'src/app/services/test-results.service';
-import { Router } from '@angular/router';
+
+import { InterestService } from 'src/app/services/interest.service';
+import { DataLogService } from 'src/app/services/data-log.service';
+import { CommonService } from 'src/app/services/common.service';
+
 
 @Component({
   selector: 'app-interests-screen',
@@ -11,20 +14,34 @@ import { Router } from '@angular/router';
 })
 export class InterestsScreenComponent implements OnInit {
 
-  public interests;
+  public interests: Interest[];
 
-  constructor(private interestService: InterestService, private testResults: TestResultsService, private router: Router) { }
+  constructor(
+    private interestService: InterestService,
+    private dataLogService: DataLogService,
+    private commonService: CommonService) { }
 
   ngOnInit() {
-    this.interestService.getInterests().subscribe( data => {
-      this.interests = data;
-    });
+    const category = this.dataLogService.getCategory();
+    if (category === null) {
+      this.commonService.goTo('categories');
+    } else {
+      this.interestService.getInterests(category.id).subscribe( (data: Interest[]) => {
+        this.interests = data;
+      });
+    }
   }
 
-  selectInterest(interest: Interest) {
-    this.testResults.setInterestId(interest.id);
-    if (this.testResults.getInterestId() === interest.id) {
-      this.router.navigate(['how-to']);
+  selectInterest(interest: Interest): void {
+    interest = {
+      id: 3,
+      product: 1,
+      name: 'static_interest',
+      text: 'Static interest. Change afterwards'
+    }
+    this.dataLogService.setInterest(interest);
+    if (this.dataLogService.getInterest().id === interest.id) {
+      this.commonService.goTo('how-to');
     }
   }
 
