@@ -3,6 +3,7 @@ import { InterestService } from 'src/app/services/interest.service';
 import { Interest } from 'src/app/models/interest';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-interests-screen',
@@ -14,12 +15,13 @@ export class InterestsScreenComponent implements OnInit {
   public interests;
 
   constructor(
+    private categoryService: CategoryService,
     private interestService: InterestService,
     private dataLogService: DataLogService,
     private router: Router) { }
 
   ngOnInit() {
-    this.interestService.getInterests().subscribe( data => {
+    this.interestService.getInterests(this.categoryService.getCategory().id).subscribe( data => {
       this.interests = data;
     });
     // this.testResults.resetInterest();

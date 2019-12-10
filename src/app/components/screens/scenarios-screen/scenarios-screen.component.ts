@@ -8,6 +8,8 @@ import { Question } from 'src/app/models/question';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { ScenarioService } from 'src/app/services/scenario.service';
 import { QuestionService } from 'src/app/services/question.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { InterestService } from 'src/app/services/interest.service';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -32,6 +34,8 @@ export class ScenariosScreenComponent implements OnInit {
 
   constructor(
     private dataLogService: DataLogService,
+    private categoryService: CategoryService,
+    private interestService: InterestService,
     private scenarioService: ScenarioService,
     private questionService: QuestionService,
     private router: Router
@@ -60,7 +64,7 @@ export class ScenariosScreenComponent implements OnInit {
     };
     this.interest = interest;
 
-    this.scenarioService.getScenarios(interest.id).subscribe( () => {
+    this.scenarioService.getScenarios(this.categoryService.getCategory().id, interest.id).subscribe( () => {
       this.currentScenario = -1;
       this.nextScenario();
     });
@@ -78,11 +82,16 @@ export class ScenariosScreenComponent implements OnInit {
   loadScenario(order: number, loadFromPrevious = false) {
     this.scenario = this.scenarioService.getScenarioByOrder(order);
     this.dataLogService.setScenario(this.scenario);
-    this.questionService.getQuestions(this.scenario.id).subscribe( () => {
+    this.questionService.getQuestions(
+        this.categoryService.getCategory().id,
+        this.dataLogService.getInterest().id,
+        this.scenario.id).subscribe( () => {
       this.currentQuestion = -1;
       this.nextQuestion();
     });
   }
+
+  // teno que seguir implementando as categorias novas
 
   nextQuestion() {
     if (this.currentQuestion === this.questionService.getCount() - 1 ) {
