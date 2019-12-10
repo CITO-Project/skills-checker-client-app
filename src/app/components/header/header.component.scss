@@ -1,20 +1,24 @@
 @import '../../../_imports.scss';
 
-$padding: 10px;
-
 #app-header {
+  z-index: 1;
   background-color: $color-header;
   color: $color-font;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100vw;
+  height: $header-height;
   text-align: center;
-  padding: $padding;
   font-family: 'Roboto';
   border-bottom: lightgray 1px solid;
 
   .more {
     position: absolute;
-    left: $padding;
+    left: 20px;
+    cursor: pointer;
+  }
+
+  .title {
+    cursor: pointer;
   }
 }

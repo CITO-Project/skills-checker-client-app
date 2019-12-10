@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataLogService } from 'src/app/services/data-log.service';
+import { ProductService } from 'src/app/services/product.service';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-orientation-screen',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrientationScreenComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataLogService: DataLogService, private productService: ProductService) { }
 
   ngOnInit() {
+    this.dataLogService.initializeLog();
+    this.productService.getProduct().subscribe(
+      (product: Product) => {
+        this.dataLogService.setProduct(product);
+      }
+    );
   }
 
 }

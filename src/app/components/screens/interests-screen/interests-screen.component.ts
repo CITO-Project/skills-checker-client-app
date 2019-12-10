@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { InterestService } from 'src/app/service/interest.service';
+
+import { Interest } from 'src/app/models/interest';
+
+import { InterestService } from 'src/app/services/interest.service';
+import { DataLogService } from 'src/app/services/data-log.service';
+import { CommonService } from 'src/app/services/common.service';
+
 
 @Component({
   selector: 'app-interests-screen',
@@ -8,14 +14,35 @@ import { InterestService } from 'src/app/service/interest.service';
 })
 export class InterestsScreenComponent implements OnInit {
 
-  public interests;
+  public interests: Interest[];
 
-  constructor(private interestService: InterestService) { }
+  constructor(
+    private interestService: InterestService,
+    private dataLogService: DataLogService,
+    private commonService: CommonService) { }
 
   ngOnInit() {
-    this.interestService.getInterests().subscribe( data => {
-      this.interests = data;
-    });
+    const category = this.dataLogService.getCategory();
+    if (category === null) {
+      this.commonService.goTo('categories');
+    } else {
+      this.interestService.getInterests(category.id).subscribe( (data: Interest[]) => {
+        this.interests = data;
+      });
+    }
+  }
+
+  selectInterest(interest: Interest): void {
+    interest = {
+      id: 3,
+      product: 1,
+      name: 'static_interest',
+      text: 'Static interest. Change afterwards'
+    }
+    this.dataLogService.setInterest(interest);
+    if (this.dataLogService.getInterest().id === interest.id) {
+      this.commonService.goTo('how-to');
+    }
   }
 
 }

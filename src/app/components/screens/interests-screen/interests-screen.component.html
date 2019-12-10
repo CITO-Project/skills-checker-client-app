@@ -2,7 +2,7 @@
 <div class="heading">Pick your Interest</div>
 <div class="container">
   <div class="row">
-    <div *ngFor="let interest of interests" class="interest col-6">
+    <div *ngFor="let interest of interests" class="interest col-6" (click)="selectInterest(interest)">
       <div class="icon d-flex column justify-content-center align-items-center">
         <div>
           <i class="far fa-image"></i>
@@ -15,4 +15,4 @@
     </div>
   </div>
 </div>
-<app-navigate-button text="Go back"></app-navigate-button>
+<app-navigate-button text="Go back" destination="categories"></app-navigate-button>

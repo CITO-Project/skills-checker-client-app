@@ -1,0 +1,27 @@
+@import '../../../../_imports.scss';
+
+#description {
+  color: $color-font;
+  text-align: center;
+  padding: 30px 50px;
+
+  .main {
+    font-size: 1.5em;
+    font-weight: 100;
+  }
+
+  .text {
+    font-weight: 400;
+    margin: 30px 0;
+  }
+
+  .start {
+    padding: 10px 50px;
+    margin: 30px 0;
+    background-color: $color-background-dark;
+    color: $color-font-light;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+
+}

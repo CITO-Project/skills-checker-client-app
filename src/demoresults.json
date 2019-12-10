@@ -1,0 +1,228 @@
+{
+  "category": {
+    "id": 3,
+    "name": "economic",
+    "text": "Economic",
+    "resource": null,
+    "description": null,
+    "product": 1
+  },
+  "interest": {
+    "id": 3,
+    "product": 1,
+    "name": "static_interest",
+    "text": "Static interest. Change afterwards"
+  },
+  "scenarios": [
+    {
+      "id": 1,
+      "name": "first_scenario",
+      "text": "First scenario",
+      "level": 1,
+      "resource": "first_scenario.svg",
+      "description": "This is the first scenario for the shopping interest",
+      "product": 1,
+      "interest": 3
+    },
+    {
+      "id": 2,
+      "name": "second_scenario",
+      "text": "Second scenario",
+      "level": 2,
+      "resource": "second_scenario.svg",
+      "description": "This is the second scenario for the shopping interest",
+      "product": 1,
+      "interest": 3
+    },
+    {
+      "id": 3,
+      "name": "third_scenario",
+      "text": "Third scenario",
+      "level": 3,
+      "resource": "third_scenario.svg",
+      "description": "This is the third scenario for the shopping interest",
+      "product": 1,
+      "interest": 3
+    },
+    {
+      "id": 4,
+      "name": "forth_scenario",
+      "text": "Forth scenario",
+      "level": 4,
+      "resource": "forth_scenario.svg",
+      "description": "This is the forth scenario for the shopping interest",
+      "product": 1,
+      "interest": 3
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "type": "slider",
+      "pedagogical_type": "task_question",
+      "question": "For me, finding the pharmacy opening hours is:",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for numeracy 1",
+      "product": 1,
+      "scenario": 1
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "pedagogical_type": "challenging_skill",
+      "question": "In this task, which skill did you find most challenging?",
+      "answers": [
+        "Reading the text",
+        "Estimating the cost",
+        "Finding the website online",
+        "None"
+      ],
+      "description": "Description for digital skills 1",
+      "product": 1,
+      "scenario": 1
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "pedagogical_type": "dimension_independence",
+      "question": "How difficult do you find this task?",
+      "answers": [
+        "Without help",
+        "With help"
+      ],
+      "description": "Description for literacy 1",
+      "product": 1,
+      "scenario": 0
+    },
+    {
+      "id": 6,
+      "type": "slider",
+      "pedagogical_type": "task_question",
+      "question": "For me, selecting the month with less chance of raining by looking at the graph in the scenario is:",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for digital skills 2",
+      "product": 1,
+      "scenario": 2
+    },
+    {
+      "id": 8,
+      "type": "slider",
+      "pedagogical_type": "task_question",
+      "question": "For me, finding the correct dose I have to prepare for my child is:",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for numeracy 3",
+      "product": 1,
+      "scenario": 3
+    },
+    {
+      "id": 10,
+      "type": "slider",
+      "pedagogical_type": "task_question",
+      "question": "For me, selecting the month with less chance of rain by looking at the graph in the scenario is:",
+      "answers": [
+        "Very difficult",
+        "Difficult",
+        "Middling",
+        "Easy"
+      ],
+      "description": "Description for numeracy 4",
+      "product": 1,
+      "scenario": 4
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "pedagogical_type": "challenging_skill",
+      "question": "In this task, which skill did you find most challenging?",
+      "answers": [
+        "Reading the text",
+        "Estimating the cost",
+        "Finding the website online",
+        "None"
+      ],
+      "description": "Description for literacy 4",
+      "product": 1,
+      "scenario": 4
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "pedagogical_type": "dimension_independence",
+      "question": "How difficult do you find this task?",
+      "answers": [
+        "Without help",
+        "With help"
+      ],
+      "description": "Description for literacy 1",
+      "product": 1,
+      "scenario": 0
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "pedagogical_type": "dimension_confidence",
+      "question": "How confident are you performing this task?",
+      "answers": [
+        "In public",
+        "When no one is watching"
+      ],
+      "description": "Description for literacy 2",
+      "product": 1,
+      "scenario": 0
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "pedagogical_type": "dimension_fluency",
+      "question": "How long do you think I may take you?",
+      "answers": [
+        "It takes me 5 minutes",
+        "It takes me 30 minutes"
+      ],
+      "description": "Description for numeracy 2",
+      "product": 1,
+      "scenario": 0
+    }
+  ],
+  "answers": [
+    1,
+    3,
+    1,
+    3,
+    3,
+    2,
+    2,
+    0,
+    0,
+    0
+  ],
+  "question_order": [
+    "task_question",
+    "challenging_skill",
+    "dimension_independence",
+    "dimension_confidence",
+    "dimension_fluency"
+  ],
+  "product": [
+    {
+      "id": 1,
+      "name": "nala",
+      "description": null
+    }
+  ]
+}
