@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TestResultsService } from 'src/app/services/test-results.service';
-import { InterestService } from 'src/app/services/interest.service';
-import { Interest } from 'src/app/models/interest';
+import { DataLogService } from 'src/app/services/data-log.service';
 
 @Component({
   selector: 'app-how-to-screen',
@@ -13,24 +11,24 @@ export class HowToScreenComponent implements OnInit {
 
   public selectedInterest: string;
 
-  constructor(private router: Router, private testResults: TestResultsService, private interestService: InterestService) { }
+  constructor(
+    private router: Router,
+    private dataLogService: DataLogService) { }
 
   ngOnInit() {
     this.retrieveInterest();
   }
 
   btnClick() {
-    this.router.navigate(['']);
+    this.router.navigate(['scenarios']);
   }
 
   retrieveInterest() {
-    const interestId = this.testResults.getInterestId();
-    if (!interestId) {
+    const interest = this.dataLogService.getInterest();
+    if (!interest) {
       this.router.navigate(['interests']);
     } else {
-      this.interestService.getInterest(interestId).subscribe( (data: Interest) => {
-        this.selectedInterest = data.text;
-      });
+      this.selectedInterest = interest.text;
     }
   }
 
