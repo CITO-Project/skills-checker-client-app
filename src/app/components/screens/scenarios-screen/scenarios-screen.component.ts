@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Interest } from 'src/app/models/interest';
 import { Scenario } from 'src/app/models/scenario';
@@ -10,6 +9,7 @@ import { ScenarioService } from 'src/app/services/scenario.service';
 import { QuestionService } from 'src/app/services/question.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { InterestService } from 'src/app/services/interest.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -38,42 +38,33 @@ export class ScenariosScreenComponent implements OnInit {
     private interestService: InterestService,
     private scenarioService: ScenarioService,
     private questionService: QuestionService,
-    private router: Router
+    private commonService: CommonService
     ) { }
 
   ngOnInit() {
     this.getScenarios();
-    this.dataLogService.initializeLog();
+    this.dataLogService.resetInterest();
   }
 
   getScenarios() {
-    // TODO Retrieve selected interest
-    // const interestid = this.testResults.getInterestId();
-    // this.interestService.getInterest(interestid).subscribe( (data: Interest) => {
-    //   interest = data;
-    //   console.log(interest);
-    // });
+    const category = this.dataLogService.getCategory();
+    const interest = this.dataLogService.getInterest();
+    if (category === null) {
+      this.commonService.goTo('categories');
+    } else if (interest === null) {
+      this.commonService.goTo('interests');
+    } else {
+      this.scenarioService.getScenarios(category.id, interest.id).subscribe( () => {
+        this.currentScenario = -1;
+        this.nextScenario();
+      });
+    }
 
-    const interest: Interest = {
-      id: 3,
-      product: 1,
-      name: 'shop',
-      text: 'Using a digital catalogue',
-      illustration: null,
-      description: null
-    };
-    this.interest = interest;
-    this.dataLogService.setInterest(interest);
-
-    this.scenarioService.getScenarios(this.categoryService.getCategory().id, interest.id).subscribe( () => {
-      this.currentScenario = -1;
-      this.nextScenario();
-    });
   }
 
   nextScenario() {
     if (this.currentScenario === this.scenarioService.getCount() - 1 ) {
-      this.router.navigate(['results']);
+      this.commonService.goTo('results');
     } else {
       ++this.currentScenario;
       this.loadScenario(this.currentScenario);
@@ -84,15 +75,13 @@ export class ScenariosScreenComponent implements OnInit {
     this.scenario = this.scenarioService.getScenarioByOrder(order);
     this.dataLogService.setScenario(this.scenario);
     this.questionService.getQuestions(
-        this.categoryService.getCategory().id,
+        this.dataLogService.getCategory().id,
         this.dataLogService.getInterest().id,
         this.scenario.id).subscribe( () => {
       this.currentQuestion = -1;
       this.nextQuestion();
     });
   }
-
-  // teno que seguir implementando as categorias novas
 
   nextQuestion() {
     if (this.currentQuestion === this.questionService.getCount() - 1 ) {
@@ -142,7 +131,7 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   previousQuestion() {
-    this.router.navigate(['how-to']);
+    this.commonService.goTo('how-to');
   }
 
   showError(message: string): void {

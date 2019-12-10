@@ -10,8 +10,6 @@ import { map } from 'rxjs/operators';
 })
 export class CategoryService {
 
-  private category: Category;
-
   constructor(private http: HttpClient, private common: CommonService) { }
 
   getCategories(): Observable<Category[]> {
@@ -21,20 +19,5 @@ export class CategoryService {
         return data;
       }
     ));
-  }
-
-  setCategory(category: Category): void {
-    this.category = category;
-  }
-
-  getCategory(): Category {
-    return {
-      id: 3,
-      product: 1,
-      name: 'name',
-      text: 'text',
-      resource: 'resource',
-      description: 'description'
-    };
   }
 }

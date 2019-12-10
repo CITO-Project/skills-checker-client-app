@@ -13,6 +13,7 @@ export class OrientationScreenComponent implements OnInit {
   constructor(private dataLogService: DataLogService, private productService: ProductService) { }
 
   ngOnInit() {
+    this.dataLogService.initializeLog();
     this.productService.getProduct().subscribe(
       (product: Product) => {
         this.dataLogService.setProduct(product);
