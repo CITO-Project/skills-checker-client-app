@@ -19,13 +19,18 @@
   text-align: center;
   cursor: pointer;
 
-  > .icon {
+  > .tile {
     width: 100%;
-    height: 130px;
+    padding: 25px 0;
     background-color: $color-images-background;
     i {
       color: $color-font-light;
       font-size: 3em;
+    }
+    .text {
+      padding-top: 10px;
+      font-weight: 400;
+      text-transform: uppercase;
     }
   }
 
