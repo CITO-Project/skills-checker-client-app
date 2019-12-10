@@ -35,7 +35,12 @@ export class DataLogService {
 
 
   initializeLog() {
+    let product = null;
+    if (!!this.log && !!this.log.product) {
+      product = this.log.product;
+    }
     this.log = {
+      product,
       category: null,
       interest: null,
       scenarios: [],

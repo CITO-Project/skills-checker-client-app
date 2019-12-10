@@ -13,7 +13,6 @@ export class ResultsScreenComponent implements OnInit {
   public courses;
 
   constructor(
-    private dataProcessingService: DataProcessingService,
     private commonService: CommonService,
     private dataLogService: DataLogService) { }
 
