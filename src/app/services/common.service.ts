@@ -31,4 +31,8 @@ export class CommonService {
     console.log( !!data ? data : 'test' );
   }
 
+  loadLink(link: string) {
+    window.location.href = link;
+  }
+
 }

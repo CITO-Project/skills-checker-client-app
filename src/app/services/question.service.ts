@@ -20,7 +20,7 @@ export class QuestionService {
 
   private questions: Question[] = [];
 
-  constructor(private http: HttpClient, private common: CommonService) { }
+  constructor(private httpClient: HttpClient, private common: CommonService) { }
 
   getQuestions(categoryid: number, interestid: number, scenarioId: number): Observable<void> {
     if (categoryid < 1) {
@@ -31,7 +31,7 @@ export class QuestionService {
       this.common.goTo('how-to');
     } else {
       const url = `/categories/${categoryid}/interests/${interestid}/scenarios/${scenarioId}/questions`;
-      return this.http.get(this.common.getApiUrl() + url)
+      return this.httpClient.get(this.common.getApiUrl() + url)
         .pipe(map( (data: Question[]) => {
           this.questions = data;
         })

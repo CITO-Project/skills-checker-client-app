@@ -17,6 +17,8 @@ import { ResultsScreenComponent } from './components/screens/results-screen/resu
 import { MediaComponent } from './components/media/media.component';
 import { QuestionComponent } from './components/question/question.component';
 import { CategoriesScreenComponent } from './components/screens/categories-screen/categories-screen.component';
+import { LocalizationScreenComponent } from './components/screens/localization-screen/localization-screen.component';
+import { CourseComponent } from './components/course/course.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CategoriesScreenComponent } from './components/screens/categories-scree
     ResultsScreenComponent,
     MediaComponent,
     QuestionComponent,
-    CategoriesScreenComponent
+    CategoriesScreenComponent,
+    LocalizationScreenComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,

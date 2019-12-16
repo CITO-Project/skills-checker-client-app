@@ -10,11 +10,11 @@ import { map } from 'rxjs/operators';
 })
 export class CategoryService {
 
-  constructor(private http: HttpClient, private common: CommonService) { }
+  constructor(private httpClient: HttpClient, private common: CommonService) { }
 
   getCategories(): Observable<Category[]> {
     const url = '/categories';
-    return this.http.get( this.common.getApiUrl() + url ).pipe(map(
+    return this.httpClient.get( this.common.getApiUrl() + url ).pipe(map(
       (data: Category[]) => {
         return data;
       }
