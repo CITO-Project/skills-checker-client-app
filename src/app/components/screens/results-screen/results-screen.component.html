@@ -6,11 +6,20 @@
       <div class="avatar">
         <img src="/assets/img/assistant.png" alt="assistant_image">
       </div>
-      <div class="dialog">
-        <div class="heading">Awesome, we have great news!!</div>
-        <div class="message">You're very confident about booking. However, we would like to recommend new digital skills for you to feel even more confident using a booking website</div>
+      <div class="container-fluid px-0">
+        <div class="row no-gutters">
+          <div class="col">
+            <div class="dialog">
+              Well done!<br>
+              It seems that you can do 'x task' but you think you might need a bit more help so that you can do that faster/by yourself/with more confidence.
+            </div>
+            <div class="support">
+              <a href="http://www.example.org/support">Click here</a> or call NALA on 1800 20 20 65 for more support
+            </div>
+          </div>
+        </div>
+        </div>
       </div>
-    </div>
   </div>
   <hr>
   <div id="pathway">
@@ -19,17 +28,27 @@
       My Learning Pathway
     </div>
     <div class="message">
-      If you want to develop your digital skills maybe save to your favourites or try one of these courses below:
+      If you want to develop your digital skills, try one of these courses recommended below:
     </div>
-    <div class="courses container">
-      <div class="row no-gutters">
-        <div *ngFor="let course of courses; let i = index" class="col-6">
-          <div class="course {{ i%2 === 0 ? 'add-margin-right' : 'add-margin-left' }}">
+    <div class="recommendations">
+      <div class="heading">
+        <div class="text">Recommendations</div>
+        <div class="all" (click)="showAll()">See all</div>
+      </div>
+      <div class="d-flex courses">
+        <div *ngFor="let course of courses">
+          <div class="course">
             <div class="text">{{ course.text }}</div>
-            <div class="more"(click)="loadLink(course.link)"><div class="fas fa-plus-circle"></div> More info</div>
+            <div class="more"(click)="loadLink(course.link)"><i class="fas fa-plus-circle"></i> More info</div>
           </div>
         </div>
+        <div class="holder"></div>
       </div>
+    </div>
+    <div class="localization">
+      <div class="text">Learning opportunities in your area</div>
+      <button type="button" mdbBtn class="button" mdbWavesEffect (click)="showAll()">
+        <i class="fas fa-map-marker-alt"></i>Choose your area</button>
     </div>
   </div>
 </div>

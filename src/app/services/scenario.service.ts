@@ -12,7 +12,7 @@ export class ScenarioService {
 
   private scenarios: Scenario[] = [];
 
-  constructor(private http: HttpClient, private commonService: CommonService) { }
+  constructor(private httpClient: HttpClient, private commonService: CommonService) { }
 
   getScenarios(categoryid: number, interestid: number): Observable<void> {
     if (categoryid < 1) {
@@ -21,7 +21,7 @@ export class ScenarioService {
       this.commonService.goTo('interests');
     } else {
       const url = `/categories/${categoryid}/interests/${interestid}/scenarios`;
-      return this.http.get(this.commonService.getApiUrl() + url).pipe(map(
+      return this.httpClient.get(this.commonService.getApiUrl() + url).pipe(map(
         (data: Scenario[]) => {
           this.scenarios = data;
         }

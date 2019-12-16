@@ -10,11 +10,11 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
 
-  constructor(private http: HttpClient, private common: CommonService) { }
+  constructor(private httpClient: HttpClient, private common: CommonService) { }
 
   getProduct(): Observable<Product>  {
     const url = '/product';
-    return this.http.get(this.common.getApiUrl() + url)
+    return this.httpClient.get(this.common.getApiUrl() + url)
       .pipe(map( (data: Product) => {
         return data;
       })

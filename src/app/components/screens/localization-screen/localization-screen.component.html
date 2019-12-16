@@ -1,1 +1,25 @@
-<p>localization-screen works!</p>
+<app-header></app-header>
+<div id="content">
+  <div id="header">
+    <div class="title">Learning opportunities</div>
+    <div class="description">Please, choose your location to see the learning opportunities near you</div>
+    <select class="browser-default custom-select" (change)='setCounty($event.target.value)'>
+      <option selected value=''>Choose your area</option>
+      <option value='all'>Show all</option>
+      <option *ngFor='let county of IRELAND_COUNTIES' value='{{ county.toLowerCase() }}'>{{ county }}</option>
+    </select>
+    <hr>
+  </div>
+  <div id="courses" class="container">
+    <div class="row no-gutters">
+      <div *ngFor="let course of filteredCourses; let i = index" class="col-6">
+          <div class="course {{ i%2 === 0 ? 'add-margin-right' : 'add-margin-left' }}">
+          <div class="text">{{ course.text }}</div>
+          <div class="more"  (click)="loadLink(course.link)"><div class="fas fa-plus-circle"></div> More info</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-navigate-button text='Back to results' destination='results'></app-navigate-button>

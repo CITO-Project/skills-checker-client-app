@@ -1,10 +1,12 @@
-@mixin font-awesome ($secondary:'Ubuntu', $tertiary: 'Roboto') {
-  font-family: 'Font Awesome\ 5 Free', $secondary, $tertiary;
+$default-font: 'Raleway';
+
+@mixin font-awesome ($secondary: $default-font) {
+  font-family: 'Font Awesome\ 5 Free', $secondary;
   font-weight: 900;
 }
-@mixin font-awesome-first ($secondary:'Ubuntu', $tertiary: 'Roboto') {
+@mixin font-awesome-first ($secondary: $default-font) {
   ::first-letter{
-    font-family: 'Font Awesome\ 5 Free', $secondary, $tertiary;
+    font-family: 'Font Awesome\ 5 Free', $secondary;
     font-weight: 900;
   }
 }
