@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { DataProcessingService } from 'src/app/services/data-processing.service';
+import { CommonService } from 'src/app/services/common.service';
+import { CoursesService } from 'src/app/services/courses.service';
 
 @Component({
   selector: 'app-results-screen',
@@ -11,30 +13,35 @@ export class ResultsScreenComponent implements OnInit {
 
   public courses;
 
-  constructor(private dataProcessingService: DataProcessingService) { }
+  constructor(
+    private commonService: CommonService,
+    private dataLogService: DataLogService,
+    private coursesService: CoursesService) { }
 
   ngOnInit() {
-    this.courses = [
-      {
-        name: 'course1',
-        text: 'Learn how to use a booking website',
-        link: 'example1.org'
-      },
-      {
-        name: 'course2',
-        text: 'Learn how to pay with your credit card',
-        link: 'example2.org'
-      },
-      {
-        name: 'course3',
-        text: 'Learn how to use this website',
-        link: 'example3.org'
-      }
-    ];
+    if (
+      this.dataLogService.getProduct() === null ||
+      this.dataLogService.getCategory() === null ||
+      this.dataLogService.getInterest() === null
+    ) {
+      this.commonService.goTo('');
+    }
+    this.coursesService.loadCourses().subscribe( () => {
+      this.courses = this.coursesService.getCourses();
+    });
   }
 
   loadLink(link: string): void {
-    console.log('Loading ' + link);
+    this.commonService.loadLink(link);
+  }
+
+  showAll(): void {
+    this.commonService.goTo('localization');
+  }
+
+  selectNewInterest(): void {
+    this.dataLogService.initializeLog();
+    this.commonService.goTo('categories');
   }
 
 }

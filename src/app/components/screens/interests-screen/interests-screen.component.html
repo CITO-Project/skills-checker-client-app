@@ -2,17 +2,13 @@
 <div class="heading">Pick your Interest</div>
 <div class="container">
   <div class="row">
-    <div *ngFor="let interest of interests" class="interest col-6" (click)="selectInterest(interest)">
-      <div class="icon d-flex column justify-content-center align-items-center">
+    <div *ngFor="let interest of interests" class="interest col-12" (click)="selectInterest(interest)">
+      <div class="tile d-flex column align-items-center">
         <div>
-          <i class="far fa-image"></i>
-          <div>{{ interest.name }}</div>
+          <div class="text">{{ interest.text }}</div>
         </div>
-      </div>
-      <div class="text">
-        {{ interest.text }}
       </div>
     </div>
   </div>
 </div>
-<app-navigate-button text="Go back" destination=""></app-navigate-button>
+<app-navigate-button text="Change category" destination="categories"></app-navigate-button>
