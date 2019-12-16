@@ -95,26 +95,12 @@ hr {
     .courses {
       overflow-x: scroll;
       overflow-y: hidden;
+      padding-right: $separator-between-courses;
       .course {
-        margin-bottom: 20px;
-        background-color: $color-background-secondary;
-        font-size: .8em;
+        height: 100%;
         display: inline-block;
-        width: 150px;
+        width: 1500px;
         margin-left: $separator-between-courses;
-        > .text {
-          padding: 20px 10px;
-        }
-        > .more {
-          cursor: pointer;
-          width: 100%;
-          color: $color-font-light;
-          background-color: $color-background-dark;
-          padding: 10px;
-          i {
-            margin-right: 5px;
-          }
-        }
       }
     }
   }
@@ -133,9 +119,4 @@ hr {
       }
     }
   }
-}
-
-.holder{
-  @include holder();
-  clear: none;
 }

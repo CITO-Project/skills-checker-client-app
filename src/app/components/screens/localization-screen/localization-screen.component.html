@@ -12,12 +12,11 @@
   </div>
   <div id="courses" class="container">
     <div class="row no-gutters">
-      <div *ngFor="let course of filteredCourses; let i = index" class="col-6">
-          <div class="course {{ i%2 === 0 ? 'add-margin-right' : 'add-margin-left' }}">
-          <div class="text">{{ course.text }}</div>
-          <div class="more"  (click)="loadLink(course.link)"><div class="fas fa-plus-circle"></div> More info</div>
-        </div>
-      </div>
+            <app-course
+              *ngFor="let course of filteredCourses; let i = index"
+              [course]="course"
+              class="course col-6 {{ i%2 === 0 ? 'add-padding-right' : 'add-padding-left' }}"
+            ></app-course>
     </div>
   </div>
 </div>

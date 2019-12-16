@@ -2,6 +2,7 @@ import { Component,
  OnInit } from '@angular/core';
 import { CoursesService } from 'src/app/services/courses.service';
 import { Course } from 'src/app/models/course';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-localization-screen',
@@ -51,12 +52,12 @@ export class LocalizationScreenComponent implements OnInit {
   public filteredCourses: Course[] = [];
   private selectedCounty = '';
 
-  constructor(private courseService: CoursesService) { }
+  constructor(private courseService: CoursesService, private commonService: CommonService) { }
 
   ngOnInit() {
     this.courseService.loadCourses().subscribe( () => {
       this.courses = this.courseService.getCourses();
-      this.filteredCourses = this.courses;
+      this.updateCourses();
     });
   }
 
@@ -79,7 +80,7 @@ export class LocalizationScreenComponent implements OnInit {
   }
 
   loadLink(link: string) {
-    window.location.href = link;
+    this.commonService.loadLink(link);
   }
 
 }

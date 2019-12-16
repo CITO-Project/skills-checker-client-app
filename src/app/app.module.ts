@@ -18,6 +18,7 @@ import { MediaComponent } from './components/media/media.component';
 import { QuestionComponent } from './components/question/question.component';
 import { CategoriesScreenComponent } from './components/screens/categories-screen/categories-screen.component';
 import { LocalizationScreenComponent } from './components/screens/localization-screen/localization-screen.component';
+import { CourseComponent } from './components/course/course.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LocalizationScreenComponent } from './components/screens/localization-s
     MediaComponent,
     QuestionComponent,
     CategoriesScreenComponent,
-    LocalizationScreenComponent
+    LocalizationScreenComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,

@@ -24,30 +24,12 @@ $separator-between-courses: 20px;
 #courses{
   padding: 0;
   text-align: center;
-  .course {
-    margin-bottom: 20px;
-    background-color: $color-background-secondary;
-    font-size: .8em;
-    > .text {
-      padding: 20px 10px;
-      font-weight: 400;
-    }
-    > .more {
-      width: 100%;
-      color: $color-font-light;
-      background-color: $color-background-dark;
-      padding: 10px;
-      text-transform: uppercase;
-      font-weight: 500;
-      cursor: pointer;
-    }
-  }
 }
 
-.add-margin-right {
-  margin-right: $separator-between-courses/2;
+.add-padding-right {
+  padding-right: $separator-between-courses/2;
 }
 
-.add-margin-left {
-  margin-left: $separator-between-courses/2;
+.add-padding-left {
+  padding-left: $separator-between-courses/2;
 }

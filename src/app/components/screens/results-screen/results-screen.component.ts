@@ -24,7 +24,7 @@ export class ResultsScreenComponent implements OnInit {
       this.dataLogService.getCategory() === null ||
       this.dataLogService.getInterest() === null
     ) {
-      // this.commonService.goTo('');
+      this.commonService.goTo('');
     }
     this.coursesService.loadCourses().subscribe( () => {
       this.courses = this.coursesService.getCourses();
@@ -32,7 +32,7 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   loadLink(link: string): void {
-    window.location.href = link;
+    this.commonService.loadLink(link);
   }
 
   showAll(): void {
