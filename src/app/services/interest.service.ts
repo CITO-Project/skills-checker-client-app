@@ -11,14 +11,14 @@ import { Router } from '@angular/router';
 })
 export class InterestService {
 
-  constructor(private http: HttpClient, private common: CommonService) { }
+  constructor(private httpClient: HttpClient, private common: CommonService) { }
 
   getInterests(categoryid: number): Observable<Interest[]> {
     if (categoryid < 1) {
       this.common.goTo('categories');
     } else {
       const url = `/categories/${categoryid}/interests`;
-      return this.http.get(this.common.getApiUrl() + url).pipe(map(
+      return this.httpClient.get(this.common.getApiUrl() + url).pipe(map(
         (data: Interest[]) => {
           return data;
         }
