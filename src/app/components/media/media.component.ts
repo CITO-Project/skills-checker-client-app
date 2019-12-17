@@ -37,6 +37,11 @@ export class MediaComponent implements OnInit, OnChanges {
           this.resourceFile = this.RESOURCE_PATH + this.resource + '.png';
           break;
         case 'video':
+          this.resourceFile = this.RESOURCE_PATH + this.resource + '.mp4';
+          const video = document.getElementById('video');
+          if (!!video) {
+            video.children[0].setAttribute('src', this.resourceFile);
+          }
           break;
       }
     }
