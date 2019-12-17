@@ -5,6 +5,7 @@ import { Question } from '../models/question';
 import { Log } from '../models/log';
 import { Product } from '../models/product';
 import { QuestionService } from './question.service';
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +35,13 @@ export class DataLogService {
 
 
   initializeLog() {
+    let product = null;
+    if (!!this.log && !!this.log.product) {
+      product = this.log.product;
+    }
     this.log = {
-      product: null,
+      product,
+      category: null,
       interest: null,
       scenarios: [],
       questions: [],
@@ -50,6 +56,14 @@ export class DataLogService {
 
   getProduct(): Product {
     return this.log.product;
+  }
+
+  setCategory(category: Category): void {
+    this.log.category = category;
+  }
+
+  getCategory(): Category {
+    return this.log.category;
   }
 
   setInterest(interest: Interest): void {
@@ -153,6 +167,12 @@ export class DataLogService {
     } else {
       return array.length;
     }
+  }
+
+  resetInterest(): void {
+    this.log.scenarios = [];
+    this.log.questions = [];
+    this.log.answers = [];
   }
 
   getAll(): Log {

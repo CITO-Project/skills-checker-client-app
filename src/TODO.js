@@ -19,3 +19,5 @@ O que tenho que facer ahora é cargar todas as preguntas dende o principio. Prob
 // TODO: Remove the answers after the last index. After all questions have been answered
 // TODO: Add documentation to the code
 // TODO: When you skip a slider, it has to reset the value and move the slider position aswell
+// TODO: Add pointer cursor to final results
+// TODO: Add canActivate to routing to check is the data is set

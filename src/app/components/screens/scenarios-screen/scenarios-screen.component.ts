@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Interest } from 'src/app/models/interest';
 import { Scenario } from 'src/app/models/scenario';
@@ -8,6 +7,9 @@ import { Question } from 'src/app/models/question';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { ScenarioService } from 'src/app/services/scenario.service';
 import { QuestionService } from 'src/app/services/question.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { InterestService } from 'src/app/services/interest.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -32,43 +34,37 @@ export class ScenariosScreenComponent implements OnInit {
 
   constructor(
     private dataLogService: DataLogService,
+    private categoryService: CategoryService,
+    private interestService: InterestService,
     private scenarioService: ScenarioService,
     private questionService: QuestionService,
-    private router: Router
+    private commonService: CommonService
     ) { }
 
   ngOnInit() {
     this.getScenarios();
-    this.dataLogService.initializeLog();
+    this.dataLogService.resetInterest();
   }
 
   getScenarios() {
-    // TODO Retrieve selected interest
-    // const interestid = this.testResults.getInterestId();
-    // this.interestService.getInterest(interestid).subscribe( (data: Interest) => {
-    //   interest = data;
-    //   console.log(interest);
-    // });
+    const category = this.dataLogService.getCategory();
+    const interest = this.dataLogService.getInterest();
+    if (category === null) {
+      this.commonService.goTo('categories');
+    } else if (interest === null) {
+      this.commonService.goTo('interests');
+    } else {
+      this.scenarioService.getScenarios(category.id, interest.id).subscribe( () => {
+        this.currentScenario = -1;
+        this.nextScenario();
+      });
+    }
 
-    const interest: Interest = {
-      id: 3,
-      product: 1,
-      name: 'shop',
-      text: 'Using a digital catalogue',
-      illustration: null,
-      description: null
-    };
-    this.interest = interest;
-
-    this.scenarioService.getScenarios(interest.id).subscribe( () => {
-      this.currentScenario = -1;
-      this.nextScenario();
-    });
   }
 
   nextScenario() {
     if (this.currentScenario === this.scenarioService.getCount() - 1 ) {
-      this.router.navigate(['results']);
+      this.commonService.goTo('results');
     } else {
       ++this.currentScenario;
       this.loadScenario(this.currentScenario);
@@ -78,7 +74,10 @@ export class ScenariosScreenComponent implements OnInit {
   loadScenario(order: number, loadFromPrevious = false) {
     this.scenario = this.scenarioService.getScenarioByOrder(order);
     this.dataLogService.setScenario(this.scenario);
-    this.questionService.getQuestions(this.scenario.id).subscribe( () => {
+    this.questionService.getQuestions(
+        this.dataLogService.getCategory().id,
+        this.dataLogService.getInterest().id,
+        this.scenario.id).subscribe( () => {
       this.currentQuestion = -1;
       this.nextQuestion();
     });
@@ -132,7 +131,7 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   previousQuestion() {
-    this.router.navigate(['how-to']);
+    this.commonService.goTo('how-to');
   }
 
   showError(message: string): void {

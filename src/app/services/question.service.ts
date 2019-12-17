@@ -20,19 +20,23 @@ export class QuestionService {
 
   private questions: Question[] = [];
 
-  constructor(private http: HttpClient, private common: CommonService) { }
+  constructor(private httpClient: HttpClient, private common: CommonService) { }
 
-  getQuestions(scenarioId: number): Observable<void> {
-    const url = `questions?` +
-    `filter[where][or][0][scenario]=0&` +
-    `filter[where][or][1][scenario]=${scenarioId}&` +
-    `filter[order]=id%20ASC&` +
-    `filter[limit]=5`;
-    return this.http.get(this.common.getApiUrl() + url)
-      .pipe(map( (data: Question[]) => {
-        this.questions = data;
-      })
-    );
+  getQuestions(categoryid: number, interestid: number, scenarioId: number): Observable<void> {
+    if (categoryid < 1) {
+      this.common.goTo('categories');
+    } else if (interestid < 1) {
+      this.common.goTo('interests');
+    } else if (scenarioId < 1) {
+      this.common.goTo('how-to');
+    } else {
+      const url = `/categories/${categoryid}/interests/${interestid}/scenarios/${scenarioId}/questions`;
+      return this.httpClient.get(this.common.getApiUrl() + url)
+        .pipe(map( (data: Question[]) => {
+          this.questions = data;
+        })
+      );
+    }
   }
 
   getQuestionByOrder(order: number): Question {

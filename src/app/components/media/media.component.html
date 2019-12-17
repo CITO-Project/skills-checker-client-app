@@ -1,8 +1,20 @@
 <div id="media" [ngSwitch]=type>
+  <!-- Image -->
   <div id="image" *ngSwitchCase="'image'">
-    <img [src]="resourceFile" alt="{{ type + ' resource'}}">
+    <img [(src)]="resourceFile" alt="{{ type + ' resource'}}">
   </div>
+  <!-- End Image -->
+  <!-- Video -->
+  <div id="video" *ngSwitchCase="'video'">
+    <video autoplay>
+      <source [src]="resourceFile" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+  </div>
+  <!-- End Video -->
+  <!-- Default -->
   <div id="default" *ngSwitchDefault>
       <i class="fas fa-play-circle"></i>
   </div>
+  <!-- End Default -->
 </div>
