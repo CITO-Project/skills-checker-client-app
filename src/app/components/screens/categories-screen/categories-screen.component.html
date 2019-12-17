@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div class="heading">Pick a Category</div>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let category of categories" class="category col-6" (click)="selectCategory(category)">
+      <div class="tile d-flex justify-content-center align-items-center">
+        <div>
+          <i class="far fa-image"></i>
+          <div class="text">{{ category.text }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-navigate-button text="Go back" destination=""></app-navigate-button>
