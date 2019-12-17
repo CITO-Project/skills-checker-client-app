@@ -25,6 +25,10 @@ export class QuestionComponent implements OnInit, OnChanges {
     this.answer.emit(answer);
   }
 
+  setValueSlider(value: number): void {
+    (document.getElementById('slider') as HTMLInputElement).value = '' + value;
+  }
+
   resetSlider(changes: SimpleChanges): void {
     if (
       !!changes.question &&
@@ -32,9 +36,13 @@ export class QuestionComponent implements OnInit, OnChanges {
       changes.question.previousValue.type === 'slider' &&
       changes.question.currentValue.type === 'slider'
       ) {
-      (document.getElementById('slider') as HTMLInputElement).value = '0';
+        this.setValueSlider(0);
     }
   }
 
+  updateAnswer(value: number): void {
+    this.setValueSlider(+value);
+    this.retrieveAnswer(+value);
+  }
 
 }

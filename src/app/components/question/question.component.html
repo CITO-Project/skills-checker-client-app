@@ -22,9 +22,9 @@
 
       <table>
         <tr>
-          <td *ngFor="let answer of question.answers; let first = first; let last = last;">
+          <td *ngFor="let answer of question.answers; let i = index; let first = first; let last = last;">
             <div class="answerOptions" [ngClass]="{'float-left': first, 'float-right': last }">
-              {{ answer }}
+              <div class="answer" (click)='updateAnswer(i)'>{{ answer }}</div>
             </div>
           </td>
         </tr>
