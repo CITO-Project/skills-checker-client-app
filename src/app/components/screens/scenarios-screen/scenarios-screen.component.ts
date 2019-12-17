@@ -30,7 +30,7 @@ export class ScenariosScreenComponent implements OnInit {
   private currentQuestion = -1;
 
   private currentAnswer = -1;
-  private currentIndex = -1;
+  public currentIndex = -1;
 
   constructor(
     private dataLogService: DataLogService,
