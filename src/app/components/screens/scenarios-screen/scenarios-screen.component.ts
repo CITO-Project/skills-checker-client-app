@@ -7,8 +7,6 @@ import { Question } from 'src/app/models/question';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { ScenarioService } from 'src/app/services/scenario.service';
 import { QuestionService } from 'src/app/services/question.service';
-import { CategoryService } from 'src/app/services/category.service';
-import { InterestService } from 'src/app/services/interest.service';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({
@@ -29,13 +27,11 @@ export class ScenariosScreenComponent implements OnInit {
   private currentScenario = -1;
   private currentQuestion = -1;
 
-  private currentAnswer = -1;
+  public currentAnswer = -1;
   private currentIndex = -1;
 
   constructor(
     private dataLogService: DataLogService,
-    private categoryService: CategoryService,
-    private interestService: InterestService,
     private scenarioService: ScenarioService,
     private questionService: QuestionService,
     private commonService: CommonService
@@ -78,8 +74,12 @@ export class ScenariosScreenComponent implements OnInit {
         this.dataLogService.getCategory().id,
         this.dataLogService.getInterest().id,
         this.scenario.id).subscribe( () => {
-      this.currentQuestion = -1;
-      this.nextQuestion();
+          if (loadFromPrevious) {
+            this.currentQuestion = this.dataLogService.getQuestionsAnsweredCount(this.scenario.id) - 1;
+          } else {
+            this.currentQuestion = -1;
+          }
+          this.nextQuestion();
     });
   }
 
@@ -93,7 +93,7 @@ export class ScenariosScreenComponent implements OnInit {
     }
   }
 
-  loadQuestion(order: number) {
+  loadQuestion(order: number, answer = -1 ) {
     this.question = null;
     this.question = this.questionService.getQuestionByOrder(order);
     if (this.question.type === 'slider') {
@@ -101,7 +101,16 @@ export class ScenariosScreenComponent implements OnInit {
     } else {
       this.currentAnswer = -1;
     }
+    if (answer === -1) {
+      const savedAnswer = this.dataLogService.getAnswer(this.currentIndex);
+      if (!!savedAnswer) {
+        this.currentAnswer = savedAnswer;
+      }
+    } else {
+      this.currentAnswer = answer;
+    }
     this.errorMessage = '';
+    this.question.scenario = this.scenario.id;
     this.dataLogService.setQuestion(this.question, this.currentIndex);
 
     this.isLastQuestion();
@@ -122,16 +131,28 @@ export class ScenariosScreenComponent implements OnInit {
 
   isLastQuestion(): boolean {
     this.btnForward = 'Next';
-    const isIt = (this.currentScenario === this.scenarioService.getCount() - 1
+    const isItLastQuestion = (this.currentScenario === this.scenarioService.getCount() - 1
       && this.currentQuestion === this.questionService.getCount() - 1);
-    if (isIt) {
+    if (isItLastQuestion) {
       this.btnForward = 'See results';
     }
-    return isIt;
+    return isItLastQuestion;
   }
 
   previousQuestion() {
-    this.commonService.goTo('how-to');
+    --this.currentQuestion;
+    --this.currentIndex;
+    if (this.currentQuestion < 0) {
+      if (this.currentScenario <= 0) {
+        this.commonService.goTo('how-to');
+      } else {
+        --this.currentScenario;
+        this.loadScenario(this.currentScenario, true);
+      }
+      // Go to the previous scenario
+    } else {
+      this.loadQuestion(this.currentQuestion, this.dataLogService.getAnswer(this.currentIndex));
+    }
   }
 
   showError(message: string): void {

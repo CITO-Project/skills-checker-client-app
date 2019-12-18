@@ -95,9 +95,7 @@ export class DataLogService {
   }
 
   setQuestion(question: Question, index: number): void {
-    if (this.log.questions[index] === undefined) {
-      this.log.questions[index] = question;
-    } else if (this.log.questions[index].id !== question.id) {
+    if (this.log.questions[index] === undefined || this.log.questions[index].id !== question.id) {
       this.log.questions[index] = question;
     }
   }
@@ -107,6 +105,16 @@ export class DataLogService {
     if (this.log.questions[index] !== undefined) {
       r = this.log.questions[index];
     }
+    return r;
+  }
+
+  getQuestionsAnsweredCount(scenarioid: number): number {
+    let r = 0;
+    this.log.questions.forEach( (question: Question) => {
+      if (question.scenario === scenarioid) {
+        r++;
+      }
+    });
     return r;
   }
 
