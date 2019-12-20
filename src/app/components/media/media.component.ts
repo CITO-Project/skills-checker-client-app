@@ -10,7 +10,6 @@ export class MediaComponent implements OnInit, OnChanges {
   private RESOURCE_PATH = '/assets/resources/';
 
   @Input() height: string;
-  @Input() type: string;
   @Input() resource: string;
 
   public resourceFile: string;
@@ -28,16 +27,16 @@ export class MediaComponent implements OnInit, OnChanges {
   }
 
   loadResource() {
-    if (this.type !== undefined && this.resource === undefined) {
-      console.error('Need to provide resource to show.', 'Type: ', this.type, ' > ', this.resource);
-      this.type = '';
+    if (this.resource === undefined) {
+      console.error('Need to provide resource to show. > ', this.resource);
     } else {
-      switch (this.type) {
-        case 'image':
-          this.resourceFile = this.RESOURCE_PATH + this.resource + '.png';
+      const extension = this.resource.split('.').pop();
+      switch (extension) {
+        case '.png':
+          this.resourceFile = this.RESOURCE_PATH + this.resource;
           break;
-        case 'video':
-          this.resourceFile = this.RESOURCE_PATH + this.resource + '.mp4';
+        case '.mp4':
+          this.resourceFile = this.RESOURCE_PATH + this.resource;
           const video = document.getElementById('video');
           if (!!video) {
             video.children[0].setAttribute('src', this.resourceFile);
