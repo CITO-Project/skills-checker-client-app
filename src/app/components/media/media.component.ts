@@ -7,12 +7,14 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 })
 export class MediaComponent implements OnInit, OnChanges {
 
-  private RESOURCE_PATH = '/assets/resources/';
+  private RESOURCE_PATH = 'assets/resources/';
 
   @Input() height: string;
   @Input() resource: string;
 
   public resourceFile: string;
+  public supportedVideo = ['mp4', 'webm', 'ogg'];
+  public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
 
   constructor() { }
 
@@ -27,15 +29,15 @@ export class MediaComponent implements OnInit, OnChanges {
   }
 
   loadResource() {
+    const extension = this.getExtension();
     if (this.resource === undefined) {
-      console.error('Need to provide resource to show. > ', this.resource);
+      console.error('Need to provide resource to show > ', this.resource);
     } else {
-      const extension = this.resource.split('.').pop();
       switch (extension) {
-        case '.png':
+        case 'png':
           this.resourceFile = this.RESOURCE_PATH + this.resource;
           break;
-        case '.mp4':
+        case 'mp4':
           this.resourceFile = this.RESOURCE_PATH + this.resource;
           const video = document.getElementById('video');
           if (!!video) {
@@ -43,6 +45,20 @@ export class MediaComponent implements OnInit, OnChanges {
           }
           break;
       }
+    }
+  }
+
+  getExtension(): string {
+    return this.resource.split('.').pop();
+  }
+
+  getType(): string {
+    if (this.supportedImages.includes(this.getExtension())) {
+      return 'image';
+    } else if (this.supportedVideo.includes(this.getExtension())) {
+      return 'video';
+    } else {
+      return '';
     }
   }
 
