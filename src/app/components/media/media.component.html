@@ -1,7 +1,7 @@
-<div id="media" [ngSwitch]=type>
+<div id="media" [ngSwitch]=getType()>
   <!-- Image -->
   <div id="image" *ngSwitchCase="'image'">
-    <img [(src)]="resourceFile" alt="{{ type + ' resource'}}">
+    <img [(src)]="resourceFile" alt="{{ resourceFile }}">
   </div>
   <!-- End Image -->
   <!-- Video -->
