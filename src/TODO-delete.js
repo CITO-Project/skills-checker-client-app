@@ -21,3 +21,5 @@ O que tenho que facer ahora é cargar todas as preguntas dende o principio. Prob
 // TODO: When you skip a slider, it has to reset the value and move the slider position aswell
 // TODO: Add pointer cursor to final results
 // TODO: Add canActivate to routing to check is the data is set
+// TODO: Change resource implementation in media component. use the field from the DB
+// TODO: Change resource url for the images in results-screen // TODO: Herencia para os servicios. En vez de ter un common-service que se importa, que os servicios hereden de un servicio general

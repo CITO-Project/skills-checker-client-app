@@ -5,7 +5,13 @@
     <div class="heading" *ngIf="!!interest">{{ interest.text }}</div>
     <div class="description" *ngIf="!!question">{{ question.description }}</div>
   </div>
-  <app-question *ngIf="!!question" [(question)]="question" [(error)]="errorMessage" (answer)="processAnswer($event)"></app-question>
+  <app-question
+  *ngIf="!!question"
+  [(question)]="question"
+  [(error)]="errorMessage"
+  (answer)="processAnswer($event)"
+  [initialAnswer]="currentAnswer"
+  ></app-question>
 
 </div>
 <app-navigate-button
