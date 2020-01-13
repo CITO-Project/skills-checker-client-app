@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Interest } from 'src/app/models/interest';
 import { Scenario } from 'src/app/models/scenario';
 import { Question } from 'src/app/models/question';
 
 import { DataLogService } from 'src/app/services/data-log.service';
 import { QuestionService } from 'src/app/services/question.service';
 import { CommonService } from 'src/app/services/common.service';
+import { Router } from '@angular/router';
+import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -15,7 +16,6 @@ import { CommonService } from 'src/app/services/common.service';
 })
 export class ScenariosScreenComponent implements OnInit {
 
-  public interest: Interest;
   public scenario: Scenario;
   public question: Question;
   public errorMessage = '';
@@ -31,54 +31,49 @@ export class ScenariosScreenComponent implements OnInit {
   constructor(
     private dataLogService: DataLogService,
     private questionService: QuestionService,
-    private commonService: CommonService
-    ) { }
-
-  ngOnInit() {
-    this.getScenarios();
-    this.dataLogService.resetInterest();
-  }
-
-  getScenarios() {
-    const category = this.dataLogService.getCategory();
-    const interest = this.dataLogService.getInterest();
-    if (category === null) {
-      this.commonService.goTo('categories');
-    } else if (interest === null) {
-      this.commonService.goTo('interests');
-    } else {
-      this.dataLogService.loadScenarios(category.id, interest.id).subscribe( () => {
-        this.currentScenario = -1;
-        this.nextScenario();
-      });
-    }
-  }
-
-  nextScenario(loadFromPrevious = false) {
-    if  (loadFromPrevious) {
-      --this.currentScenario;
-      this.loadScenario(this.currentScenario, loadFromPrevious);
-    } else {
-      if (this.currentScenario === this.dataLogService.getScenarioCount() -1) {
-        this.commonService.goTo('results');
+    private commonService: CommonService,
+    private progressTrackerService: ProgressTrackerService,
+    private router: Router
+    ) {
+      const extras = this.router.getCurrentNavigation().extras;
+      if (extras !== undefined && extras.state !== undefined && extras.state.scenario !== undefined) {
+        this.scenario = extras.state.scenario;
       } else {
-        ++this.currentScenario;
-        this.loadScenario(this.currentScenario);
+        this.commonService.goTo('how-to');
       }
     }
+
+  ngOnInit() {
+    this.currentScenario = +this.progressTrackerService.getScenarioIndex();
+    this.loadScenario(this.currentScenario);
   }
 
-  loadScenario(scenarioindex: number, loadFromPrevious = false) {
+  // getScenarios() {
+  //   const category = this.dataLogService.getCategory();
+  //   const interest = this.dataLogService.getInterest();
+  //   if (category === null) {
+  //     this.commonService.goTo('categories');
+  //   } else if (interest === null) {
+  //     this.commonService.goTo('interests');
+  //   } else {
+  //     this.dataLogService.loadScenarios(category.id, interest.id).subscribe( () => {
+  //       this.currentScenario = -1;
+  //       this.nextScenario();
+  //     });
+  //   }
+  // }
+
+  loadScenario(scenarioindex: number) {
     this.scenario = this.dataLogService.getScenario(scenarioindex);
     this.dataLogService.loadQuestions(
       this.currentScenario,
       this.dataLogService.getCategory().id,
       this.dataLogService.getInterest().id,
       this.scenario.id).subscribe( () => {
-        if (!loadFromPrevious) {
-          this.currentQuestion = -1;
-        }
-        this.nextQuestion(loadFromPrevious);
+        // if (!loadFromPrevious) {
+        //   this.currentQuestion = -1;
+        // }
+        this.nextQuestion();
     });
   }
 
@@ -88,7 +83,7 @@ export class ScenariosScreenComponent implements OnInit {
       this.loadQuestion(this.currentScenario, this.currentQuestion);
     } else {
       if (this.currentQuestion === this.questionService.getQuestionOrder().length - 1 ) {
-        this.nextScenario();
+        this.progressTrackerService.nextScenario();
       } else {
         ++this.currentQuestion;
         this.loadQuestion(this.currentScenario, this.currentQuestion);
@@ -134,7 +129,7 @@ export class ScenariosScreenComponent implements OnInit {
     } else {
       this.dataLogService.setAnswer(this.currentScenario, this.currentQuestion, this.currentAnswer);
       if ( this.questionService.shouldSkipScenario(this.question, this.currentAnswer) ) {
-        this.nextScenario();
+        this.progressTrackerService.nextScenario();
       } else {
         this.nextQuestion();
       }
@@ -144,14 +139,9 @@ export class ScenariosScreenComponent implements OnInit {
   previousQuestion() {
     --this.currentQuestion;
     if (this.currentQuestion < 0) {
-      if (this.currentScenario <= 0) {
-        this.commonService.goTo('how-to');
-      } else {
-        --this.currentScenario;
-        this.loadScenario(this.currentScenario, true);
-      }
+      this.commonService.goTo('scenario-introduction', { scenarioindex: this.currentScenario });
     } else {
-      this.loadQuestion(this.currentScenario ,this.currentQuestion);
+      this.loadQuestion(this.currentScenario , this.currentQuestion);
     }
   }
 

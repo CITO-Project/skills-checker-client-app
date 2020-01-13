@@ -68,6 +68,12 @@ export class DataLogService {
   getInterest(): Interest {
     return this.log.interest;
   }
+
+  resetInterest(): void {
+    this.log.scenarios = [];
+    this.log.questions = [];
+    this.log.answers = [];
+  }
   //#endregion
 
   //#region Scenario
@@ -129,7 +135,7 @@ export class DataLogService {
 
   //#region Answer
   setAnswer(scenarioindex: number, questionindex: number, answerValue: number): void {
-    const index = this.getIndex(scenarioindex, questionindex);
+    const index: number = this.getIndex(scenarioindex, questionindex);
     if (this.log.answers[index] !== answerValue) {
       this.log.answers[index] = +answerValue;
       this.resetAnswers(scenarioindex, questionindex);
@@ -154,12 +160,6 @@ export class DataLogService {
     }
   }
   //#endregion
-
-  resetInterest(): void {
-    this.log.scenarios = [];
-    this.log.questions = [];
-    this.log.answers = [];
-  }
 
   getIndex(scenarioindex: number, questionindex: number): number {
     return questionindex + scenarioindex * this.log.question_order.length;
