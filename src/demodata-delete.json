@@ -26,7 +26,7 @@
       "name": "first_scenario",
       "text": "First scenario",
       "level": 1,
-      "resource": "first_scenario.svg",
+      "resource": "first_scenario.mp4",
       "description": "This is the first scenario for the shopping interest",
       "product": 1,
       "interest": 3
@@ -36,7 +36,7 @@
       "name": "second_scenario",
       "text": "Second scenario",
       "level": 2,
-      "resource": "second_scenario.svg",
+      "resource": "second_scenario.mp4",
       "description": "This is the second scenario for the shopping interest",
       "product": 1,
       "interest": 3
@@ -46,7 +46,7 @@
       "name": "third_scenario",
       "text": "Third scenario",
       "level": 3,
-      "resource": "third_scenario.svg",
+      "resource": "third_scenario.mp4",
       "description": "This is the third scenario for the shopping interest",
       "product": 1,
       "interest": 3
@@ -56,7 +56,7 @@
       "name": "forth_scenario",
       "text": "Forth scenario",
       "level": 4,
-      "resource": "forth_scenario.svg",
+      "resource": "forth_scenario.mp4",
       "description": "This is the forth scenario for the shopping interest",
       "product": 1,
       "interest": 3
@@ -103,6 +103,32 @@
         "With help"
       ],
       "description": "Description for literacy 1",
+      "product": 1,
+      "scenario": 1
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "pedagogical_type": "dimension_confidence",
+      "question": "How confident are you performing this task?",
+      "answers": [
+        "In public",
+        "When no one is watching"
+      ],
+      "description": "Description for literacy 2",
+      "product": 1,
+      "scenario": 1
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "pedagogical_type": "dimension_fluency",
+      "question": "How long do you think I may take you?",
+      "answers": [
+        "It takes me 5 minutes",
+        "It takes me 30 minutes"
+      ],
+      "description": "Description for numeracy 2",
       "product": 1,
       "scenario": 1
     },
@@ -243,38 +269,24 @@
       "description": "Description for numeracy 2",
       "product": 1,
       "scenario": 3
-    },
-    {
-      "id": 10,
-      "type": "slider",
-      "pedagogical_type": "task_question",
-      "question": "For me, selecting the month with less chance of rain by looking at the graph in the scenario is:",
-      "answers": [
-        "Very difficult",
-        "Difficult",
-        "Middling",
-        "Easy"
-      ],
-      "description": "Description for numeracy 4",
-      "product": 1,
-      "scenario": 4
     }
   ],
   "answers": [
+    3,
+    -1,
+    -1,
+    -1,
+    -1,
     2,
-    2,
-    1,
-    1,
-    1,
-    0,
+    3,
     0,
     1,
-    2,
-    2,
-    0,
-    0,
-    0,
-    3
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1
   ],
   "question_order": [
     "task_question",
