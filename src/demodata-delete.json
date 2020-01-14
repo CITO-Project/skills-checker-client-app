@@ -1,8 +1,15 @@
 {
+  "product": [
+    {
+      "id": 1,
+      "name": "nala",
+      "description": null
+    }
+  ],
   "category": {
-    "id": 3,
-    "name": "economic",
-    "text": "Economic",
+    "id": 4,
+    "name": "community",
+    "text": "Community",
     "resource": null,
     "description": null,
     "product": 1
@@ -19,7 +26,7 @@
       "name": "first_scenario",
       "text": "First scenario",
       "level": 1,
-      "resource": "first_scenario.svg",
+      "resource": "first_scenario.mp4",
       "description": "This is the first scenario for the shopping interest",
       "product": 1,
       "interest": 3
@@ -29,7 +36,7 @@
       "name": "second_scenario",
       "text": "Second scenario",
       "level": 2,
-      "resource": "second_scenario.svg",
+      "resource": "second_scenario.mp4",
       "description": "This is the second scenario for the shopping interest",
       "product": 1,
       "interest": 3
@@ -39,7 +46,7 @@
       "name": "third_scenario",
       "text": "Third scenario",
       "level": 3,
-      "resource": "third_scenario.svg",
+      "resource": "third_scenario.mp4",
       "description": "This is the third scenario for the shopping interest",
       "product": 1,
       "interest": 3
@@ -49,7 +56,7 @@
       "name": "forth_scenario",
       "text": "Forth scenario",
       "level": 4,
-      "resource": "forth_scenario.svg",
+      "resource": "forth_scenario.mp4",
       "description": "This is the forth scenario for the shopping interest",
       "product": 1,
       "interest": 3
@@ -97,7 +104,33 @@
       ],
       "description": "Description for literacy 1",
       "product": 1,
-      "scenario": 0
+      "scenario": 1
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "pedagogical_type": "dimension_confidence",
+      "question": "How confident are you performing this task?",
+      "answers": [
+        "In public",
+        "When no one is watching"
+      ],
+      "description": "Description for literacy 2",
+      "product": 1,
+      "scenario": 1
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "pedagogical_type": "dimension_fluency",
+      "question": "How long do you think I may take you?",
+      "answers": [
+        "It takes me 5 minutes",
+        "It takes me 30 minutes"
+      ],
+      "description": "Description for numeracy 2",
+      "product": 1,
+      "scenario": 1
     },
     {
       "id": 6,
@@ -111,6 +144,60 @@
         "Easy"
       ],
       "description": "Description for digital skills 2",
+      "product": 1,
+      "scenario": 2
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "pedagogical_type": "challenging_skill",
+      "question": "In this task, which skill did you find most challenging?",
+      "answers": [
+        "Reading the text",
+        "Estimating the cost",
+        "Finding the website online",
+        "None"
+      ],
+      "description": "Description for literacy 3",
+      "product": 1,
+      "scenario": 2
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "pedagogical_type": "dimension_independence",
+      "question": "How difficult do you find this task?",
+      "answers": [
+        "Without help",
+        "With help"
+      ],
+      "description": "Description for literacy 1",
+      "product": 1,
+      "scenario": 2
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "pedagogical_type": "dimension_confidence",
+      "question": "How confident are you performing this task?",
+      "answers": [
+        "In public",
+        "When no one is watching"
+      ],
+      "description": "Description for literacy 2",
+      "product": 1,
+      "scenario": 2
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "pedagogical_type": "dimension_fluency",
+      "question": "How long do you think I may take you?",
+      "answers": [
+        "It takes me 5 minutes",
+        "It takes me 30 minutes"
+      ],
+      "description": "Description for numeracy 2",
       "product": 1,
       "scenario": 2
     },
@@ -130,22 +217,7 @@
       "scenario": 3
     },
     {
-      "id": 10,
-      "type": "slider",
-      "pedagogical_type": "task_question",
-      "question": "For me, selecting the month with less chance of rain by looking at the graph in the scenario is:",
-      "answers": [
-        "Very difficult",
-        "Difficult",
-        "Middling",
-        "Easy"
-      ],
-      "description": "Description for numeracy 4",
-      "product": 1,
-      "scenario": 4
-    },
-    {
-      "id": 11,
+      "id": 9,
       "type": "single",
       "pedagogical_type": "challenging_skill",
       "question": "In this task, which skill did you find most challenging?",
@@ -155,9 +227,9 @@
         "Finding the website online",
         "None"
       ],
-      "description": "Description for literacy 4",
+      "description": "Description for digital skills 3",
       "product": 1,
-      "scenario": 4
+      "scenario": 3
     },
     {
       "id": 3,
@@ -170,7 +242,7 @@
       ],
       "description": "Description for literacy 1",
       "product": 1,
-      "scenario": 0
+      "scenario": 3
     },
     {
       "id": 4,
@@ -183,7 +255,7 @@
       ],
       "description": "Description for literacy 2",
       "product": 1,
-      "scenario": 0
+      "scenario": 3
     },
     {
       "id": 5,
@@ -196,20 +268,25 @@
       ],
       "description": "Description for numeracy 2",
       "product": 1,
-      "scenario": 0
+      "scenario": 3
     }
   ],
   "answers": [
-    1,
     3,
-    1,
-    3,
-    3,
+    -1,
+    -1,
+    -1,
+    -1,
     2,
-    2,
+    3,
     0,
-    0,
-    0
+    1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1
   ],
   "question_order": [
     "task_question",
@@ -217,12 +294,5 @@
     "dimension_independence",
     "dimension_confidence",
     "dimension_fluency"
-  ],
-  "product": [
-    {
-      "id": 1,
-      "name": "nala",
-      "description": null
-    }
   ]
 }

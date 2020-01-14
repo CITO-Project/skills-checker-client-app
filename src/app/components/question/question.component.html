@@ -1,13 +1,17 @@
-<div id="question">
-  <hr>
+<div id="question" *ngIf="!!question">
 
   <!-- Question text -->
-  <div class="heading">Your skills</div>
-  <div class="question" *ngIf="!!question">{{ question.question }}</div>
+  <div class="heading" *ngIf="question.pedagogical_type === 'task_question'">Your skills</div>
+  <div class="question">
+    <div class='dimension' *ngIf="question.pedagogical_type.split('dimension_')[1] !== undefined; else non_dimension">
+      {{ question.pedagogical_type.split('dimension_')[1] }}
+    </div>
+    <ng-template #non_dimension>{{ question.question }}</ng-template>
+    </div>
   <!-- End question text -->
 
   <!-- Answer -->
-  <div class="answer" *ngIf="!!question" [ngSwitch]="question.type">
+  <div class="answer" [ngSwitch]="question.type">
     <div class="error animated shake" *ngIf="error !== ''">{{ error }}</div>
 
 
