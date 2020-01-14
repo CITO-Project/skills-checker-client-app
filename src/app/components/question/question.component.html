@@ -55,6 +55,18 @@
 
 
 
+    <!-- Multiple option -->
+    <div class="multiple" *ngSwitchCase="'multiple'">
+      <form>
+          <div class="custom-control custom-checkbox answerOptions" *ngFor="let answer of question.answers; let i = index">
+             <input id="{{ i }}" type="checkbox" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswerMultiple()">
+             <label class="custom-control-label" [ngClass]="{error: error !== ''}" for="{{ i }}">{{ answer }}</label>
+          </div>
+       </form>
+  </div>
+    <!-- End multiple option -->
+
+
   </div>
   <!-- End answer -->
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataLogService } from 'src/app/services/data-log.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,10 @@ import { DataLogService } from 'src/app/services/data-log.service';
 export class HeaderComponent implements OnInit {
 
   @Input() text: string;
+  @Input() skip: boolean;
 
-  constructor(private router: Router, private dataLogService: DataLogService) { }
+
+  constructor(private dataLogService: DataLogService, private commonService: CommonService) { }
 
   ngOnInit() {
     if (this.text === undefined) {
@@ -25,7 +28,11 @@ export class HeaderComponent implements OnInit {
   }
 
   goToIndex() {
-    this.router.navigate(['']);
+    this.commonService.goTo('');
+  }
+
+  goToResults() {
+    this.commonService.goTo('results');
   }
 
   showMore() {
