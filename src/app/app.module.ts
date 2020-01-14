@@ -19,6 +19,7 @@ import { QuestionComponent } from './components/question/question.component';
 import { CategoriesScreenComponent } from './components/screens/categories-screen/categories-screen.component';
 import { LocalizationScreenComponent } from './components/screens/localization-screen/localization-screen.component';
 import { CourseComponent } from './components/course/course.component';
+// tslint:disable-next-line:max-line-length
 import { ScenarioIntroductionScreenComponent } from './components/screens/scenario-introduction-screen/scenario-introduction-screen.component';
 
 @NgModule({

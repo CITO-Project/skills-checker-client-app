@@ -80,7 +80,7 @@ export class ScenariosScreenComponent implements OnInit {
     this.question = null;
     this.question = this.dataLogService.getQuestion(scenarioindex, questionindex);
 
-    if (this.question.type === 'slider') {
+    if (this.question.type === 'slider' || this.question.type === 'multiple') {
       this.currentAnswer = 0;
     } else {
       this.currentAnswer = -1;

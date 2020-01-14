@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, DoCheck } from '@angular/core';
 import { Question } from 'src/app/models/question';
 
 @Component({
@@ -30,6 +30,15 @@ export class QuestionComponent implements OnInit, DoCheck {
     this.answer.emit(answer);
   }
 
+  retrieveAnswerMultiple(): void {
+    let answer = 0;
+    for (let i = 0; i < this.question.answers.length; i++) {
+      const el = document.getElementById('' + i) as HTMLInputElement;
+      answer += el.checked ? Math.pow(2, i) : 0;
+    }
+    this.retrieveAnswer(answer);
+  }
+
   resetSlider(): void {
     if (!!document.getElementById('slider')) {
       this.setValueSlider(0);
@@ -43,6 +52,9 @@ export class QuestionComponent implements OnInit, DoCheck {
         break;
       case 'single':
         this.setValueSingle(answer);
+        break;
+      case 'multiple':
+        this.setValueMultiple(answer);
         break;
     }
   }
@@ -65,6 +77,16 @@ export class QuestionComponent implements OnInit, DoCheck {
 
   setValueSingle(answer: number): void {
     this.setValue('' + answer, 'checked', true);
+  }
+
+  setValueMultiple(answer: number): void {
+    let answers = -1;
+    while (answers++ < this.question.answers.length) {
+      if (answer % 2 === 1) {
+        this.setValue('' + answers, 'checked', true);
+      }
+      answer = Math.floor(answer / 2);
+    }
   }
 
 }
