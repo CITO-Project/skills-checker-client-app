@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div id="content">
+  <div class="previousScenario" *ngIf="previousScenarioText !== ''">
+    {{ 'That\'s the end of the ' + previousScenarioText + ' scenario' }}
+  </div>
+  <div class="currentScenario">
+    {{ 'Are you ready to try the next scenario on ' + scenarioText + '?' }}
+  </div>
+</div>
+<app-navigate-button
+backText="{{ btnBack }}"
+forwardText="{{ btnForward }}"
+(backEvent)="previousScenario()"
+(forwardEvent)="startScenario()"
+></app-navigate-button>
