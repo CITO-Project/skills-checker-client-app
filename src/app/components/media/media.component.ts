@@ -29,22 +29,10 @@ export class MediaComponent implements OnInit, OnChanges {
   }
 
   loadResource() {
-    const extension = this.getExtension();
     if (this.resource === undefined) {
       console.error('Need to provide resource to show > ', this.resource);
     } else {
-      switch (extension) {
-        case 'png':
-          this.resourceFile = this.RESOURCE_PATH + this.resource;
-          break;
-        case 'mp4':
-          this.resourceFile = this.RESOURCE_PATH + this.resource;
-          const video = document.getElementById('video');
-          if (!!video) {
-            video.children[0].setAttribute('src', this.resourceFile);
-          }
-          break;
-      }
+      this.resourceFile = this.RESOURCE_PATH + this.resource;
     }
   }
 
