@@ -24,7 +24,7 @@ export class ScenariosScreenComponent implements OnInit {
   public btnForward = 'Next';
 
   private currentScenario = -1;
-  private currentQuestion = -1;
+  public currentQuestion = -1;
 
   public currentAnswer = -1;
 
@@ -47,21 +47,6 @@ export class ScenariosScreenComponent implements OnInit {
     this.currentScenario = +this.progressTrackerService.getScenarioIndex();
     this.loadScenario(this.currentScenario);
   }
-
-  // getScenarios() {
-  //   const category = this.dataLogService.getCategory();
-  //   const interest = this.dataLogService.getInterest();
-  //   if (category === null) {
-  //     this.commonService.goTo('categories');
-  //   } else if (interest === null) {
-  //     this.commonService.goTo('interests');
-  //   } else {
-  //     this.dataLogService.loadScenarios(category.id, interest.id).subscribe( () => {
-  //       this.currentScenario = -1;
-  //       this.nextScenario();
-  //     });
-  //   }
-  // }
 
   loadScenario(scenarioindex: number) {
     this.scenario = this.dataLogService.getScenario(scenarioindex);
