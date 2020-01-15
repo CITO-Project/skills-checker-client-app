@@ -55,9 +55,6 @@ export class ScenariosScreenComponent implements OnInit {
       this.dataLogService.getCategory().id,
       this.dataLogService.getInterest().id,
       this.scenario.id).subscribe( () => {
-        // if (!loadFromPrevious) {
-        //   this.currentQuestion = -1;
-        // }
         this.nextQuestion();
     });
   }

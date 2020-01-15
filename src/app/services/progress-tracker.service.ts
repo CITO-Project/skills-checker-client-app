@@ -16,8 +16,8 @@ export class ProgressTrackerService {
   initializeTracker(): void {
     const category = this.dataLogService.getCategory();
     const interest = this.dataLogService.getInterest();
-    this.loadScenarios(category, interest);
     this.dataLogService.resetInterest();
+    this.loadScenarios(category, interest);
   }
 
   loadScenarios(category: Category, interest: Interest): void {

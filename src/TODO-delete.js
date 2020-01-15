@@ -10,3 +10,4 @@
 // TODO: Add canActivate to routing to check is the data is set
 // TODO: Herencia para os servicios. En vez de ter un common-service que se importa, que os servicios hereden de un servicio general
 // TODO: Check redundancy in question/scenario/datalog files
+// TODO: Change favicon

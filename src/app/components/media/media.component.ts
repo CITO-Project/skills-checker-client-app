@@ -50,4 +50,11 @@ export class MediaComponent implements OnInit, OnChanges {
     }
   }
 
+  playVideo(): void {
+    const el = document.getElementById('video').children.item(0) as HTMLVideoElement;
+    if (!el.ended) {
+      el.play();
+    }
+  }
+
 }
