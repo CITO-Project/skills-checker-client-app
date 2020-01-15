@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Interest } from 'src/app/models/interest';
 import { Scenario } from 'src/app/models/scenario';
 import { Question } from 'src/app/models/question';
 
 import { DataLogService } from 'src/app/services/data-log.service';
-import { ScenarioService } from 'src/app/services/scenario.service';
 import { QuestionService } from 'src/app/services/question.service';
-import { CategoryService } from 'src/app/services/category.service';
-import { InterestService } from 'src/app/services/interest.service';
 import { CommonService } from 'src/app/services/common.service';
+import { Router } from '@angular/router';
+import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -18,7 +16,6 @@ import { CommonService } from 'src/app/services/common.service';
 })
 export class ScenariosScreenComponent implements OnInit {
 
-  public interest: Interest;
   public scenario: Scenario;
   public question: Question;
   public errorMessage = '';
@@ -26,112 +23,108 @@ export class ScenariosScreenComponent implements OnInit {
   public btnBack = 'Go back';
   public btnForward = 'Next';
 
-  private currentScenario = -1;
-  private currentQuestion = -1;
+  public currentScenario = -1;
+  public currentQuestion = -1;
 
-  private currentAnswer = -1;
-  private currentIndex = -1;
+  public currentAnswer = -1;
 
   constructor(
     private dataLogService: DataLogService,
-    private categoryService: CategoryService,
-    private interestService: InterestService,
-    private scenarioService: ScenarioService,
     private questionService: QuestionService,
-    private commonService: CommonService
-    ) { }
+    private commonService: CommonService,
+    private progressTrackerService: ProgressTrackerService,
+    private router: Router
+    ) {
+      const extras = this.router.getCurrentNavigation().extras;
+      if (extras !== undefined && extras.state !== undefined && extras.state.scenario !== undefined) {
+        this.scenario = extras.state.scenario;
+      } else {
+        this.commonService.goTo('how-to');
+      }
+    }
 
   ngOnInit() {
-    this.getScenarios();
-    this.dataLogService.resetInterest();
+    this.currentScenario = +this.progressTrackerService.getScenarioIndex();
+    this.loadScenario(this.currentScenario);
   }
 
-  getScenarios() {
-    const category = this.dataLogService.getCategory();
-    const interest = this.dataLogService.getInterest();
-    if (category === null) {
-      this.commonService.goTo('categories');
-    } else if (interest === null) {
-      this.commonService.goTo('interests');
-    } else {
-      this.scenarioService.getScenarios(category.id, interest.id).subscribe( () => {
-        this.currentScenario = -1;
-        this.nextScenario();
-      });
-    }
-
-  }
-
-  nextScenario() {
-    if (this.currentScenario === this.scenarioService.getCount() - 1 ) {
-      this.commonService.goTo('results');
-    } else {
-      ++this.currentScenario;
-      this.loadScenario(this.currentScenario);
-    }
-  }
-
-  loadScenario(order: number, loadFromPrevious = false) {
-    this.scenario = this.scenarioService.getScenarioByOrder(order);
-    this.dataLogService.setScenario(this.scenario);
-    this.questionService.getQuestions(
-        this.dataLogService.getCategory().id,
-        this.dataLogService.getInterest().id,
-        this.scenario.id).subscribe( () => {
-      this.currentQuestion = -1;
-      this.nextQuestion();
+  loadScenario(scenarioindex: number) {
+    this.scenario = this.dataLogService.getScenario(scenarioindex);
+    this.dataLogService.loadQuestions(
+      this.currentScenario,
+      this.dataLogService.getCategory().id,
+      this.dataLogService.getInterest().id,
+      this.scenario.id).subscribe( () => {
+        this.nextQuestion();
     });
   }
 
-  nextQuestion() {
-    if (this.currentQuestion === this.questionService.getCount() - 1 ) {
-      this.nextScenario();
+  nextQuestion(loadFromPrevious = false) {
+    if (loadFromPrevious) {
+      this.currentQuestion = this.dataLogService.getQuestionCount(this.currentScenario) - 1;
+      this.loadQuestion(this.currentScenario, this.currentQuestion);
     } else {
-      ++this.currentQuestion;
-      ++this.currentIndex;
-      this.loadQuestion(this.currentQuestion);
+      if (this.currentQuestion === this.questionService.getQuestionOrder().length - 1 ) {
+        this.progressTrackerService.nextScenario();
+      } else {
+        ++this.currentQuestion;
+        this.loadQuestion(this.currentScenario, this.currentQuestion);
+      }
     }
   }
 
-  loadQuestion(order: number) {
+  loadQuestion(scenarioindex: number, questionindex: number) {
     this.question = null;
-    this.question = this.questionService.getQuestionByOrder(order);
-    if (this.question.type === 'slider') {
+    this.question = this.dataLogService.getQuestion(scenarioindex, questionindex);
+
+    if (this.question.type === 'slider' || this.question.type === 'multiple') {
       this.currentAnswer = 0;
     } else {
       this.currentAnswer = -1;
     }
+    const savedAnswer = this.dataLogService.getAnswer(this.currentScenario, this.currentQuestion);
+    if (savedAnswer !== -1) {
+      this.currentAnswer = savedAnswer;
+    }
     this.errorMessage = '';
-    this.dataLogService.setQuestion(this.question, this.currentIndex);
+    this.question.scenario = this.scenario.id;
 
-    this.isLastQuestion();
+    this.afterLoadQuestion();
+  }
+
+  afterLoadQuestion() {
+    this.btnForward = 'Next';
+    this.btnBack = 'Previous';
+    const isLastQuestion = (
+      this.currentScenario === this.dataLogService.getScenarioCount() - 1
+      && this.currentQuestion === this.questionService.getQuestionOrder().length - 1);
+    if (isLastQuestion) {
+      this.btnForward = 'See results';
+    } else if (this.currentScenario === 0 && this.currentQuestion === 0) {
+      this.btnBack = 'Go back';
+    }
   }
 
   saveAnswer() {
     if (this.currentAnswer < 0) {
       this.showError('Please, select one of the options bellow');
     } else {
-      this.dataLogService.setAnswer(this.currentIndex, this.currentAnswer);
-      if ( this.questionService.shouldSkipScenario(this.currentQuestion, this.currentAnswer) ) {
-        this.nextScenario();
+      this.dataLogService.setAnswer(this.currentScenario, this.currentQuestion, this.currentAnswer);
+      if ( this.questionService.shouldSkipScenario(this.question, this.currentAnswer) ) {
+        this.progressTrackerService.nextScenario();
       } else {
         this.nextQuestion();
       }
     }
   }
 
-  isLastQuestion(): boolean {
-    this.btnForward = 'Next';
-    const isIt = (this.currentScenario === this.scenarioService.getCount() - 1
-      && this.currentQuestion === this.questionService.getCount() - 1);
-    if (isIt) {
-      this.btnForward = 'See results';
-    }
-    return isIt;
-  }
-
   previousQuestion() {
-    this.commonService.goTo('how-to');
+    --this.currentQuestion;
+    if (this.currentQuestion < 0) {
+      this.commonService.goTo('scenario-introduction', { scenarioindex: this.currentScenario });
+    } else {
+      this.loadQuestion(this.currentScenario , this.currentQuestion);
+    }
   }
 
   showError(message: string): void {

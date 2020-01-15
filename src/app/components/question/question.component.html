@@ -1,13 +1,17 @@
-<div id="question">
-  <hr>
+<div id="question" *ngIf="!!question">
 
   <!-- Question text -->
-  <div class="heading">Your skills</div>
-  <div class="question" *ngIf="!!question">{{ question.question }}</div>
+  <div class="heading" *ngIf="question.pedagogical_type === 'task_question'">Your skills</div>
+  <div class="question">
+    <div class='dimension' *ngIf="question.pedagogical_type.split('dimension_')[1] !== undefined; else non_dimension">
+      {{ question.pedagogical_type.split('dimension_')[1] }}
+    </div>
+    <ng-template #non_dimension>{{ question.question }}</ng-template>
+    </div>
   <!-- End question text -->
 
   <!-- Answer -->
-  <div class="answer" *ngIf="!!question" [ngSwitch]="question.type">
+  <div class="answer" [ngSwitch]="question.type">
     <div class="error animated shake" *ngIf="error !== ''">{{ error }}</div>
 
 
@@ -22,9 +26,9 @@
 
       <table>
         <tr>
-          <td *ngFor="let answer of question.answers; let first = first; let last = last;">
+          <td *ngFor="let answer of question.answers; let i = index; let first = first; let last = last;">
             <div class="answerOptions" [ngClass]="{'float-left': first, 'float-right': last }">
-              {{ answer }}
+              <div class="answer" (click)='updateAnswer(i)'>{{ answer }}</div>
             </div>
           </td>
         </tr>
@@ -49,6 +53,18 @@
     </div>
     <!-- End single option -->
 
+
+
+    <!-- Multiple option -->
+    <div class="multiple" *ngSwitchCase="'multiple'">
+      <form>
+          <div class="custom-control custom-checkbox answerOptions" *ngFor="let answer of question.answers; let i = index">
+             <input id="{{ i }}" type="checkbox" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswerMultiple()">
+             <label class="custom-control-label" [ngClass]="{error: error !== ''}" for="{{ i }}">{{ answer }}</label>
+          </div>
+       </form>
+  </div>
+    <!-- End multiple option -->
 
 
   </div>
