@@ -5,8 +5,8 @@
   </div>
   <!-- End Image -->
   <!-- Video -->
-  <div id="video" *ngSwitchCase="'video'">
-    <video autoplay>
+  <div id="video" *ngSwitchCase="'video'" (mouseenter)="this.playVideo()">
+    <video muted autoplay>
       <source [src]="resourceFile" type="video/mp4">
       Your browser does not support the video tag.
       </video>
