@@ -7,6 +7,10 @@
   }
   .question {
     text-align: left;
+    .dimension {
+      font-size: 1.4em;
+      text-transform: capitalize;
+    }
   }
   .answer {
     padding: 20px 0;
@@ -30,7 +34,7 @@
         font-size: .7em;
       }
     }
-    .single {
+    .single, .multiple {
       text-align: left;
       .answerOptions {
         font-size: 1.1em;
