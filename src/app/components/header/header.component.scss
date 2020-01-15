@@ -21,4 +21,15 @@
   .title {
     cursor: pointer;
   }
+
+  .skip {
+    position: absolute;
+    right: 20px;
+    background-color: $color-background;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-weight: 400;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
 }

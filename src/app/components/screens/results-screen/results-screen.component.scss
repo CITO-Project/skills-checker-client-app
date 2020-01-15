@@ -19,6 +19,14 @@ $separator-between-courses: 20px;
     padding: 10px 0;
     font-size: 1.4em;
   }
+  .support {
+    margin-top: 10px;
+    font-size: .95em;
+  }
+  a {
+    color: $color-font;
+    font-weight: 500;
+  }
 }
 
 .dialog {
@@ -28,13 +36,8 @@ $separator-between-courses: 20px;
   border-radius: 5px;
   padding: 15px;
   margin-left: 15px;
-  font-size: .75em;
-
-  > .heading {
-    font-size: 1.3em;
-    font-weight: 500;
-    margin-bottom: 20px;
-  }
+  font-size: .9em;
+  font-weight: 500;
 }
 
 .dialog:after {
@@ -51,7 +54,7 @@ $separator-between-courses: 20px;
 }
 
 hr {
-  margin: 25px 0;
+  margin: 10px 0 20px;
 }
 
 #pathway {
@@ -68,30 +71,52 @@ hr {
   }
   .message {
     margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 90%;
   }
-  .courses{
-    padding: 0;
-    .course {
+  .recommendations{
+    margin: 0 (-$separator-between-courses);
+    background-color: $color-background-light;
+    > .heading {
+      width: 100%;
+      clear: both;
+      padding: 10px $separator-between-courses;
       margin-bottom: 20px;
-      background-color: $color-background-secondary;
-      font-size: .8em;
-      > .text {
-        padding: 20px 10px;
+      font-size: 1em;
+      font-weight: 400;
+      .text {
+        float: left;
       }
-      > .more {
-        width: 100%;
-        color: $color-font-light;
-        background-color: $color-background-dark;
-        padding: 10px;
+      .all {
+        float: right;
+        cursor: pointer;
+      }
+    }
+    .courses {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      padding-right: $separator-between-courses;
+      .course {
+        height: 100%;
+        display: inline-block;
+        width: 1500px;
+        margin-left: $separator-between-courses;
       }
     }
   }
-}
-
-.add-margin-right {
-  margin-right: $separator-between-courses/2;
-}
-
-.add-margin-left {
-  margin-left: $separator-between-courses/2;
+  .localization {
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+    .text{
+      font-weight: 500;
+    }
+    .button {
+      background-color: $color-background-dark;
+      color: $color-font-light;
+      i {
+        margin-right: 10px;
+      }
+    }
+  }
 }

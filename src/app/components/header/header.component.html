@@ -5,4 +5,7 @@
   <div class="title" (click)="goToIndex()">
       {{ text }}
   </div>
+  <div *ngIf="skip" class="skip" (click)='goToResults()'>
+    Skip
+  </div>
 </div>

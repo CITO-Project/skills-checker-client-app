@@ -23,12 +23,16 @@ export class CommonService {
     return this.apiUrl;
   }
 
-  goTo(url: string): void {
-    this.router.navigate(['/' + url]);
+  goTo(url: string, extras?: object): void {
+    this.router.navigate(['/' + url], { state: extras });
   }
 
   log(data: any): void {
     console.log( !!data ? data : 'test' );
+  }
+
+  loadLink(link: string) {
+    window.location.href = link;
   }
 
 }
