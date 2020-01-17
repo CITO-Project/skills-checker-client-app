@@ -17,8 +17,8 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
   public previousScenarioText = '';
   public scenarioText: string;
 
-  public btnBack = 'Previous';
-  public btnForward = 'Start';
+  public btnBack = 'default';
+  public btnForward = 'default';
 
   constructor(
     private router: Router,
@@ -49,7 +49,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
       this.previousScenarioText = this.dataLogService.getScenario(scenarioindex - 1).text;
     } else {
       this.previousScenarioText = '';
-      this.btnBack = 'See instructions';
+      this.btnBack = 'default';
     }
     this.scenarioText = this.scenario.text;
   }

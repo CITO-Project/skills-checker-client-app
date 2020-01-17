@@ -13,6 +13,7 @@ export class QuestionComponent implements OnInit, DoCheck {
   @Input() initialAnswer = -1;
   @Output() answer = new EventEmitter<number>();
 
+  // IMPORTANT: Fix text alignment on dimension questions
 
   constructor() { }
 

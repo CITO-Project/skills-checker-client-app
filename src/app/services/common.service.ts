@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 export class CommonService {
 
   private apiUrl = 'http://localhost:3000/nala';
+  private RESOURCE_PATH = 'assets/';
 
 
   constructor(private router: Router) { }
@@ -27,12 +28,54 @@ export class CommonService {
     this.router.navigate(['/' + url], { state: extras });
   }
 
-  log(data: any): void {
-    console.log( !!data ? data : 'test' );
+  log(data?: any): void {
+    const currentdate = new Date();
+    const datetime = '[' +
+      this.addZero(currentdate.getDate()) + '/' +
+      this.addZero(currentdate.getMonth() + 1)  + '/' +
+      currentdate.getFullYear() + ' @ ' +
+      this.addZero(currentdate.getHours()) + ':' +
+      this.addZero(currentdate.getMinutes()) + ':' +
+      this.addZero(currentdate.getSeconds()) + '.' +
+      this.addZeroMiliseconds(currentdate.getMilliseconds()) + ']';
+    console.log( datetime + ' >> ', (!!data ? data : 'check') );
+  }
+
+  addZero(value: number): string {
+    return value < 10 ? '0' + value : '' + value;
+  }
+
+  addZeroMiliseconds(value: number): string {
+    return value < 10 ? '00' + value : (value < 100 ? '0' + value : '' + value);
   }
 
   loadLink(link: string) {
     window.location.href = link;
+  }
+
+  getPath(name: string, type: string): string {
+    let r = '';
+    const file = name.split('/').pop();
+    switch (type) {
+      case 'img':
+      case 'icons':
+      case 'resources':
+        r = this.RESOURCE_PATH + type + '/' + file;
+        break;
+    }
+    return r;
+  }
+
+  getIconPath(name: string): string {
+    return this.getPath(name, 'icons');
+  }
+
+  getImagePath(name: string): string {
+    return this.getPath(name, 'images');
+  }
+
+  getResourcePath(name: string): string {
+    return this.getPath(name, 'resources');
   }
 
 }

@@ -1,18 +1,26 @@
 // All colors MUST be defined here
 // General
-$color-grey: #dae0e8;
-$color-grey-dark: #798086;
-$color-grey-light: #eeeeee;
-$color-black: #000000;
-$color-white: #ffffff;
+$color-yellow: #FCB64C;
+$color-green: #3FBDA8;
+$color-red: #ED6B4C;
+$color-blue: #2E3C67;
+$color-grey: #AAABAC;
+$color-black: #5D5E5F;
+$color-white: #F2F3F3;
+$color-blue-light: #586385;
+$color-grey-dark: #62717A;
+$color-grey-light: #C4D0D9;
+$color-grey-lighter: #E0E6EB;
 
 // Components
-$color-header: $color-grey;
-$color-button: $color-grey-dark;
+$color-button: $color-green;
+$color-button-disabled: $color-grey-light;
+$color-button-text: $color-white;
+$color-button-text-disabled: $color-grey;
 
 // Font
-$color-font: $color-grey-dark;
-$color-font-light: $color-white;
+$color-font: $color-white;
+$color-font-dark: $color-grey-dark;
 
 // Background
 $color-background: $color-white;

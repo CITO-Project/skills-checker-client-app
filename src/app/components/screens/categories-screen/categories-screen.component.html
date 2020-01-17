@@ -1,15 +1,13 @@
 <app-header></app-header>
 <div class="heading">Pick a Category</div>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div *ngFor="let category of categories" class="category col-6" (click)="selectCategory(category)">
-      <div class="tile d-flex justify-content-center align-items-center">
-        <div>
-          <i class="far fa-image"></i>
-          <div class="text">{{ category.text }}</div>
-        </div>
+    <div *ngFor="let category of categories" class="col-6 category" (click)="selectCategory(category)">
+      <div class="tile box shadow gradient" [ngClass]="category.colour">
+        <div class="text">{{ category.text }}</div>
+        <img src="{{ getPath(category.resource) }}">
       </div>
     </div>
   </div>
 </div>
-<app-navigate-button text="Go back" destination=""></app-navigate-button>
+<app-navigate-button text="default" destination=""></app-navigate-button>

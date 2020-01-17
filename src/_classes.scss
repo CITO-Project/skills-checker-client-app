@@ -1,0 +1,75 @@
+@import './_color-variables.scss';
+@import './_mixins.scss';
+@import './_variables.scss';
+
+.box {
+  border-radius: 10px;
+}
+
+.button {
+  width: 45%;
+  margin: 0 20px;
+  border-radius: 50px;
+  height: $bottom-height;
+  background-color: $color-button;
+  @include gradient($color-button);
+
+  color: $color-button-text;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  text-align: center;
+}
+
+.red {
+  $color: $color-red;
+  background-color: $color;
+  &.shadows {
+    @include shadows($color);
+  }
+  &.gradient {
+    @include gradient($color);
+  }
+}
+
+.blue {
+  $color: $color-blue;
+  background-color: $color;
+  &.shadows {
+    @include shadows($color);
+  }
+  &.gradient {
+    @include gradient($color);
+  }
+}
+
+.yellow {
+  $color: $color-yellow;
+  background-color: $color;
+  &.shadows {
+    @include shadows($color);
+  }
+  &.gradient {
+    @include gradient($color);
+  }
+}
+
+.green {
+  $color: $color-green;
+  background-color: $color;
+  &.shadows {
+    @include shadows($color);
+  }
+  &.gradient {
+    @include gradient($color);
+  }
+}
+
+.holder {
+  height: 1px;
+  width: 1px;
+  clear: both;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

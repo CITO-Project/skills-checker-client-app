@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-media',
@@ -7,8 +8,6 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 })
 export class MediaComponent implements OnInit, OnChanges {
 
-  private RESOURCE_PATH = 'assets/resources/';
-
   @Input() height: string;
   @Input() resource: string;
 
@@ -16,9 +15,11 @@ export class MediaComponent implements OnInit, OnChanges {
   public supportedVideo = ['mp4', 'webm', 'ogg'];
   public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
 
-  constructor() { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
+    // DELETE Temporary line for colour testing
+    this.resource = 'colourdemo.png';
     this.loadResource();
     const el = document.getElementById('media');
     el.style.height = this.height;
@@ -32,7 +33,7 @@ export class MediaComponent implements OnInit, OnChanges {
     if (this.resource === undefined) {
       console.error('Need to provide resource to show > ', this.resource);
     } else {
-      this.resourceFile = this.RESOURCE_PATH + this.resource;
+      this.resourceFile = this.commonService.getResourcePath(this.resource);
     }
   }
 

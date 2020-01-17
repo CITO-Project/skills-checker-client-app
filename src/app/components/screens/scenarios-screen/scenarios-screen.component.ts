@@ -20,8 +20,8 @@ export class ScenariosScreenComponent implements OnInit {
   public question: Question;
   public errorMessage = '';
 
-  public btnBack = 'Go back';
-  public btnForward = 'Next';
+  public btnBack = 'default';
+  public btnForward = 'default';
 
   public currentScenario = -1;
   public currentQuestion = -1;
@@ -93,15 +93,15 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   afterLoadQuestion() {
-    this.btnForward = 'Next';
-    this.btnBack = 'Previous';
+    this.btnForward = 'default';
+    this.btnBack = 'default';
     const isLastQuestion = (
       this.currentScenario === this.dataLogService.getScenarioCount() - 1
       && this.currentQuestion === this.questionService.getQuestionOrder().length - 1);
     if (isLastQuestion) {
       this.btnForward = 'See results';
     } else if (this.currentScenario === 0 && this.currentQuestion === 0) {
-      this.btnBack = 'Go back';
+      this.btnBack = 'default';
     }
   }
 

@@ -1,5 +1,5 @@
 <div class="buttons d-flex justify-content-around align-items-center">
-    <ng-template #singleButton [ngIf]="text" [ngIfElse]="multipleButtons">
+    <ng-template #singleButton [ngIf]="!!text" [ngIfElse]="multipleButtons">
       <button class="button" id="single" type="button" mdbBtn mdbWavesEffect (click)="btnClick()" block="true">{{ text }}</button>
   </ng-template>
   <ng-template #multipleButtons>
