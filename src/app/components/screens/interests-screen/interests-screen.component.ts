@@ -15,6 +15,7 @@ import { CommonService } from 'src/app/services/common.service';
 export class InterestsScreenComponent implements OnInit {
 
   public interests: Interest[];
+  public colour: string;
 
   constructor(
     private interestService: InterestService,
@@ -23,6 +24,7 @@ export class InterestsScreenComponent implements OnInit {
 
   ngOnInit() {
     const category = this.dataLogService.getCategory();
+    this.colour = category.colour;
     if (category === null) {
       this.commonService.goTo('categories');
     } else {
@@ -38,11 +40,15 @@ export class InterestsScreenComponent implements OnInit {
       product: 1,
       name: 'static_interest',
       text: 'Static interest. Change afterwards'
-    }
+    };
     this.dataLogService.setInterest(interest);
     if (this.dataLogService.getInterest().id === interest.id) {
       this.commonService.goTo('how-to');
     }
+  }
+
+  getPath(name: string): string {
+    return this.commonService.getIconPath(name);
   }
 
 }

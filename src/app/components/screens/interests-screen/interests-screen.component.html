@@ -2,11 +2,10 @@
 <div class="heading">Pick your Interest</div>
 <div class="container">
   <div class="row">
-    <div *ngFor="let interest of interests" class="interest col-12" (click)="selectInterest(interest)">
+    <div *ngFor="let interest of interests" class="interest col-12 box shadows gradient" [ngClass]="colour" (click)="selectInterest(interest)">
       <div class="tile d-flex column align-items-center">
-        <div>
-          <div class="text">{{ interest.text }}</div>
-        </div>
+        <div class="text">{{ interest.text }}</div>
+        <img src="{{ getPath(interest.resource) }}">
       </div>
     </div>
   </div>
