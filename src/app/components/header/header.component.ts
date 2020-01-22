@@ -17,12 +17,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     if (this.text === 'default') {
-      const category = this.dataLogService.getCategory();
-      if (category !== null) {
-        this.text = category.text;
-      } else {
-        this.text = 'SkillsChecker';
-      }
+      this.text = 'SkillsChecker';
     }
   }
 

@@ -8,6 +8,7 @@ import { QuestionService } from 'src/app/services/question.service';
 import { CommonService } from 'src/app/services/common.service';
 import { Router } from '@angular/router';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -19,6 +20,7 @@ export class ScenariosScreenComponent implements OnInit {
   public scenario: Scenario;
   public question: Question;
   public errorMessage = '';
+  public category: Category;
 
   public btnBack = 'default';
   public btnForward = 'default';
@@ -60,6 +62,7 @@ export class ScenariosScreenComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.category = this.dataLogService.getCategory();
     this.currentScenario = +this.progressTrackerService.getScenarioIndex();
     // ADD redirect
     this.loadScenario(this.currentScenario);

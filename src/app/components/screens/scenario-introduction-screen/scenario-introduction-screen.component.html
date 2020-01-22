@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header [text]='category.text'></app-header>
 <div id="content">
   <div class="previousScenario" *ngIf="previousScenarioText !== ''">
     {{ 'That\'s the end of the ' + previousScenarioText + ' scenario' }}

@@ -4,6 +4,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { Scenario } from 'src/app/models/scenario';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-scenario-introduction-screen',
@@ -16,6 +17,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
   private scenarioindex: number;
   public previousScenarioText = '';
   public scenarioText: string;
+  public category: Category;
 
   public btnBack = 'default';
   public btnForward = 'default';
@@ -34,6 +36,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.category = this.dataLogService.getCategory();
     this.loadScenario(this.scenarioindex);
   }
 
