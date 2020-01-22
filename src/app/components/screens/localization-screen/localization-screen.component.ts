@@ -67,7 +67,7 @@ export class LocalizationScreenComponent implements OnInit {
   }
 
   updateCourses() {
-    if (this.selectedCounty === 'all' || this.selectedCounty === '') {
+    if (this.selectedCounty === 'all') {
       this.filteredCourses = this.courses;
     } else {
       this.filteredCourses = [];
