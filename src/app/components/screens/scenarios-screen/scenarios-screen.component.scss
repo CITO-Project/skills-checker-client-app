@@ -3,7 +3,7 @@
 
 .content {
   color: $color-font-dark;
-  margin: 30px 40px;
+  margin: 30px 20px;
   font-size: 0.9em;
   #header {
     .description {
@@ -16,6 +16,9 @@
     }
   }
   hr {
+    width: 100%;
+  }
+  app-question {
     width: 100%;
   }
 }

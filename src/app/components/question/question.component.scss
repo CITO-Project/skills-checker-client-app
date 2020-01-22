@@ -12,7 +12,9 @@
     font-weight: 200;
     .dimension {
       font-size: 1.4em;
+      font-weight: 400;
       text-transform: capitalize;
+      text-align: center;
     }
   }
   .answer {
@@ -124,9 +126,6 @@
     .error {
       color: red;
     }
-  }
-  .next {
-    background-color: $color-button !important;
   }
 }
 .transition {
