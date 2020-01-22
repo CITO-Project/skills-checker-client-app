@@ -2,11 +2,14 @@
 
 #question {
   .heading {
-    padding: 10px 0;
+    margin-top: 0;
+    padding-bottom: 10px;
     font-size: 1.4em;
   }
   .question {
     text-align: left;
+    padding: 0 5px;
+    font-weight: 200;
     .dimension {
       font-size: 1.4em;
       text-transform: capitalize;
@@ -33,12 +36,86 @@
         text-align: left;
         font-size: .7em;
       }
+      .stack {
+        position: relative;
+        width: 100%;
+        > * {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        .checkpoints {
+          z-index: -1;
+          width: 100%;
+          padding: 17px 10px;
+          table {
+            table-layout: fixed;
+            width: 100%;
+            td {
+              border: 2px solid $color-slider-background;
+              border-radius: 50%;
+              border-top-color: transparent;
+              border-bottom-color: transparent;
+              height: 15px;
+            }
+          }
+        }
+      }
+      .answers {
+        padding-top: 30px;
+        > table {
+          table-layout: fixed;
+          width: 100%;
+          * {
+            // @include limits;
+          }
+        }
+        .answer {
+          padding: 0 10%;
+        }
+      }
+      .low {
+        color: $color-red;
+      }
+      .high {
+        color: $color-green;
+      }
     }
     .single, .multiple {
       text-align: left;
-      .answerOptions {
+      .custom-control {
+        padding-left: 0;
+      }
+      input[type="radio"]+.answerOptions,
+      input[type="checkbox"]+.answerOptions {
+        .checkbox {
+          margin-right: 10px;
+          padding: 2px 3px;
+          border: 1px solid $color-option-border;
+          color: transparent;
+          background-color: $color-option-background;
+          border-radius: 5px;
+        }
+        width: 100%;
+        padding: 15px;
+        border-radius: 10px;
         font-size: 1.1em;
+        font-weight: 400;
         margin-bottom: 10px;
+        border: 1px solid $color-option-border;
+        background-color: $color-option-background;
+      }
+      input[type="radio"]:checked+.answerOptions,
+      input[type="checkbox"]:checked+.answerOptions {
+        .checkbox {
+          border-color: $color-option-border-active;
+          color: $color-option-border-active;
+          background-color: $color-option-background-active;
+        }
+        background-color: $color-option-background-active;
+        font-weight: 600;
+        color: $color-font;
+        border-color: $color-option-background-active;
       }
     }
     > .error {
@@ -54,4 +131,11 @@
   .next {
     background-color: $color-button !important;
   }
+}
+.transition {
+  $time: 0.2s;
+  $speed: linear;
+  transition: color $time $speed;
+  transition: border-color $time $speed;
+  transition: background-color $time $speed;
 }

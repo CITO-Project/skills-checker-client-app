@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   constructor(private dataLogService: DataLogService, private commonService: CommonService) { }
 
   ngOnInit() {
-    if (this.text === undefined) {
+    if (this.text === 'default') {
       const category = this.dataLogService.getCategory();
       if (category !== null) {
         this.text = category.text;

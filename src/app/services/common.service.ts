@@ -38,7 +38,7 @@ export class CommonService {
       this.addZero(currentdate.getMinutes()) + ':' +
       this.addZero(currentdate.getSeconds()) + '.' +
       this.addZeroMiliseconds(currentdate.getMilliseconds()) + ']';
-    console.log( datetime + ' >> ', (!!data ? data : 'check') );
+    console.log( datetime + ' >> ', (data !== undefined ? data : 'check') );
   }
 
   addZero(value: number): string {
@@ -57,7 +57,7 @@ export class CommonService {
     let r = '';
     const file = name.split('/').pop();
     switch (type) {
-      case 'img':
+      case 'images':
       case 'icons':
       case 'resources':
         r = this.RESOURCE_PATH + type + '/' + file;

@@ -39,12 +39,29 @@ export class ScenariosScreenComponent implements OnInit {
       if (extras !== undefined && extras.state !== undefined && extras.state.scenario !== undefined) {
         this.scenario = extras.state.scenario;
       } else {
+        // ADD Redirect
         this.commonService.goTo('how-to');
+        this.question = {
+          id: 1,
+          type: 'slider',
+          pedagogical_type: 'task_question',
+          question: 'For me, finding the pharmacy opening hours is:',
+          answers: [
+            'Very difficult',
+            'Difficult',
+            'Middling',
+            'Easy'
+          ],
+          description: 'Description for numeracy 1',
+          product: 1,
+          scenario: 1
+        };
       }
     }
 
   ngOnInit() {
     this.currentScenario = +this.progressTrackerService.getScenarioIndex();
+    // ADD redirect
     this.loadScenario(this.currentScenario);
   }
 

@@ -1,6 +1,9 @@
 /* Free commnents
 
-
+Duda de deseño:
+o header deberia seguir existindo?
+que pasa si a pantalla ten scroll
+os botons de navegacion son flotantes?
 
 */
 // TODO: Need to move node_modules to the parent directory. It is not working right now for some reason.
