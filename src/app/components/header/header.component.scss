@@ -25,11 +25,12 @@
   .skip {
     position: absolute;
     right: 20px;
-    background-color: $color-background;
-    padding: 2px 7px;
-    border-radius: 5px;
+    padding: 2px 20px;
+    border-radius: 20px;
     font-weight: 400;
-    text-transform: uppercase;
+    text-transform: capitalize;
     cursor: pointer;
+    color: $color-font;
+    background-color: $color-font-dark;
   }
 }
