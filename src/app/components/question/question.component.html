@@ -22,28 +22,7 @@
         <div class="far fa-thumbs-up high"></div>
       </div>
 
-      <div class="stack">
-        <input id='slider' type="range" min="0" max="{{ question.answers.length - 1 }}" steps="1" value="0" (input)="retrieveAnswer($event.target.value)">
-        <div class="checkpoints">
-          <table>
-            <tr>
-              <td *ngFor='let answer of question.answers.slice(0, -1)'></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-
-      <div class="answers">
-        <table>
-          <tr>
-            <td *ngFor="let answer of question.answers; let i = index; let first = first; let last = last;">
-              <div class="answerOptions" [ngClass]="{'float-left': first, 'float-right': last }">
-                <div class="answer" (click)='updateAnswer(i)'>{{ answer }}</div>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
+      <ng5-slider [value]='sliderProperties.value' [options]='sliderProperties.options' (valueChange)='retrieveAnswer($event)'></ng5-slider>
 
       <div class="instructions">
         Drag the slider to share your level of knowledge

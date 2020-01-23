@@ -41,7 +41,6 @@ export class ScenariosScreenComponent implements OnInit {
       if (extras !== undefined && extras.state !== undefined && extras.state.scenario !== undefined) {
         this.scenario = extras.state.scenario;
       } else {
-        // ADD Redirect
         this.commonService.goTo('how-to');
         this.question = {
           id: 1,
@@ -64,7 +63,6 @@ export class ScenariosScreenComponent implements OnInit {
   ngOnInit() {
     this.category = this.dataLogService.getCategory();
     this.currentScenario = +this.progressTrackerService.getScenarioIndex();
-    // ADD redirect
     this.loadScenario(this.currentScenario);
   }
 
