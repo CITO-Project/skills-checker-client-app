@@ -29,8 +29,4 @@ export class HeaderComponent implements OnInit {
     this.commonService.goTo('results');
   }
 
-  showMore() {
-    console.log(this.dataLogService.getAll());
-  }
-
 }
