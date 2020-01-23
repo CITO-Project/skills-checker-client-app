@@ -18,8 +18,6 @@ export class MediaComponent implements OnInit, OnChanges {
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
-    // DELETE Temporary line for colour testing
-    this.resource = 'colourdemo.png';
     this.loadResource();
     const el = document.getElementById('media');
     el.style.height = this.height;
