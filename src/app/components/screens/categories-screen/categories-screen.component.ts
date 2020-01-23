@@ -5,7 +5,6 @@ import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/services/category.service';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
-import { noUndefined } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-categories-screen',
@@ -37,6 +36,10 @@ export class CategoriesScreenComponent implements OnInit {
     if (this.dataLogService.getCategory().id === category.id) {
       this.commonService.goTo('interests');
     }
+  }
+
+  getPath(name: string): string {
+    return this.commonService.getIconPath(name);
   }
 
 }

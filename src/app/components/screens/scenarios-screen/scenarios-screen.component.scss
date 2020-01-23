@@ -1,21 +1,24 @@
 @import '../../../../_imports.scss';
 
-* {
-  color: $color-font;
-}
 
 .content {
-  margin: 30px 40px;
+  color: $color-font-dark;
+  margin: 30px 20px;
   font-size: 0.9em;
   #header {
     .description {
-      padding: 10px 0 20px;
+      padding-top: 10px;
+      font-weight: 200;
     }
     .heading {
+      margin-top: 0;
       font-size: 1.4em;
     }
   }
   hr {
+    width: 100%;
+  }
+  app-question {
     width: 100%;
   }
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-how-to-screen',
@@ -12,6 +13,7 @@ import { ProgressTrackerService } from 'src/app/services/progress-tracker.servic
 export class HowToScreenComponent implements OnInit {
 
   public selectedInterest: string;
+  public category: Category;
 
   constructor(
     private commonService: CommonService,
@@ -19,6 +21,7 @@ export class HowToScreenComponent implements OnInit {
     private progressTrackerService: ProgressTrackerService) { }
 
   ngOnInit() {
+    this.category = this.dataLogService.getCategory();
     this.retrieveInterest();
     this.progressTrackerService.initializeTracker();
   }

@@ -44,4 +44,8 @@ export class ResultsScreenComponent implements OnInit {
     this.commonService.goTo('categories');
   }
 
+  getPath(name: string): string {
+    return this.commonService.getImagePath(name);
+  }
+
 }

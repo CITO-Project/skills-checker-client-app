@@ -1,4 +1,4 @@
-<app-header [skip]='!(currentScenario === 0 && currentQuestion === 0)'></app-header>
+<app-header [text]='!!category ? category.text : "default"' [skip]='!(currentScenario === 0 && currentQuestion === 0)'></app-header>
 <app-media *ngIf="!!scenario" [resource]='scenario.resource'></app-media>
 <div class="content d-flex flex-column align-items-center text-center">
   <div id="header" *ngIf="!!scenario">
