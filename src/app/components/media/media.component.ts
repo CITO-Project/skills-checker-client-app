@@ -50,8 +50,4 @@ export class MediaComponent implements OnInit, OnChanges {
     }
   }
 
-  // DELETE test
-  test() {
-    this.commonService.log();
-  }
 }
