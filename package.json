@@ -21,6 +21,7 @@
     "@angular/router": "~8.1.2",
     "@fortawesome/fontawesome-free": "^5.12.0",
     "@types/chart.js": "^2.9.9",
+    "@types/core-js": "^2.5.2",
     "angular-bootstrap-md": "^8.8.1",
     "animate.css": "^3.7.2",
     "chart.js": "^2.9.3",
@@ -28,6 +29,7 @@
     "ng5-slider": "^1.2.4",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
+    "videogular2": "^7.0.1",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

@@ -1,20 +1,24 @@
 <div id="media" [ngSwitch]=getType()>
+
   <!-- Image -->
   <div id="image" *ngSwitchCase="'image'">
     <img [(src)]="resourceFile" alt="{{ resourceFile }}">
   </div>
   <!-- End Image -->
+
   <!-- Video -->
-  <div id="video" *ngSwitchCase="'video'" (mouseenter)="this.playVideo()">
-    <video muted autoplay>
-      <source [src]="resourceFile" type="video/mp4">
-      Your browser does not support the video tag.
+  <div id="video" *ngSwitchCase="'video'">
+    <vg-player>
+      <vg-controls *ngIf="!!replay" vgFor="singleVideo" [vgAutohide]="true" [vgAutohideTime]=".1">
+        <vg-play-pause></vg-play-pause>
+        <vg-scrub-bar></vg-scrub-bar>
+        <vg-fullscreen></vg-fullscreen>
+      </vg-controls>
+      <video [vgMedia]="media" #media id="singleVideo" preload="auto" autoplay muted>
+        <source [src]="resourceFile" type="video/mp4">
       </video>
+    </vg-player>
   </div>
   <!-- End Video -->
-  <!-- Default -->
-  <div id="default" *ngSwitchDefault>
-      <i class="fas fa-play-circle"></i>
-  </div>
-  <!-- End Default -->
+
 </div>

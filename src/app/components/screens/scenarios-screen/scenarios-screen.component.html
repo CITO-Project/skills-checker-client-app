@@ -1,5 +1,5 @@
 <app-header [text]='!!category ? category.text : "default"' [skip]='!(currentScenario === 0 && currentQuestion === 0)'></app-header>
-<app-media *ngIf="!!scenario" [resource]='scenario.resource'></app-media>
+<app-media *ngIf="!!scenario" [resource]='scenario.resource' replay=true></app-media>
 <div class="content d-flex flex-column align-items-center text-center">
   <div id="header" *ngIf="!!scenario">
     <div class="heading">{{ scenario.text }}</div>

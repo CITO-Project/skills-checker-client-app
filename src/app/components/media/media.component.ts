@@ -10,6 +10,7 @@ export class MediaComponent implements OnInit, OnChanges {
 
   @Input() height: string;
   @Input() resource: string;
+  @Input() replay: boolean;
 
   public resourceFile: string;
   public supportedVideo = ['mp4', 'webm', 'ogg'];
@@ -46,13 +47,6 @@ export class MediaComponent implements OnInit, OnChanges {
       return 'video';
     } else {
       return '';
-    }
-  }
-
-  playVideo(): void {
-    const el = document.getElementById('video').children.item(0) as HTMLVideoElement;
-    if (!el.ended) {
-      el.play();
     }
   }
 
