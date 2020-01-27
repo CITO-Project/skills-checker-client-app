@@ -3,6 +3,7 @@ import { DataLogService } from 'src/app/services/data-log.service';
 import { DataProcessingService } from 'src/app/services/data-processing.service';
 import { CommonService } from 'src/app/services/common.service';
 import { CoursesService } from 'src/app/services/courses.service';
+import { Course } from 'src/app/models/course';
 
 @Component({
   selector: 'app-results-screen',
@@ -11,7 +12,7 @@ import { CoursesService } from 'src/app/services/courses.service';
 })
 export class ResultsScreenComponent implements OnInit {
 
-  public courses;
+  public courses: Course[];
 
   constructor(
     private commonService: CommonService,
