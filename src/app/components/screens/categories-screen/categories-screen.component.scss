@@ -1,0 +1,29 @@
+@import '../../../../_imports.scss';
+
+
+.row {
+  padding: 10px;
+}
+
+.category {
+  padding: 0 7.5px;
+  color: $color-font;
+  margin-bottom: 15px;
+  .tile {
+    height: 150px;
+    overflow: hidden;
+    .text {
+      $separation: 15px;
+      padding-top: $separation;
+      padding-left: $separation;
+      font-size: 1.05em;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+    img {
+      height: 100px;
+      transform: rotate(-10deg) translateX(50px) translateY(15px);
+      opacity: 70%;
+    }
+  }
+}

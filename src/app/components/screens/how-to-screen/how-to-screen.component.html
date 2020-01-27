@@ -1,13 +1,11 @@
-<app-header></app-header>
-<div id="video">
-  <i class="fas fa-play-circle"></i>
-</div>
+<app-header [text]='!!category ? category.text : "default"'></app-header>
+<app-media resource='how-to.mp4'></app-media>
 <div id="description">
-  <div class="main">
+  <div class="heading">
     How to use
   </div>
   <div class="text">
-    Learn how to use the app to set your interests and to improve your skills
+    Learn how to use the SkillsChecker App to set your interests and to improve your skills watching the video above.
   </div>
   <div class="feedback">
     You have selected:
@@ -15,10 +13,8 @@
       {{ selectedInterest }}
     </div>
   </div>
-  <div class="d-flex justify-content-center">
-    <div class="start" (click)="btnClick()">
-      Go
-    </div>
+  <div class="d-flex justify-content-around">
+    <button class="button" id="go" type="button" mdbBtn mdbWavesEffect (click)="btnClick()">Go</button>
   </div>
 </div>
-<app-navigate-button text="Select another interest" destination="interests"></app-navigate-button>
+<app-navigate-button text="default" destination="interests"></app-navigate-button>

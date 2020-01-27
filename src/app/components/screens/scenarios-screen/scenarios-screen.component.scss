@@ -1,64 +1,24 @@
 @import '../../../../_imports.scss';
 
-* {
-  color: $color-font;
-}
-
-#video {
-  width: 100vw;
-  height: 170px;
-  background-color: $color-grey;
-  text-align: center;
-
-  // Placeholder styling
-  padding-top: 30px;
-  font-size: 5em;
-}
 
 .content {
-  margin: 30px 40px;
+  color: $color-font-dark;
+  margin: 30px 20px;
   font-size: 0.9em;
   #header {
-    border-bottom: 1px $color-background-secondary solid;
     .description {
-      padding: 10px 0 20px;
+      padding-top: 10px;
+      font-weight: 200;
     }
-  }
-  #question {
     .heading {
-      padding: 10px 0;
-    }
-    .question {
-      text-align: left;
-    }
-    .answer {
-      padding: 20px 0;
-      .slider {
-        input[type=range] {
-          width: 100%;
-          padding: 20px 0 10px;
-        }
-        table {
-          width: 100%;
-          table-layout: fixed;
-          .answerOptions {
-            text-align: center;
-            font-size: .85em;
-            color: black;
-          }
-        }
-        .instructions{
-          padding-top: 10px;
-          text-align: left;
-          font-size: .7em;
-        }
-      }
-    }
-    .next {
-      background-color: $color-button !important;
+      margin-top: 0;
+      font-size: 1.4em;
     }
   }
-  .heading {
-    font-size: 1.4em;
+  hr {
+    width: 100%;
+  }
+  app-question {
+    width: 100%;
   }
 }

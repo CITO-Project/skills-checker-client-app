@@ -1,97 +1,126 @@
 @import '../../../../_imports.scss';
 
-$separator-between-courses: 20px;
-
 
 #content {
-  padding: 0 20px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, $color-background-colour, $color-background 250px);
+}
+
+.heading {
+  margin-top: 0;
 }
 
 .avatar > img {
-  height: 150px;
+  height: 120px;
+  padding-left: 20px;
 }
 
 #result {
+  padding-top: 70px;
   text-align: center;
 
-  > .heading {
-    color: $color-font;
-    padding: 10px 0;
-    font-size: 1.4em;
+  .container-fluid {
+    padding-left: 0;
+  }
+  .support {
+    margin-top: 10px;
+    font-size: .95em;
+    font-weight: 200;
+    text-shadow: 0 5px 8px $color-font-dark ;
+  }
+  a {
+    color: $color-font-link;
+    font-weight: 600;
   }
 }
 
 .dialog {
-  color: $color-white;
+  color: $color-font-dark;
   position: relative;
-  background-color: $color-background-dark;
-  border-radius: 5px;
+  background-color: $color-background;
+  border-radius: 15px;
+  box-shadow: 0 0 10px $color-background-dark;
   padding: 15px;
-  margin-left: 15px;
-  font-size: .75em;
-
+  margin-left: 10px;
+  font-size: .9em;
+  font-weight: 200;
   > .heading {
-    font-size: 1.3em;
-    font-weight: 500;
-    margin-bottom: 20px;
+    font-size: 1em;
+    font-weight: 600;
   }
 }
 
 .dialog:after {
 	right: 100%;
-	top: 70px;
+	top: 60px;
 	border: solid transparent;
 	content: " ";
 	height: 0;
 	width: 0;
 	position: absolute;
-	border-right-color: $color-background-dark;
+	border-right-color: $color-background;
 	border-width: 10px;
 	margin-top: -10px;
 }
 
-hr {
-  margin: 25px 0;
+.holder {
+  margin: 10px 0 20px;
 }
 
 #pathway {
-  text-align: center;
-  color: $color-font;
   .heading {
+    color: $color-font-dark;
     font-size: 1.5em;
-    color: $color-font;
     margin-bottom: 10px;
+    font-weight: 300;
     > img {
       margin-right: 10px;
       height: .7em;
     }
   }
   .message {
+    text-align: center;
     margin-bottom: 20px;
+    font-weight: 200;
+    font-size: 90%;
   }
-  .courses{
-    padding: 0;
-    .course {
-      margin-bottom: 20px;
-      background-color: $color-background-secondary;
-      font-size: .8em;
-      > .text {
-        padding: 20px 10px;
+  .recommendations{
+    background-color: $color-background-secondary;
+    > .heading {
+      padding: 10px 0;
+      font-size: 1em;
+      font-weight: 400;
+      .text {
+        float: left;
       }
-      > .more {
-        width: 100%;
-        color: $color-font-light;
-        background-color: $color-background-dark;
-        padding: 10px;
+      .all {
+        color: $color-font-link;
+        float: right;
+        cursor: pointer;
+      }
+    }
+    .courses {
+      overflow-x: scroll;
+      .course {
+        display: inline-block;
+        margin-right: 20px;
       }
     }
   }
-}
-
-.add-margin-right {
-  margin-right: $separator-between-courses/2;
-}
-
-.add-margin-left {
-  margin-left: $separator-between-courses/2;
+  .localization {
+    padding-top: 20px;
+    text-align: center;
+    color: $color-font-dark;
+    .text{
+      padding-bottom: 20px;
+      font-weight: 400;
+    }
+    .button {
+      background-color: green;
+      color: $color-font;
+      i {
+        margin-right: 10px;
+      }
+    }
+  }
 }

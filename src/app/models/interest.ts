@@ -3,6 +3,6 @@ export interface Interest {
   product: number;
   name: string;
   text?: string;
-  illustration?: string;
+  resource?: string;
   description?: string;
 }

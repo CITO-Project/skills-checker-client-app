@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TestResultsService } from 'src/app/services/test-results.service';
+import { DataLogService } from 'src/app/services/data-log.service';
 import { ProductService } from 'src/app/services/product.service';
+import { Product } from 'src/app/models/product';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-orientation-screen',
@@ -9,12 +11,42 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class OrientationScreenComponent implements OnInit {
 
-  constructor(private testResults: TestResultsService, private productService: ProductService) { }
+  public FEATURES = [
+    {
+      text: 'Private',
+      icon: this.getPath('key-emblem.svg'),
+      color: 'blue'
+    },
+    {
+      text: 'Safe',
+      icon: this.getPath('laptop-checked.svg'),
+      color: 'green'
+    },
+    {
+      text: 'Secure',
+      icon: this.getPath('lock.svg'),
+      color: 'yellow'
+    },
+    {
+      text: 'Private',
+      icon: this.getPath('laptop-graph-increasing.svg'),
+      color: 'red'
+    },
+  ];
+
+  constructor(private dataLogService: DataLogService, private productService: ProductService, private commonService: CommonService) { }
 
   ngOnInit() {
-    if (!this.testResults.getProduct()) {
-      this.productService.setProduct();
-    }
+    this.dataLogService.initializeLog();
+    this.productService.getProduct().subscribe(
+      (product: Product) => {
+        this.dataLogService.setProduct(product);
+      }
+    );
+  }
+
+  getPath(name: string): string {
+    return this.commonService.getIconPath(name);
   }
 
 }

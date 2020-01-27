@@ -1,0 +1,29 @@
+@import '../../../_imports.scss';
+
+
+#course {
+  padding: 20px 10px 10px;
+  margin-bottom: 20px;
+  font-size: .8em;
+  min-width: 150px;
+  color: $color-font;
+  text-align: left;
+  font-weight: 700;
+  > .title {
+    font-size: 1.6em;
+    font-weight: 800;
+  }
+  > .text {
+    color: $color-font-muted;
+  }
+  > .more {
+    text-align: center;
+    color: $color-font;
+    border-radius: 20px;
+    margin: 10px 10px 0;
+    padding: 5px 0;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: $color-black-transparent;
+  }
+}

@@ -1,0 +1,13 @@
+<app-header text='default'></app-header>
+<div class="heading">Pick a Category</div>
+<div class="container-fluid">
+  <div class="row">
+    <div *ngFor="let category of categories" class="col-6 category" (click)="selectCategory(category)">
+      <div class="tile box shadow gradient" [ngClass]="category.colour">
+        <div class="text">{{ category.text }}</div>
+        <img src="{{ getPath(category.resource) }}">
+      </div>
+    </div>
+  </div>
+</div>
+<app-navigate-button text="default" destination=""></app-navigate-button>

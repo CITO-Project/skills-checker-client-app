@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TestResultsService } from 'src/app/services/test-results.service';
-import { InterestService } from 'src/app/services/interest.service';
-import { Interest } from 'src/app/models/interest';
+
+import { CommonService } from 'src/app/services/common.service';
+import { DataLogService } from 'src/app/services/data-log.service';
+import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-how-to-screen',
@@ -12,21 +13,27 @@ import { Interest } from 'src/app/models/interest';
 export class HowToScreenComponent implements OnInit {
 
   public selectedInterest: string;
+  public category: Category;
 
-  constructor(private router: Router, private testResults: TestResultsService, private interestService: InterestService) { }
+  constructor(
+    private commonService: CommonService,
+    private dataLogService: DataLogService,
+    private progressTrackerService: ProgressTrackerService) { }
 
   ngOnInit() {
+    this.category = this.dataLogService.getCategory();
     this.retrieveInterest();
+    this.progressTrackerService.initializeTracker();
   }
 
   btnClick() {
-    this.router.navigate(['scenarios']);
+    this.progressTrackerService.nextScenario();
   }
 
   retrieveInterest() {
-    const interest = this.testResults.getInterest();
+    const interest = this.dataLogService.getInterest();
     if (!interest) {
-      this.router.navigate(['interests']);
+      this.commonService.goTo('interests');
     } else {
       this.selectedInterest = interest.text;
     }

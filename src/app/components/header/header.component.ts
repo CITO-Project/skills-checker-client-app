@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TestResultsService } from 'src/app/services/test-results.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { DataLogService } from 'src/app/services/data-log.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +9,24 @@ import { TestResultsService } from 'src/app/services/test-results.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, private testResultsService: TestResultsService) { }
+  @Input() text: string;
+  @Input() skip: boolean;
 
-  ngOnInit() { }
 
-  goToIndex() {
-    this.router.navigate(['']);
+  constructor(private dataLogService: DataLogService, private commonService: CommonService) { }
+
+  ngOnInit() {
+    if (this.text === 'default') {
+      this.text = 'SkillsChecker';
+    }
   }
 
-  showMore() {
-    console.log(this.testResultsService.getAll());
+  goToIndex() {
+    this.commonService.goTo('');
+  }
+
+  goToResults() {
+    this.commonService.goTo('results');
   }
 
 }

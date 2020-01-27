@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { Scenario } from '../models/scenario';
+
 import { CommonService } from './common.service';
 
 @Injectable({
@@ -7,14 +12,21 @@ import { CommonService } from './common.service';
 })
 export class ScenarioService {
 
-  constructor(private http: HttpClient, private common: CommonService) { }
+  constructor(private httpClient: HttpClient, private commonService: CommonService) { }
 
-  getScenarios(interestId: number) {
-    return this.http.get(`${this.common.getApiUrl()}scenarios?filter[where][interest]=${interestId}&filter[fields][id]=true&filter[limit]=4`);
-  }
-
-  getScenario(scenarioId: number) {
-    return this.http.get(`${this.common.getApiUrl()}scenarios/${scenarioId}`);
+  getScenarios(categoryid: number, interestid: number): Observable<Scenario[]> {
+    if (categoryid === undefined) {
+      categoryid = -1;
+    } else if (interestid === undefined) {
+      interestid = -1;
+    } else {
+      const url = `/categories/${categoryid}/interests/${interestid}/scenarios`;
+      return this.httpClient.get(this.commonService.getApiUrl() + url).pipe(map(
+        (data: Scenario[]) => {
+          return data;
+        }
+      ));
+    }
   }
 
 }
