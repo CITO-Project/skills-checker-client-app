@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Course } from '../models/course';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +12,17 @@ export class CoursesService {
 
   private courses: Course[];
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private commonService: CommonService) {
     this.resetCourses();
   }
 
   loadCourses(): Observable<void> {
-    const url = 'http://localhost:3000/courses';
-    return this.httpClient.get(url).pipe(map(
-      (data: Course[]) => {
+    const url = '/courses';
+    return this.httpClient.get(this.commonService.getApiUrl() + url)
+      .pipe(map( (data: Course[]) => {
         this.courses = data;
-      }
-    ));
+      })
+    );
   }
 
   getCourses(): Course[] {
