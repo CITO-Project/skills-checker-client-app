@@ -10,26 +10,39 @@ import { CommonService } from './common.service';
 })
 export class CoursesService {
 
-  private courses: Course[];
+  constructor(private httpClient: HttpClient, private commonService: CommonService) { }
 
-  constructor(private httpClient: HttpClient, private commonService: CommonService) {
-    this.resetCourses();
-  }
-
-  loadCourses(): Observable<void> {
-    const url = '/courses';
+  loadCourses(
+    literacyLvl?: number,
+    numeracyLvl?: number,
+    digitalSkillsLvl?: number,
+    location?: string
+    ): Observable<Course[]> {
+    const querry: string[] = [];
+    if (!!literacyLvl) {
+      querry.push('literacyLvl=' + literacyLvl);
+    }
+    if (!!numeracyLvl) {
+      querry.push('numeracyLvl=' + numeracyLvl);
+    }
+    if (!!digitalSkillsLvl) {
+      querry.push('digitalSkillsLvl=' + digitalSkillsLvl);
+    }
+    if (!!location) {
+      querry.push('location=' + location);
+    }
+    let url = '/courses';
+    if (querry.length > 0) {
+      url += '?';
+      querry.forEach( (field: string) => {
+        url += field + '&';
+      });
+    }
+    console.log(url);
     return this.httpClient.get(this.commonService.getApiUrl() + url)
       .pipe(map( (data: Course[]) => {
-        this.courses = data;
+        return data;
       })
     );
-  }
-
-  getCourses(): Course[] {
-    return this.courses;
-  }
-
-  resetCourses(): void {
-    this.courses = [];
   }
 }

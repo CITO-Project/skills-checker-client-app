@@ -404,8 +404,14 @@ export class ResultsScreenComponent implements OnInit {
     // ) {
     //   this.commonService.goTo('');
     // }
-    this.coursesService.loadCourses().subscribe( () => {
-      this.courses = this.coursesService.getCourses();
+    this.coursesService.loadCourses(
+      results['literacy'],
+      results['numeracy'],
+      results['digital_skills']
+      ).subscribe( (courses: Course[]) => {
+        // this.courses = this.coursesService.getCourses();
+        this.courses = courses;
+        console.log(courses);
     });
   }
 
@@ -424,6 +430,10 @@ export class ResultsScreenComponent implements OnInit {
 
   getPath(name: string): string {
     return this.commonService.getImagePath(name);
+  }
+
+  getCourses() {
+
   }
 
 }
