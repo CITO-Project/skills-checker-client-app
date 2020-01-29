@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
+import { VgAPI } from 'videogular2/compiled/core';
 
 @Component({
   selector: 'app-media',
@@ -15,6 +16,8 @@ export class MediaComponent implements OnInit, OnChanges {
   public resourceFile: string;
   public supportedVideo = ['mp4', 'webm', 'ogg'];
   public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
+
+  private vgAPI: VgAPI;
 
   constructor(private commonService: CommonService) { }
 
@@ -48,6 +51,14 @@ export class MediaComponent implements OnInit, OnChanges {
     } else {
       return '';
     }
+  }
+
+  playVideo(): void {
+    this.vgAPI.getDefaultMedia().play();
+  }
+
+  onPlayerReady(vgAPI: VgAPI): void {
+    this.vgAPI = vgAPI;
   }
 
 }
