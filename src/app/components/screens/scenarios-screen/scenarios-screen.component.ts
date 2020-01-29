@@ -8,6 +8,7 @@ import { QuestionService } from 'src/app/services/question.service';
 import { CommonService } from 'src/app/services/common.service';
 import { Router } from '@angular/router';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -19,9 +20,10 @@ export class ScenariosScreenComponent implements OnInit {
   public scenario: Scenario;
   public question: Question;
   public errorMessage = '';
+  public category: Category;
 
-  public btnBack = 'Go back';
-  public btnForward = 'Next';
+  public btnBack = 'default';
+  public btnForward = 'default';
 
   public currentScenario = -1;
   public currentQuestion = -1;
@@ -32,18 +34,33 @@ export class ScenariosScreenComponent implements OnInit {
     private dataLogService: DataLogService,
     private questionService: QuestionService,
     private commonService: CommonService,
-    private progressTrackerService: ProgressTrackerService,
-    private router: Router
+    private progressTrackerService: ProgressTrackerService
     ) {
-      const extras = this.router.getCurrentNavigation().extras;
+      const extras = this.commonService.getExtras();
       if (extras !== undefined && extras.state !== undefined && extras.state.scenario !== undefined) {
         this.scenario = extras.state.scenario;
       } else {
         this.commonService.goTo('how-to');
+        this.question = {
+          id: 1,
+          type: 'slider',
+          pedagogical_type: 'task_question',
+          question: 'For me, finding the pharmacy opening hours is:',
+          answers: [
+            'Very difficult',
+            'Difficult',
+            'Middling',
+            'Easy'
+          ],
+          description: 'Description for numeracy 1',
+          product: 1,
+          scenario: 1
+        };
       }
     }
 
   ngOnInit() {
+    this.category = this.dataLogService.getCategory();
     this.currentScenario = +this.progressTrackerService.getScenarioIndex();
     this.loadScenario(this.currentScenario);
   }
@@ -93,15 +110,15 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   afterLoadQuestion() {
-    this.btnForward = 'Next';
-    this.btnBack = 'Previous';
+    this.btnForward = 'default';
+    this.btnBack = 'default';
     const isLastQuestion = (
       this.currentScenario === this.dataLogService.getScenarioCount() - 1
       && this.currentQuestion === this.questionService.getQuestionOrder().length - 1);
     if (isLastQuestion) {
       this.btnForward = 'See results';
     } else if (this.currentScenario === 0 && this.currentQuestion === 0) {
-      this.btnBack = 'Go back';
+      this.btnBack = 'default';
     }
   }
 

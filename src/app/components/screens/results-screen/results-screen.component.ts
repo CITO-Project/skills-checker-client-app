@@ -3,6 +3,7 @@ import { DataLogService } from 'src/app/services/data-log.service';
 import { DataProcessingService } from 'src/app/services/data-processing.service';
 import { CommonService } from 'src/app/services/common.service';
 import { CoursesService } from 'src/app/services/courses.service';
+import { Course } from 'src/app/models/course';
 
 @Component({
   selector: 'app-results-screen',
@@ -11,12 +12,14 @@ import { CoursesService } from 'src/app/services/courses.service';
 })
 export class ResultsScreenComponent implements OnInit {
 
-  public courses;
+  public courses: Course[];
+  public results;
 
   constructor(
     private commonService: CommonService,
     private dataLogService: DataLogService,
-    private coursesService: CoursesService) { }
+    private coursesService: CoursesService,
+    private dataProcessingService: DataProcessingService) { }
 
   ngOnInit() {
     if (
@@ -26,8 +29,13 @@ export class ResultsScreenComponent implements OnInit {
     ) {
       this.commonService.goTo('');
     }
-    this.coursesService.loadCourses().subscribe( () => {
-      this.courses = this.coursesService.getCourses();
+    this.results = this.dataProcessingService.getResults(this.dataLogService.getAll());
+    this.coursesService.loadCourses(
+      this.results.literacy,
+      this.results.numeracy,
+      this.results.digital_skills
+      ).subscribe( (courses: Course[]) => {
+        this.courses = courses;
     });
   }
 
@@ -36,12 +44,20 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   showAll(): void {
-    this.commonService.goTo('localization');
+    this.commonService.goTo('localization', this.results);
   }
 
   selectNewInterest(): void {
     this.dataLogService.initializeLog();
     this.commonService.goTo('categories');
+  }
+
+  getPath(name: string): string {
+    return this.commonService.getImagePath(name);
+  }
+
+  getCourses() {
+
   }
 
 }

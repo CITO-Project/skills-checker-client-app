@@ -16,13 +16,8 @@ export class HeaderComponent implements OnInit {
   constructor(private dataLogService: DataLogService, private commonService: CommonService) { }
 
   ngOnInit() {
-    if (this.text === undefined) {
-      const category = this.dataLogService.getCategory();
-      if (category !== null) {
-        this.text = category.text;
-      } else {
-        this.text = 'SkillsChecker';
-      }
+    if (this.text === 'default') {
+      this.text = 'SkillsChecker';
     }
   }
 
@@ -32,10 +27,6 @@ export class HeaderComponent implements OnInit {
 
   goToResults() {
     this.commonService.goTo('results');
-  }
-
-  showMore() {
-    console.log(this.dataLogService.getAll());
   }
 
 }

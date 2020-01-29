@@ -2,34 +2,31 @@
 
 #app-header {
   z-index: 1;
-  background-color: $color-header;
-  color: $color-font;
+  background-color: transparent;
+  color: $color-font-dark;
   position: fixed;
   top: 0;
   width: 100vw;
   height: $header-height;
   text-align: center;
   font-family: 'Roboto';
-  border-bottom: lightgray 1px solid;
-
-  .more {
-    position: absolute;
-    left: 20px;
-    cursor: pointer;
-  }
 
   .title {
     cursor: pointer;
+    font-weight: 800;
   }
 
   .skip {
     position: absolute;
     right: 20px;
-    background-color: $color-background;
-    padding: 2px 7px;
-    border-radius: 5px;
+    padding: 2px 20px;
+    border-radius: 20px;
+    font-size: .8em;
     font-weight: 400;
-    text-transform: uppercase;
+    text-transform: capitalize;
     cursor: pointer;
+    color: $color-font;
+    background-color: $color-font-dark;
+    z-index: 1;
   }
 }

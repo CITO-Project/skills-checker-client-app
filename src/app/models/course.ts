@@ -1,7 +1,11 @@
 export interface Course {
   id: number;
-  name?: string;
-  text?: string;
-  link?: string;
-  area?: string;
+  product: number;
+  title: string;
+  description: string;
+  level: number;
+  skill: string;
+  location: string;
+  date: Date;
+  link: string;
 }

@@ -1,37 +1,33 @@
 @import '../../../../_imports.scss';
 
-* {
-  color: $color-font;
-}
-
-.heading {
-  text-align: center;
-  padding: 15px;
-  font-size: 1.3em;
-}
 
 .row {
   padding: 10px;
 }
 
 .category {
-  margin: 10px 0;
-  text-align: center;
-  cursor: pointer;
-
-  > .tile {
-    width: 100%;
-    padding: 25px 0;
-    background-color: $color-images-background;
-    i {
-      color: $color-font-light;
-      font-size: 3em;
-    }
+  padding: 0 7.5px;
+  color: $color-font;
+  margin-bottom: 15px;
+  .tile {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
     .text {
-      padding-top: 10px;
-      font-weight: 400;
-      text-transform: uppercase;
+      $separation: 15px;
+      padding-top: $separation;
+      padding-left: $separation;
+      font-size: 1.05em;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+    img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 100px;
+      transform: rotate(-10deg);
+      opacity: 70%;
     }
   }
-
 }

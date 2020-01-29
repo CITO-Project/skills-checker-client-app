@@ -6,9 +6,5 @@ body{
   font-style: normal;
   font-weight: lighter;
   background-color: $color-background;
-  padding: $header-height 0 $bottom-height 0;
-}
-
-.holder {
-  @include holder;
+  padding: 0 0 $bottom-height 0;
 }
