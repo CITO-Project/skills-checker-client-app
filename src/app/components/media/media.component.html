@@ -7,12 +7,6 @@
   <!-- End Image -->
 
   <!-- Video -->
-<<<<<<< HEAD
-  <div id="video" *ngSwitchCase="'video'" (mouseenter)="this.playVideo()">
-    <video muted autoplay>
-      <source [src]="resourceFile" type="video/mp4">
-      Your browser does not support the video tag.
-=======
   <div id="video" *ngSwitchCase="'video'">
     <vg-player>
       <vg-controls *ngIf="!!replay" vgFor="singleVideo" [vgAutohide]="true" [vgAutohideTime]=".1">
@@ -22,7 +16,6 @@
       </vg-controls>
       <video [vgMedia]="media" #media id="singleVideo" preload="auto" autoplay muted>
         <source [src]="resourceFile" type="video/mp4">
->>>>>>> develop
       </video>
     </vg-player>
   </div>
