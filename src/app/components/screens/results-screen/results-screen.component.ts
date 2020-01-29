@@ -31,9 +31,9 @@ export class ResultsScreenComponent implements OnInit {
     }
     this.results = this.dataProcessingService.getResults(this.dataLogService.getAll());
     this.coursesService.loadCourses(
-      this.results['literacy'],
-      this.results['numeracy'],
-      this.results['digital_skills']
+      this.results.literacy,
+      this.results.numeracy,
+      this.results.digital_skills
       ).subscribe( (courses: Course[]) => {
         this.courses = courses;
     });

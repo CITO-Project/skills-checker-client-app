@@ -54,7 +54,7 @@ export class CommonService {
   }
 
   loadLink(link: string) {
-    window.open(link, "_blank");
+    window.open(link, '_blank');
   }
 
   getPath(name: string, type: string): string {
