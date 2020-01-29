@@ -38,7 +38,6 @@ export class CoursesService {
         url += field + '&';
       });
     }
-    console.log(url);
     return this.httpClient.get(this.commonService.getApiUrl() + url)
       .pipe(map( (data: Course[]) => {
         return data;

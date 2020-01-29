@@ -13,6 +13,7 @@ import { Course } from 'src/app/models/course';
 export class ResultsScreenComponent implements OnInit {
 
   public courses: Course[];
+  public results;
 
   constructor(
     private commonService: CommonService,
@@ -21,7 +22,7 @@ export class ResultsScreenComponent implements OnInit {
     private dataProcessingService: DataProcessingService) { }
 
   ngOnInit() {
-    const results = this.dataProcessingService.getResults({
+    this.results = this.dataProcessingService.getResults({
       "product":
         {
           "id": 1,
@@ -395,8 +396,6 @@ export class ResultsScreenComponent implements OnInit {
         "digital_skills"
       ]
     });
-
-    console.log(results);
     // if (
     //   this.dataLogService.getProduct() === null ||
     //   this.dataLogService.getCategory() === null ||
@@ -405,13 +404,11 @@ export class ResultsScreenComponent implements OnInit {
     //   this.commonService.goTo('');
     // }
     this.coursesService.loadCourses(
-      results['literacy'],
-      results['numeracy'],
-      results['digital_skills']
+      this.results['literacy'],
+      this.results['numeracy'],
+      this.results['digital_skills']
       ).subscribe( (courses: Course[]) => {
-        // this.courses = this.coursesService.getCourses();
         this.courses = courses;
-        console.log(courses);
     });
   }
 
@@ -420,7 +417,7 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   showAll(): void {
-    this.commonService.goTo('localization');
+    this.commonService.goTo('localization', this.results);
   }
 
   selectNewInterest(): void {
