@@ -22,6 +22,7 @@ export class ResultsScreenComponent implements OnInit {
     private dataProcessingService: DataProcessingService) { }
 
   ngOnInit() {
+    // DELETE Demo data
     this.results = this.dataProcessingService.getResults({
       "product":
         {

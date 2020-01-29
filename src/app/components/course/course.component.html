@@ -1,4 +1,4 @@
-<div id="course" class="box red shadows gradient">
+<div id="course" class="box shadows gradient" [ngClass]="getColour(course.skill)">
   <div class="title">{{ course.title }}</div>
   <div class="text">{{ course.description }}</div>
   <div class="more"  (click)="loadLink(course.link)">More info</div>
