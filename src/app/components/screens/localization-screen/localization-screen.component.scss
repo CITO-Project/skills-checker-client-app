@@ -1,11 +1,9 @@
 @import '../../../../_imports.scss';
 
-$separator-between-courses: 20px;
-
 
 #content {
-  padding: 0 20px;
-  color: $color-font;
+  padding: 0 17px;
+  color: $color-font-dark;
 }
 
 #header {
@@ -13,7 +11,9 @@ $separator-between-courses: 20px;
   .title {
     letter-spacing: 1px;
     font-size: 1.6em;
+    font-weight: 400;
     padding: 20px 0;
+    margin-top: 40px;
   }
   .description {
     font-size: .9em;
@@ -26,10 +26,6 @@ $separator-between-courses: 20px;
   text-align: center;
 }
 
-.add-padding-right {
-  padding-right: $separator-between-courses/2;
-}
-
-.add-padding-left {
-  padding-left: $separator-between-courses/2;
+.course {
+  margin-right: 20px;
 }

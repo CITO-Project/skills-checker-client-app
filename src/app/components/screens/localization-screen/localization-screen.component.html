@@ -1,23 +1,21 @@
-<app-header></app-header>
+<app-header text='default'></app-header>
 <div id="content">
   <div id="header">
     <div class="title">Learning opportunities</div>
     <div class="description">Please, choose your location to see the learning opportunities near you</div>
     <select class="browser-default custom-select" (change)='setCounty($event.target.value)'>
-      <option selected value=''>Choose your area</option>
+      <option selected value='all'>Choose your area</option>
       <option value='all'>Show all</option>
       <option *ngFor='let county of IRELAND_COUNTIES' value='{{ county.toLowerCase() }}'>{{ county }}</option>
     </select>
     <hr>
   </div>
-  <div id="courses" class="container">
-    <div class="row no-gutters">
-            <app-course
-              *ngFor="let course of filteredCourses; let i = index"
-              [course]="course"
-              class="course col-6 {{ i%2 === 0 ? 'add-padding-right' : 'add-padding-left' }}"
-            ></app-course>
-    </div>
+  <div id="courses" class="d-flex flex-row flex-wrap">
+    <app-course
+      *ngFor="let course of courses"
+      [course]="course"
+      class="course"
+    ></app-course>
   </div>
 </div>
 

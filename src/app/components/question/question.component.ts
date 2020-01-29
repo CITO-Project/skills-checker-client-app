@@ -13,17 +13,44 @@ export class QuestionComponent implements OnInit, DoCheck {
   @Input() initialAnswer = -1;
   @Output() answer = new EventEmitter<number>();
 
+  public sliderProperties = {
+    value: 0,
+    options: {
+      floor: 0,
+      ceil: 0,
+      step: 1,
+      showTicks: true,
+      showSelectionBar: true,
+      hidePointerLabels: true,
+      hideLimitLabels: true,
+      selectionBarGradient: {
+        from: '#A66C4F',
+        to: '#3FBDA8'
+      },
+      stepsArray: []
+    }
+  };
 
   constructor() { }
 
   ngOnInit() { }
 
   ngDoCheck() {
+    this.updateSlider();
     if (this.initialAnswer > -1) {
       this.setAnswer(this.initialAnswer);
     } else {
       this.resetSlider();
     }
+  }
+
+  updateSlider(): void {
+    this.sliderProperties.value = this.initialAnswer;
+    this.sliderProperties.options.stepsArray = [];
+    this.question.answers.forEach( (answer: string, index: number) => {
+      this.sliderProperties.options.stepsArray.push({ value: index, legend: answer});
+    });
+    this.sliderProperties.options.ceil = this.question.answers.length - 1;
   }
 
   retrieveAnswer(answer: number): void {

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { Scenario } from 'src/app/models/scenario';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-scenario-introduction-screen',
@@ -16,24 +16,25 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
   private scenarioindex: number;
   public previousScenarioText = '';
   public scenarioText: string;
+  public category: Category;
 
-  public btnBack = 'Previous';
-  public btnForward = 'Start';
+  public btnBack = 'default';
+  public btnForward = 'default';
 
   constructor(
-    private router: Router,
     private commonService: CommonService,
     private dataLogService: DataLogService,
     private progressTrackerService: ProgressTrackerService) {
-    const extras = this.router.getCurrentNavigation().extras;
-    if (extras !== undefined && extras.state !== undefined && extras.state.scenarioindex !== undefined) {
-      this.scenarioindex = +extras.state.scenarioindex;
-    } else {
-      commonService.goTo('how-to');
-    }
+      const extras = this.commonService.getExtras();
+      if (extras !== undefined && extras.state !== undefined && extras.state.scenarioindex !== undefined) {
+        this.scenarioindex = +extras.state.scenarioindex;
+      } else {
+        commonService.goTo('how-to');
+      }
   }
 
   ngOnInit() {
+    this.category = this.dataLogService.getCategory();
     this.loadScenario(this.scenarioindex);
   }
 
@@ -49,7 +50,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
       this.previousScenarioText = this.dataLogService.getScenario(scenarioindex - 1).text;
     } else {
       this.previousScenarioText = '';
-      this.btnBack = 'See instructions';
+      this.btnBack = 'default';
     }
     this.scenarioText = this.scenario.text;
   }

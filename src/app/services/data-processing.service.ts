@@ -1,55 +1,38 @@
 import { Injectable } from '@angular/core';
-import { DataLogService } from './data-log.service';
 import { Log } from '../models/log';
 import { Question } from '../models/question';
-import { Scenario } from '../models/scenario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataProcessingService {
 
-  private log: Log;
+  constructor() { }
 
-  constructor(private dataLogService: DataLogService) {
-    this.log = this.dataLogService.getAll();
+  getChallengingSkills(questions: Question[], answers: number[], challengingOrder: string[]) {
+    const r = {};
+    let level = 0;
+    for (let i = 0; i < questions.length ; i++) {
+      if (questions[i].pedagogical_type === 'challenging_skill') {
+        level++;
+        if (answers[i] > 0) {
+          let answer = answers[i].toString(2);
+          while (answer.length < challengingOrder.length) {
+            answer = '0' + answer;
+          }
+          for (let j = 0; j < answer.length; j++) {
+            if (answer.charAt(j) === '1' && !r[challengingOrder.slice().reverse()[j]] ) {
+              r[challengingOrder.slice().reverse()[j]] = level;
+            }
+          }
+        }
+      }
+    }
+    return r;
   }
 
-  // getSkillLevel(skill: number): number {
-  //   const questions: Question[] = [];
-  //   let skillLevel = -1;
-  //   this.results.questions.forEach( (question: Question) => {
-  //     if (question.skill === skill) {
-  //       questions.push(question);
-  //     }
-  //   });
-  //   questions.forEach( (question: Question) => {
-  //     const level = this.getLevel(question);
-  //     skillLevel = level > skillLevel ? level : skillLevel;
-  //   });
-  //   return skillLevel;
-  // }
+  getResults(log: Log) {
+    return this.getChallengingSkills(log.questions, log.answers, log.challenging_order);
+  }
 
-  // getSkills(): number[] {
-  //   const skills: number[] = [];
-  //   this.results.scenarios.forEach( (scenario: Scenario) => {
-  //     if (scenario.level === 1) {
-  //       this.results.questions.forEach( (question: Question) => {
-  //         if (question.scenario === scenario.level) {
-  //           skills.push(question.skill);
-  //         }
-  //       });
-  //     }
-  //   });
-  //   return skills;
-  // }
-
-  // getLevel(question: Question): number {
-  //   this.results.scenarios.forEach( (scenario: Scenario) => {
-  //     if (scenario.id === question.scenario) {
-  //       return scenario.level;
-  //     }
-  //   });
-  //   return -1;
-  // }
 }

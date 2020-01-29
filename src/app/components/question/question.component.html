@@ -18,21 +18,11 @@
     <!-- Slider option -->
     <div class="slider" *ngSwitchCase="'slider'">
       <div class="thumbs d-flex justify-content-between">
-        <div class="far fa-thumbs-up fa-rotate-180"></div>
-        <div class="far fa-thumbs-up"></div>
+        <div class="far fa-thumbs-up fa-rotate-180 low"></div>
+        <div class="far fa-thumbs-up high"></div>
       </div>
 
-      <input id='slider' type="range" min="0" max="{{ question.answers.length - 1 }}" steps="1" value="0" (input)="retrieveAnswer($event.target.value)">
-
-      <table>
-        <tr>
-          <td *ngFor="let answer of question.answers; let i = index; let first = first; let last = last;">
-            <div class="answerOptions" [ngClass]="{'float-left': first, 'float-right': last }">
-              <div class="answer" (click)='updateAnswer(i)'>{{ answer }}</div>
-            </div>
-          </td>
-        </tr>
-      </table>
+      <ng5-slider [value]='sliderProperties.value' [options]='sliderProperties.options' (valueChange)='retrieveAnswer($event)'></ng5-slider>
 
       <div class="instructions">
         Drag the slider to share your level of knowledge
@@ -45,11 +35,15 @@
     <!-- Single option -->
     <div class="single" *ngSwitchCase="'single'">
         <form>
-            <div class="custom-control custom-radio answerOptions" *ngFor="let answer of question.answers; let i = index">
-               <input id="{{ i }}" type="radio" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswer($event.target.id)">
-               <label class="custom-control-label" [ngClass]="{error: error !== ''}" for="{{ i }}">{{ answer }}</label>
+            <div class="custom-control custom-radio" *ngFor="let answer of question.answers; let i = index">
+              <input id="{{ i }}" type="radio" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswer($event.target.id)">
+
+              <label class="answerOptions transition" [ngClass]="{error: error !== ''}" for="{{ i }}">
+                <span class="checkbox"><i class="fas fa-check"></i></span>
+                <span class="answerText">{{ answer }}</span>
+              </label>
             </div>
-         </form>
+        </form>
     </div>
     <!-- End single option -->
 
@@ -58,9 +52,12 @@
     <!-- Multiple option -->
     <div class="multiple" *ngSwitchCase="'multiple'">
       <form>
-          <div class="custom-control custom-checkbox answerOptions" *ngFor="let answer of question.answers; let i = index">
+          <div class="custom-control custom-checkbox" *ngFor="let answer of question.answers; let i = index">
              <input id="{{ i }}" type="checkbox" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswerMultiple()">
-             <label class="custom-control-label" [ngClass]="{error: error !== ''}" for="{{ i }}">{{ answer }}</label>
+             <label class="answerOptions transition" [ngClass]="{error: error !== ''}" for="{{ i }}">
+              <span class="checkbox"><i class="fas fa-check"></i></span>
+              <span class="answerText">{{ answer }}</span>
+              </label>
           </div>
        </form>
   </div>
