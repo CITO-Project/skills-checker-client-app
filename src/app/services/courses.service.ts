@@ -40,7 +40,7 @@ export class CoursesService {
     }
     return this.httpClient.get(this.commonService.getApiUrl() + url)
       .pipe(map( (data: Course[]) => {
-        return data.concat(data.concat(data.concat(data.concat(data))));
+        return data;
       })
     );
   }
