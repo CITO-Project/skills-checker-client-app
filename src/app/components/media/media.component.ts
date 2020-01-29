@@ -53,12 +53,12 @@ export class MediaComponent implements OnInit, OnChanges {
     }
   }
 
-  playVideo(): void {
-    this.vgAPI.getDefaultMedia().play();
-  }
-
   onPlayerReady(vgAPI: VgAPI): void {
     this.vgAPI = vgAPI;
+  }
+
+  playVideo(): void {
+    this.vgAPI.getDefaultMedia().play();
   }
 
 }
