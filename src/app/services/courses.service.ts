@@ -3,32 +3,45 @@ import { HttpClient } from '@angular/common/http';
 import { Course } from '../models/course';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
 
-  private courses: Course[];
+  constructor(private httpClient: HttpClient, private commonService: CommonService) { }
 
-  constructor(private httpClient: HttpClient) {
-    this.resetCourses();
-  }
-
-  loadCourses(): Observable<void> {
-    const url = 'http://localhost:3000/courses';
-    return this.httpClient.get(url).pipe(map(
-      (data: Course[]) => {
-        this.courses = data;
-      }
-    ));
-  }
-
-  getCourses(): Course[] {
-    return this.courses;
-  }
-
-  resetCourses(): void {
-    this.courses = [];
+  loadCourses(
+    literacyLvl?: number,
+    numeracyLvl?: number,
+    digitalSkillsLvl?: number,
+    location?: string
+    ): Observable<Course[]> {
+    const querry: string[] = [];
+    if (!!literacyLvl) {
+      querry.push('literacyLvl=' + literacyLvl);
+    }
+    if (!!numeracyLvl) {
+      querry.push('numeracyLvl=' + numeracyLvl);
+    }
+    if (!!digitalSkillsLvl) {
+      querry.push('digitalSkillsLvl=' + digitalSkillsLvl);
+    }
+    if (!!location) {
+      querry.push('location=' + location);
+    }
+    let url = '/courses';
+    if (querry.length > 0) {
+      url += '?';
+      querry.forEach( (field: string) => {
+        url += field + '&';
+      });
+    }
+    return this.httpClient.get(this.commonService.getApiUrl() + url)
+      .pipe(map( (data: Course[]) => {
+        return data.concat(data.concat(data.concat(data.concat(data))));
+      })
+    );
   }
 }

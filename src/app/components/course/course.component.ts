@@ -13,11 +13,23 @@ export class CourseComponent implements OnInit {
 
   constructor(public commonService: CommonService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   loadLink(link: string): void {
     this.commonService.loadLink(link);
+  }
+
+  getColour(skill: string): string {
+    switch (skill) {
+      case 'literacy':
+        return 'green';
+      case 'numeracy':
+        return 'yellow';
+      case 'digital_skills':
+        return 'red';
+      default:
+        return 'blue';
+    }
   }
 
 }

@@ -34,10 +34,9 @@ export class ScenariosScreenComponent implements OnInit {
     private dataLogService: DataLogService,
     private questionService: QuestionService,
     private commonService: CommonService,
-    private progressTrackerService: ProgressTrackerService,
-    private router: Router
+    private progressTrackerService: ProgressTrackerService
     ) {
-      const extras = this.router.getCurrentNavigation().extras;
+      const extras = this.commonService.getExtras();
       if (extras !== undefined && extras.state !== undefined && extras.state.scenario !== undefined) {
         this.scenario = extras.state.scenario;
       } else {
