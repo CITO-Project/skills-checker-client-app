@@ -21,10 +21,7 @@
     "@angular/router": "~8.1.2",
     "@fortawesome/fontawesome-free": "^5.12.0",
     "@types/chart.js": "^2.9.9",
-<<<<<<< HEAD
-=======
     "@types/core-js": "^2.5.2",
->>>>>>> develop
     "angular-bootstrap-md": "^8.8.1",
     "animate.css": "^3.7.2",
     "chart.js": "^2.9.3",
@@ -36,11 +33,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-<<<<<<< HEAD
-    "@angular-devkit/build-angular": "^0.803.22",
-=======
     "@angular-devkit/build-angular": "^0.803.23",
->>>>>>> develop
     "@angular/cli": "~8.1.2",
     "@angular/compiler-cli": "~8.1.2",
     "@angular/language-service": "~8.1.2",
