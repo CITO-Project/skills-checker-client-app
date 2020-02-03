@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, NavigationEnd } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,7 @@ export class CommonService {
 
   private apiUrl = 'http://localhost:3000/nala';
   private RESOURCE_PATH = 'assets/';
+  private GATrackID = 'UA-157405394-1';
 
 
   constructor(private router: Router) { }
@@ -32,7 +33,7 @@ export class CommonService {
     this.router.navigate(['/' + url], { state: extras });
   }
 
-  log(data?: any): void {
+  log(...data: any): void {
     const currentdate = new Date();
     const datetime = '[' +
       this.addZero(currentdate.getDate()) + '/' +
@@ -80,6 +81,10 @@ export class CommonService {
 
   getResourcePath(name: string): string {
     return this.getPath(name, 'resources');
+  }
+
+  getGATrackID(): string {
+    return this.GATrackID;
   }
 
 }
