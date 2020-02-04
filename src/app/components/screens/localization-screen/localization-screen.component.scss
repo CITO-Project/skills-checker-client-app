@@ -1,10 +1,8 @@
 @import '../../../../_imports.scss';
 
-$separator-between-courses: 20px;
-
 
 #content {
-  padding: 0 20px;
+  padding: 0 17px;
   color: $color-font-dark;
 }
 
@@ -28,10 +26,6 @@ $separator-between-courses: 20px;
   text-align: center;
 }
 
-.add-padding-right {
-  padding-right: $separator-between-courses/2;
-}
-
-.add-padding-left {
-  padding-left: $separator-between-courses/2;
+.course {
+  margin-right: 20px;
 }

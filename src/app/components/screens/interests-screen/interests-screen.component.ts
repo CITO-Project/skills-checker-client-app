@@ -26,10 +26,10 @@ export class InterestsScreenComponent implements OnInit {
 
   ngOnInit() {
     this.category = this.dataLogService.getCategory();
-    this.colour = this.category.colour;
     if (this.category === null) {
       this.commonService.goTo('categories');
     } else {
+      this.colour = this.category.colour;
       this.interestService.getInterests(this.category.id).subscribe( (data: Interest[]) => {
         this.interests = data;
       });

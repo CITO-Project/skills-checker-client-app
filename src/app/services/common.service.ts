@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,10 @@ export class CommonService {
 
   getApiUrl(): string {
     return this.apiUrl;
+  }
+
+  getExtras(): NavigationExtras {
+    return this.router.getCurrentNavigation().extras;
   }
 
   goTo(url: string, extras?: object): void {
@@ -50,7 +54,7 @@ export class CommonService {
   }
 
   loadLink(link: string) {
-    window.location.href = link;
+    window.open(link, '_blank');
   }
 
   getPath(name: string, type: string): string {

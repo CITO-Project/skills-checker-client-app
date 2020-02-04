@@ -20,6 +20,12 @@ export class QuestionService {
     'dimension_fluency'
   ];
 
+  private CHALLENGING_ORDER = [
+    'literacy',
+    'numeracy',
+    'digital_skills'
+  ];
+
   constructor(private httpClient: HttpClient, private common: CommonService) { }
 
   getQuestions(categoryid: number, interestid: number, scenarioId: number): Observable<Question[]> {
@@ -65,6 +71,10 @@ export class QuestionService {
 
   getQuestionOrder(): string[] {
     return this.QUESTION_ORDER;
+  }
+
+  getChallengingOrder(): string[] {
+    return this.CHALLENGING_ORDER;
   }
 
   getQuestionInOrder(questions: Question[], questionindex: number): Question {

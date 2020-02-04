@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
+import { VgAPI } from 'videogular2/compiled/core';
 
 @Component({
   selector: 'app-media',
@@ -10,16 +11,17 @@ export class MediaComponent implements OnInit, OnChanges {
 
   @Input() height: string;
   @Input() resource: string;
+  @Input() replay: boolean;
 
   public resourceFile: string;
   public supportedVideo = ['mp4', 'webm', 'ogg'];
   public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
 
+  private vgAPI: VgAPI;
+
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
-    // DELETE Temporary line for colour testing
-    this.resource = 'colourdemo.png';
     this.loadResource();
     const el = document.getElementById('media');
     el.style.height = this.height;
@@ -51,11 +53,12 @@ export class MediaComponent implements OnInit, OnChanges {
     }
   }
 
+  onPlayerReady(vgAPI: VgAPI): void {
+    this.vgAPI = vgAPI;
+  }
+
   playVideo(): void {
-    const el = document.getElementById('video').children.item(0) as HTMLVideoElement;
-    if (!el.ended) {
-      el.play();
-    }
+    this.vgAPI.getDefaultMedia().play();
   }
 
 }

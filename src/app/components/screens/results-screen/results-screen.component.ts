@@ -13,11 +13,13 @@ import { Course } from 'src/app/models/course';
 export class ResultsScreenComponent implements OnInit {
 
   public courses: Course[];
+  public results;
 
   constructor(
     private commonService: CommonService,
     private dataLogService: DataLogService,
-    private coursesService: CoursesService) { }
+    private coursesService: CoursesService,
+    private dataProcessingService: DataProcessingService) { }
 
   ngOnInit() {
     if (
@@ -27,8 +29,13 @@ export class ResultsScreenComponent implements OnInit {
     ) {
       this.commonService.goTo('');
     }
-    this.coursesService.loadCourses().subscribe( () => {
-      this.courses = this.coursesService.getCourses();
+    this.results = this.dataProcessingService.getResults(this.dataLogService.getAll());
+    this.coursesService.loadCourses(
+      this.results.literacy,
+      this.results.numeracy,
+      this.results.digital_skills
+      ).subscribe( (courses: Course[]) => {
+        this.courses = courses;
     });
   }
 
@@ -37,7 +44,7 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   showAll(): void {
-    this.commonService.goTo('localization');
+    this.commonService.goTo('localization', this.results);
   }
 
   selectNewInterest(): void {
@@ -47,6 +54,10 @@ export class ResultsScreenComponent implements OnInit {
 
   getPath(name: string): string {
     return this.commonService.getImagePath(name);
+  }
+
+  getCourses() {
+
   }
 
 }
