@@ -3,6 +3,7 @@ import { DataLogService } from 'src/app/services/data-log.service';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product';
 import { CommonService } from 'src/app/services/common.service';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-orientation-screen',
@@ -34,7 +35,11 @@ export class OrientationScreenComponent implements OnInit {
     },
   ];
 
-  constructor(private dataLogService: DataLogService, private productService: ProductService, private commonService: CommonService) { }
+  constructor(
+    private dataLogService: DataLogService,
+    private productService: ProductService,
+    private commonService: CommonService,
+    private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
     this.dataLogService.initializeLog();
@@ -47,6 +52,11 @@ export class OrientationScreenComponent implements OnInit {
 
   getPath(name: string): string {
     return this.commonService.getIconPath(name);
+  }
+
+  onClick(): void {
+    this.googleAnalyticsService.startInterestTimer();
+    this.commonService.goTo('categories');
   }
 
 }
