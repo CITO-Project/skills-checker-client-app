@@ -10,6 +10,7 @@
   color: $color-font;
   margin-bottom: 15px;
   .tile {
+    position: relative;
     height: 150px;
     overflow: hidden;
     .text {
@@ -21,8 +22,11 @@
       font-weight: 700;
     }
     img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
       height: 100px;
-      transform: rotate(-10deg) translateX(50px) translateY(15px);
+      transform: rotate(-10deg);
       opacity: 70%;
     }
   }

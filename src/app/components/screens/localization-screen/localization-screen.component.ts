@@ -78,9 +78,9 @@ export class LocalizationScreenComponent implements OnInit {
 
   getCourses(location?: string): Observable<Course[]> {
     return this.courseService.loadCourses(
-      this.results['literacy'],
-      this.results['numeracy'],
-      this.results['digital_skills'],
+      this.results.literacy,
+      this.results.numeracy,
+      this.results.digital_skills,
       location
     );
   }
