@@ -14,7 +14,7 @@ export class DataProcessingService {
 
   getChallengingSkills(questions: Question[], answers: number[], challengingOrder: string[], questionOrder: string[]) {
     const r = {};
-    let level = 0;
+    let level = -1;
     for (let i = 0; i < questions.length; i++) {
       if (questions[i].pedagogical_type === 'challenging_skill') {
         level++;
@@ -34,7 +34,7 @@ export class DataProcessingService {
                 }
               }
               r[challengingOrder.slice().reverse()[j]] = {
-                level,
+                level: level + 1,
                 priority
               };
             }
