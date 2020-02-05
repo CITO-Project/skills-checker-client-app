@@ -7,12 +7,15 @@ import { Question } from '../models/question';
 })
 export class DataProcessingService {
 
+  private brushUpThreshold = 3;
+  private developThreshold = 2;
+
   constructor() { }
 
-  getChallengingSkills(questions: Question[], answers: number[], challengingOrder: string[]) {
+  getChallengingSkills(questions: Question[], answers: number[], challengingOrder: string[], questionOrder: string[]) {
     const r = {};
     let level = 0;
-    for (let i = 0; i < questions.length ; i++) {
+    for (let i = 0; i < questions.length; i++) {
       if (questions[i].pedagogical_type === 'challenging_skill') {
         level++;
         if (answers[i] > 0) {
@@ -22,7 +25,18 @@ export class DataProcessingService {
           }
           for (let j = 0; j < answer.length; j++) {
             if (answer.charAt(j) === '1' && !r[challengingOrder.slice().reverse()[j]] ) {
-              r[challengingOrder.slice().reverse()[j]] = level;
+              const answerTaskQuestion = answers[questionOrder.length * level + 0];
+              let priority = 'none';
+              if (answerTaskQuestion < this.brushUpThreshold) {
+                priority = 'brush_up';
+                if (answerTaskQuestion < this.developThreshold) {
+                  priority = 'develop';
+                }
+              }
+              r[challengingOrder.slice().reverse()[j]] = {
+                level,
+                priority
+              };
             }
           }
         }
@@ -32,7 +46,7 @@ export class DataProcessingService {
   }
 
   getResults(log: Log) {
-    return this.getChallengingSkills(log.questions, log.answers, log.challenging_order);
+    return this.getChallengingSkills(log.questions, log.answers, log.challenging_order, log.question_order);
   }
 
 }
