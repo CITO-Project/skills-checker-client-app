@@ -6,7 +6,10 @@
     <div class='dimension' *ngIf="question.pedagogical_type.split('dimension_')[1] !== undefined; else non_dimension">
       {{ question.pedagogical_type.split('dimension_')[1] }}
     </div>
-    <ng-template #non_dimension>{{ question.question }}</ng-template>
+    <ng-template #non_dimension>
+      {{ question.question }}
+      <span *ngIf="question.pedagogical_type === 'challenging_skill'"><br>(Select all that apply)</span>
+    </ng-template>
     </div>
   <!-- End question text -->
 

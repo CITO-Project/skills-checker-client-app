@@ -4,6 +4,10 @@ import { DataProcessingService } from 'src/app/services/data-processing.service'
 import { CommonService } from 'src/app/services/common.service';
 import { CoursesService } from 'src/app/services/courses.service';
 import { Course } from 'src/app/models/course';
+import { Log } from 'src/app/models/log';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Result } from 'src/app/models/result';
 
 @Component({
   selector: 'app-results-screen',
@@ -30,20 +34,20 @@ export class ResultsScreenComponent implements OnInit {
       this.commonService.goTo('');
     }
     this.results = this.dataProcessingService.getResults(this.dataLogService.getAll());
-    this.coursesService.loadCourses(
-      this.results.literacy,
-      this.results.numeracy,
-      this.results.digital_skills
-      ).subscribe( (courses: Course[]) => {
-        this.courses = courses;
+    this.loadCourses(this.results).subscribe( (courses: Course[]) => {
+      this.courses = courses;
     });
+  }
+
+  loadCourses(results: Result): Observable<Course[]> {
+    return this.coursesService.loadCourses(results);
   }
 
   loadLink(link: string): void {
     this.commonService.loadLink(link);
   }
 
-  showAll(): void {
+  chooseArea(): void {
     this.commonService.goTo('localization', this.results);
   }
 
@@ -56,8 +60,11 @@ export class ResultsScreenComponent implements OnInit {
     return this.commonService.getImagePath(name);
   }
 
-  getCourses() {
-
+  getCourses(priority: string): Course[] {
+    if (!this.courses) {
+      return [];
+    }
+    return this.courses.filter( course => course.priority === priority);
   }
 
 }

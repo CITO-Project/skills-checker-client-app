@@ -8,4 +8,5 @@ export interface Course {
   location: string;
   date: Date;
   link: string;
+  priority?: string;
 }

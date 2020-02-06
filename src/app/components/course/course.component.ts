@@ -10,6 +10,7 @@ import { CommonService } from 'src/app/services/common.service';
 export class CourseComponent implements OnInit {
 
   @Input() course: Course;
+  @Input() colour: string;
 
   constructor(public commonService: CommonService) { }
 

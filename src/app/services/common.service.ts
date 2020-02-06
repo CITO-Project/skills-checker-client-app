@@ -50,7 +50,7 @@ export class CommonService {
   }
 
   addZeroMiliseconds(value: number): string {
-    return value < 10 ? '00' + value : (value < 100 ? '0' + value : '' + value);
+    return value < 100 ? '0' + this.addZero(value) : '' + value;
   }
 
   loadLink(link: string) {
