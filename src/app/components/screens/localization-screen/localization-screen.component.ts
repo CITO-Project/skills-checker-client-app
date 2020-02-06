@@ -54,6 +54,7 @@ export class LocalizationScreenComponent implements OnInit {
 
   constructor(private courseService: CoursesService, private commonService: CommonService) {
     const extras = this.commonService.getExtras();
+    console.log(extras);
     if (extras !== undefined && extras.state !== undefined) {
       this.results = extras.state;
     } else {

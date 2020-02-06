@@ -18,7 +18,7 @@ export class DataProcessingService {
     for (let i = 0; i < questions.length; i++) {
       if (questions[i].pedagogical_type === 'challenging_skill') {
         level++;
-        if (answers[i] > 0) {
+        if (answers[i - 1] < questions[i - 1].answers.length - 1 && answers[i] > 0) {
           let answer = answers[i].toString(2);
           while (answer.length < challengingOrder.length) {
             answer = '0' + answer;

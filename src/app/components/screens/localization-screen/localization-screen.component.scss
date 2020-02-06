@@ -29,3 +29,17 @@
 .course {
   margin-right: 20px;
 }
+
+.learning-oportunities{
+  background-color: $color-background-secondary;
+  padding: 10px 20px;
+  .heading {
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-weight: 400;
+    float: left;
+  }
+  .course {
+    width: 100%;
+  }
+}

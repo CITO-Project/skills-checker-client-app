@@ -5,6 +5,9 @@ import { CommonService } from 'src/app/services/common.service';
 import { CoursesService } from 'src/app/services/courses.service';
 import { Course } from 'src/app/models/course';
 import { Log } from 'src/app/models/log';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Result } from 'src/app/models/result';
 
 @Component({
   selector: 'app-results-screen',
@@ -370,14 +373,8 @@ export class ResultsScreenComponent implements OnInit {
         }
       ],
       answers: [
-        0,  // Task
-        1, // Chall
-        -1,
-        -1,
-        -1,
-
         3,  // Task
-        -1,  // Chall
+        3, // Chall
         -1,
         -1,
         -1,
@@ -388,7 +385,13 @@ export class ResultsScreenComponent implements OnInit {
         -1,
         -1,
 
-        0,  // Task
+        1,  // Task
+        7,  // Chall
+        -1,
+        -1,
+        -1,
+
+        3,  // Task
         7,  // Chall
         -1,
         -1,
@@ -408,16 +411,13 @@ export class ResultsScreenComponent implements OnInit {
       ]
     };
     this.results = this.dataProcessingService.getResults(demoresult);
-    this.coursesService.loadCourses(
-      !!this.results.literacy ? this.results.literacy.level : null,
-      !!this.results.numeracy ? this.results.numeracy.level : null,
-      !!this.results.digital_skills ? this.results.digital_skills.level : null
-      ).subscribe( (courses: Course[]) => {
-        courses.map( (course: Course) => {
-          course.priority = this.results[course.skill].priority;
-        });
-        this.courses = courses;
+    this.loadCourses(this.results).subscribe( (courses: Course[]) => {
+      this.courses = courses;
     });
+  }
+
+  loadCourses(results: Result): Observable<Course[]> {
+    return this.coursesService.loadCourses(results);
   }
 
   loadLink(link: string): void {
