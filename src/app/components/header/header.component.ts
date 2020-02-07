@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DataLogService } from 'src/app/services/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({
@@ -13,7 +12,7 @@ export class HeaderComponent implements OnInit {
   @Input() skip: boolean;
 
 
-  constructor(private dataLogService: DataLogService, private commonService: CommonService) { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
     if (this.text === 'default') {

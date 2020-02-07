@@ -62,7 +62,9 @@ export class CoursesService {
   }
 
   saveCourse(course: Course): void {
-    sessionStorage.setItem('' + course.id, JSON.stringify(course));
+    if (!!course) {
+      sessionStorage.setItem('' + course.id, JSON.stringify(course));
+    }
   }
 
   loadCourse(courseid: number): Observable<Course> {

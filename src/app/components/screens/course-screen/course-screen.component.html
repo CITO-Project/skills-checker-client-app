@@ -1,1 +1,50 @@
-<p>course-screen works!</p>
+<app-header [text]='course.title'></app-header>
+<div class="container" *ngIf="!!course">
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <div class="row">
+    <div class="col-12 text">
+      {{ course.text }}
+    </div>
+  </div>
+</div>
+  <div class="col-12 col-md-4">
+    <div class="row">
+    <div class="col-12 extra">
+      <div class="row">
+        <div class="col-12 location">
+          <div class="heading">Location</div>
+          <div class="address" *ngIf="!!course.address"><span class="font-weight-bold">Address: </span>{{ course.address }}</div>
+          <div class="county" *ngIf="!!course.location"><span class="font-weight-bold">County: </span>{{ course.location[0].toUpperCase() + course.location.slice(1) }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 schedule">
+          <div class="heading">Schedule</div>
+          <div class="date_start" *ngIf="!!course.date_start"><span class="font-weight-bold">Start: </span>{{ formatDate(course.date_start) }}</div>
+          <div class="data_finish" *ngIf="!!course.data_finish"><span class="font-weight-bold">End: </span>{{ formatDate(course.data_finish) }}</div>
+          <div class="duration" *ngIf="!!course.duration"><span class="font-weight-bold">Duration: </span>{{ course.duration }}</div>
+          <div class="frequency" *ngIf="!!course.frequency"><span class="font-weight-bold">Frequency: </span>{{ course.frequency }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 enrolment">
+          <div class="heading">Enrolment</div>
+          <div class="enrolment_period_start" *ngIf="!!course.enrolment_period_start"><span class="font-weight-bold">Start: </span>{{ formatDate(course.enrolment_period_start) }}</div>
+          <div class="enrolment_period_finish" *ngIf="!!course.enrolment_period_finish"><span class="font-weight-bold">End: </span>{{ formatDate(course.enrolment_period_finish) }}</div>
+          <div class="contact_person" *ngIf="!!course.contact_person"><span class="font-weight-bold">Contact: </span>{{ course.contact_person }}</div>
+          <div class="contact_telephone" *ngIf="!!course.contact_telephone"><span class="font-weight-bold">Telephone: </span>{{ course.contact_telephone }}</div>
+          <div class="contact_email" *ngIf="!!course.contact_email"><span class="font-weight-bold">Email: </span>{{ course.contact_email }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<app-navigate-button
+  backText="default"
+  forwardText="More info"
+  backDestination="results"
+  (forwardEvent)="loadLink(course.link)"
+  ></app-navigate-button>
