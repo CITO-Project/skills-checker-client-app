@@ -33,7 +33,7 @@ export class ResultsScreenComponent implements OnInit {
     // ) {
     //   this.commonService.goTo('');
     // }
-    // DELETE demo data
+    // DELETE demo data and rerouting
     this.results = this.dataProcessingService.getResults(
 
       {
@@ -420,7 +420,7 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   loadCourses(results: Result): Observable<Course[]> {
-    return this.coursesService.loadCourses(results);
+    return this.coursesService.retrieveCourses(results);
   }
 
   loadLink(link: string): void {
