@@ -25,7 +25,7 @@
 
       .icon {
         // Size
-        $size: 70px;
+        $size: 100px;
         width: $size;
         height: $size;
 
@@ -55,3 +55,13 @@
     }
   }
 }
+
+#description .features > .feature .icon {
+  // Size
+  $size: 150px;
+  @include setStyleTablet {
+    width: $size;
+    height: $size;
+  }
+}
+

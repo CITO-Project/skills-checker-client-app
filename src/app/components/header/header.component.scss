@@ -2,14 +2,12 @@
 
 #app-header {
   z-index: 1;
-  background-color: transparent;
   color: $color-font-dark;
-  position: fixed;
-  top: 0;
   width: 100vw;
   height: $header-height;
   text-align: center;
   font-family: 'Roboto';
+  @extend .green;
 
   .title {
     cursor: pointer;
