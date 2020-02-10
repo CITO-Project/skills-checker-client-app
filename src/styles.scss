@@ -10,7 +10,7 @@ body{
   padding: 0;
   padding-bottom: $bottom-height;
   @include setStyleTablet {
-    font-size: 2em;
+    font-size: 1.8em;
     padding-bottom: $bottom-height * 3;
   }
 }

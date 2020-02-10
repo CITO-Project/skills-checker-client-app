@@ -4,10 +4,11 @@
 #content {
   color: $color-font-dark;
   text-align: center;
-  margin: 50% 0;
-  padding: 0 20px;
   font-size: 120%;
   .currentScenario {
-    margin-top: 20px;
+    padding: 0 20px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
   }
 }
