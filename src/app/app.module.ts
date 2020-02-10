@@ -26,6 +26,7 @@ import { LocalizationScreenComponent } from './components/screens/localization-s
 import { CourseComponent } from './components/course/course.component';
 // tslint:disable-next-line:max-line-length
 import { ScenarioIntroductionScreenComponent } from './components/screens/scenario-introduction-screen/scenario-introduction-screen.component';
+import { CourseScreenComponent } from './components/screens/course-screen/course-screen.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ScenarioIntroductionScreenComponent } from './components/screens/scenar
     CategoriesScreenComponent,
     LocalizationScreenComponent,
     CourseComponent,
-    ScenarioIntroductionScreenComponent
+    ScenarioIntroductionScreenComponent,
+    CourseScreenComponent
   ],
   imports: [
     BrowserModule,

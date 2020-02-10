@@ -10,13 +10,14 @@ import { CommonService } from 'src/app/services/common.service';
 export class CourseComponent implements OnInit {
 
   @Input() course: Course;
+  @Input() colour: string;
 
   constructor(public commonService: CommonService) { }
 
   ngOnInit() { }
 
-  loadLink(link: string): void {
-    this.commonService.loadLink(link);
+  loadLink(courseid: number): void {
+    this.commonService.goTo(`course/${courseid}`);
   }
 
   getColour(skill: string): string {
