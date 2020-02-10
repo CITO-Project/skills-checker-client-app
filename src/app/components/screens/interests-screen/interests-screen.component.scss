@@ -6,7 +6,6 @@
 }
 
 .interest {
-  color: $color-font;
   margin: 10px 0;
   overflow: hidden;
   cursor: pointer;
@@ -15,6 +14,7 @@
     padding: 0 10px;
     min-height: 100px;
     .text {
+      color: $color-font;
       font-weight: 700;
       padding-right: 100px;
       @include setStyleTablet {

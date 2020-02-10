@@ -7,7 +7,6 @@
 
 .category {
   padding: 0 7.5px;
-  color: $color-font;
   margin-bottom: 15px;
   .tile {
     position: relative;
@@ -20,7 +19,7 @@
       $separation: 15px;
       padding-top: $separation;
       padding-left: $separation;
-      font-size: 105%;
+      color: $color-font;
       letter-spacing: 1px;
       font-weight: 700;
       @include setStyleTablet {
