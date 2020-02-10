@@ -7,11 +7,10 @@ body{
   font-weight: lighter;
   font-size: 1em;
   background-color: $color-background;
-  padding: 0 0 $bottom-height 0;
-}
-
-@media screen and (min-width: 768px) {
-  body {
+  padding: 0;
+  padding-bottom: $bottom-height;
+  @include setStyleTablet {
     font-size: 2em;
+    padding-bottom: $bottom-height * 3;
   }
 }

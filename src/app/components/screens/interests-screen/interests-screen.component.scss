@@ -17,6 +17,10 @@
     .text {
       font-weight: 700;
       padding-right: 100px;
+      @include setStyleTablet {
+        padding: 50px 0;
+        padding-right: 100px;
+      }
     }
     img {
       height: 90px;
@@ -24,6 +28,9 @@
       opacity: 70%;
       position: absolute;
       right: 0;
+      @include setStyleTablet {
+        height: 120px;
+      }
     }
   }
 }

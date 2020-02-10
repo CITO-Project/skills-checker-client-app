@@ -11,8 +11,11 @@
   margin-bottom: 15px;
   .tile {
     position: relative;
-    height: 150px;
     overflow: hidden;
+    height: 150px;
+    @include setStyleTablet {
+      height: 250px;
+    }
     .text {
       $separation: 15px;
       padding-top: $separation;
@@ -20,6 +23,9 @@
       font-size: 105%;
       letter-spacing: 1px;
       font-weight: 700;
+      @include setStyleTablet {
+        font-size: 130%;
+      }
     }
     img {
       position: absolute;
@@ -28,6 +34,9 @@
       height: 100px;
       transform: rotate(-10deg);
       opacity: 70%;
+      @include setStyleTablet {
+        height: 180px;
+      }
     }
   }
 }

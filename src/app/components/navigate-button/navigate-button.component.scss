@@ -1,14 +1,21 @@
 @import '../../../_imports.scss';
 
-.buttons {
-  $bottom-separation: 30px;
-  z-index: 1;
-  width: 100vw;
-  height: $bottom-height - $bottom-separation;
+#buttons {
+  background-image: linear-gradient(to top, $color-white 0%, transparent 100%);
   position: fixed;
-  bottom: $bottom-separation;
-  background-color: transparent;
-  button {
-    padding: 0 40px;
+  bottom: 0;
+  width: 100vw;
+  z-index: 301;
+  .buttons {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    button {
+      $lateral-padding: 8%;
+      padding: 0 $lateral-padding;
+      @include setStyleTablet {
+        padding: 20px $lateral-padding;
+      }
+    }
   }
 }
