@@ -1,14 +1,11 @@
 @import '../../../../_imports.scss';
 
 
-#content {
-  color: $color-font-dark;
+.text {
   text-align: center;
   font-size: 120%;
-  .currentScenario {
-    padding: 0 20px;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-  }
+  padding: 0 20px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
 }
