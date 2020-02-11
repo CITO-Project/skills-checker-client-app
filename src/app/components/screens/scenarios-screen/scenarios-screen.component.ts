@@ -39,42 +39,14 @@ export class ScenariosScreenComponent implements OnInit {
       if (extras !== undefined && extras.state !== undefined && extras.state.scenario !== undefined) {
         this.scenario = extras.state.scenario;
       } else {
-        // DELETE this
-        // this.commonService.goTo('how-to');
-        this.scenario = {
-          "id": 1,
-          "name": "school_trip",
-          "text": "School trip Scenario",
-          "level": 1,
-          "resource": "first_scenario.mp4",
-          "description": "Look at tomorrow's weather forecast on your phone and decide if you can select appropiate clothing for your child",
-          "product": 1,
-          "interest": 3
-        };
-        this.currentQuestion = 0;
-        this.question = {
-          id: 1,
-          type: 'slider',
-          pedagogical_type: 'task_question',
-          question: 'For me, finding the pharmacy opening hours is:',
-          answers: [
-            'Very difficult',
-            'Difficult',
-            'Middling',
-            'Easy'
-          ],
-          description: 'Description for numeracy 1',
-          product: 1,
-          scenario: 1
-        };
+        this.commonService.goTo('how-to');
       }
     }
 
   ngOnInit() {
-    // DELETE uncomment everything
-    // this.category = this.dataLogService.getCategory();
-    // this.currentScenario = +this.progressTrackerService.getScenarioIndex();
-    // this.loadScenario(this.currentScenario);
+    this.category = this.dataLogService.getCategory();
+    this.currentScenario = +this.progressTrackerService.getScenarioIndex();
+    this.loadScenario(this.currentScenario);
   }
 
   loadScenario(scenarioindex: number) {

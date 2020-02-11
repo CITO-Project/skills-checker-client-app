@@ -8,7 +8,7 @@
     </div>
     <ng-template #non_dimension class="text">
       {{ question.question }}
-      <span *ngIf="question.pedagogical_type === 'challenging_skill'"><br>(Select all that apply)</span>
+      <span *ngIf="question.pedagogical_type === 'challenging_skill'" class="muted"><br>(Select all that apply)</span>
     </ng-template>
     </div>
   <!-- End question text -->
@@ -36,37 +36,20 @@
     <!-- End slider option -->
 
 
-
-    <!-- Single option -->
-    <div class="single" *ngSwitchCase="'single'">
-        <form>
-            <div class="custom-control custom-radio" *ngFor="let answer of question.answers; let i = index">
-              <input id="{{ i }}" type="radio" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswer($event.target.id)">
-
-              <label class="answerOptions transition" [ngClass]="{error: error !== ''}" for="{{ i }}">
-                <span class="checkbox"><i class="fas fa-check"></i></span>
-                <span class="answerText">{{ answer }}</span>
-              </label>
-            </div>
-        </form>
-    </div>
-    <!-- End single option -->
-
-
-
-    <!-- Multiple option -->
-    <div class="multiple" *ngSwitchCase="'multiple'">
+    <!-- Boxes option -->
+    <div class="boxes" *ngIf="question.type === 'single' || question.type === 'multiple'">
       <form>
-          <div class="custom-control custom-checkbox" *ngFor="let answer of question.answers; let i = index">
-             <input id="{{ i }}" type="checkbox" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswerMultiple()">
-             <label class="answerOptions transition" [ngClass]="{error: error !== ''}" for="{{ i }}">
-              <span class="checkbox"><i class="fas fa-check"></i></span>
-              <span class="answerText">{{ answer }}</span>
-              </label>
+        <div *ngFor="let answer of question.answers; let i = index">
+          <input *ngSwitchCase="'single'" id="{{ i }}" type="radio" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswer($event.target.id)">
+          <input *ngSwitchCase="'multiple'" id="{{ i }}" type="checkbox" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswerMultiple()">
+          <div class="d-flex flex-row justify-content-between answerOptions transition">
+            <label for="{{ i }}" class="checkbox">&#xf00c;</label>
+            <label for="{{ i }}" class="answerText muted">{{ answer }}</label>
           </div>
-       </form>
-  </div>
-    <!-- End multiple option -->
+        </div>
+      </form>
+    </div>
+    <!-- End boxes option -->
 
 
   </div>

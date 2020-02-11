@@ -36,22 +36,29 @@
         }
       }
     }
-    .single, .multiple {
+    .boxes {
       text-align: left;
-      .custom-control {
-        padding-left: 0;
-      }
+      padding-left: 0;
       input[type="radio"]+.answerOptions,
       input[type="checkbox"]+.answerOptions {
         .checkbox {
+          @include font-awesome();
+          $size: 35px;
+          max-width: $size;
+          max-height: $size;
           margin-right: 10px;
-          padding: 2px 3px;
           border: 1px solid $color-option-border;
           color: transparent;
-          background-color: $color-option-background;
+          background-color: transparent;
           border-radius: 5px;
+          font-size: 70%;
+          display: block;
+          text-align: center;
+          width: 100px;
         }
-        width: 100%;
+        .text {
+          width: 100%;
+        }
         padding: 15px;
         border-radius: 10px;
         font-size: 110%;
@@ -62,15 +69,17 @@
       }
       input[type="radio"]:checked+.answerOptions,
       input[type="checkbox"]:checked+.answerOptions {
+        background-color: $color-option-background-active;
+        border-color: $color-option-background-active;
         .checkbox {
           border-color: $color-option-border-active;
           color: $color-option-border-active;
           background-color: $color-option-background-active;
         }
-        background-color: $color-option-background-active;
-        font-weight: 600;
-        color: $color-font;
-        border-color: $color-option-background-active;
+        .muted {
+          font-weight: 600;
+          color: $color-font;
+        }
       }
     }
     > .error {
@@ -91,7 +100,7 @@
   transition: border-color $time $speed;
   transition: background-color $time $speed;
 }
-.muted {
+.instructions.muted {
   @include setStyleTablet {
     padding-top: 120px !important;
   }
@@ -145,7 +154,7 @@
       }
       &:hover {
         transition: box-shadow .5s linear;
-        box-shadow: 0px 0px 0px 10px #3FBDA880;
+        box-shadow: 0px 0px 0px 10px $color-slider-pointer-hover;
       }
     }
     .ng5-slider-tick-legend {
