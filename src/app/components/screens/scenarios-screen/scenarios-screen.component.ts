@@ -6,7 +6,6 @@ import { Question } from 'src/app/models/question';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { QuestionService } from 'src/app/services/question.service';
 import { CommonService } from 'src/app/services/common.service';
-import { Router } from '@angular/router';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
 import { Category } from 'src/app/models/category';
 
@@ -40,7 +39,19 @@ export class ScenariosScreenComponent implements OnInit {
       if (extras !== undefined && extras.state !== undefined && extras.state.scenario !== undefined) {
         this.scenario = extras.state.scenario;
       } else {
-        this.commonService.goTo('how-to');
+        // DELETE this
+        // this.commonService.goTo('how-to');
+        this.scenario = {
+          "id": 1,
+          "name": "school_trip",
+          "text": "School trip Scenario",
+          "level": 1,
+          "resource": "first_scenario.mp4",
+          "description": "Look at tomorrow's weather forecast on your phone and decide if you can select appropiate clothing for your child",
+          "product": 1,
+          "interest": 3
+        };
+        this.currentQuestion = 0;
         this.question = {
           id: 1,
           type: 'slider',
@@ -60,9 +71,10 @@ export class ScenariosScreenComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.category = this.dataLogService.getCategory();
-    this.currentScenario = +this.progressTrackerService.getScenarioIndex();
-    this.loadScenario(this.currentScenario);
+    // DELETE uncomment everything
+    // this.category = this.dataLogService.getCategory();
+    // this.currentScenario = +this.progressTrackerService.getScenarioIndex();
+    // this.loadScenario(this.currentScenario);
   }
 
   loadScenario(scenarioindex: number) {
@@ -77,6 +89,7 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   nextQuestion(loadFromPrevious = false) {
+    // DELETE loadFromPrevious feature. If user goes back, start the previous scenario from the beginning
     if (loadFromPrevious) {
       this.currentQuestion = this.dataLogService.getQuestionCount(this.currentScenario) - 1;
       this.loadQuestion(this.currentScenario, this.currentQuestion);

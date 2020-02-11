@@ -6,7 +6,7 @@
     <div class='dimension' *ngIf="question.pedagogical_type.split('dimension_')[1] !== undefined; else non_dimension">
       {{ question.pedagogical_type.split('dimension_')[1] }}
     </div>
-    <ng-template #non_dimension>
+    <ng-template #non_dimension class="text">
       {{ question.question }}
       <span *ngIf="question.pedagogical_type === 'challenging_skill'"><br>(Select all that apply)</span>
     </ng-template>
@@ -25,9 +25,11 @@
         <div class="far fa-thumbs-up high"></div>
       </div>
 
-      <ng5-slider [value]='sliderProperties.value' [options]='sliderProperties.options' (valueChange)='retrieveAnswer($event)'></ng5-slider>
+      <div class="d-flex justify-content-center">
+        <ng5-slider [value]='sliderProperties.value' [options]='sliderProperties.options' (valueChange)='retrieveAnswer($event)'></ng5-slider>
+      </div>
 
-      <div class="instructions">
+      <div class="instructions muted">
         Drag the slider to share your level of knowledge
       </div>
     </div>
