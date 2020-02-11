@@ -21,7 +21,7 @@
 
       .icon {
         // Size
-        $size: 100px;
+        $size: 80px;
         width: $size;
         height: $size;
 
@@ -39,20 +39,21 @@
       }
 
       .text {
+        width: 100%;
         margin-top: 15px;
         text-transform: uppercase;
         font-weight: 700;
         font-size: 80%;
         letter-spacing: 1px;
+        padding: unset;
       }
     }
   }
 }
 
 #description .features > .feature .icon {
-  // Size
-  $size: 150px;
   @include setStyleTablet {
+    $size: 150px;
     width: $size;
     height: $size;
   }

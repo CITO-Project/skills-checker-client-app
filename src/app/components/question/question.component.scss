@@ -43,29 +43,40 @@
       input[type="checkbox"]+.answerOptions {
         .checkbox {
           @include font-awesome();
-          $size: 35px;
-          max-width: $size;
-          max-height: $size;
+          $border: 1px;
+          $size: 20px;
+          width: $size + $border * 2;
+          height: $size;
           margin-right: 10px;
-          border: 1px solid $color-option-border;
+          border: $border solid $color-option-border;
           color: transparent;
           background-color: transparent;
           border-radius: 5px;
           font-size: 70%;
           display: block;
           text-align: center;
-          width: 100px;
+          margin-top: 4px;
+          @include setStyleTablet {
+            $size: 35px;
+            width: $size + $border * 2;
+            height: $size;
+            margin-top: 7px;
+            margin-right: 20px;
+          }
         }
         .text {
           width: 100%;
         }
-        padding: 15px;
+        padding: 10px;
         border-radius: 10px;
         font-size: 110%;
         font-weight: 400;
         margin-bottom: 10px;
         border: 1px solid $color-option-border;
         background-color: $color-option-background;
+        @include setStyleTablet {
+          padding: 15px;
+        }
       }
       input[type="radio"]:checked+.answerOptions,
       input[type="checkbox"]:checked+.answerOptions {
@@ -76,7 +87,7 @@
           color: $color-option-border-active;
           background-color: $color-option-background-active;
         }
-        .muted {
+        .text {
           font-weight: 600;
           color: $color-font;
         }
@@ -165,4 +176,8 @@
       }
     }
   }
+}
+
+label {
+  margin-bottom: unset;
 }

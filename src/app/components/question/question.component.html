@@ -3,19 +3,19 @@
   <!-- Question text -->
   <div class="heading" *ngIf="question.pedagogical_type === 'task_question'">Your skills</div>
   <div class="question">
-    <div class='dimension' *ngIf="question.pedagogical_type.split('dimension_')[1] !== undefined; else non_dimension">
+    <div class='dimension heading' *ngIf="question.pedagogical_type.split('dimension_')[1] !== undefined; else non_dimension">
       {{ question.pedagogical_type.split('dimension_')[1] }}
     </div>
-    <ng-template #non_dimension class="text">
-      {{ question.question }}
-      <span *ngIf="question.pedagogical_type === 'challenging_skill'" class="muted"><br>(Select all that apply)</span>
+    <ng-template #non_dimension>
+      <div class="text">{{ question.question }}</div>
+      <div *ngIf="question.pedagogical_type === 'challenging_skill'" class="muted">(Select all that apply)</div>
     </ng-template>
     </div>
   <!-- End question text -->
 
   <!-- Answer -->
   <div class="answer" [ngSwitch]="question.type">
-    <div class="error animated shake" *ngIf="error !== ''">{{ error }}</div>
+    <div class="error animated shake text" *ngIf="error !== ''">{{ error }}</div>
 
 
     <!-- Slider option -->
@@ -44,7 +44,7 @@
           <input *ngSwitchCase="'multiple'" id="{{ i }}" type="checkbox" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswerMultiple()">
           <div class="d-flex flex-row justify-content-between answerOptions transition">
             <label for="{{ i }}" class="checkbox">&#xf00c;</label>
-            <label for="{{ i }}" class="answerText muted">{{ answer }}</label>
+            <label for="{{ i }}" class="answerText text">{{ answer }}</label>
           </div>
         </div>
       </form>
