@@ -2,21 +2,33 @@
 
 
 #course {
+  padding: 20px 10px;
   margin-bottom: 20px;
-  background-color: $color-background-secondary;
-  font-size: .8em;
-  min-width: 150px;
-  > .text {
-    padding: 20px 10px;
-    font-weight: 400;
+  font-size: 80%;
+  width: 100%;
+  color: $color-font;
+  text-align: left;
+  font-weight: 700;
+  .heading {
+    color: $color-font;
+    text-align: left;
+    font-size: 160%;
+    font-weight: 800;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
-  > .more {
-    width: 100%;
-    color: $color-font-light;
-    background-color: $color-background-dark;
-    padding: 10px;
-    text-transform: uppercase;
+  .text {
+    color: $color-font-muted;
     font-weight: 500;
-    cursor: pointer;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .more {
+    color: $color-font;
+    text-transform: uppercase;
+    background-image: unset;
+    background-color: $color-black-transparent;
+    min-width: 0;
   }
 }

@@ -12,4 +12,5 @@ export interface Log {
   questions?: Question[];
   answers?: number[];
   question_order: string[];
+  challenging_order: string[];
 }

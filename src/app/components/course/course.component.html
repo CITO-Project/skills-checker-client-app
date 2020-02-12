@@ -1,4 +1,11 @@
-<div id="course">
-  <div class="text">{{ course.text }}</div>
-  <div class="more"  (click)="loadLink(course.link)"><i class="fas fa-plus-circle"></i> More info</div>
+<div id="course" class="box shadows gradient d-flex flex-grow-0 justify-content-between" [ngClass]="!!colour ? colour : getColour(course.skill)">
+  <div class="d-flex flex-column flex-grow-0">
+    <!-- <div class="heading">{{ course.title }}</div>
+    <div class="text">{{ course.description }}</div> -->
+    <div class="heading">Title title title title title</div>
+    <div class="text">Description description description description description description description description description </div>
+  </div>
+  <div class="d-flex flex-column flex-shrink-0 align-self-center">
+    <button type="button" mdbBtn class="button more" mdbWavesEffect (click)="loadLink(course.id)">More info</button>
+  </div>
 </div>

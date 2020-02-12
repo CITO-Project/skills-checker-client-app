@@ -3,6 +3,7 @@ export interface Category {
   product: number;
   name?: string;
   text?: string;
+  colour?: string;
   resource?: string;
   description?: string;
 }

@@ -1,14 +1,5 @@
 @import '../../../../_imports.scss';
 
-* {
-  color: $color-font;
-}
-
-.heading {
-  text-align: center;
-  padding: 15px;
-  font-size: 1.3em;
-}
 
 .row {
   padding: 10px;
@@ -16,13 +7,30 @@
 
 .interest {
   margin: 10px 0;
+  overflow: hidden;
   cursor: pointer;
 
   > .tile {
-    padding: 30px 10px;
-    background-color: $color-images-background;
+    padding: 0 10px;
+    min-height: 100px;
     .text {
-      font-weight: 400;
+      color: $color-font;
+      font-weight: 700;
+      padding-right: 100px;
+      @include setStyleTablet {
+        padding: 50px 0;
+        padding-right: 100px;
+      }
+    }
+    img {
+      height: 90px;
+      transform: rotate(-10deg);
+      opacity: 70%;
+      position: absolute;
+      right: 0;
+      @include setStyleTablet {
+        height: 120px;
+      }
     }
   }
 }

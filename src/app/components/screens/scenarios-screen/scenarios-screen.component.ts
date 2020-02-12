@@ -6,8 +6,8 @@ import { Question } from 'src/app/models/question';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { QuestionService } from 'src/app/services/question.service';
 import { CommonService } from 'src/app/services/common.service';
-import { Router } from '@angular/router';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -19,11 +19,12 @@ export class ScenariosScreenComponent implements OnInit {
   public scenario: Scenario;
   public question: Question;
   public errorMessage = '';
+  public category: Category;
 
-  public btnBack = 'Go back';
-  public btnForward = 'Next';
+  public btnBack = 'default';
+  public btnForward = 'default';
 
-  private currentScenario = -1;
+  public currentScenario = -1;
   public currentQuestion = -1;
 
   public currentAnswer = -1;
@@ -32,10 +33,9 @@ export class ScenariosScreenComponent implements OnInit {
     private dataLogService: DataLogService,
     private questionService: QuestionService,
     private commonService: CommonService,
-    private progressTrackerService: ProgressTrackerService,
-    private router: Router
+    private progressTrackerService: ProgressTrackerService
     ) {
-      const extras = this.router.getCurrentNavigation().extras;
+      const extras = this.commonService.getExtras();
       if (extras !== undefined && extras.state !== undefined && extras.state.scenario !== undefined) {
         this.scenario = extras.state.scenario;
       } else {
@@ -44,6 +44,7 @@ export class ScenariosScreenComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.category = this.dataLogService.getCategory();
     this.currentScenario = +this.progressTrackerService.getScenarioIndex();
     this.loadScenario(this.currentScenario);
   }
@@ -55,14 +56,12 @@ export class ScenariosScreenComponent implements OnInit {
       this.dataLogService.getCategory().id,
       this.dataLogService.getInterest().id,
       this.scenario.id).subscribe( () => {
-        // if (!loadFromPrevious) {
-        //   this.currentQuestion = -1;
-        // }
         this.nextQuestion();
     });
   }
 
   nextQuestion(loadFromPrevious = false) {
+    // DELETE loadFromPrevious feature. If user goes back, start the previous scenario from the beginning
     if (loadFromPrevious) {
       this.currentQuestion = this.dataLogService.getQuestionCount(this.currentScenario) - 1;
       this.loadQuestion(this.currentScenario, this.currentQuestion);
@@ -80,7 +79,7 @@ export class ScenariosScreenComponent implements OnInit {
     this.question = null;
     this.question = this.dataLogService.getQuestion(scenarioindex, questionindex);
 
-    if (this.question.type === 'slider') {
+    if (this.question.type === 'slider' || this.question.type === 'multiple') {
       this.currentAnswer = 0;
     } else {
       this.currentAnswer = -1;
@@ -96,15 +95,15 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   afterLoadQuestion() {
-    this.btnForward = 'Next';
-    this.btnBack = 'Previous';
+    this.btnForward = 'default';
+    this.btnBack = 'default';
     const isLastQuestion = (
       this.currentScenario === this.dataLogService.getScenarioCount() - 1
       && this.currentQuestion === this.questionService.getQuestionOrder().length - 1);
     if (isLastQuestion) {
       this.btnForward = 'See results';
     } else if (this.currentScenario === 0 && this.currentQuestion === 0) {
-      this.btnBack = 'Go back';
+      this.btnBack = 'default';
     }
   }
 

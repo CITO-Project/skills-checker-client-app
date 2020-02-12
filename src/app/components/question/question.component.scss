@@ -2,47 +2,99 @@
 
 #question {
   .heading {
-    padding: 10px 0;
-    font-size: 1.4em;
+    margin-top: 0;
+    padding-bottom: 10px;
+    font-size: 140%;
   }
   .question {
     text-align: left;
+    padding: 0 5px;
+    font-weight: 200;
     .dimension {
-      font-size: 1.4em;
+      font-size: 140%;
+      font-weight: 400;
       text-transform: capitalize;
+      text-align: center;
     }
   }
   .answer {
     padding: 20px 0;
     .slider {
-      input[type=range] {
-        width: 100%;
-        padding: 20px 0 10px;
+      @include setStyleTablet {
+        padding: 0 20px;
       }
-      table {
-        width: 100%;
-        table-layout: fixed;
-        .answerOptions {
-          text-align: center;
-          font-size: .85em;
-          color: black;
+      .instructions {
+        padding-top: 60px;
+      }
+      .fa-thumbs-up {
+        font-size: 150%;
+        &.low {
+          color: $color-red;
+        }
+        &.high {
+          color: $color-green;
         }
       }
-      .instructions{
-        padding-top: 10px;
-        text-align: left;
-        font-size: .7em;
-      }
     }
-    .single {
+    .boxes {
       text-align: left;
-      .answerOptions {
-        font-size: 1.1em;
+      padding-left: 0;
+      input[type="radio"]+.answerOptions,
+      input[type="checkbox"]+.answerOptions {
+        .checkbox {
+          @include font-awesome();
+          $border: 1px;
+          $size: 20px;
+          width: $size + $border * 2;
+          height: $size;
+          margin-right: 10px;
+          border: $border solid $color-option-border;
+          color: transparent;
+          background-color: transparent;
+          border-radius: 5px;
+          font-size: 70%;
+          display: block;
+          text-align: center;
+          margin-top: 4px;
+          @include setStyleTablet {
+            $size: 35px;
+            width: $size + $border * 2;
+            height: $size;
+            margin-top: 7px;
+            margin-right: 20px;
+          }
+        }
+        .text {
+          width: 100%;
+        }
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 110%;
+        font-weight: 400;
         margin-bottom: 10px;
+        border: 1px solid $color-option-border;
+        background-color: $color-option-background;
+        @include setStyleTablet {
+          padding: 15px;
+        }
+      }
+      input[type="radio"]:checked+.answerOptions,
+      input[type="checkbox"]:checked+.answerOptions {
+        background-color: $color-option-background-active;
+        border-color: $color-option-background-active;
+        .checkbox {
+          border-color: $color-option-border-active;
+          color: $color-option-border-active;
+          background-color: $color-option-background-active;
+        }
+        .text {
+          font-weight: 600;
+          color: $color-font;
+        }
       }
     }
     > .error {
-      font-size: 1.1;
+      font-size: 110%;
       font-weight: 300;
       margin-bottom: 10px;
       margin-top: -10px;
@@ -51,7 +103,81 @@
       color: red;
     }
   }
-  .next {
-    background-color: $color-button !important;
+}
+.transition {
+  $time: 0.2s;
+  $speed: linear;
+  transition: color $time $speed;
+  transition: border-color $time $speed;
+  transition: background-color $time $speed;
+}
+.instructions.muted {
+  @include setStyleTablet {
+    padding-top: 120px !important;
   }
+}
+
+::ng-deep {
+  .ng5-slider {
+    .ng5-slider-tick {
+      border-radius: 10px !important;
+      width: 4px !important;
+      height: 13px !important;
+      background: $color-slider-background !important;
+      @include setStyleTablet {
+        width: 8px !important;
+        height: 20px !important;
+      }
+    }
+    .ng5-slider-bar {
+      height: 5px !important;
+      border-radius: 10px !important;
+      @include setStyleTablet {
+        height: 10px !important;
+      }
+    }
+    .ng5-slider-full-bar > .ng5-slider-bar {
+      background: $color-slider-background !important;
+    }
+    .ng5-slider-pointer {
+      background-color: $color-green !important;
+      @include setStyleTablet {
+        $size: 48px;
+        width: $size !important;
+        height: $size !important;
+        border-radius: $size/2 !important;
+        top: -20px !important;
+      }
+
+      &:after {
+        @include font-awesome;
+        content: '\f0dc' !important;
+        transform: translateX(13px) translateY(-2px) rotate(90deg);
+        color: $color-font !important;
+        background-color: transparent !important;
+        font-size: 160%;
+        top: 11px !important;
+        left: 13px !important;
+        @include setStyleTablet {
+          top: 12px !important;
+          left: 38px !important;
+        }
+      }
+      &:hover {
+        transition: box-shadow .5s linear;
+        box-shadow: 0px 0px 0px 10px $color-slider-pointer-hover;
+      }
+    }
+    .ng5-slider-tick-legend {
+      @include setStyleTablet {
+        top: 35px !important;
+        left: 5px !important;
+        max-width: unset !important;
+      }
+    }
+  }
+}
+
+label {
+  margin-bottom: unset;
 }
