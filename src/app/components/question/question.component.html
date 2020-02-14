@@ -39,12 +39,13 @@
     <!-- Boxes option -->
     <div class="boxes" *ngIf="question.type === 'single' || question.type === 'multiple'">
       <form>
-        <div *ngFor="let answer of question.answers; let i = index">
-          <input *ngSwitchCase="'single'" id="{{ i }}" type="radio" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswer($event.target.id)">
-          <input *ngSwitchCase="'multiple'" id="{{ i }}" type="checkbox" name="answer" class="custom-control-input" value="{{ i }}" (change)="retrieveAnswerMultiple()">
+         <!-- UNCOMMENT this -->
+        <div *ngFor="let answer of questionAnswers; let i = index">
+          <input *ngSwitchCase="'single'" id="{{ i }}" type="radio" name="answer" class="custom-control-input" value="{{ answer.value }}" (change)="retrieveAnswer($event.target.id)">
+          <input *ngSwitchCase="'multiple'" id="{{ i }}" type="checkbox" name="answer" class="custom-control-input" value="{{ answer.value }}" (change)="retrieveAnswerMultiple($event.target.id)">
           <div class="d-flex flex-row justify-content-between answerOptions transition">
             <label for="{{ i }}" class="checkbox">&#xf00c;</label>
-            <label for="{{ i }}" class="answerText text">{{ answer }}</label>
+            <label for="{{ i }}" class="answerText text">{{ answer.text }}</label>
           </div>
         </div>
       </form>

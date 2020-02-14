@@ -28,7 +28,7 @@ export class HowToScreenComponent implements OnInit {
   }
 
   btnClick() {
-    this.progressTrackerService.nextScenario();
+    this.commonService.goTo('scenarios');
   }
 
   retrieveInterest() {

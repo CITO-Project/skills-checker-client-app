@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, DoCheck } from '@angular/core';
 import { Question } from 'src/app/models/question';
+import { Answer } from 'src/app/models/answer';
 
 @Component({
   selector: 'app-question',
@@ -10,6 +11,7 @@ export class QuestionComponent implements OnInit, DoCheck {
 
   @Input() question: Question;
   @Input() error: string;
+  @Input() questionAnswers: Answer[];
   @Input() initialAnswer = -1;
   @Output() answer = new EventEmitter<number>();
 
@@ -45,23 +47,29 @@ export class QuestionComponent implements OnInit, DoCheck {
   }
 
   updateSlider(): void {
+    // CHECK this
     this.sliderProperties.value = this.initialAnswer;
     this.sliderProperties.options.stepsArray = [];
-    this.question.answers.forEach( (answer: string, index: number) => {
-      this.sliderProperties.options.stepsArray.push({ value: index, legend: answer});
+    this.questionAnswers.forEach( (answer: Answer) => {
+      this.sliderProperties.options.stepsArray.push({ value: answer.value, legend: answer.text});
     });
-    this.sliderProperties.options.ceil = this.question.answers.length - 1;
+    this.sliderProperties.options.ceil = this.questionAnswers.length - 1;
   }
 
   retrieveAnswer(answer: number): void {
     this.answer.emit(answer);
   }
 
-  retrieveAnswerMultiple(): void {
+  retrieveAnswerMultiple(answeraaaaa: number): void {
+    // TODO add 'none' support
     let answer = 0;
-    for (let i = 0; i < this.question.answers.length; i++) {
+    for (let i = 0; i < this.questionAnswers.length; i++) {
       const el = document.getElementById('' + i) as HTMLInputElement;
-      answer += el.checked ? Math.pow(2, i) : 0;
+      if (el.checked) {
+        if (+el.value > -1) {
+          answer += Math.pow(2, +el.value);
+        }
+      }
     }
     this.retrieveAnswer(answer);
   }
@@ -107,8 +115,9 @@ export class QuestionComponent implements OnInit, DoCheck {
   }
 
   setValueMultiple(answer: number): void {
+    // CHECK this
     let answers = -1;
-    while (answers++ < this.question.answers.length) {
+    while (answers++ < this.questionAnswers.length) {
       if (answer % 2 === 1) {
         this.setValue('' + answers, 'checked', true);
       }
