@@ -4,9 +4,7 @@ import { DataProcessingService } from 'src/app/services/data-processing.service'
 import { CommonService } from 'src/app/services/common.service';
 import { CoursesService } from 'src/app/services/courses.service';
 import { Course } from 'src/app/models/course';
-import { Log } from 'src/app/models/log';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Result } from 'src/app/models/result';
 
 @Component({
@@ -17,7 +15,7 @@ import { Result } from 'src/app/models/result';
 export class ResultsScreenComponent implements OnInit {
 
   public courses: Course[];
-  public results;
+  public results: Result;
 
   constructor(
     private commonService: CommonService,
@@ -40,7 +38,7 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   loadCourses(results: Result): Observable<Course[]> {
-    return this.coursesService.loadCourses(results);
+    return this.coursesService.retrieveCourses(results);
   }
 
   loadLink(link: string): void {

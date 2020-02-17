@@ -1,0 +1,20 @@
+Initiate API
+npm run clean && npm run build && npm run migrate --rebuild && npm run start
+
+Initiate client app
+ng serve
+
+Backup database doc
+-U text > postgres user
+-F letter > format on which data is exported. 'p' for plain text
+-a > export only data
+-s > export only schema
+
+Backup entire database
+pg_dump -U develop -F p skillschecker > ./database.sql
+
+Backup data
+pg_dump -U develop -F p -a skillschecker > ./data.sql
+
+Backup schema
+pg_dump -U develop -F p -s skillschecker > ./schema.sql

@@ -16,8 +16,8 @@ export class CourseComponent implements OnInit {
 
   ngOnInit() { }
 
-  loadLink(link: string): void {
-    this.commonService.loadLink(link);
+  loadLink(courseid: number): void {
+    this.commonService.goTo(`course/${courseid}`);
   }
 
   getColour(skill: string): string {

@@ -26,12 +26,7 @@ export class OrientationScreenComponent implements OnInit {
       text: 'Secure',
       icon: this.getPath('lock.svg'),
       color: 'yellow'
-    },
-    {
-      text: 'Private',
-      icon: this.getPath('laptop-graph-increasing.svg'),
-      color: 'red'
-    },
+    }
   ];
 
   constructor(private dataLogService: DataLogService, private productService: ProductService, private commonService: CommonService) { }

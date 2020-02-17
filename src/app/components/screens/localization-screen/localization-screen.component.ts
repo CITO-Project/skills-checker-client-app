@@ -63,11 +63,18 @@ export class LocalizationScreenComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setCounty('all');
+    if (sessionStorage.length > 0) {
+      this.courses = [];
+      for (let i = 0; i < sessionStorage.length; i++) {
+        this.courses.push(JSON.parse(sessionStorage.getItem(sessionStorage.key(i))));
+      }
+    } else {
+      this.setCounty('all');
+    }
   }
 
   loadCourses(results: Result, location: string): Observable<Course[]> {
-    return this.courseService.loadCourses(results, location);
+    return this.courseService.retrieveCourses(results, location);
   }
 
   setCounty(county: string) {

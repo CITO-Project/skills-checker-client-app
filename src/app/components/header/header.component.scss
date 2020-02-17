@@ -2,14 +2,15 @@
 
 #app-header {
   z-index: 1;
-  background-color: transparent;
   color: $color-font-dark;
-  position: fixed;
-  top: 0;
   width: 100vw;
   height: $header-height;
   text-align: center;
   font-family: 'Roboto';
+  @extend .green;
+  @include setStyleTablet {
+    height: $header-height * 2;
+  }
 
   .title {
     cursor: pointer;
@@ -21,7 +22,7 @@
     right: 20px;
     padding: 2px 20px;
     border-radius: 20px;
-    font-size: .8em;
+    font-size: 80%;
     font-weight: 400;
     text-transform: capitalize;
     cursor: pointer;

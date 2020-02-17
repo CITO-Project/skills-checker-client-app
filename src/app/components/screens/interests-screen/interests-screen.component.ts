@@ -37,12 +37,6 @@ export class InterestsScreenComponent implements OnInit {
   }
 
   selectInterest(interest: Interest): void {
-    interest = {
-      id: 3,
-      product: 1,
-      name: 'static_interest',
-      text: 'Static interest. Change afterwards'
-    };
     this.dataLogService.setInterest(interest);
     if (this.dataLogService.getInterest().id === interest.id) {
       this.commonService.goTo('how-to');

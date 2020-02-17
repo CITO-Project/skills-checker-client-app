@@ -2,26 +2,46 @@
 
 
 #course {
-  padding: 20px 10px;
+  padding: 15px 10px;
   margin-bottom: 20px;
-  font-size: .8em;
-  width: 100%;
-  color: $color-font;
+  font-size: 80%;
   text-align: left;
   font-weight: 700;
-  .title {
-    font-size: 1.6em;
+
+  .description, .extra {
+    min-width: 1px;
+  }
+  .heading {
+    color: $color-font;
+    text-align: left;
+    font-size: 160%;
     font-weight: 800;
-    white-space: nowrap;
+    white-space: pre;
     text-overflow: ellipsis;
+    overflow: hidden;
   }
   .text {
     color: $color-font-muted;
+    font-weight: 500;
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .more {
-    color: $color-font;
     text-transform: uppercase;
     background-image: unset;
     background-color: $color-black-transparent;
+  }
+  .button {
+    @include setStyleTablet {
+      margin: 0 10px;
+    }
+    margin: 0 5px;
+  }
+  .btn {
+    @include setStyleTablet {
+      padding: 15px 30px;
+    }
+    padding: 0 20px;
   }
 }
