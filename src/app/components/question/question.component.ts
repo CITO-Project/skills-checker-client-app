@@ -63,16 +63,14 @@ export class QuestionComponent implements OnInit, DoCheck {
     const elements: HTMLInputElement[] = Array.from(document.getElementsByTagName('input'));
     let r = 0;
     if (+element.value < 0 && element.checked) {
-      switch (this.questionAnswers[element.id].special) {
-        case 'none':
-          elements.filter( (el: HTMLInputElement) => {
-            if (el.id !== element.id) {
-              return true;
-            }
-          }).forEach( (el: HTMLInputElement) => {
-            el.checked = false;
-          });
-          break;
+      if (this.questionAnswers[element.id].special === 'none') {
+        elements.filter( (el: HTMLInputElement) => {
+          if (el.id !== element.id) {
+            return true;
+          }
+        }).forEach( (el: HTMLInputElement) => {
+          el.checked = false;
+        });
       }
     } else {
       elements.filter( (el: HTMLInputElement) => {
@@ -135,12 +133,22 @@ export class QuestionComponent implements OnInit, DoCheck {
 
   setValueMultiple(answer: number): void {
     // CHECK this
-    let answers = -1;
-    while (answers++ < this.questionAnswers.length) {
-      if (answer % 2 === 1) {
-        this.setValue('' + answers, 'checked', true);
+    if (answer === 0) {
+      this.questionAnswers.filter( (ans: Answer) => {
+        if (ans.special === 'none') {
+          return true;
+        }
+      }).forEach( (ans: Answer) => {
+        this.setValue('' + ans.order, 'checked', true);
+      });
+    } else {
+      let answers = -1;
+      while (answers++ < this.questionAnswers.length) {
+        if (answer % 2 === 1) {
+          this.setValue('' + answers, 'checked', true);
+        }
+        answer = Math.floor(answer / 2);
       }
-      answer = Math.floor(answer / 2);
     }
   }
 

@@ -58,7 +58,7 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   afterLoadQuestion(data: CustomResponse) {
-    if (this.question.type === 'slider' || this.question.type === 'multiple') {
+    if (this.question.type === 'slider') {
       this.currentAnswer = 0;
     } else {
       this.currentAnswer = -1;
