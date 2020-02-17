@@ -47,10 +47,9 @@ export class QuestionComponent implements OnInit, DoCheck {
   }
 
   updateSlider(): void {
-    // CHECK this
     this.sliderProperties.value = this.initialAnswer;
     this.sliderProperties.options.stepsArray = [];
-    this.questionAnswers.forEach( (answer: Answer) => {
+    this.sortAnswers(this.questionAnswers).forEach( (answer: Answer) => {
       this.sliderProperties.options.stepsArray.push({ value: answer.value, legend: answer.text});
     });
     this.sliderProperties.options.ceil = this.questionAnswers.length - 1;
@@ -60,18 +59,38 @@ export class QuestionComponent implements OnInit, DoCheck {
     this.answer.emit(answer);
   }
 
-  retrieveAnswerMultiple(answeraaaaa: number): void {
-    // TODO add 'none' support
-    let answer = 0;
-    for (let i = 0; i < this.questionAnswers.length; i++) {
-      const el = document.getElementById('' + i) as HTMLInputElement;
-      if (el.checked) {
-        if (+el.value > -1) {
-          answer += Math.pow(2, +el.value);
-        }
+  retrieveAnswerMultiple(element: HTMLInputElement): void {
+    const elements: HTMLInputElement[] = Array.from(document.getElementsByTagName('input'));
+    let r = 0;
+    if (+element.value < 0 && element.checked) {
+      switch (this.questionAnswers[element.id].special) {
+        case 'none':
+          elements.filter( (el: HTMLInputElement) => {
+            if (el.id !== element.id) {
+              return true;
+            }
+          }).forEach( (el: HTMLInputElement) => {
+            el.checked = false;
+          });
+          break;
       }
+    } else {
+      elements.filter( (el: HTMLInputElement) => {
+        if (+el.value < 0) {
+          return true;
+        }
+      }).forEach( (el: HTMLInputElement) => {
+        el.checked = false;
+      });
+      elements.slice().filter( (el: HTMLInputElement) => {
+        if (+el.value >= 0 && el.checked) {
+          return true;
+        }
+      }).forEach( (el: HTMLInputElement) => {
+        r += Math.pow(2, +el.value);
+      });
     }
-    this.retrieveAnswer(answer);
+    this.retrieveAnswer(r);
   }
 
   resetSlider(): void {
@@ -123,6 +142,12 @@ export class QuestionComponent implements OnInit, DoCheck {
       }
       answer = Math.floor(answer / 2);
     }
+  }
+
+  sortAnswers(answers: Answer[]): Answer[] {
+    return answers.sort( (a: Answer, b: Answer) => {
+      return a.order - b.order;
+    });
   }
 
 }
