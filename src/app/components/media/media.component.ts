@@ -18,6 +18,7 @@ export class MediaComponent implements OnInit, OnChanges {
   public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
 
   private vgAPI: VgAPI;
+  private isFirstTime = true;
 
   constructor(private commonService: CommonService) { }
 
@@ -58,7 +59,10 @@ export class MediaComponent implements OnInit, OnChanges {
   }
 
   playVideo(): void {
-    this.vgAPI.getDefaultMedia().play();
+    if (this.isFirstTime) {
+      this.isFirstTime = false;
+      this.vgAPI.getDefaultMedia().play();
+    }
   }
 
 }
