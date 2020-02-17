@@ -23,21 +23,24 @@ export class ProgressTrackerService {
   private scenario: number;
   private question: number;
 
-  constructor(private commonService: CommonService, private dataLogService: DataLogService, private questionService: QuestionService) {
+  constructor(
+    private commonService: CommonService,
+    private dataLogService: DataLogService,
+    questionService: QuestionService) {
     this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
 
   }
 
-  initializeTracker(): void {
+  initializeTracker(): Observable<void> {
     const category = this.dataLogService.getCategory();
     const interest = this.dataLogService.getInterest();
     this.dataLogService.resetInterest();
-    this.loadScenarios(category, interest).subscribe( () => {
+    return this.loadScenarios(category, interest).pipe(map( () => {
       this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
       this.loadStart().subscribe(() => {
         this.question = -1;
       });
-    });
+    }));
   }
 
   loadScenarios(category: Category, interest: Interest): Observable<void> {

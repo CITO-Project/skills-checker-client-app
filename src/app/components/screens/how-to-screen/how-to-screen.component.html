@@ -8,7 +8,11 @@
     Learn how to use the SkillsChecker App to set your interests and to improve your skills watching the video above.
   </div>
   <div class="d-flex justify-content-around">
-    <button class="button" id="go" type="button" mdbBtn mdbWavesEffect (click)="btnClick()">Go</button>
+    <button class="button" id="go" type="button" [(disabled)]='!scenariosReady' mdbBtn mdbWavesEffect (click)="btnClick()">
+      <div *ngIf="scenariosReady; then ready else notReady"></div>
+      <ng-template #ready>Go</ng-template>
+      <ng-template #notReady><i class="fas fa-spinner fa-spin"></i> Loading ...</ng-template>
+    </button>
   </div>
   <div class="feedback muted">
     You have selected:
