@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Course } from '../models/course';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Observer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CommonService } from './common.service';
 import { Result } from '../models/result';
@@ -70,7 +70,11 @@ export class CoursesService {
   loadCourse(courseid: number): Observable<Course> {
     const course: Course = JSON.parse(sessionStorage.getItem(courseid + ''));
     if (!!course) {
-        return of(course);
+      const r = new Observable<Course>( (observer: Observer<Course>) => {
+        observer.next(course);
+        observer.complete();
+      });
+      return r;
     } else {
       return this.retrieveCourse(courseid);
     }

@@ -11,6 +11,7 @@
   [(question)]="question"
   [(error)]="errorMessage"
   (answer)="processAnswer($event)"
+  [(questionAnswers)]="questionAnswers"
   [initialAnswer]="currentAnswer"
   ></app-question>
 
@@ -19,5 +20,5 @@
   backText="{{ btnBack }}"
   forwardText="{{ btnForward }}"
   (backEvent)="previousQuestion()"
-  (forwardEvent)="saveAnswer()"
+  (forwardEvent)="nextQuestion()"
   ></app-navigate-button>

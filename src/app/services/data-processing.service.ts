@@ -28,34 +28,35 @@ export class DataProcessingService {
         priority: ''
       }
     };
-    let level = -1;
-    for (let i = 0; i < questions.length; i++) {
-      if (questions[i].pedagogical_type === 'challenging_skill') {
-        level++;
-        if (answers[i - 1] < questions[i - 1].answers.length - 1 && answers[i] > 0) {
-          let answer = answers[i].toString(2);
-          while (answer.length < challengingOrder.length) {
-            answer = '0' + answer;
-          }
-          for (let j = 0; j < answer.length; j++) {
-            if (answer.charAt(j) === '1' && r[challengingOrder.slice().reverse()[j]].level <= 0 ) {
-              const answerTaskQuestion = answers[questionOrder.length * level + 0];
-              let priority = 'none';
-              if (answerTaskQuestion < this.brushUpThreshold) {
-                priority = 'brush_up';
-                if (answerTaskQuestion < this.developThreshold) {
-                  priority = 'develop';
-                }
-              }
-              r[challengingOrder.slice().reverse()[j]] = {
-                level: level + 1,
-                priority
-              };
-            }
-          }
-        }
-      }
-    }
+    // UNCOMMENT this
+    // let level = -1;
+    // for (let i = 0; i < questions.length; i++) {
+    //   if (questions[i].pedagogical_type === 'challenging_skill') {
+    //     level++;
+    //     if (answers[i - 1] < questions[i - 1].answers.length - 1 && answers[i] > 0) {
+    //       let answer = answers[i].toString(2);
+    //       while (answer.length < challengingOrder.length) {
+    //         answer = '0' + answer;
+    //       }
+    //       for (let j = 0; j < answer.length; j++) {
+    //         if (answer.charAt(j) === '1' && r[challengingOrder.slice().reverse()[j]].level <= 0 ) {
+    //           const answerTaskQuestion = answers[questionOrder.length * level + 0];
+    //           let priority = 'none';
+    //           if (answerTaskQuestion < this.brushUpThreshold) {
+    //             priority = 'brush_up';
+    //             if (answerTaskQuestion < this.developThreshold) {
+    //               priority = 'develop';
+    //             }
+    //           }
+    //           r[challengingOrder.slice().reverse()[j]] = {
+    //             level: level + 1,
+    //             priority
+    //           };
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
     return r;
   }
 

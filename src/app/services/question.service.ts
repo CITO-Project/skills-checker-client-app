@@ -28,15 +28,15 @@ export class QuestionService {
 
   constructor(private httpClient: HttpClient, private common: CommonService) { }
 
-  getQuestions(categoryid: number, interestid: number, scenarioId: number): Observable<Question[]> {
+  getQuestions(categoryid: number, interestid: number, scenarioid: number): Observable<Question[]> {
     if (categoryid === undefined) {
       categoryid = -1;
     } else if (interestid === undefined) {
       interestid = -1;
-    } else if (scenarioId === undefined) {
-      scenarioId = -1;
+    } else if (scenarioid === undefined) {
+      scenarioid = -1;
     } else {
-      const url = `/categories/${categoryid}/interests/${interestid}/scenarios/${scenarioId}/questions`;
+      const url = `/categories/${categoryid}/interests/${interestid}/scenarios/${scenarioid}/questions`;
       return this.httpClient.get(this.common.getApiUrl() + url)
         .pipe(map( (data: Question[]) => {
           return data;
@@ -46,23 +46,26 @@ export class QuestionService {
   }
 
   shouldSkipScenario(question: Question, answer: number): boolean {
-    answer = +answer;
-    let r = false;
-    switch (question.pedagogical_type) {
-      case 'task_question':
-        if (answer === question.answers.length - 1) {
-          r = true;
-        }
-        break;
-      case 'dimension_independence':
-      case 'dimension_confidence':
-      case 'dimension_fluency':
-        if (answer === question.answers.length - 1) {
-          r = true;
-        }
-        break;
-    }
-    return r;
+    // DELETE this
+    return false;
+    // DELETE uncomment
+    // answer = +answer;
+    // let r = false;
+    // switch (question.pedagogical_type) {
+    //   case 'task_question':
+    //     if (answer === question.answers.length - 1) {
+    //       r = true;
+    //     }
+    //     break;
+    //   case 'dimension_independence':
+    //   case 'dimension_confidence':
+    //   case 'dimension_fluency':
+    //     if (answer === question.answers.length - 1) {
+    //       r = true;
+    //     }
+    //     break;
+    // }
+    // return r;
   }
 
   getPedagogicalType(order: number): string {

@@ -34,8 +34,10 @@ export class ResultsScreenComponent implements OnInit {
     //   this.commonService.goTo('');
     // }
     // DELETE demo data and rerouting
-    this.results = this.dataProcessingService.getResults(
 
+    /*
+    // UNCOMMENT this
+    this.results = this.dataProcessingService.getResults(
       {
         "product": {
             "id": 1,
@@ -413,10 +415,10 @@ export class ResultsScreenComponent implements OnInit {
         }
 
 
-    );
-    this.loadCourses(this.results).subscribe( (courses: Course[]) => {
-      this.courses = courses;
-    });
+    );*/
+    // this.loadCourses(this.results).subscribe( (courses: Course[]) => {
+    //   this.courses = courses;
+    // });
   }
 
   loadCourses(results: Result): Observable<Course[]> {
