@@ -32,23 +32,6 @@ export class HowToScreenComponent implements OnInit {
   }
 
   retrieveInterest() {
-    // DELETE static interest and category. from interest-screen too
-    this.dataLogService.setInterest({
-      id: 3,
-      product: 1,
-      category: 1,
-      name: 'static_interest',
-      text: 'Static interest. Change afterwards'
-    });
-    this.dataLogService.setCategory({
-      id: 1,
-      product: 1,
-      name: 'personal',
-      text: 'Personal',
-      colour: 'green',
-      resource: 'person-laptop.svg'
-    });
-    // DELETE
     const interest = this.dataLogService.getInterest();
     if (!interest) {
       this.commonService.goTo('interests');

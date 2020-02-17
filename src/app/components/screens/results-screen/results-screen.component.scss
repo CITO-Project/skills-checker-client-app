@@ -2,7 +2,8 @@
 
 
 #content {
-  background: linear-gradient(to bottom, $color-background-colour, $color-background 250px);
+  background: linear-gradient(to bottom, $color-background-colour, transparent 250px);
+  padding: 20px 0px 30px;
 }
 
 .heading {
@@ -15,7 +16,6 @@
 }
 
 #result {
-  padding-top: 70px;
   text-align: center;
 
   .container-fluid {
@@ -95,9 +95,6 @@
       font-weight: 400;
       float: left;
     }
-    .course {
-      width: 100%;
-    }
   }
   .localization {
     padding-top: 20px;
@@ -109,7 +106,6 @@
       font-weight: 400;
     }
     .button {
-      color: $color-font;
       i {
         margin-right: 10px;
         font-size: 100%;

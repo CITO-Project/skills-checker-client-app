@@ -46,9 +46,7 @@ export class QuestionService {
   }
 
   shouldSkipScenario(question: Question, answer: number): boolean {
-    // DELETE this
     return false;
-    // DELETE uncomment
     // answer = +answer;
     // let r = false;
     // switch (question.pedagogical_type) {
