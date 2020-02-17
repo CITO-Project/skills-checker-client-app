@@ -35,17 +35,21 @@ export class ScenariosScreenComponent implements OnInit {
 
   constructor(
     private dataLogService: DataLogService,
-    private questionService: QuestionService,
     private commonService: CommonService,
     private progressTrackerService: ProgressTrackerService
     ) {
-      // TODO if question is null, go to how-to
-      // TODO check for category too
+      if (this.dataLogService.getCategory() === undefined) {
+        commonService.goTo('how-to');
+      }
     }
 
   ngOnInit() {
     this.progressTrackerService.next().subscribe((data: CustomResponse) => {
+      if (data.question === undefined || data.scenario === undefined) {
+        this.commonService.goTo('how-to');
+      } else {
         this.updateData(data);
+      }
     });
   }
 

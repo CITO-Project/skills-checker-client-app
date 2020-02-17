@@ -27,7 +27,6 @@ export class DataLogService {
   }
 
   initializeLog() {
-    // TODO: Find why product is saved in the results in an array
     let product = null;
     if (!!this.log && !!this.log.product) {
       product = this.log.product;

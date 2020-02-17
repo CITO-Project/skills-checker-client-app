@@ -36,8 +36,6 @@ export class ProgressTrackerService {
       this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
       this.loadStart().subscribe(() => {
         this.question = -1;
-        console.log('datalog is ready');
-        console.log('enable go button');
       });
     });
   }

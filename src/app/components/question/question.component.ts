@@ -132,7 +132,6 @@ export class QuestionComponent implements OnInit, DoCheck {
   }
 
   setValueMultiple(answer: number): void {
-    // CHECK this
     if (answer === 0) {
       this.questionAnswers.filter( (ans: Answer) => {
         if (ans.special === 'none') {
