@@ -11,6 +11,9 @@
   .description, .extra {
     min-width: 1px;
   }
+  .description {
+    padding-left: 15px;
+  }
   .heading {
     color: $color-font;
     text-align: left;
