@@ -1,18 +1,13 @@
-<app-header></app-header>
-<div class="heading">Pick your Interest</div>
+<app-header [text]='!!category ? category.text : "default"'></app-header>
+<div class="heading margins">Pick your Interest</div>
 <div class="container">
   <div class="row">
-    <div *ngFor="let interest of interests" class="interest col-6" (click)="selectInterest(interest)">
-      <div class="icon d-flex column justify-content-center align-items-center">
-        <div>
-          <i class="far fa-image"></i>
-          <div>{{ interest.name }}</div>
-        </div>
-      </div>
-      <div class="text">
-        {{ interest.text }}
+    <div *ngFor="let interest of interests" class="interest col-12 box shadows gradient" [ngClass]="colour" (click)="selectInterest(interest)">
+      <div class="tile d-flex column align-items-center">
+        <div class="text">{{ interest.text }}</div>
+        <img src="{{ getPath(interest.resource) }}">
       </div>
     </div>
   </div>
 </div>
-<app-navigate-button text="Go back" destination=""></app-navigate-button>
+<app-navigate-button text="default" destination="categories"></app-navigate-button>

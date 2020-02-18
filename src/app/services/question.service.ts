@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonService } from './common.service';
 import { map } from 'rxjs/operators';
-import { Question } from '../models/question';
 import { Observable } from 'rxjs';
+
+import { Question } from '../models/question';
+
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,86 +20,50 @@ export class QuestionService {
     'dimension_fluency'
   ];
 
-  private questions: Question[] = [];
+  private CHALLENGING_ORDER = [
+    'literacy',
+    'numeracy',
+    'digital_skills'
+  ];
 
-  constructor(private http: HttpClient, private common: CommonService) { }
+  constructor(private httpClient: HttpClient, private common: CommonService) { }
 
-  getQuestions(categoryid: number, interestid: number, scenarioId: number): Observable<void> {
-    if (categoryid < 1) {
-      this.common.goTo('/categories');
-    } else if (interestid < 1) {
-      this.common.goTo('/interests');
-    } else if (scenarioId < 1) {
-      this.common.goTo('/how-to');
+  getQuestions(categoryid: number, interestid: number, scenarioid: number): Observable<Question[]> {
+    if (categoryid === undefined) {
+      categoryid = -1;
+    } else if (interestid === undefined) {
+      interestid = -1;
+    } else if (scenarioid === undefined) {
+      scenarioid = -1;
     } else {
-      const url = `/categories/${categoryid}/interests/${interestid}/scenarios/${scenarioId}/questions`;
-      return this.http.get(this.common.getApiUrl() + url)
+      const url = `/categories/${categoryid}/interests/${interestid}/scenarios/${scenarioid}/questions`;
+      return this.httpClient.get(this.common.getApiUrl() + url)
         .pipe(map( (data: Question[]) => {
-          this.questions = data;
+          return data;
         })
       );
     }
   }
 
-  getQuestionByOrder(order: number): Question {
-    const pedagogicalType = this.QUESTION_ORDER[order];
-    let r: Question = null;
-    this.questions.forEach( (question: Question) => {
-      if (question.pedagogical_type === pedagogicalType) {
-        r = question;
-      }
-    });
-    return r;
-  }
-
-  getQuestionById(questionId: number): Question {
-    let r: Question = null;
-    if (this.questions.length > 0) {
-      this.questions.forEach( (question: Question) => {
-        if (question.id === questionId) {
-          r = question;
-        }
-      });
-    }
-    return r;
-  }
-
-  getQuestionByPedagogicalType(pedagogicalType: string): Question {
-    let r: Question = null;
-    if (this.questions.length > 0) {
-      this.questions.forEach( (question: Question) => {
-        if (question.pedagogical_type === pedagogicalType) {
-          r = question;
-        }
-      });
-    }
-    return r;
-  }
-
-  shouldSkipScenario(order: number, answer: number): boolean {
-    answer = +answer;
-    const pedagogicalType = this.QUESTION_ORDER[order];
-    const lastNAnswer = this.getQuestionByPedagogicalType(pedagogicalType).answers.length - 1;
-    let r = false;
-    switch (pedagogicalType) {
-      case 'task_question':
-        if (answer === lastNAnswer) {
-          r = true;
-        }
-        break;
-      case 'dimension_independence':
-      case 'dimension_confidence':
-      case 'dimension_fluency':
-        if (answer === lastNAnswer) {
-          r = true;
-        }
-        break;
-    }
-    return r;
-  }
-
-  getCount(): number {
-    return this.questions.length;
+  shouldSkipScenario(question: Question, answer: number): boolean {
+    return false;
+    // answer = +answer;
+    // let r = false;
+    // switch (question.pedagogical_type) {
+    //   case 'task_question':
+    //     if (answer === question.answers.length - 1) {
+    //       r = true;
+    //     }
+    //     break;
+    //   case 'dimension_independence':
+    //   case 'dimension_confidence':
+    //   case 'dimension_fluency':
+    //     if (answer === question.answers.length - 1) {
+    //       r = true;
+    //     }
+    //     break;
+    // }
+    // return r;
   }
 
   getPedagogicalType(order: number): string {
@@ -106,6 +72,21 @@ export class QuestionService {
 
   getQuestionOrder(): string[] {
     return this.QUESTION_ORDER;
+  }
+
+  getChallengingOrder(): string[] {
+    return this.CHALLENGING_ORDER;
+  }
+
+  getQuestionInOrder(questions: Question[], questionindex: number): Question {
+    // TODO: Change foreach so it doesnt check every single value in the list
+    let r: Question = null;
+    questions.forEach((question: Question) => {
+      if (question.pedagogical_type === this.QUESTION_ORDER[questionindex]) {
+        r = question;
+      }
+    });
+    return r;
   }
 
 }

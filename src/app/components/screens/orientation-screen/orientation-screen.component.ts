@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-orientation-screen',
@@ -10,14 +11,37 @@ import { Product } from 'src/app/models/product';
 })
 export class OrientationScreenComponent implements OnInit {
 
-  constructor(private dataLogService: DataLogService, private productService: ProductService) { }
+  public FEATURES = [
+    {
+      text: 'Private',
+      icon: this.getPath('key-emblem.svg'),
+      color: 'blue'
+    },
+    {
+      text: 'Safe',
+      icon: this.getPath('laptop-checked.svg'),
+      color: 'green'
+    },
+    {
+      text: 'Secure',
+      icon: this.getPath('lock.svg'),
+      color: 'yellow'
+    }
+  ];
+
+  constructor(private dataLogService: DataLogService, private productService: ProductService, private commonService: CommonService) { }
 
   ngOnInit() {
+    this.dataLogService.initializeLog();
     this.productService.getProduct().subscribe(
       (product: Product) => {
         this.dataLogService.setProduct(product);
       }
     );
+  }
+
+  getPath(name: string): string {
+    return this.commonService.getIconPath(name);
   }
 
 }

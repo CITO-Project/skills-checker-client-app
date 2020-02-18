@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { Interest } from 'src/app/models/interest';
 import { Scenario } from 'src/app/models/scenario';
 import { Question } from 'src/app/models/question';
 
 import { DataLogService } from 'src/app/services/data-log.service';
-import { ScenarioService } from 'src/app/services/scenario.service';
 import { QuestionService } from 'src/app/services/question.service';
-import { CategoryService } from 'src/app/services/category.service';
-import { InterestService } from 'src/app/services/interest.service';
+import { CommonService } from 'src/app/services/common.service';
+import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { Category } from 'src/app/models/category';
+import { Answer } from 'src/app/models/answer';
+import { CustomResponse } from 'src/app/models/custom-response';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -18,130 +18,92 @@ import { InterestService } from 'src/app/services/interest.service';
 })
 export class ScenariosScreenComponent implements OnInit {
 
-  public interest: Interest;
   public scenario: Scenario;
   public question: Question;
+  public questionAnswers: Answer[];
+  public currentAnswer = -1;
+
   public errorMessage = '';
+  public category: Category;
 
-  public btnBack = 'Go back';
-  public btnForward = 'Next';
+  public btnBack = 'default';
+  public btnForward = 'default';
 
-  private currentScenario = -1;
-  private currentQuestion = -1;
+  public currentScenario = -1;
+  public currentQuestion = -1;
 
-  private currentAnswer = -1;
-  private currentIndex = -1;
 
   constructor(
     private dataLogService: DataLogService,
-    private categoryService: CategoryService,
-    private interestService: InterestService,
-    private scenarioService: ScenarioService,
-    private questionService: QuestionService,
-    private router: Router
-    ) { }
+    private commonService: CommonService,
+    private progressTrackerService: ProgressTrackerService
+    ) {
+      if (this.dataLogService.getCategory() === undefined) {
+        commonService.goTo('how-to');
+      }
+    }
 
   ngOnInit() {
-    this.getScenarios();
-    this.dataLogService.initializeLog();
-  }
-
-  getScenarios() {
-    // TODO Retrieve selected interest
-    // const interestid = this.testResults.getInterestId();
-    // this.interestService.getInterest(interestid).subscribe( (data: Interest) => {
-    //   interest = data;
-    //   console.log(interest);
-    // });
-
-    const interest: Interest = {
-      id: 3,
-      product: 1,
-      name: 'shop',
-      text: 'Using a digital catalogue',
-      illustration: null,
-      description: null
-    };
-    this.interest = interest;
-
-    this.scenarioService.getScenarios(this.categoryService.getCategory().id, interest.id).subscribe( () => {
-      this.currentScenario = -1;
-      this.nextScenario();
+    this.progressTrackerService.next().subscribe((data: CustomResponse) => {
+      if (data.question === undefined || data.scenario === undefined) {
+        this.commonService.goTo('how-to');
+      } else {
+        this.updateData(data);
+      }
     });
   }
-
-  nextScenario() {
-    if (this.currentScenario === this.scenarioService.getCount() - 1 ) {
-      this.router.navigate(['results']);
-    } else {
-      ++this.currentScenario;
-      this.loadScenario(this.currentScenario);
-    }
-  }
-
-  loadScenario(order: number, loadFromPrevious = false) {
-    this.scenario = this.scenarioService.getScenarioByOrder(order);
-    this.dataLogService.setScenario(this.scenario);
-    this.questionService.getQuestions(
-        this.categoryService.getCategory().id,
-        this.dataLogService.getInterest().id,
-        this.scenario.id).subscribe( () => {
-      this.currentQuestion = -1;
-      this.nextQuestion();
-    });
-  }
-
-  // teno que seguir implementando as categorias novas
 
   nextQuestion() {
-    if (this.currentQuestion === this.questionService.getCount() - 1 ) {
-      this.nextScenario();
-    } else {
-      ++this.currentQuestion;
-      ++this.currentIndex;
-      this.loadQuestion(this.currentQuestion);
+    if (this.saveAnswer()) {
+      this.progressTrackerService.next().subscribe((data: CustomResponse) => {
+        this.updateData(data);
+      });
     }
   }
 
-  loadQuestion(order: number) {
-    this.question = null;
-    this.question = this.questionService.getQuestionByOrder(order);
+  afterLoadQuestion(data: CustomResponse) {
     if (this.question.type === 'slider') {
       this.currentAnswer = 0;
     } else {
       this.currentAnswer = -1;
     }
-    this.errorMessage = '';
-    this.dataLogService.setQuestion(this.question, this.currentIndex);
-
-    this.isLastQuestion();
-  }
-
-  saveAnswer() {
-    if (this.currentAnswer < 0) {
-      this.showError('Please, select one of the options bellow');
-    } else {
-      this.dataLogService.setAnswer(this.currentIndex, this.currentAnswer);
-      if ( this.questionService.shouldSkipScenario(this.currentQuestion, this.currentAnswer) ) {
-        this.nextScenario();
-      } else {
-        this.nextQuestion();
-      }
+    const savedAnswer = this.dataLogService.getAnswer(this.currentScenario, this.currentQuestion);
+    if (savedAnswer !== -1) {
+      this.currentAnswer = savedAnswer;
     }
-  }
+    this.errorMessage = '';
 
-  isLastQuestion(): boolean {
-    this.btnForward = 'Next';
-    const isIt = (this.currentScenario === this.scenarioService.getCount() - 1
-      && this.currentQuestion === this.questionService.getCount() - 1);
-    if (isIt) {
+    this.btnForward = 'default';
+    this.btnBack = 'default';
+    if (data.isLastQuestion) {
       this.btnForward = 'See results';
     }
-    return isIt;
+  }
+
+  saveAnswer(): boolean {
+    if (this.currentAnswer < 0) {
+      this.showError('Please, select one of the options bellow');
+      return false;
+    } else {
+      this.dataLogService.setAnswer(this.currentScenario, this.currentQuestion, this.currentAnswer);
+      return true;
+    }
   }
 
   previousQuestion() {
-    this.router.navigate(['how-to']);
+    this.progressTrackerService.previous().subscribe((data: CustomResponse) => {
+      this.updateData(data);
+    });
+  }
+
+  updateData(data: CustomResponse): void {
+    this.currentScenario = data.scenarioIndex;
+    this.currentQuestion = data.questionIndex;
+    this.scenario = data.scenario;
+    this.question = data.question;
+    this.questionAnswers = data.question_answers;
+    this.currentAnswer = data.answer;
+    this.afterLoadQuestion(data);
   }
 
   showError(message: string): void {
@@ -151,6 +113,7 @@ export class ScenariosScreenComponent implements OnInit {
 
   processAnswer(answer: number): void {
     this.currentAnswer = answer;
+    // console.log(this.currentAnswer);
   }
 
 }

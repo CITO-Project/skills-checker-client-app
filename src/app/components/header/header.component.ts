@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonService } from 'src/app/services/common.service';
 import { DataLogService } from 'src/app/services/data-log.service';
 
 @Component({
@@ -10,21 +10,23 @@ import { DataLogService } from 'src/app/services/data-log.service';
 export class HeaderComponent implements OnInit {
 
   @Input() text: string;
+  @Input() skip: boolean;
 
-  constructor(private router: Router, private dataLogService: DataLogService) { }
+
+  constructor(private commonService: CommonService, private dataLogService: DataLogService) { }
 
   ngOnInit() {
-    if (this.text === undefined) {
+    if (this.text === 'default') {
       this.text = 'SkillsChecker';
     }
   }
 
   goToIndex() {
-    this.router.navigate(['']);
+    this.commonService.goTo('');
   }
 
-  showMore() {
-    console.log(this.dataLogService.getAll());
+  goToResults() {
+    this.commonService.goTo('results');
   }
 
 }

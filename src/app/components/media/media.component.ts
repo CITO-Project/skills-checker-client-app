@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { CommonService } from 'src/app/services/common.service';
+import { VgAPI } from 'videogular2/compiled/core';
 
 @Component({
   selector: 'app-media',
@@ -7,15 +9,18 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 })
 export class MediaComponent implements OnInit, OnChanges {
 
-  private RESOURCE_PATH = '/assets/resources/';
-
   @Input() height: string;
-  @Input() type: string;
   @Input() resource: string;
+  @Input() replay: boolean;
 
   public resourceFile: string;
+  public supportedVideo = ['mp4', 'webm', 'ogg'];
+  public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
 
-  constructor() { }
+  private vgAPI: VgAPI;
+  private isFirstTime = true;
+
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
     this.loadResource();
@@ -28,17 +33,35 @@ export class MediaComponent implements OnInit, OnChanges {
   }
 
   loadResource() {
-    if (this.type !== undefined && this.resource === undefined) {
-      console.error('Need to provide resource to show.', 'Type: ', this.type, ' > ', this.resource);
-      this.type = '';
+    if (this.resource === undefined) {
+      console.error('Need to provide resource to show > ', this.resource);
     } else {
-      switch (this.type) {
-        case 'image':
-          this.resourceFile = this.RESOURCE_PATH + this.resource + '.png';
-          break;
-        case 'video':
-          break;
-      }
+      this.resourceFile = this.commonService.getResourcePath(this.resource);
+    }
+  }
+
+  getExtension(): string {
+    return this.resource.split('.').pop();
+  }
+
+  getType(): string {
+    if (this.supportedImages.includes(this.getExtension())) {
+      return 'image';
+    } else if (this.supportedVideo.includes(this.getExtension())) {
+      return 'video';
+    } else {
+      return '';
+    }
+  }
+
+  onPlayerReady(vgAPI: VgAPI): void {
+    this.vgAPI = vgAPI;
+  }
+
+  playVideo(): void {
+    if (this.isFirstTime) {
+      this.isFirstTime = false;
+      this.vgAPI.getDefaultMedia().play();
     }
   }
 

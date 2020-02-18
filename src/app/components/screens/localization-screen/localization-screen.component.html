@@ -1,0 +1,37 @@
+<app-header text='default'></app-header>
+<div id="content">
+  <div id="header">
+    <div class="title">Learning opportunities</div>
+    <div class="description">Please, choose your location to see the learning opportunities near you</div>
+    <select class="browser-default custom-select" (change)='setCounty($event.target.value)'>
+      <option selected value='all'>Choose your area</option>
+      <option value='all'>Show all</option>
+      <option *ngFor='let county of IRELAND_COUNTIES' value='{{ county.toLowerCase() }}'>{{ county }}</option>
+    </select>
+    <hr>
+  </div>
+  <div class="learning-oportunities" *ngIf="getCourses('brush_up').length > 0 || getCourses('develop').length > 0">
+    <div class="brush-up" *ngIf="getCourses('brush_up').length > 0">
+      <div class="heading">Brush up</div>
+      <br>
+      <app-course
+        *ngFor="let course of getCourses('brush_up')"
+        [course]=course
+        [colour]='"green"'
+        class="course"
+      ></app-course>
+    </div>
+    <div class="develop" *ngIf="getCourses('develop').length > 0">
+      <div class="heading">Further develop</div>
+      <br>
+      <app-course
+        *ngFor="let course of getCourses('develop')"
+        [course]=course
+        [colour]='"blue"'
+        class="course"
+      ></app-course>
+    </div>
+  </div>
+</div>
+
+<app-navigate-button text='Back to results' destination='results'></app-navigate-button>

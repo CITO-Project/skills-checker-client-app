@@ -1,97 +1,115 @@
 @import '../../../../_imports.scss';
 
-$separator-between-courses: 20px;
-
 
 #content {
-  padding: 0 20px;
+  background: linear-gradient(to bottom, $color-background-colour, transparent 250px);
+  padding: 20px 0px 30px;
+}
+
+.heading {
+  margin-top: 0;
 }
 
 .avatar > img {
-  height: 150px;
+  height: 120px;
+  padding-left: 20px;
 }
 
 #result {
   text-align: center;
 
-  > .heading {
-    color: $color-font;
-    padding: 10px 0;
-    font-size: 1.4em;
+  .container-fluid {
+    padding-left: 0;
+  }
+  .support {
+    margin-top: 10px;
+    font-size: 95%;
+    font-weight: 200;
+    text-shadow: 0 5px 8px $color-font-dark ;
+    text-align: center;
+  }
+  a {
+    color: $color-font-link;
+    font-weight: 600;
   }
 }
 
 .dialog {
-  color: $color-white;
+  color: $color-font-dark;
   position: relative;
-  background-color: $color-background-dark;
-  border-radius: 5px;
+  background-color: $color-background;
+  border-radius: 15px;
+  box-shadow: 0 0 10px $color-background-dark;
   padding: 15px;
-  margin-left: 15px;
-  font-size: .75em;
-
+  margin-left: 10px;
   > .heading {
-    font-size: 1.3em;
-    font-weight: 500;
-    margin-bottom: 20px;
+    font-size: 100%;
+    font-weight: 600;
+  }
+  > .text {
+    text-align: center;
+    font-weight: 200;
   }
 }
 
 .dialog:after {
 	right: 100%;
-	top: 70px;
+	top: 60px;
 	border: solid transparent;
 	content: " ";
 	height: 0;
 	width: 0;
 	position: absolute;
-	border-right-color: $color-background-dark;
+	border-right-color: $color-background;
 	border-width: 10px;
 	margin-top: -10px;
 }
 
-hr {
-  margin: 25px 0;
+.holder {
+  margin: 10px 0 20px;
 }
 
 #pathway {
-  text-align: center;
-  color: $color-font;
   .heading {
-    font-size: 1.5em;
-    color: $color-font;
+    color: $color-font-dark;
+    font-size: 150%;
     margin-bottom: 10px;
+    font-weight: 300;
     > img {
       margin-right: 10px;
       height: .7em;
     }
   }
   .message {
+    text-align: center;
     margin-bottom: 20px;
+    font-weight: 200;
+    font-size: 90%;
   }
-  .courses{
-    padding: 0;
-    .course {
-      margin-bottom: 20px;
-      background-color: $color-background-secondary;
-      font-size: .8em;
-      > .text {
-        padding: 20px 10px;
-      }
-      > .more {
-        width: 100%;
-        color: $color-font-light;
-        background-color: $color-background-dark;
-        padding: 10px;
+  .learning-oportunities{
+    background-color: $color-background-secondary;
+    padding: 10px 20px;
+    .heading {
+      margin-bottom: 10px;
+      font-size: 100%;
+      font-weight: 400;
+      float: left;
+    }
+  }
+  .localization {
+    padding-top: 20px;
+    text-align: center;
+    color: $color-font-dark;
+    .heading{
+      font-size: 100%;
+      padding-bottom: 20px;
+      font-weight: 400;
+    }
+    .button {
+      i {
+        margin-right: 10px;
+        font-size: 100%;
       }
     }
   }
-}
-
-.add-margin-right {
-  margin-right: $separator-between-courses/2;
-}
-
-.add-margin-left {
-  margin-left: $separator-between-courses/2;
 }

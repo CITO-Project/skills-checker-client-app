@@ -1,36 +1,64 @@
-<app-header></app-header>
+<app-header text='Results'></app-header>
 <div id="content">
   <div id="result">
-    <div class="heading">Results</div>
     <div class="message d-flex">
       <div class="avatar">
-        <img src="/assets/img/assistant.png" alt="assistant_image">
+        <img [src]="getPath('assistant.png')" alt="assistant_image">
       </div>
-      <div class="dialog">
-        <div class="heading">Awesome, we have great news!!</div>
-        <div class="message">You're very confident about booking. However, we would like to recommend new digital skills for you to feel even more confident using a booking website</div>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div id="pathway">
-    <div class="heading">
-      <img src="/assets/img/arrows.png" alt="arrows">
-      My Learning Pathway
-    </div>
-    <div class="message">
-      If you want to develop your digital skills maybe save to your favourites or try one of these courses below:
-    </div>
-    <div class="courses container">
-      <div class="row no-gutters">
-        <div *ngFor="let course of courses; let i = index" class="col-6">
-          <div class="course {{ i%2 === 0 ? 'add-margin-right' : 'add-margin-left' }}">
-            <div class="text">{{ course.text }}</div>
-            <div class="more"(click)="loadLink(course.link)"><div class="fas fa-plus-circle"></div> More info</div>
+      <div class="container-fluid">
+        <div class="row no-gutters">
+          <div class="col">
+            <div class="dialog">
+              <div class="heading">Well done!</div>
+              <div class="text">
+                It seems that you can do 'x task' but you think you might need a bit more help so that you can do that faster/ by yourself/ with more confidence.
+              </div>
+            </div>
+            <div class="support text">
+              <a (click)="loadLink('http://www.example.org/support')">Click here</a> or call NALA on <br> 1800 20 20 65 for more support
+            </div>
           </div>
         </div>
+        </div>
       </div>
+  </div>
+  <div class="holder"></div>
+  <div id="pathway">
+    <div class="heading">
+      <img [src]="getPath('arrows.png')" alt="arrows">
+      My Learning Pathway
+    </div>
+    <div class="message container text">
+      If you want to develop your digital skills, <br> try one of these courses below:
+    </div>
+    <div class="learning-oportunities" *ngIf="getCourses('brush_up').length > 0 || getCourses('develop').length > 0">
+      <div class="brush-up" *ngIf="getCourses('brush_up').length > 0">
+        <div class="heading">Brush up</div>
+        <br><br>
+        <app-course
+          *ngFor="let course of getCourses('brush_up')"
+          [course]=course
+          colour='green'
+          class="course"
+        ></app-course>
+      </div>
+      <div class="develop" *ngIf="getCourses('develop').length > 0">
+        <div class="heading">Further develop</div>
+        <br><br>
+        <app-course
+          *ngFor="let course of getCourses('develop')"
+          [course]=course
+          colour='blue'
+          class="course"
+        ></app-course>
+      </div>
+    </div>
+
+    <div class="localization">
+      <div class="heading">Learning opportunities in your area</div>
+      <button type="button" mdbBtn class="button" mdbWavesEffect (click)="chooseArea()">
+        <i class="fas fa-map-marker-alt"></i>Choose your area</button>
     </div>
   </div>
 </div>
-<app-navigate-button text="New interest" destination="interests"></app-navigate-button>
+<app-navigate-button text="New interest" (event)="selectNewInterest()"></app-navigate-button>

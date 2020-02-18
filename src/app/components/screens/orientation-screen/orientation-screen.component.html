@@ -1,29 +1,17 @@
-<app-header></app-header>
-<app-media resource='orientation' type='image'></app-media>
+<app-header text='default'></app-header>
+<app-media resource='orientation.png'></app-media>
 <div id="description">
-  <div class="main">
+  <div class="main heading">
     Do you want to learn new skills to improve your life?
   </div>
   <div class="text">
     Learn how to improve your skills to get a new world of possibilities in your life. Watch the video in which Clare will guide you through this quick and easy experience.
   </div>
-  <div class="features d-flex flex-row justify-content-between">
-      <div class="flex-column feature">
-          <div class="icon"><i class="fas fa-key"></i></div>
-          <div class="text">Private</div>
-      </div>
-      <div class="flex-column feature">
-          <div class="icon"><i class="fas fa-shield-alt"></i></div>
-          <div class="text">Safe</div>
-      </div>
-      <div class="flex-column feature">
-          <div class="icon"><i class="fas fa-lock"></i></div>
-          <div class="text">Secure</div>
-      </div>
-      <div class="flex-column feature">
-          <div class="icon"><i class="fas fa-chart-line"></i></div>
-          <div class="text">Outcome</div>
+  <div class="features d-flex flex-row justify-content-around">
+      <div class="flex-column feature" *ngFor="let feature of FEATURES">
+          <div [ngClass]="feature.color" class="icon box shadows gradient"><img src="{{ feature.icon }}"></div>
+          <div class="text flex-grow-0">{{ feature.text }}</div>
       </div>
     </div>
 </div>
-<app-navigate-button text="Start now" destination="interests"></app-navigate-button>
+<app-navigate-button text="Start now" destination="categories"></app-navigate-button>
