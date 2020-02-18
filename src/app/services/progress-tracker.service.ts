@@ -3,12 +3,9 @@ import { CommonService } from './common.service';
 import { DataLogService } from './data-log.service';
 import { Category } from '../models/category';
 import { Interest } from '../models/interest';
-import { Question } from '../models/question';
-import { Scenario } from '../models/scenario';
 import { QuestionService } from './question.service';
-import { Observable, of, Observer } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Answer } from '../models/answer';
 import { CustomResponse } from '../models/custom-response';
 
 @Injectable({
