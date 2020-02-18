@@ -22,6 +22,9 @@
     white-space: pre;
     @include setStyleTablet {
       padding: 20px 100px;
+      i::before {
+        font-size: 200%;
+      }
     }
   }
 

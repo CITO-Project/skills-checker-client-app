@@ -13,7 +13,6 @@
   <div class="learning-oportunities" *ngIf="getCourses('brush_up').length > 0 || getCourses('develop').length > 0">
     <div class="brush-up" *ngIf="getCourses('brush_up').length > 0">
       <div class="heading">Brush up</div>
-      <br>
       <app-course
         *ngFor="let course of getCourses('brush_up')"
         [course]=course
@@ -23,7 +22,6 @@
     </div>
     <div class="develop" *ngIf="getCourses('develop').length > 0">
       <div class="heading">Further develop</div>
-      <br>
       <app-course
         *ngFor="let course of getCourses('develop')"
         [course]=course
