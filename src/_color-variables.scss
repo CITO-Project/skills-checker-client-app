@@ -1,24 +1,49 @@
 // All colors MUST be defined here
 // General
-$color-grey: #dae0e8;
-$color-grey-dark: #798086;
-$color-grey-light: #eeeeee;
-$color-black: #000000;
-$color-white: #ffffff;
+$color-yellow: #FCB64C;
+$color-green: #3FBDA8;
+$color-red: #ED6B4C;
+$color-blue: #2E3C67;
+$color-grey: #AAABAC;
+$color-black: #5D5E5F;
+$color-white: #F2F3F3;
+$color-blue-light: #586385;
+$color-grey-dark: #62717A;
+$color-grey-light: #C4D0D9;
+$color-grey-lighter: #E0E6EB;
+
+$color-blue-light: #0285D1;
+$color-black-transparent: #00000030;
+$color-green-translucid: #3FBDA880;
+$color-pure-white: #fff;
+$color-transparent: #fff0;
 
 // Components
-$color-header: $color-grey;
-$color-button: $color-grey-dark;
+$color-button: $color-green;
+$color-button-disabled: $color-grey-light;
+$color-button-text: $color-white;
+$color-button-text-disabled: $color-grey;
 
 // Font
-$color-font: $color-grey-dark;
-$color-font-light: $color-white;
+$color-font: $color-white;
+$color-font-muted: $color-grey-lighter;
+$color-font-dark: $color-grey-dark;
+$color-font-link: $color-blue-light;
 
 // Background
 $color-background: $color-white;
-$color-background-secondary: $color-grey;
-$color-background-dark: $color-grey-dark;
-$color-background-light: $color-grey-light;
+$color-background-secondary: $color-grey-lighter;
+$color-background-colour: $color-green;
+$color-background-dark: $color-black;
 
-// Images
-$color-images-background: $color-grey;
+// Slider
+$color-slider-background: $color-grey;
+$color-slider-start: $color-red;
+$color-slider-end: $color-green;
+$color-slider-pointer-hover: $color-green-translucid;
+
+// Single and multiple option
+$color-option-background: $color-pure-white;
+$color-option-border: $color-grey-light;
+$color-option-background-active: $color-green;
+$color-option-border-active: $color-font;

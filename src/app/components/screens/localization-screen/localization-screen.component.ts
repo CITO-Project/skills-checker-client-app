@@ -1,8 +1,9 @@
-import { Component,
- OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CoursesService } from 'src/app/services/courses.service';
 import { Course } from 'src/app/models/course';
 import { CommonService } from 'src/app/services/common.service';
+import { Observable } from 'rxjs';
+import { Result } from 'src/app/models/result';
 
 @Component({
   selector: 'app-localization-screen',
@@ -13,7 +14,9 @@ import { CommonService } from 'src/app/services/common.service';
 })
 export class LocalizationScreenComponent implements OnInit {
 
+  public courses: Course[] = [];
   public IRELAND_COUNTIES = [
+    'Online',
     'Antrim',
     'Armagh',
     'Carlow',
@@ -48,35 +51,48 @@ export class LocalizationScreenComponent implements OnInit {
     'Wicklow'
   ];
 
-  private courses: Course[] = [];
-  public filteredCourses: Course[] = [];
-  private selectedCounty = '';
+  private results: Result;
 
-  constructor(private courseService: CoursesService, private commonService: CommonService) { }
+  constructor(private courseService: CoursesService, private commonService: CommonService) {
+    const extras = this.commonService.getExtras();
+    if (extras !== undefined && extras.state !== undefined) {
+      this.results = extras.state as Result;
+    } else {
+      commonService.goTo('results');
+    }
+  }
 
   ngOnInit() {
-    this.courseService.loadCourses().subscribe( () => {
-      this.courses = this.courseService.getCourses();
-      this.updateCourses();
-    });
+    if (sessionStorage.length > 0) {
+      this.courses = [];
+      for (let i = 0; i < sessionStorage.length; i++) {
+        this.courses.push(JSON.parse(sessionStorage.getItem(sessionStorage.key(i))));
+      }
+    } else {
+      this.setCounty('all');
+    }
+  }
+
+  loadCourses(results: Result, location: string): Observable<Course[]> {
+    return this.courseService.retrieveCourses(results, location);
   }
 
   setCounty(county: string) {
-    this.selectedCounty = county;
-    this.updateCourses();
+    this.updateCourses(county);
   }
 
-  updateCourses() {
-    if (this.selectedCounty === 'all' || this.selectedCounty === '') {
-      this.filteredCourses = this.courses;
-    } else {
-      this.filteredCourses = [];
-      this.courses.forEach( (course: Course) => {
-        if (course.area === this.selectedCounty) {
-          this.filteredCourses.push(course);
-        }
-      });
+  updateCourses(county: string = 'all') {
+    const location = county === 'all' ? '' : county;
+    this.loadCourses(this.results, location).subscribe( (courses: Course[]) => {
+      this.courses = courses;
+    });
+  }
+
+  getCourses(priority: string): Course[] {
+    if (!this.courses) {
+      return [];
     }
+    return this.courses.filter( course => course.priority === priority);
   }
 
   loadLink(link: string) {

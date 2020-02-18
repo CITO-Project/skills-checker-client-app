@@ -8,6 +8,9 @@ import { HowToScreenComponent } from './components/screens/how-to-screen/how-to-
 import { ScenariosScreenComponent } from './components/screens/scenarios-screen/scenarios-screen.component';
 import { ResultsScreenComponent } from './components/screens/results-screen/results-screen.component';
 import { LocalizationScreenComponent } from './components/screens/localization-screen/localization-screen.component';
+// tslint:disable-next-line:max-line-length
+import { ScenarioIntroductionScreenComponent } from './components/screens/scenario-introduction-screen/scenario-introduction-screen.component';
+import { CourseScreenComponent } from './components/screens/course-screen/course-screen.component';
 
 
 const routes: Routes = [
@@ -44,6 +47,16 @@ const routes: Routes = [
   {
     path: 'localization',
     component: LocalizationScreenComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'scenario-introduction',
+    component: ScenarioIntroductionScreenComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'course/:courseid',
+    component: CourseScreenComponent,
     pathMatch: 'full'
   },
   {

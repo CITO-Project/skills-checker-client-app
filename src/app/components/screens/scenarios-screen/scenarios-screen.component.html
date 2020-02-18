@@ -1,16 +1,24 @@
-<app-header></app-header>
-<app-media *ngIf="!!scenario" [resource]='scenario.resource'></app-media>
+<app-header [text]='!!category ? category.text : "default"' [skip]='!(currentScenario === 0 && currentQuestion === 0)'></app-header>
+<app-media *ngIf="!!scenario" [resource]='scenario.resource' replay=true></app-media>
 <div class="content d-flex flex-column align-items-center text-center">
-  <div id="header">
-    <div class="heading" *ngIf="!!interest">{{ interest.text }}</div>
-    <div class="description" *ngIf="!!question">{{ question.description }}</div>
+  <div id="header" *ngIf="!!scenario">
+    <div class="heading">{{ scenario.text }}</div>
+    <div class="description text" *ngIf="currentQuestion === 0">{{ scenario.description }}</div>
   </div>
-  <app-question *ngIf="!!question" [(question)]="question" [(error)]="errorMessage" (answer)="processAnswer($event)"></app-question>
+  <hr>
+  <app-question
+  *ngIf="!!question"
+  [(question)]="question"
+  [(error)]="errorMessage"
+  (answer)="processAnswer($event)"
+  [(questionAnswers)]="questionAnswers"
+  [initialAnswer]="currentAnswer"
+  ></app-question>
 
 </div>
 <app-navigate-button
   backText="{{ btnBack }}"
   forwardText="{{ btnForward }}"
   (backEvent)="previousQuestion()"
-  (forwardEvent)="saveAnswer()"
+  (forwardEvent)="nextQuestion()"
   ></app-navigate-button>

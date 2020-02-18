@@ -1,9 +1,11 @@
-<div class="buttons d-flex justify-content-around align-items-center">
-    <ng-template #singleButton [ngIf]="text" [ngIfElse]="multipleButtons">
-      <button class="button" id="single" type="button" mdbBtn mdbWavesEffect (click)="btnClick()" block="true">{{ text }}</button>
-  </ng-template>
-  <ng-template #multipleButtons>
-      <button class="button" id="back" type="button" mdbBtn mdbWavesEffect (click)="btnClickBack()" block="true">{{ backText }}</button>
-      <button class="button" id="forward" type="button" mdbBtn mdbWavesEffect (click)="btnClickForward()" block="true">{{ forwardText }}</button>
-  </ng-template>
+<div id="buttons">
+  <div class="buttons d-flex justify-content-around align-items-center">
+      <ng-template #singleButton [ngIf]="!!text" [ngIfElse]="multipleButtons">
+        <button class="button" id="single" type="button" mdbBtn mdbWavesEffect (click)="btnClick()">{{ text }}</button>
+    </ng-template>
+    <ng-template #multipleButtons>
+        <button class="button" id="back" type="button" mdbBtn mdbWavesEffect (click)="btnClickBack()">{{ backText }}</button>
+        <button class="button" id="forward" type="button" mdbBtn mdbWavesEffect (click)="btnClickForward()">{{ forwardText }}</button>
+    </ng-template>
+  </div>
 </div>

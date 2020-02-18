@@ -1,0 +1,25 @@
+@import '../../../../_imports.scss';
+
+.container {
+  margin-top: $header-height * 2;
+  word-break: break-word;
+}
+
+.heading {
+  margin-top: 0;
+}
+
+.text, .extra .col-12 {
+  margin-bottom: 70px;
+  .font-weight-bold {
+    white-space: break-spaces;
+  }
+}
+
+.text {
+  white-space: pre-line;
+}
+
+span {
+  display: inline-block;
+}

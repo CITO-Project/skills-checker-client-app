@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 export class CommonService {
 
   private apiUrl = 'http://localhost:3000/nala';
+  private RESOURCE_PATH = 'assets/';
 
 
   constructor(private router: Router) { }
@@ -23,16 +24,62 @@ export class CommonService {
     return this.apiUrl;
   }
 
-  goTo(url: string): void {
-    this.router.navigate(['/' + url]);
+  getExtras(): NavigationExtras {
+    return this.router.getCurrentNavigation().extras;
   }
 
-  log(data: any): void {
-    console.log( !!data ? data : 'test' );
+  goTo(url: string, extras?: object): void {
+    this.router.navigate(['/' + url], { state: extras });
+  }
+
+  log(data?: any): void {
+    const currentdate = new Date();
+    const datetime = '[' +
+      this.addZero(currentdate.getDate()) + '/' +
+      this.addZero(currentdate.getMonth() + 1)  + '/' +
+      currentdate.getFullYear() + ' @ ' +
+      this.addZero(currentdate.getHours()) + ':' +
+      this.addZero(currentdate.getMinutes()) + ':' +
+      this.addZero(currentdate.getSeconds()) + '.' +
+      this.addZeroMiliseconds(currentdate.getMilliseconds()) + ']';
+    console.log( datetime + ' >> ', (data !== undefined ? data : 'check') );
+  }
+
+  addZero(value: number): string {
+    return value < 10 ? '0' + value : '' + value;
+  }
+
+  addZeroMiliseconds(value: number): string {
+    return value < 100 ? '0' + this.addZero(value) : '' + value;
   }
 
   loadLink(link: string) {
-    window.location.href = link;
+    window.open(link, '_blank');
+  }
+
+  getPath(name: string, type: string): string {
+    let r = '';
+    const file = name.split('/').pop();
+    switch (type) {
+      case 'images':
+      case 'icons':
+      case 'resources':
+        r = this.RESOURCE_PATH + type + '/' + file;
+        break;
+    }
+    return r;
+  }
+
+  getIconPath(name: string): string {
+    return this.getPath(name, 'icons');
+  }
+
+  getImagePath(name: string): string {
+    return this.getPath(name, 'images');
+  }
+
+  getResourcePath(name: string): string {
+    return this.getPath(name, 'resources');
   }
 
 }

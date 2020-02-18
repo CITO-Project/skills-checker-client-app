@@ -1,23 +1,26 @@
 @import '../../../../_imports.scss';
 
-$separator-between-courses: 20px;
-
 
 #content {
-  padding: 0 20px;
-  color: $color-font;
+  padding: 0 17px;
+  color: $color-font-dark;
 }
 
 #header {
   text-align: center;
   .title {
     letter-spacing: 1px;
-    font-size: 1.6em;
+    font-size: 160%;
+    font-weight: 400;
     padding: 20px 0;
+    margin-top: 40px;
   }
   .description {
-    font-size: .9em;
+    font-size: 90%;
     padding-bottom: 20px;
+  }
+  .custom-select {
+    font-size: 120%;
   }
 }
 
@@ -26,10 +29,17 @@ $separator-between-courses: 20px;
   text-align: center;
 }
 
-.add-padding-right {
-  padding-right: $separator-between-courses/2;
-}
-
-.add-padding-left {
-  padding-left: $separator-between-courses/2;
+.learning-oportunities{
+  padding: 10px 20px;
+  .heading {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 100%;
+    font-weight: 400;
+    text-align: left;
+    padding-left: 10px;
+  }
+  .course {
+    width: 100%;
+  }
 }

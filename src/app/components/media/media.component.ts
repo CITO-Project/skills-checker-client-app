@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { CommonService } from 'src/app/services/common.service';
+import { VgAPI } from 'videogular2/compiled/core';
 
 @Component({
   selector: 'app-media',
@@ -7,16 +9,15 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 })
 export class MediaComponent implements OnInit, OnChanges {
 
-  private RESOURCE_PATH = 'assets/resources/';
-
   @Input() height: string;
   @Input() resource: string;
+  @Input() replay: boolean;
 
   public resourceFile: string;
   public supportedVideo = ['mp4', 'webm', 'ogg'];
   public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
 
-  constructor() { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
     this.loadResource();
@@ -29,22 +30,10 @@ export class MediaComponent implements OnInit, OnChanges {
   }
 
   loadResource() {
-    const extension = this.getExtension();
     if (this.resource === undefined) {
       console.error('Need to provide resource to show > ', this.resource);
     } else {
-      switch (extension) {
-        case 'png':
-          this.resourceFile = this.RESOURCE_PATH + this.resource;
-          break;
-        case 'mp4':
-          this.resourceFile = this.RESOURCE_PATH + this.resource;
-          const video = document.getElementById('video');
-          if (!!video) {
-            video.children[0].setAttribute('src', this.resourceFile);
-          }
-          break;
-      }
+      this.resourceFile = this.commonService.getResourcePath(this.resource);
     }
   }
 

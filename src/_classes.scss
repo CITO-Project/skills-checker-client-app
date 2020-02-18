@@ -1,0 +1,111 @@
+@import './_color-variables.scss';
+@import './_mixins.scss';
+@import './_variables.scss';
+
+.box {
+  border-radius: 10px;
+  @include setStyleTablet {
+    border-radius: 20px;
+  }
+}
+
+.button {
+  display: inline-block;
+  margin: 0 20px;
+  border-radius: 50px;
+  min-height: $bottom-height;
+  background-color: $color-button;
+  @include gradient($color-button);
+
+  color: $color-button-text;
+  font-weight: 600;
+  font-size: 100%;
+  cursor: pointer;
+  text-align: center;
+  $vertical-padding: .7em;
+  padding-top: $vertical-padding;
+  padding-bottom: $vertical-padding;
+}
+
+.red {
+  $color: $color-red;
+  background-color: $color;
+  &.shadows {
+    @include shadows($color);
+  }
+  &.gradient {
+    @include gradient($color);
+  }
+}
+
+.blue {
+  $color: $color-blue;
+  background-color: $color;
+  &.shadows {
+    @include shadows($color);
+  }
+  &.gradient {
+    @include gradient($color);
+  }
+}
+
+.yellow {
+  $color: $color-yellow;
+  background-color: $color;
+  &.shadows {
+    @include shadows($color);
+  }
+  &.gradient {
+    @include gradient($color);
+  }
+}
+
+.green {
+  $color: $color-green;
+  background-color: $color;
+  &.shadows {
+    @include shadows($color);
+  }
+  &.gradient {
+    @include gradient($color);
+  }
+}
+
+.margins {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  @include setStyleTablet {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+}
+
+.heading {
+  color: $color-font-dark;
+  font-weight: 500;
+  text-align: center;
+  font-size: 130%;
+  letter-spacing: 1px;
+}
+
+.text {
+  color: $color-font-dark;
+  font-weight: 100;
+  text-align: left;
+  font-size: 100%;
+  letter-spacing: 0;
+}
+
+.muted {
+  @extend .text;
+  font-size: 80%;
+}
+
+.holder {
+  height: 1px;
+  width: 1px;
+  clear: both;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

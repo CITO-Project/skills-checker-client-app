@@ -1,27 +1,31 @@
 @import '../../../../_imports.scss';
 
 #description {
-  color: $color-font;
+  color: $color-font-dark;
   text-align: center;
-  padding: 30px 50px;
+  padding: 30px;
 
-  .main {
-    font-size: 1.5em;
-    font-weight: 100;
+  .heading {
+    margin-bottom: 30px;
   }
-
   .text {
-    font-weight: 400;
-    margin: 30px 0;
+    text-align: center;
+    margin-bottom: 50px;
   }
-
-  .start {
-    padding: 10px 50px;
-    margin: 30px 0;
-    background-color: $color-background-dark;
-    color: $color-font-light;
-    font-size: 1.2em;
-    cursor: pointer;
+  .muted {
+    text-align: center;
+  }
+  .button {
+    margin-bottom: 30px;
+    background-image: linear-gradient($color-blue, $color-blue);
+    padding: 0 60px;
+    white-space: pre;
+    @include setStyleTablet {
+      padding: 20px 100px;
+      i::before {
+        font-size: 200%;
+      }
+    }
   }
 
 }
