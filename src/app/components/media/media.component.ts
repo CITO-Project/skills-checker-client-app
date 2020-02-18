@@ -14,6 +14,7 @@ export class MediaComponent implements OnInit, OnChanges {
   @Input() replay: boolean;
 
   public resourceFile: string;
+  public subtitleFile: string;
   public supportedVideo = ['mp4', 'webm', 'ogg'];
   public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
 
@@ -34,11 +35,20 @@ export class MediaComponent implements OnInit, OnChanges {
       console.error('Need to provide resource to show > ', this.resource);
     } else {
       this.resourceFile = this.commonService.getResourcePath(this.resource);
+      if (this.getType() === 'video') {
+        this.loadSubtitles();
+      }
     }
   }
 
   getExtension(): string {
     return this.resource.split('.').pop();
+  }
+
+  loadSubtitles() {
+    const r = this.resourceFile.split('.').slice(0, -1);
+    r.push('.vtt');
+    this.subtitleFile = r.join('');
   }
 
   getType(): string {

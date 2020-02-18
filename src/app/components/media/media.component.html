@@ -12,10 +12,12 @@
       <vg-controls *ngIf="!!replay" vgFor="singleVideo" [vgAutohide]="true" [vgAutohideTime]=".1">
         <vg-play-pause></vg-play-pause>
         <vg-scrub-bar></vg-scrub-bar>
+        <vg-track-selector></vg-track-selector>
         <vg-fullscreen></vg-fullscreen>
       </vg-controls>
       <video [vgMedia]="media" #media id="singleVideo" preload="auto" autoplay muted>
         <source [src]="resourceFile" type="video/mp4">
+        <track *ngIf="!!subtitleFile" kind="subtitles" label="English" [src]="subtitleFile" srclang="en" default>
       </video>
     </vg-player>
   </div>
