@@ -17,9 +17,6 @@ export class MediaComponent implements OnInit, OnChanges {
   public supportedVideo = ['mp4', 'webm', 'ogg'];
   public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
 
-  private vgAPI: VgAPI;
-  private isFirstTime = true;
-
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
@@ -51,17 +48,6 @@ export class MediaComponent implements OnInit, OnChanges {
       return 'video';
     } else {
       return '';
-    }
-  }
-
-  onPlayerReady(vgAPI: VgAPI): void {
-    this.vgAPI = vgAPI;
-  }
-
-  playVideo(): void {
-    if (this.isFirstTime) {
-      this.isFirstTime = false;
-      this.vgAPI.getDefaultMedia().play();
     }
   }
 

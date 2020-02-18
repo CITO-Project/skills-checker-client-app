@@ -7,8 +7,8 @@
   <!-- End Image -->
 
   <!-- Video -->
-  <div id="video" *ngSwitchCase="'video'" (mouseenter)="this.playVideo()">
-    <vg-player (onPlayerReady)="onPlayerReady($event)">
+  <div id="video" *ngSwitchCase="'video'">
+    <vg-player>
       <vg-controls *ngIf="!!replay" vgFor="singleVideo" [vgAutohide]="true" [vgAutohideTime]=".1">
         <vg-play-pause></vg-play-pause>
         <vg-scrub-bar></vg-scrub-bar>
