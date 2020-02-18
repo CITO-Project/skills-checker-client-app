@@ -22,10 +22,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToIndex() {
-    // DELETE this
-    console.log(this.dataLogService.getAll());
-    // this.commonService.goTo('');
-    // DELETE
+    this.commonService.goTo('');
   }
 
   goToResults() {

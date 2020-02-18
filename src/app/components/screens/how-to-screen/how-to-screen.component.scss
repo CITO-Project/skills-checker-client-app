@@ -19,8 +19,12 @@
     margin-bottom: 30px;
     background-image: linear-gradient($color-blue, $color-blue);
     padding: 0 60px;
+    white-space: pre;
     @include setStyleTablet {
       padding: 20px 100px;
+      i::before {
+        font-size: 200%;
+      }
     }
   }
 

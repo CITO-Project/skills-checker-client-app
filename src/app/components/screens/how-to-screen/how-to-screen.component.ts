@@ -16,6 +16,8 @@ export class HowToScreenComponent implements OnInit {
   public selectedInterest: string;
   public category: Category;
 
+  public scenariosReady = false;
+
   constructor(
     private commonService: CommonService,
     private dataLogService: DataLogService,
@@ -24,7 +26,9 @@ export class HowToScreenComponent implements OnInit {
   ngOnInit() {
     this.category = this.dataLogService.getCategory();
     this.retrieveInterest();
-    this.progressTrackerService.initializeTracker();
+    this.progressTrackerService.initializeTracker().subscribe( () => {
+      this.scenariosReady = true;
+    });
   }
 
   btnClick() {
