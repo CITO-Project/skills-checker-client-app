@@ -12,7 +12,9 @@
     min-width: 1px;
   }
   .description {
-    padding-left: 15px;
+    @include setStyleTablet{
+      padding-left: 15px;
+    }
   }
   .heading {
     color: $color-font;
