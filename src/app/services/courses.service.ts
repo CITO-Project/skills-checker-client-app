@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Course } from '../models/course';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CommonService } from './common.service';
+import { Result } from '../models/result';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +13,21 @@ export class CoursesService {
 
   constructor(private httpClient: HttpClient, private commonService: CommonService) { }
 
-  loadCourses(
-    literacyLvl?: number,
-    numeracyLvl?: number,
-    digitalSkillsLvl?: number,
+  retrieveCourses(
+    results: Result,
     location?: string
     ): Observable<Course[]> {
     const querry: string[] = [];
-    if (!!literacyLvl) {
-      querry.push('literacyLvl=' + literacyLvl);
-    }
-    if (!!numeracyLvl) {
-      querry.push('numeracyLvl=' + numeracyLvl);
-    }
-    if (!!digitalSkillsLvl) {
-      querry.push('digitalSkillsLvl=' + digitalSkillsLvl);
+    if (!!results) {
+      if (!!results.literacy) {
+        querry.push('literacyLvl=' + results.literacy.level);
+      }
+      if (!!results.numeracy) {
+        querry.push('numeracyLvl=' + results.numeracy.level);
+      }
+      if (!!results.digital_skills) {
+        querry.push('digitalSkillsLvl=' + results.digital_skills.level);
+      }
     }
     if (!!location) {
       querry.push('location=' + location);
@@ -40,8 +41,46 @@ export class CoursesService {
     }
     return this.httpClient.get(this.commonService.getApiUrl() + url)
       .pipe(map( (data: Course[]) => {
+        this.resetStorage();
+        data.map( (course: Course) => {
+          course.priority = results[course.skill].priority;
+          this.saveCourse(course);
+        });
         return data;
       })
     );
+  }
+
+  retrieveCourse(courseid: number): Observable<Course> {
+    const url = `/courses/${courseid}`;
+    return this.httpClient.get(this.commonService.getApiUrl() + url)
+      .pipe(map( (data: Course) => {
+        this.saveCourse(data);
+        return data;
+      })
+    );
+  }
+
+  saveCourse(course: Course): void {
+    if (!!course) {
+      sessionStorage.setItem('' + course.id, JSON.stringify(course));
+    }
+  }
+
+  loadCourse(courseid: number): Observable<Course> {
+    const course: Course = JSON.parse(sessionStorage.getItem(courseid + ''));
+    if (!!course) {
+      const r = new Observable<Course>( (observer: Observer<Course>) => {
+        observer.next(course);
+        observer.complete();
+      });
+      return r;
+    } else {
+      return this.retrieveCourse(courseid);
+    }
+  }
+
+  resetStorage(): void {
+    sessionStorage.clear();
   }
 }

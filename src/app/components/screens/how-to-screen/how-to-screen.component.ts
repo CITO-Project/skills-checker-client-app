@@ -4,6 +4,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
 import { Category } from 'src/app/models/category';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-how-to-screen',
@@ -15,6 +16,8 @@ export class HowToScreenComponent implements OnInit {
   public selectedInterest: string;
   public category: Category;
 
+  public scenariosReady = false;
+
   constructor(
     private commonService: CommonService,
     private dataLogService: DataLogService,
@@ -23,11 +26,15 @@ export class HowToScreenComponent implements OnInit {
   ngOnInit() {
     this.category = this.dataLogService.getCategory();
     this.retrieveInterest();
-    this.progressTrackerService.initializeTracker();
+    this.progressTrackerService.initializeTracker().subscribe( (data: Observable<void>) => {
+      data.subscribe( () => {
+        this.scenariosReady = true;
+      });
+    });
   }
 
   btnClick() {
-    this.progressTrackerService.nextScenario();
+    this.commonService.goTo('scenarios');
   }
 
   retrieveInterest() {

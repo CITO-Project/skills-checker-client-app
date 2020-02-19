@@ -43,8 +43,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
     this.dataLogService.loadQuestions(
       scenarioindex,
       this.dataLogService.getCategory().id,
-      this.scenario.interest,
-      this.scenario.id
+      this.scenario.interest
     ).subscribe();
     if (scenarioindex > 0) {
       this.previousScenarioText = this.dataLogService.getScenario(scenarioindex - 1).text;

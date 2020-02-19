@@ -2,7 +2,8 @@
 
 
 #content {
-  background: linear-gradient(to bottom, $color-background-colour, $color-background 250px);
+  background: linear-gradient(to bottom, $color-background-colour, transparent 250px);
+  padding: 20px 0px 30px;
 }
 
 .heading {
@@ -15,7 +16,6 @@
 }
 
 #result {
-  padding-top: 70px;
   text-align: center;
 
   .container-fluid {
@@ -23,9 +23,10 @@
   }
   .support {
     margin-top: 10px;
-    font-size: .95em;
+    font-size: 95%;
     font-weight: 200;
     text-shadow: 0 5px 8px $color-font-dark ;
+    text-align: center;
   }
   a {
     color: $color-font-link;
@@ -41,11 +42,13 @@
   box-shadow: 0 0 10px $color-background-dark;
   padding: 15px;
   margin-left: 10px;
-  font-size: .9em;
-  font-weight: 200;
   > .heading {
-    font-size: 1em;
+    font-size: 100%;
     font-weight: 600;
+  }
+  > .text {
+    text-align: center;
+    font-weight: 200;
   }
 }
 
@@ -69,7 +72,7 @@
 #pathway {
   .heading {
     color: $color-font-dark;
-    font-size: 1.5em;
+    font-size: 150%;
     margin-bottom: 10px;
     font-weight: 300;
     > img {
@@ -83,43 +86,30 @@
     font-weight: 200;
     font-size: 90%;
   }
-  .recommendations{
+  .learning-oportunities{
     background-color: $color-background-secondary;
-    padding: 0px 20px;
-    > .heading {
-      padding: 10px 0;
-      font-size: 1em;
+    padding: 10px 20px;
+    .heading {
+      margin-bottom: 10px;
+      font-size: 100%;
       font-weight: 400;
-      .text {
-        float: left;
-      }
-      .all {
-        color: $color-font-link;
-        float: right;
-        cursor: pointer;
-      }
-    }
-    .courses {
-      overflow-x: scroll;
-      .course {
-        display: inline-block;
-        margin-right: 20px;
-      }
+      text-align: left;
+      padding-left: 10px;
     }
   }
   .localization {
     padding-top: 20px;
     text-align: center;
     color: $color-font-dark;
-    .text{
+    .heading{
+      font-size: 100%;
       padding-bottom: 20px;
       font-weight: 400;
     }
     .button {
-      background-color: green;
-      color: $color-font;
       i {
         margin-right: 10px;
+        font-size: 100%;
       }
     }
   }

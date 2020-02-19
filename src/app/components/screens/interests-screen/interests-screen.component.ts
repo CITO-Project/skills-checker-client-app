@@ -39,12 +39,6 @@ export class InterestsScreenComponent implements OnInit {
   }
 
   selectInterest(interest: Interest): void {
-    interest = {
-      id: 3,
-      product: 1,
-      name: 'static_interest',
-      text: 'Static interest. Change afterwards'
-    };
     this.dataLogService.setInterest(interest);
     this.googleAnalyticsService.stopInterestTimer();
     if (this.dataLogService.getInterest().id === interest.id) {
