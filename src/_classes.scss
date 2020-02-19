@@ -72,8 +72,12 @@
 }
 
 .margins {
-  margin-top: 60px;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  @include setStyleTablet {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
 }
 
 .heading {

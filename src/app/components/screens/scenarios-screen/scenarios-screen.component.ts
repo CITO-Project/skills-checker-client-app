@@ -4,7 +4,6 @@ import { Scenario } from 'src/app/models/scenario';
 import { Question } from 'src/app/models/question';
 
 import { DataLogService } from 'src/app/services/data-log.service';
-import { QuestionService } from 'src/app/services/question.service';
 import { CommonService } from 'src/app/services/common.service';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
 import { Category } from 'src/app/models/category';
@@ -113,7 +112,6 @@ export class ScenariosScreenComponent implements OnInit {
 
   processAnswer(answer: number): void {
     this.currentAnswer = answer;
-    // console.log(this.currentAnswer);
   }
 
 }

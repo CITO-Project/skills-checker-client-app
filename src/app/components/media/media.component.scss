@@ -5,5 +5,14 @@
   overflow: hidden;
   img, vg-player {
     width: 100%;
+    z-index: 299;
   }
+}
+
+video::cue {
+  font-size: 140%;
+  font-weight: 600;
+  font-family: 'Raleway';
+  background-color: $color-background-secondary;
+  color: $color-green;
 }

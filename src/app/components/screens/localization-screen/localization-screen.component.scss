@@ -19,6 +19,9 @@
     font-size: 90%;
     padding-bottom: 20px;
   }
+  .custom-select {
+    font-size: 120%;
+  }
 }
 
 #courses{
@@ -26,18 +29,14 @@
   text-align: center;
 }
 
-.course {
-  margin-right: 20px;
-}
-
 .learning-oportunities{
-  padding: 10px 20px;
   .heading {
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 100%;
     font-weight: 400;
-    float: left;
+    text-align: left;
+    padding-left: 10px;
   }
   .course {
     width: 100%;
