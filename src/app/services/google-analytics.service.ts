@@ -10,11 +10,56 @@ declare let gtag: Function;
 })
 export class GoogleAnalyticsService {
 
-  private times = {
-    interest: {
-      time: 0
+  private starts: {
+    answer_interest: {
+      id?: number,
+      start?: number
+    },
+    answer_scenario: {
+      id?: number,
+      start?: number
+    },
+    answer_question: {
+      id?: number,
+      pedagogical_type?: string,
+      start?: number
+    },
+    select_interest: {
+      id?: number,
+      start?: number
+    },
+    review_results_per_interest: {
+      id?: number,
+      start?: number
+    },
+    use_app: {
+      start?: number
     }
   };
+
+  private counters: {
+    performed_clicks?: {
+      count?: number
+    },
+    corrected_questions_per_scenario?: {
+      id?: number,
+      count?: number
+    }
+    video_play_times?: {
+      id?: number,
+      count?: number
+    }
+  };
+
+  private EVENTS = [
+    'finished_test',
+    'skipped_test',
+    'click_link',
+    'click_course',
+    'loaded_location',
+    'selected_interest',
+    'start_app'
+  ];
 
   constructor(private router: Router, private commonService: CommonService) { }
 
@@ -27,49 +72,90 @@ export class GoogleAnalyticsService {
         }
       );
       }
-    }
-  );
+    });
+    this.initializeTrackers();
+  }
+
+  initializeTrackers(): void {
+    this.starts = {
+      answer_interest: {},
+      answer_scenario: {},
+      answer_question: {},
+      select_interest: {},
+      review_results_per_interest: {},
+      use_app: {}
+    };
+    this.counters = {
+      performed_clicks: {},
+      corrected_questions_per_scenario: {},
+      video_play_times: {}
+    };
   }
 
   eventEmitter(
     eventName: string,
-    eventCategory: string,
-    eventLabel: string = null,
-    eventValue: number = 2
+    eventValue: number = 1,
+    eventLabel: string = null
   ) {
     console.log(arguments);
     gtag('event', eventName, {
-      'event_category': eventCategory,
-      'event_label': eventLabel,
-      'value': eventValue
+      event_category: this.commonService.getProductName(),
+      event_label: eventLabel,
+      value: eventValue
     });
   }
 
-  sendEventInterestTime(time: number): void {
-    this.eventEmitter('interest-time-seconds', 'interest', 'time', time)
-  }
-
-  startTimer(label: string): void {
-    if (!!this.times[label]) {
-      this.times[label].time = (new Date()).getTime();
+  //#region Timer
+  startTimer(action: string, label?: string, pedagogicalType?: string): void {
+    if (!!this.starts[action]) {
+      this.starts[action].start = (new Date()).getTime();
+      this.starts[action].id = label;
+      if (action === 'answer_question') {
+        this.starts[action].pedagogical_type = pedagogicalType;
+      }
     }
   }
 
-  stopTimer(label: string): number {
-    let r = 0;
-    if (!!this.times[label]) {
-      r = (new Date()).getTime() - this.times[label].time;
-      this.times[label].time = 0;
+  stopTimer(action: string): void {
+    if (!!this.starts[action] && this.starts[action].start > -1) {
+      const time = (new Date()).getTime() - this.starts[action].start.getTime();
+      let actionQuestion = action;
+      if (action === 'answer_question') {
+        actionQuestion = 'answer_question_' + this.starts[action].pedagogical_type;
+      }
+      this.eventEmitter(actionQuestion, time, this.starts[action].id);
+      this.starts[action].start = -1;
+      this.starts[action].id = -1;
+      this.starts[action].pedagogical_type = null;
     }
-    return Math.floor(r / 1000);
+  }
+  //#endregion
+
+  //#region Counter
+  restartCounter(action: string, label?: string): void {
+    if (!!this.counters[action]) {
+      this.counters[action].count = 0;
+      this.counters[action].id = label;
+    }
   }
 
-  startInterestTimer(): void {
-    this.startTimer('interest');
+  addCounter(action: string): void {
+    if (!!this.counters[action]) {
+      ++this.counters[action];
+    }
   }
 
-  stopInterestTimer(): void {
-    const time = this.stopTimer('interest');
-    this.sendEventInterestTime(time);
+  stopCounter(action: string): void {
+    if (!!this.counters[action]) {
+      this.eventEmitter(action, this.counters[action]);
+      this.restartCounter(action);
+    }
+  }
+  //#endregion
+
+  addEvent(action: string, label?: string): void {
+    if (this.EVENTS.includes(action)) {
+      this.eventEmitter(action, 1, label);
+    }
   }
 }

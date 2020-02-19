@@ -13,5 +13,9 @@ export class AppComponent {
 
   constructor(private googleAnalyticsService: GoogleAnalyticsService) {
     googleAnalyticsService.initializeGA();
+
+    document.onclick = (event) => {
+      console.log('click');
+    };
   }
 }
