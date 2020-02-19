@@ -3,13 +3,10 @@
   <!-- Question text -->
   <div class="heading" *ngIf="question.pedagogical_type === 'task_question'">Your skills</div>
   <div class="question">
-    <div class='dimension heading' *ngIf="question.pedagogical_type.split('dimension_')[1] !== undefined; else non_dimension">
-      {{ question.pedagogical_type.split('dimension_')[1] }}
-    </div>
-    <ng-template #non_dimension>
+    <div>
       <div class="text">{{ question.question }}</div>
       <div *ngIf="question.pedagogical_type === 'challenging_skill'" class="muted">(Select all that apply)</div>
-    </ng-template>
+    </div>
     </div>
   <!-- End question text -->
 
