@@ -15,9 +15,11 @@ export class QuestionService {
   private QUESTION_ORDER = [
     'task_question',
     'challenging_skill',
-    'dimension_independence',
-    'dimension_confidence',
-    'dimension_fluency'
+    'dimension_independence_1',
+    'dimension_confidence_1',
+    'dimension_confidence_2',
+    'dimension_fluency_1',
+    'dimension_fluency_2'
   ];
 
   private CHALLENGING_ORDER = [

@@ -112,7 +112,6 @@ export class ScenariosScreenComponent implements OnInit {
 
   processAnswer(answer: number): void {
     this.currentAnswer = answer;
-    // console.log(this.currentAnswer);
   }
 
 }
