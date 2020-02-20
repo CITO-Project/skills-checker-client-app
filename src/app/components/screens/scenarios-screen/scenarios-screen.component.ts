@@ -54,7 +54,7 @@ export class ScenariosScreenComponent implements OnInit {
 
   nextQuestion() {
     if (this.saveAnswer()) {
-      this.progressTrackerService.next().subscribe((data: CustomResponse) => {
+      this.progressTrackerService.next(this.currentAnswer).subscribe((data: CustomResponse) => {
         this.updateData(data);
       });
     }

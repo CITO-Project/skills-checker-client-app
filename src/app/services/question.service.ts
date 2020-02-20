@@ -47,27 +47,6 @@ export class QuestionService {
     }
   }
 
-  shouldSkipScenario(question: Question, answer: number): boolean {
-    return false;
-    // answer = +answer;
-    // let r = false;
-    // switch (question.pedagogical_type) {
-    //   case 'task_question':
-    //     if (answer === question.answers.length - 1) {
-    //       r = true;
-    //     }
-    //     break;
-    //   case 'dimension_independence':
-    //   case 'dimension_confidence':
-    //   case 'dimension_fluency':
-    //     if (answer === question.answers.length - 1) {
-    //       r = true;
-    //     }
-    //     break;
-    // }
-    // return r;
-  }
-
   getPedagogicalType(order: number): string {
     return this.QUESTION_ORDER[order];
   }

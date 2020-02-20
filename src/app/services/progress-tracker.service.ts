@@ -25,7 +25,7 @@ export class ProgressTrackerService {
   constructor(
     private commonService: CommonService,
     private dataLogService: DataLogService,
-    questionService: QuestionService) {
+    private questionService: QuestionService) {
     this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
   }
 
@@ -61,8 +61,11 @@ export class ProgressTrackerService {
     }));
   }
 
-  next(): Observable<CustomResponse> {
+  next(answerValue?: number): Observable<CustomResponse> {
     this.question++;
+    if (this.shouldSkip(answerValue === undefined ? -1 : answerValue)) {
+      this.question++;
+    }
     if (this.question >= this.QUESTIONS_PER_SCENARIO) {
       return this.nextScenario();
     } else {
@@ -72,10 +75,17 @@ export class ProgressTrackerService {
 
   previous(): Observable<CustomResponse> {
     this.question--;
+    if (this.isPreviousSkipped()) {
+      this.question--;
+    }
     if (this.question <= -1) {
-      this.previousScenario();
-      this.question = this.QUESTIONS_PER_SCENARIO - 1;
-      return this.getResponse(true) as Observable<CustomResponse>;
+      return this.previousScenario().pipe(map( () => {
+        this.question = this.QUESTIONS_PER_SCENARIO - 1;
+        if (this.isPreviousSkipped()) {
+          this.question--;
+        }
+        return this.getResponse() as CustomResponse;
+      }));
     } else {
       return this.getResponse(true) as Observable<CustomResponse>;
     }
@@ -105,6 +115,30 @@ export class ProgressTrackerService {
       this.dataLogService.getCategory().id,
       this.dataLogService.getInterest().id
     );
+  }
+
+  shouldSkip(answer: number): boolean {
+    let r = false;
+    if (this.question > 0) {
+      const previousQuestion = this.question - 1;
+      if (
+        previousQuestion === this.questionService.getQuestionOrder().indexOf('dimension_confidence_1') ||
+        previousQuestion === this.questionService.getQuestionOrder().indexOf('dimension_fluency_1')
+        ) {
+        if (+answer === 0) {
+          r = true;
+        }
+      }
+    }
+    return r;
+  }
+
+  isPreviousSkipped(): boolean {
+    let r = false;
+    if (this.dataLogService.getAnswer(this.scenario, this.question) < 0) {
+      r = true;
+    }
+    return r;
   }
 
   getResponse(asObservable: boolean = false): CustomResponse | Observable<CustomResponse> {
