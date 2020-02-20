@@ -9,6 +9,7 @@ import { QuestionService } from './question.service';
 import { Category } from '../models/category';
 import { Interest } from '../models/interest';
 import { CustomResponse } from '../models/custom-response';
+import { GoogleAnalyticsService } from './google-analytics.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class ProgressTrackerService {
   constructor(
     private commonService: CommonService,
     private dataLogService: DataLogService,
-    private questionService: QuestionService) {
+    private questionService: QuestionService,
+    private googleAnalyticsService: GoogleAnalyticsService) {
     this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
   }
 
@@ -93,6 +95,7 @@ export class ProgressTrackerService {
   nextScenario(): Observable<CustomResponse> {
     this.scenario++;
     if (this.scenario >= this.NUMBER_OF_SCENARIOS) {
+      this.googleAnalyticsService.addEvent('finished_test', '' + this.dataLogService.getInterest().id);
       this.commonService.goTo('results');
     } else {
       this.question = 0;

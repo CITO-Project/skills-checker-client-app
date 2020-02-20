@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private googleAnalyticsService: GoogleAnalyticsService) {
     googleAnalyticsService.initializeGA();
 
-    window.addEventListener("beforeunload", () => {
+    window.addEventListener('beforeunload', () => {
       googleAnalyticsService.stopTimer('time_use_app');
       googleAnalyticsService.stopTimer('time_review_results');
 
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.googleAnalyticsService.startTimer('time_use_app');
+    this.googleAnalyticsService.restartTimer('time_use_app');
     this.googleAnalyticsService.addEvent('started_app');
   }
 }

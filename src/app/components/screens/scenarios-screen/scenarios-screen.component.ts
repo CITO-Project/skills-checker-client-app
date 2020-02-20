@@ -59,14 +59,6 @@ export class ScenariosScreenComponent implements OnInit {
   nextQuestion() {
     if (this.saveAnswer()) {
       this.googleAnalyticsService.stopTimer('time_answer_question');
-      if (!!this.data.isLastQuestion) {
-        this.googleAnalyticsService.stopTimer('time_answer_interest');
-        this.googleAnalyticsService.stopCounter('count_count_corrected_questions_per_scenario');
-        this.googleAnalyticsService.stopCounter('count_plays_per_scenario');
-      }
-      if (!!this.data.isLastQuestionInScenario) {
-        this.googleAnalyticsService.stopTimer('time_answer_scenario');
-      }
       this.progressTrackerService.next(this.currentAnswer).subscribe((data: CustomResponse) => {
         this.updateData(data);
       });
@@ -91,14 +83,18 @@ export class ScenariosScreenComponent implements OnInit {
       this.btnForward = 'See results';
     }
     if (data.isFirstQuestion) {
-      this.googleAnalyticsService.startTimer('time_answer_interest', '' + this.dataLogService.getInterest().id);
+      this.googleAnalyticsService.restartTimer('time_answer_interest', '' + this.dataLogService.getInterest().id);
+    }
+    if (data.isFirstQuestionInScenario) {
+      this.googleAnalyticsService.stopTimer('time_answer_scenario');
+      this.googleAnalyticsService.stopCounter('count_corrected_questions_per_scenario');
+      this.googleAnalyticsService.stopCounter('count_plays_per_scenario');
+
+      this.googleAnalyticsService.restartTimer('time_answer_scenario', '' + this.scenario.id);
       this.googleAnalyticsService.restartCounter('count_corrected_questions_per_scenario', '' + this.dataLogService.getInterest().id);
       this.googleAnalyticsService.restartCounter('count_plays_per_scenario', '' + this.dataLogService.getInterest().id);
     }
-    if (data.isFirstQuestionInScenario) {
-      this.googleAnalyticsService.startTimer('time_answer_scenario', '' + this.scenario.id);
-    }
-    this.googleAnalyticsService.startTimer('time_answer_question', '' + this.question.id, this.question.pedagogical_type);
+    this.googleAnalyticsService.restartTimer('time_answer_question', '' + this.question.id, this.question.pedagogical_type);
   }
 
   saveAnswer(): boolean {

@@ -95,15 +95,15 @@ export class GoogleAnalyticsService {
     eventLabel: string = null
   ) {
     console.log(arguments);
-    gtag('event', eventName, {
-      event_category: this.commonService.getProductName(),
-      event_label: eventLabel,
-      value: eventValue
-    });
+    // gtag('event', eventName, {
+    //   event_category: this.commonService.getProductName(),
+    //   event_label: eventLabel,
+    //   value: eventValue
+    // });
   }
 
   //#region Timer
-  startTimer(action: string, label?: string, pedagogicalType?: string): void {
+  restartTimer(action: string, label?: string, pedagogicalType?: string): void {
     if (!!this.starts[action]) {
       this.starts[action].start = (new Date()).getTime();
       this.starts[action].id = label;
@@ -111,12 +111,12 @@ export class GoogleAnalyticsService {
         this.starts[action].pedagogical_type = pedagogicalType;
       }
     }
+  }
 
-    // DELETE this
-    else {
-      console.log('not recognized', action);
+  startTimer(action: string, label?: string, pedagogicalType?: string): void {
+    if (!!this.starts[action] && !(this.starts[action].start >= 0)) {
+      this.restartTimer(action, label, pedagogicalType);
     }
-    //
   }
 
   stopTimer(action: string, label?: string): void {
@@ -134,12 +134,6 @@ export class GoogleAnalyticsService {
       this.starts[action].id = -1;
       this.starts[action].pedagogical_type = null;
     }
-
-    // DELETE this
-    else {
-      console.log('not recognized', action);
-    }
-    //
   }
   //#endregion
 
@@ -149,37 +143,20 @@ export class GoogleAnalyticsService {
       this.counters[action].count = 0;
       this.counters[action].id = label;
     }
-
-    // DELETE this
-    else {
-      console.log('not recognized', action);
-    }
-    //
   }
 
   addCounter(action: string): void {
-    if (!!this.counters[action]) {
-      ++this.counters[action];
+    if (!!this.counters[action] && this.counters[action].count >= 0) {
+      this.counters[action].count += 1;
     }
-
-    // DELETE this
-    else {
-      console.log('not recognized', action);
-    }
-    //
   }
 
   stopCounter(action: string): void {
-    if (!!this.counters[action]) {
-      this.eventEmitter(action, this.counters[action]);
-      this.restartCounter(action);
+    if (!!this.counters[action] && this.counters[action].count >= 0) {
+      this.eventEmitter(action, this.counters[action].count, this.counters[action].id);
+      this.counters[action].count = -1;
+      this.counters[action].id = -1;
     }
-
-    // DELETE this
-    else {
-      console.log('not recognized', action);
-    }
-    //
   }
   //#endregion
 
@@ -187,11 +164,5 @@ export class GoogleAnalyticsService {
     if (this.EVENTS.includes(action)) {
       this.eventEmitter(action, 1, label);
     }
-
-    // DELETE this
-    else {
-      console.log('not recognized', action);
-    }
-    //
   }
 }
