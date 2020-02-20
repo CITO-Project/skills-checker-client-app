@@ -55,12 +55,12 @@
           font-size: 70%;
           display: block;
           text-align: center;
-          margin-top: 4px;
           @include setStyleTablet {
             $size: 35px;
             width: $size + $border * 2;
             height: $size;
-            margin-top: 7px;
+            margin-top: 3px;
+            padding-top: 3px;
             margin-right: 20px;
           }
         }
@@ -152,7 +152,7 @@
       &:after {
         @include font-awesome;
         content: '\f0dc' !important;
-        transform: translateX(13px) translateY(-2px) rotate(90deg);
+        transform: rotate(90deg);
         color: $color-font !important;
         background-color: transparent !important;
         font-size: 160%;
@@ -160,7 +160,7 @@
         left: 13px !important;
         @include setStyleTablet {
           top: 12px !important;
-          left: 38px !important;
+          left: 43px !important;
         }
       }
       &:hover {

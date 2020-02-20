@@ -53,7 +53,7 @@
 
 #description .features > .feature .icon {
   @include setStyleTablet {
-    $size: 150px;
+    $size: 120px;
     width: $size;
     height: $size;
   }
