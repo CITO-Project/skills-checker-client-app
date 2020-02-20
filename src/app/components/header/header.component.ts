@@ -10,8 +10,6 @@ import { DataLogService } from 'src/app/services/data-log.service';
 export class HeaderComponent implements OnInit {
 
   @Input() text: string;
-  @Input() skip: boolean;
-
 
   constructor(private commonService: CommonService, private dataLogService: DataLogService) { }
 

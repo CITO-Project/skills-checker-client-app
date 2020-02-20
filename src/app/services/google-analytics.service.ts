@@ -50,7 +50,6 @@ export class GoogleAnalyticsService {
 
   private EVENTS = [
     'finished_test',
-    'skipped_test',
     'clicked_link',
     'selected_course',
     'selected_location',
@@ -94,7 +93,6 @@ export class GoogleAnalyticsService {
     eventValue: number = 1,
     eventLabel: string = null
   ) {
-    console.log(arguments);
     // gtag('event', eventName, {
     //   event_category: this.commonService.getProductName(),
     //   event_label: eventLabel,
