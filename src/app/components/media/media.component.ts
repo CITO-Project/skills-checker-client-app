@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { VgAPI } from 'videogular2/compiled/core';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-media',
@@ -13,12 +14,15 @@ export class MediaComponent implements OnInit, OnChanges {
   @Input() resource: string;
   @Input() replay: boolean;
 
+  private vgApi: VgAPI;
+  private videoFinished = false;
+
   public resourceFile: string;
   public subtitleFile: string;
   public supportedVideo = ['mp4', 'webm', 'ogg'];
   public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
 
-  constructor(private commonService: CommonService) { }
+  constructor(private commonService: CommonService, private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
     this.loadResource();
@@ -59,6 +63,23 @@ export class MediaComponent implements OnInit, OnChanges {
     } else {
       return '';
     }
+  }
+
+  onPlayerReady(vgAPI: VgAPI): void {
+    this.vgApi = vgAPI;
+    this.addListenersToVideo();
+    this.googleAnalyticsService.addCounter('count_plays_per_scenario');
+  }
+
+  addListenersToVideo(): void {
+    this.vgApi.getDefaultMedia().subscriptions.ended.subscribe( () => {
+      this.videoFinished = true;
+    });
+    this.vgApi.getDefaultMedia().subscriptions.playing.subscribe( () => {
+      if (!!this.videoFinished) {
+        this.googleAnalyticsService.addCounter('count_plays_per_scenario');
+      }
+    });
   }
 
 }

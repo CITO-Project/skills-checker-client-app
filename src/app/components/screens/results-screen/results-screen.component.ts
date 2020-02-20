@@ -6,6 +6,7 @@ import { CoursesService } from 'src/app/services/courses.service';
 import { Course } from 'src/app/models/course';
 import { Observable } from 'rxjs';
 import { Result } from 'src/app/models/result';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-results-screen',
@@ -21,7 +22,8 @@ export class ResultsScreenComponent implements OnInit {
     private commonService: CommonService,
     private dataLogService: DataLogService,
     private coursesService: CoursesService,
-    private dataProcessingService: DataProcessingService) { }
+    private dataProcessingService: DataProcessingService,
+    private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
     if (
@@ -34,6 +36,13 @@ export class ResultsScreenComponent implements OnInit {
     this.results = this.dataProcessingService.getResults(this.dataLogService.getAll());
     this.loadCourses(this.results).subscribe( (courses: Course[]) => {
       this.courses = courses;
+      this.googleAnalyticsService.stopTimer('time_answer_interest');
+      this.googleAnalyticsService.stopTimer('time_answer_scenario');
+      this.googleAnalyticsService.stopTimer('time_answer_question');
+      this.googleAnalyticsService.stopCounter('count_corrected_questions_per_scenario');
+      this.googleAnalyticsService.stopCounter('count_plays_per_scenario');
+
+      this.googleAnalyticsService.startTimer('time_review_results', '' + this.dataLogService.getInterest().id);
     });
   }
 
@@ -51,6 +60,7 @@ export class ResultsScreenComponent implements OnInit {
 
   selectNewInterest(): void {
     this.dataLogService.initializeLog();
+    this.googleAnalyticsService.stopTimer('time_review_results');
     this.commonService.goTo('categories');
   }
 

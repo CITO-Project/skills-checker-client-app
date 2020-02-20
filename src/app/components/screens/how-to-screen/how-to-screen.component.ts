@@ -5,6 +5,7 @@ import { DataLogService } from 'src/app/services/data-log.service';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
 import { Category } from 'src/app/models/category';
 import { Observable } from 'rxjs';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-how-to-screen',
@@ -21,7 +22,8 @@ export class HowToScreenComponent implements OnInit {
   constructor(
     private commonService: CommonService,
     private dataLogService: DataLogService,
-    private progressTrackerService: ProgressTrackerService) { }
+    private progressTrackerService: ProgressTrackerService,
+    private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
     this.category = this.dataLogService.getCategory();
@@ -34,6 +36,7 @@ export class HowToScreenComponent implements OnInit {
   }
 
   btnClick() {
+    this.googleAnalyticsService.addEvent('started_test');
     this.commonService.goTo('scenarios');
   }
 
