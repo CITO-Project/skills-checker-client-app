@@ -79,13 +79,12 @@ export class ProgressTrackerService {
       this.question--;
     }
     if (this.question <= -1) {
-      return this.previousScenario().pipe(map( () => {
-        this.question = this.QUESTIONS_PER_SCENARIO - 1;
-        if (this.isPreviousSkipped()) {
-          this.question--;
-        }
-        return this.getResponse() as CustomResponse;
-      }));
+      this.previousScenario();
+      this.question = this.QUESTIONS_PER_SCENARIO - 1;
+      if (this.isPreviousSkipped()) {
+        this.question--;
+      }
+      return this.getResponse(true) as Observable<CustomResponse>;
     } else {
       return this.getResponse(true) as Observable<CustomResponse>;
     }
