@@ -1,7 +1,10 @@
 @import '../../../../_imports.scss';
 
 #description {
-  padding: 30px 20px;
+  padding: 0px 20px;
+  @include setStyleTablet {
+    padding: 30px 20px;
+  }
 
   .main {
     padding: 10px;
@@ -11,7 +14,10 @@
 
   .text {
     text-align: center;
-    padding: 10px 20px;
+    padding: 0px 20px;
+    @include setStyleTablet {
+      padding: 10px 20px;
+    }
   }
 
   .features {
@@ -53,7 +59,7 @@
 
 #description .features > .feature .icon {
   @include setStyleTablet {
-    $size: 150px;
+    $size: 120px;
     width: $size;
     height: $size;
   }

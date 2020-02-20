@@ -1,5 +1,6 @@
-<app-header [text]='course.title'></app-header>
+<app-header text='default'></app-header>
 <div class="container" *ngIf="!!course">
+  <div class="heading">{{ course.title }}</div>
   <div class="row">
     <div class="col-12 col-md-8">
       <div class="row">
