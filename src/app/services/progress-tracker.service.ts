@@ -153,7 +153,7 @@ export class ProgressTrackerService {
         scenarioIndex: this.scenario,
         questionIndex: this.question,
         scenario: log.scenarios[this.scenario],
-        question: log.questions[this.question],
+        question: log.questions[this.scenario * this.QUESTIONS_PER_SCENARIO + this.question],
         question_answers: log.question_answers[this.question],
         answer: log.answers[this.question],
         isFirstQuestion: this.scenario === 0 && this.question === 0,
