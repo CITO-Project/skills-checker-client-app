@@ -16,3 +16,5 @@ os botons de navegacion son flotantes?
 // TODO: Change favicon
 // TODO: Add data control to interest-screen. If category has not been selected, rediect to category-screen
 // TODO: Fix text alignment on checkbox answers
+
+// IMPORTANT: Order of questions after first scenario. It is loading the wrong questions

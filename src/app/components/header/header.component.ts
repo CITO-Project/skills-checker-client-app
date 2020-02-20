@@ -25,8 +25,4 @@ export class HeaderComponent implements OnInit {
     this.commonService.goTo('');
   }
 
-  goToResults() {
-    this.commonService.goTo('results');
-  }
-
 }

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { GoogleAnalyticsService } from './google-analytics.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
-  private productName = 'nala'
+  private productName = 'nala';
   private apiUrl = 'http://localhost:3000/' + this.productName;
   private RESOURCE_PATH = 'assets/';
   private GATrackID = 'UA-157405394-1';
@@ -41,22 +42,22 @@ export class CommonService {
   log(...data: any): void {
     const currentdate = new Date();
     const datetime = '[' +
-      this.addZero(currentdate.getDate()) + '/' +
-      this.addZero(currentdate.getMonth() + 1)  + '/' +
+      this.addZeros('' + currentdate.getDate()) + '/' +
+      this.addZeros('' + currentdate.getMonth() + 1)  + '/' +
       currentdate.getFullYear() + ' @ ' +
-      this.addZero(currentdate.getHours()) + ':' +
-      this.addZero(currentdate.getMinutes()) + ':' +
-      this.addZero(currentdate.getSeconds()) + '.' +
-      this.addZeroMiliseconds(currentdate.getMilliseconds()) + ']';
+      this.addZeros('' + currentdate.getHours()) + ':' +
+      this.addZeros('' + currentdate.getMinutes()) + ':' +
+      this.addZeros('' + currentdate.getSeconds()) + '.' +
+      this.addZeros('' + currentdate.getMilliseconds(), 3) + ']';
     console.log( datetime + ' >> ', (data !== undefined ? data : 'check') );
   }
 
-  addZero(value: number): string {
-    return value < 10 ? '0' + value : '' + value;
-  }
-
-  addZeroMiliseconds(value: number): string {
-    return value < 100 ? '0' + this.addZero(value) : '' + value;
+  addZeros(value: string, nZeros: number = 2): string {
+    if (value.length >= nZeros) {
+      return value;
+    } else {
+      return this.addZeros('0' + value, nZeros);
+    }
   }
 
   loadLink(link: string) {

@@ -11,41 +11,38 @@ declare let gtag: Function;
 export class GoogleAnalyticsService {
 
   private starts: {
-    answer_interest: {
+    time_answer_interest: {
       id?: number,
       start?: number
     },
-    answer_scenario: {
+    time_answer_scenario: {
       id?: number,
       start?: number
     },
-    answer_question: {
+    time_answer_question: {
       id?: number,
       pedagogical_type?: string,
       start?: number
     },
-    select_interest: {
+    time_select_interest: {
       id?: number,
       start?: number
     },
-    review_results_per_interest: {
+    time_review_results: {
       id?: number,
       start?: number
     },
-    use_app: {
+    time_use_app: {
       start?: number
     }
   };
 
   private counters: {
-    performed_clicks?: {
-      count?: number
-    },
-    corrected_questions_per_scenario?: {
+    count_corrected_questions_per_scenario?: {
       id?: number,
       count?: number
     }
-    video_play_times?: {
+    count_plays_per_scenario?: {
       id?: number,
       count?: number
     }
@@ -54,11 +51,12 @@ export class GoogleAnalyticsService {
   private EVENTS = [
     'finished_test',
     'skipped_test',
-    'click_link',
-    'click_course',
-    'loaded_location',
+    'clicked_link',
+    'selected_course',
+    'selected_location',
     'selected_interest',
-    'start_app'
+    'started_app',
+    'started_test'
   ];
 
   constructor(private router: Router, private commonService: CommonService) { }
@@ -78,17 +76,16 @@ export class GoogleAnalyticsService {
 
   initializeTrackers(): void {
     this.starts = {
-      answer_interest: {},
-      answer_scenario: {},
-      answer_question: {},
-      select_interest: {},
-      review_results_per_interest: {},
-      use_app: {}
+      time_answer_interest: {},
+      time_answer_scenario: {},
+      time_answer_question: {},
+      time_select_interest: {},
+      time_review_results: {},
+      time_use_app: {}
     };
     this.counters = {
-      performed_clicks: {},
-      corrected_questions_per_scenario: {},
-      video_play_times: {}
+      count_corrected_questions_per_scenario: {},
+      count_plays_per_scenario: {}
     };
   }
 
@@ -110,24 +107,39 @@ export class GoogleAnalyticsService {
     if (!!this.starts[action]) {
       this.starts[action].start = (new Date()).getTime();
       this.starts[action].id = label;
-      if (action === 'answer_question') {
+      if (action === 'time_answer_question') {
         this.starts[action].pedagogical_type = pedagogicalType;
       }
     }
+
+    // DELETE this
+    else {
+      console.log('not recognized', action);
+    }
+    //
   }
 
-  stopTimer(action: string): void {
+  stopTimer(action: string, label?: string): void {
     if (!!this.starts[action] && this.starts[action].start > -1) {
-      const time = (new Date()).getTime() - this.starts[action].start.getTime();
+      if (!!label) {
+        this.starts[action].id = label;
+      }
+      const time = Math.round(((new Date()).getTime() - this.starts[action].start) / 1000);
       let actionQuestion = action;
-      if (action === 'answer_question') {
-        actionQuestion = 'answer_question_' + this.starts[action].pedagogical_type;
+      if (action === 'time_answer_question') {
+        actionQuestion = 'time_answer_question_' + this.starts[action].pedagogical_type;
       }
       this.eventEmitter(actionQuestion, time, this.starts[action].id);
       this.starts[action].start = -1;
       this.starts[action].id = -1;
       this.starts[action].pedagogical_type = null;
     }
+
+    // DELETE this
+    else {
+      console.log('not recognized', action);
+    }
+    //
   }
   //#endregion
 
@@ -137,12 +149,24 @@ export class GoogleAnalyticsService {
       this.counters[action].count = 0;
       this.counters[action].id = label;
     }
+
+    // DELETE this
+    else {
+      console.log('not recognized', action);
+    }
+    //
   }
 
   addCounter(action: string): void {
     if (!!this.counters[action]) {
       ++this.counters[action];
     }
+
+    // DELETE this
+    else {
+      console.log('not recognized', action);
+    }
+    //
   }
 
   stopCounter(action: string): void {
@@ -150,6 +174,12 @@ export class GoogleAnalyticsService {
       this.eventEmitter(action, this.counters[action]);
       this.restartCounter(action);
     }
+
+    // DELETE this
+    else {
+      console.log('not recognized', action);
+    }
+    //
   }
   //#endregion
 
@@ -157,5 +187,11 @@ export class GoogleAnalyticsService {
     if (this.EVENTS.includes(action)) {
       this.eventEmitter(action, 1, label);
     }
+
+    // DELETE this
+    else {
+      console.log('not recognized', action);
+    }
+    //
   }
 }

@@ -43,6 +43,7 @@ export class OrientationScreenComponent implements OnInit {
         this.dataLogService.setProduct(product);
       }
     );
+    this.googleAnalyticsService.stopTimer('time_review_results');
   }
 
   getPath(name: string): string {
@@ -50,7 +51,7 @@ export class OrientationScreenComponent implements OnInit {
   }
 
   onClick(): void {
-    this.googleAnalyticsService.startInterestTimer();
+    this.googleAnalyticsService.startTimer('time_select_interest');
     this.commonService.goTo('categories');
   }
 

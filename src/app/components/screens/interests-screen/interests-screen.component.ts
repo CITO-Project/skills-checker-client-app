@@ -40,8 +40,9 @@ export class InterestsScreenComponent implements OnInit {
 
   selectInterest(interest: Interest): void {
     this.dataLogService.setInterest(interest);
-    this.googleAnalyticsService.stopInterestTimer();
     if (this.dataLogService.getInterest().id === interest.id) {
+      this.googleAnalyticsService.stopTimer('time_select_interest', '' + interest.id);
+      this.googleAnalyticsService.addEvent('selected_interest', '' + interest.id);
       this.commonService.goTo('how-to');
     }
   }

@@ -4,6 +4,7 @@ import { Course } from 'src/app/models/course';
 import { CommonService } from 'src/app/services/common.service';
 import { Observable } from 'rxjs';
 import { Result } from 'src/app/models/result';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-localization-screen',
@@ -53,7 +54,10 @@ export class LocalizationScreenComponent implements OnInit {
 
   private results: Result;
 
-  constructor(private courseService: CoursesService, private commonService: CommonService) {
+  constructor(
+    private courseService: CoursesService,
+    private commonService: CommonService,
+    private googleAnalyticsService: GoogleAnalyticsService) {
     const extras = this.commonService.getExtras();
     if (extras !== undefined && extras.state !== undefined) {
       this.results = extras.state as Result;
@@ -83,6 +87,7 @@ export class LocalizationScreenComponent implements OnInit {
 
   updateCourses(county: string = 'all') {
     const location = county === 'all' ? '' : county;
+    this.googleAnalyticsService.addEvent('selected_location', location);
     this.loadCourses(this.results, location).subscribe( (courses: Course[]) => {
       this.courses = courses;
     });
