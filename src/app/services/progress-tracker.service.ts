@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Observable, Observer, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { CommonService } from './common.service';
 import { DataLogService } from './data-log.service';
+import { QuestionService } from './question.service';
+
 import { Category } from '../models/category';
 import { Interest } from '../models/interest';
-import { Question } from '../models/question';
-import { Scenario } from '../models/scenario';
-import { QuestionService } from './question.service';
-import { Observable, of, Observer } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Answer } from '../models/answer';
 import { CustomResponse } from '../models/custom-response';
 
 @Injectable({
@@ -17,8 +16,8 @@ import { CustomResponse } from '../models/custom-response';
 
 export class ProgressTrackerService {
 
-  private QUESTIONS_PER_SCENARIO;
-  private NUMBER_OF_SCENARIOS;
+  private QUESTIONS_PER_SCENARIO: number;
+  private NUMBER_OF_SCENARIOS: number;
 
   private scenario: number;
   private question: number;
@@ -28,18 +27,17 @@ export class ProgressTrackerService {
     private dataLogService: DataLogService,
     questionService: QuestionService) {
     this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
-
   }
 
-  initializeTracker(): Observable<void> {
+  initializeTracker(): Observable<Observable<void>> {
     const category = this.dataLogService.getCategory();
     const interest = this.dataLogService.getInterest();
     this.dataLogService.resetInterest();
     return this.loadScenarios(category, interest).pipe(map( () => {
       this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
-      this.loadStart().subscribe(() => {
+      return this.loadStart(this.NUMBER_OF_SCENARIOS).pipe(map (() => {
         this.question = -1;
-      });
+      }));
     }));
   }
 
@@ -53,9 +51,14 @@ export class ProgressTrackerService {
     }
   }
 
-  loadStart(): Observable<void> {
-    this.scenario = 0;
-    return this.loadScenario(this.scenario);
+  loadStart(numberOfScenarios: number): Observable<void> {
+    const r: Observable<void>[] = [];
+    for (let i = 0; i < numberOfScenarios; i++) {
+      r.push(this.loadScenario(i));
+    }
+    return forkJoin(r).pipe(map( () => {
+      this.scenario = 0;
+    }));
   }
 
   next(): Observable<CustomResponse> {
@@ -70,10 +73,9 @@ export class ProgressTrackerService {
   previous(): Observable<CustomResponse> {
     this.question--;
     if (this.question <= -1) {
-      return this.previousScenario().pipe(map( () => {
-        this.question = this.QUESTIONS_PER_SCENARIO - 1;
-        return this.getResponse() as CustomResponse;
-      }));
+      this.previousScenario();
+      this.question = this.QUESTIONS_PER_SCENARIO - 1;
+      return this.getResponse(true) as Observable<CustomResponse>;
     } else {
       return this.getResponse(true) as Observable<CustomResponse>;
     }
@@ -84,18 +86,15 @@ export class ProgressTrackerService {
     if (this.scenario >= this.NUMBER_OF_SCENARIOS) {
       this.commonService.goTo('results');
     } else {
-      return this.loadScenario(this.scenario).pipe(map( () => {
-        return this.getResponse() as CustomResponse;
-      }));
+      this.question = 0;
+      return this.getResponse(true) as Observable<CustomResponse>;
     }
   }
 
-  previousScenario(): Observable<void> {
+  previousScenario(): void {
     this.scenario--;
     if (this.scenario < 0) {
       this.commonService.goTo('how-to');
-    } else {
-      return this.loadScenario(this.scenario);
     }
   }
 

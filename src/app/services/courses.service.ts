@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Course } from '../models/course';
-import { Observable, of, Observer } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CommonService } from './common.service';
 import { Result } from '../models/result';
