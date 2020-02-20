@@ -9,7 +9,7 @@
   font-family: 'Roboto';
   @extend .green;
   @include setStyleTablet {
-    height: $header-height * 2;
+    height: 60px;
   }
 
   .title {
