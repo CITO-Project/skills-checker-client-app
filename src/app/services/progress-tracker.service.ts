@@ -153,19 +153,20 @@ export class ProgressTrackerService {
       return r as Observable<CustomResponse>;
     } else {
       const log = this.dataLogService.getAll();
-      if (log.questions.length < 1) {
+      if (log.questions.length < 1 || log.question_answers.length < 1) {
         this.commonService.goTo('how-to');
       }
-      const questionid = log.questions[this.question].id;
-      const questionindex = log.question_answers.findIndex( (item: Answer[]) => {
+      const questionIndexInLog = this.scenario * this.QUESTIONS_PER_SCENARIO + this.question;
+      const questionid = log.questions[questionIndexInLog].id;
+      const questionIndex = log.question_answers.findIndex( (item: Answer[]) => {
         return item.length > 0 && item[0].question === questionid;
-      })
+      });
       return {
         scenarioIndex: this.scenario,
         questionIndex: this.question,
         scenario: log.scenarios[this.scenario],
-        question: log.questions[this.scenario * this.QUESTIONS_PER_SCENARIO + this.question],
-        question_answers: log.question_answers[questionindex],
+        question: log.questions[questionIndexInLog],
+        question_answers: log.question_answers[questionIndex],
         answer: log.answers[this.question],
         isFirstQuestion: this.scenario === 0 && this.question === 0,
         isLastQuestion: this.scenario >= this.NUMBER_OF_SCENARIOS - 1 && this.question >= this.QUESTIONS_PER_SCENARIO - 1,

@@ -45,8 +45,11 @@ export class MediaComponent implements OnInit, OnChanges {
       switch (this.getType()) {
         case 'video':
           this.resourceFile = this.commonService.getResourcePath(`videos/${this.resource}`);
-          (this.vgApi.getDefaultMedia() as VgMedia).loadMedia();
-          this.loadSubtitles();
+          if (!!this.vgApi) {
+            (this.vgApi.getDefaultMedia() as VgMedia).loadMedia();
+            (this.vgApi.getDefaultMedia() as VgMedia).play();
+            this.loadSubtitles();
+          }
           break;
         case 'image':
           this.resourceFile = this.commonService.getResourcePath(`images/${this.resource}`);
