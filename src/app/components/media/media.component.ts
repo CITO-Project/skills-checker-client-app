@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { VgAPI } from 'videogular2/compiled/core';
+import { VgAPI, VgMedia } from 'videogular2/compiled/core';
 
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
@@ -45,6 +45,7 @@ export class MediaComponent implements OnInit, OnChanges {
       switch (this.getType()) {
         case 'video':
           this.resourceFile = this.commonService.getResourcePath(`videos/${this.resource}`);
+          (this.vgApi.getDefaultMedia() as VgMedia).loadMedia();
           this.loadSubtitles();
           break;
         case 'image':
