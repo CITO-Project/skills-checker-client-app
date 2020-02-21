@@ -8,11 +8,11 @@ import { Question } from '../models/question';
 import { Product } from '../models/product';
 import { Category } from '../models/category';
 import { Log } from '../models/log';
+import { Answer } from '../models/answer';
 
 import { QuestionService } from './question.service';
 import { ScenarioService } from './scenario.service';
 import { AnswerService } from './answer.service';
-import { Answer } from '../models/answer';
 
 
 @Injectable({
@@ -22,8 +22,11 @@ export class DataLogService {
 
   private log: Log;
 
-  constructor(private questionService: QuestionService, private scenarioService: ScenarioService, private answerService: AnswerService) {
-    this.initializeLog();
+  constructor(
+    private questionService: QuestionService,
+    private scenarioService: ScenarioService,
+    private answerService: AnswerService) {
+      this.initializeLog();
   }
 
   initializeLog() {

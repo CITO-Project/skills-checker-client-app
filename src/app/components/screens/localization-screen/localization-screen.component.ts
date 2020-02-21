@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from 'src/app/services/courses.service';
-import { Course } from 'src/app/models/course';
-import { CommonService } from 'src/app/services/common.service';
 import { Observable } from 'rxjs';
+
+import { Course } from 'src/app/models/course';
 import { Result } from 'src/app/models/result';
+
+import { CoursesService } from 'src/app/services/courses.service';
+import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({

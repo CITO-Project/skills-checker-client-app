@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { Category } from 'src/app/models/category';
 
 import { CommonService } from 'src/app/services/common.service';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
-import { Category } from 'src/app/models/category';
-import { Observable } from 'rxjs';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({

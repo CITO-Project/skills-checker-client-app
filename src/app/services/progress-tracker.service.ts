@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable, Observer, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { CommonService } from './common.service';
-import { DataLogService } from './data-log.service';
-import { QuestionService } from './question.service';
-
 import { Category } from '../models/category';
 import { Interest } from '../models/interest';
 import { CustomResponse } from '../models/custom-response';
+
+import { CommonService } from './common.service';
+import { DataLogService } from './data-log.service';
+import { QuestionService } from './question.service';
 import { GoogleAnalyticsService } from './google-analytics.service';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class ProgressTrackerService {
     private dataLogService: DataLogService,
     private questionService: QuestionService,
     private googleAnalyticsService: GoogleAnalyticsService) {
-    this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
+      this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
   }
 
   initializeTracker(): Observable<Observable<void>> {

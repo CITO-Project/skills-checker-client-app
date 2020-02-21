@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { GoogleAnalyticsService } from './google-analytics.service';
 
 @Injectable({
   providedIn: 'root'

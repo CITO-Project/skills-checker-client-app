@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, DoCheck } from '@angular/core';
+import { Component, Input, Output, EventEmitter, DoCheck } from '@angular/core';
 import { Question } from 'src/app/models/question';
 import { Answer } from 'src/app/models/answer';
 
@@ -7,7 +7,7 @@ import { Answer } from 'src/app/models/answer';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss']
 })
-export class QuestionComponent implements OnInit, DoCheck {
+export class QuestionComponent implements DoCheck {
 
   @Input() question: Question;
   @Input() error: string;
@@ -34,8 +34,6 @@ export class QuestionComponent implements OnInit, DoCheck {
   };
 
   constructor() { }
-
-  ngOnInit() { }
 
   ngDoCheck() {
     this.updateSlider();

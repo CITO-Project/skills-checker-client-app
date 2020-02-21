@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { CommonService } from 'src/app/services/common.service';
 import { VgAPI } from 'videogular2/compiled/core';
+
+import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({

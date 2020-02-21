@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { Scenario } from 'src/app/models/scenario';
 import { Question } from 'src/app/models/question';
+import { Category } from 'src/app/models/category';
+import { Answer } from 'src/app/models/answer';
+import { CustomResponse } from 'src/app/models/custom-response';
 
 import { DataLogService } from 'src/app/services/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
-import { Category } from 'src/app/models/category';
-import { Answer } from 'src/app/models/answer';
-import { CustomResponse } from 'src/app/models/custom-response';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
@@ -31,9 +31,6 @@ export class ScenariosScreenComponent implements OnInit {
 
   public currentScenario = -1;
   public currentQuestion = -1;
-
-  private data: CustomResponse;
-
 
   constructor(
     private dataLogService: DataLogService,
@@ -114,7 +111,6 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   updateData(data: CustomResponse): void {
-    this.data = data;
     this.currentScenario = data.scenarioIndex;
     this.currentQuestion = data.questionIndex;
     this.scenario = data.scenario;
@@ -126,7 +122,6 @@ export class ScenariosScreenComponent implements OnInit {
 
   showError(message: string): void {
     this.errorMessage = message;
-
   }
 
   processAnswer(answer: number): void {
