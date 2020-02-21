@@ -23,7 +23,10 @@ export class MediaComponent implements OnInit, OnChanges {
   public supportedVideo = ['mp4', 'webm', 'ogg'];
   public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
 
-  constructor(private commonService: CommonService, private googleAnalyticsService: GoogleAnalyticsService) { }
+  constructor(
+    private commonService: CommonService,
+    private googleAnalyticsService: GoogleAnalyticsService
+    ) { }
 
   ngOnInit() {
     this.loadResource();
@@ -39,9 +42,13 @@ export class MediaComponent implements OnInit, OnChanges {
     if (this.resource === undefined) {
       console.error('Need to provide resource to show > ', this.resource);
     } else {
-      this.resourceFile = this.commonService.getResourcePath(this.resource);
-      if (this.getType() === 'video') {
-        this.loadSubtitles();
+      switch (this.getType()) {
+        case 'video':
+          this.resourceFile = this.commonService.getResourcePath(`videos/${this.resource}`);
+          this.loadSubtitles();
+          break;
+        case 'image':
+          this.resourceFile = this.commonService.getResourcePath(`images/${this.resource}`);
       }
     }
   }
@@ -50,10 +57,9 @@ export class MediaComponent implements OnInit, OnChanges {
     return this.resource.split('.').pop();
   }
 
-  loadSubtitles() {
-    const r = this.resourceFile.split('.').slice(0, -1);
-    r.push('.vtt');
-    this.subtitleFile = r.join('');
+  loadSubtitles(): void {
+    const fileName = this.resource.split('.').slice(0, -1).join();
+    this.subtitleFile = this.commonService.getResourcePath(`subtitles/${fileName}.vtt`);
   }
 
   getType(): string {

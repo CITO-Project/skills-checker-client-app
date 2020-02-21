@@ -65,12 +65,11 @@ export class CommonService {
 
   getPath(name: string, type: string): string {
     let r = '';
-    const file = name.split('/').pop();
     switch (type) {
       case 'images':
       case 'icons':
       case 'resources':
-        r = this.RESOURCE_PATH + type + '/' + file;
+        r = this.RESOURCE_PATH + type + '/' + name;
         break;
     }
     return r;

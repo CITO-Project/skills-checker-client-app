@@ -11,5 +11,4 @@ Comprobar que non quedase nada solto de onte
 // TODO: Herencia para os servicios. En vez de ter un common-service que se importa, que os servicios hereden de un servicio general
 // TODO: Change favicon
 // TODO: Add data control to interest-screen. If category has not been selected, rediect to category-screen
-// TODO Reorganize resource folder
 // TODO Check question order and value
