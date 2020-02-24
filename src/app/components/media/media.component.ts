@@ -39,32 +39,24 @@ export class MediaComponent implements OnInit, OnChanges {
   }
 
   loadResource() {
-    if (this.resource === undefined) {
-      console.error('Need to provide resource to show > ', this.resource);
-    } else {
-      switch (this.getType()) {
-        case 'video':
-          this.resourceFile = this.commonService.getResourcePath(`videos/${this.resource}`);
-          if (!!this.vgApi) {
-            (this.vgApi.getDefaultMedia() as VgMedia).loadMedia();
-            (this.vgApi.getDefaultMedia() as VgMedia).play();
-            this.loadSubtitles();
-          }
-          break;
-        case 'image':
-          this.resourceFile = this.commonService.getResourcePath(`images/${this.resource}`);
-      }
-      if (this.resourceFile === '' || !this.resourceFile) {
-        this.resource = 'default.mp4';
+    if (this.resource === undefined || !this.resource) {
+      this.resource = 'default.mp4';
+    }
+    switch (this.getType()) {
+      case 'video':
         this.resourceFile = this.commonService.getResourcePath(`videos/${this.resource}`);
-      }
+        this.loadSubtitles();
+        if (!!this.vgApi) {
+          (this.vgApi.getDefaultMedia() as VgMedia).loadMedia();
+          (this.vgApi.getDefaultMedia() as VgMedia).play();
+        }
+        break;
+      case 'image':
+        this.resourceFile = this.commonService.getResourcePath(`images/${this.resource}`);
     }
   }
 
   getExtension(): string {
-    if (!this.resource) {
-      return '';
-    }
     return this.resource.split('.').pop();
   }
 

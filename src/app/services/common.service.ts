@@ -75,7 +75,7 @@ export class CommonService {
     const http = new XMLHttpRequest();
     http.open('HEAD', r, false);
     http.send();
-    return http.status === 404 ? '' : r;
+    return http.status === 404 ? 'default' : r;
   }
 
   getIconPath(name: string): string {

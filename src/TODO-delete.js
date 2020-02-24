@@ -10,3 +10,8 @@
 // TODO: Add canActivate to routing to check is the data is set
 // TODO: Herencia para os servicios. En vez de ter un common-service que se importa, que os servicios hereden de un servicio general
 // TODO: Change favicon
+
+
+// Add videos
+// Add full video play/pause
+// Change how default video is set
