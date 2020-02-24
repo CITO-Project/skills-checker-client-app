@@ -54,10 +54,17 @@ export class MediaComponent implements OnInit, OnChanges {
         case 'image':
           this.resourceFile = this.commonService.getResourcePath(`images/${this.resource}`);
       }
+      if (this.resourceFile === '' || !this.resourceFile) {
+        this.resource = 'default.mp4';
+        this.resourceFile = this.commonService.getResourcePath(`videos/${this.resource}`);
+      }
     }
   }
 
   getExtension(): string {
+    if (!this.resource) {
+      return '';
+    }
     return this.resource.split('.').pop();
   }
 
