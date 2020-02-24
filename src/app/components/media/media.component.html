@@ -9,6 +9,7 @@
   <!-- Video -->
   <div id="video" *ngSwitchCase="'video'">
     <vg-player (onPlayerReady)="onPlayerReady($event)">
+      <vg-overlay-play *ngIf="!!replay" vgFor="singleVideo"></vg-overlay-play>
       <vg-controls *ngIf="!!replay" vgFor="singleVideo" [vgAutohide]="true" [vgAutohideTime]=".1">
         <vg-play-pause></vg-play-pause>
         <vg-scrub-bar></vg-scrub-bar>
