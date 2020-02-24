@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Interest } from 'src/app/models/interest';
+import { Category } from 'src/app/models/category';
 
 import { InterestService } from 'src/app/services/interest.service';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
-import { Category } from 'src/app/models/category';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class InterestsScreenComponent implements OnInit {
   constructor(
     private interestService: InterestService,
     private dataLogService: DataLogService,
-    private commonService: CommonService) { }
+    private commonService: CommonService,
+    private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
     this.category = this.dataLogService.getCategory();
@@ -37,14 +39,10 @@ export class InterestsScreenComponent implements OnInit {
   }
 
   selectInterest(interest: Interest): void {
-    interest = {
-      id: 3,
-      product: 1,
-      name: 'static_interest',
-      text: 'Static interest. Change afterwards'
-    };
     this.dataLogService.setInterest(interest);
     if (this.dataLogService.getInterest().id === interest.id) {
+      this.googleAnalyticsService.stopTimer('time_select_interest', '' + interest.id);
+      this.googleAnalyticsService.addEvent('selected_interest', '' + interest.id);
       this.commonService.goTo('how-to');
     }
   }

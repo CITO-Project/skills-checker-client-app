@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from 'src/app/services/courses.service';
-import { Course } from 'src/app/models/course';
-import { CommonService } from 'src/app/services/common.service';
 import { Observable } from 'rxjs';
+
+import { Course } from 'src/app/models/course';
+import { Result } from 'src/app/models/result';
+
+import { CoursesService } from 'src/app/services/courses.service';
+import { CommonService } from 'src/app/services/common.service';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-localization-screen',
@@ -50,19 +54,33 @@ export class LocalizationScreenComponent implements OnInit {
     'Wicklow'
   ];
 
-  private results;
+  private results: Result;
 
-  constructor(private courseService: CoursesService, private commonService: CommonService) {
+  constructor(
+    private courseService: CoursesService,
+    private commonService: CommonService,
+    private googleAnalyticsService: GoogleAnalyticsService) {
     const extras = this.commonService.getExtras();
     if (extras !== undefined && extras.state !== undefined) {
-      this.results = extras.state;
+      this.results = extras.state as Result;
     } else {
       commonService.goTo('results');
     }
   }
 
   ngOnInit() {
-    this.setCounty('all');
+    if (sessionStorage.length > 0) {
+      this.courses = [];
+      for (let i = 0; i < sessionStorage.length; i++) {
+        this.courses.push(JSON.parse(sessionStorage.getItem(sessionStorage.key(i))));
+      }
+    } else {
+      this.setCounty('all');
+    }
+  }
+
+  loadCourses(results: Result, location: string): Observable<Course[]> {
+    return this.courseService.retrieveCourses(results, location);
   }
 
   setCounty(county: string) {
@@ -71,22 +89,17 @@ export class LocalizationScreenComponent implements OnInit {
 
   updateCourses(county: string = 'all') {
     const location = county === 'all' ? '' : county;
-    this.getCourses(location).subscribe( (courses: Course[]) => {
-      this.setCourses(courses);
+    this.googleAnalyticsService.addEvent('selected_location', location);
+    this.loadCourses(this.results, location).subscribe( (courses: Course[]) => {
+      this.courses = courses;
     });
   }
 
-  getCourses(location?: string): Observable<Course[]> {
-    return this.courseService.loadCourses(
-      this.results.literacy,
-      this.results.numeracy,
-      this.results.digital_skills,
-      location
-    );
-  }
-
-  setCourses(courses: Course[]): void {
-    this.courses = courses;
+  getCourses(priority: string): Course[] {
+    if (!this.courses) {
+      return [];
+    }
+    return this.courses.filter( course => course.priority === priority);
   }
 
   loadLink(link: string) {

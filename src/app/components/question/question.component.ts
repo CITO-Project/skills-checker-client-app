@@ -1,15 +1,17 @@
-import { Component, OnInit, Input, Output, EventEmitter, DoCheck } from '@angular/core';
+import { Component, Input, Output, EventEmitter, DoCheck } from '@angular/core';
 import { Question } from 'src/app/models/question';
+import { Answer } from 'src/app/models/answer';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss']
 })
-export class QuestionComponent implements OnInit, DoCheck {
+export class QuestionComponent implements DoCheck {
 
   @Input() question: Question;
   @Input() error: string;
+  @Input() questionAnswers: Answer[];
   @Input() initialAnswer = -1;
   @Output() answer = new EventEmitter<number>();
 
@@ -33,8 +35,6 @@ export class QuestionComponent implements OnInit, DoCheck {
 
   constructor() { }
 
-  ngOnInit() { }
-
   ngDoCheck() {
     this.updateSlider();
     if (this.initialAnswer > -1) {
@@ -47,23 +47,46 @@ export class QuestionComponent implements OnInit, DoCheck {
   updateSlider(): void {
     this.sliderProperties.value = this.initialAnswer;
     this.sliderProperties.options.stepsArray = [];
-    this.question.answers.forEach( (answer: string, index: number) => {
-      this.sliderProperties.options.stepsArray.push({ value: index, legend: answer});
+    this.sortAnswers(this.questionAnswers).forEach( (answer: Answer) => {
+      this.sliderProperties.options.stepsArray.push({ value: answer.value, legend: answer.text});
     });
-    this.sliderProperties.options.ceil = this.question.answers.length - 1;
+    this.sliderProperties.options.ceil = this.questionAnswers.length - 1;
   }
 
   retrieveAnswer(answer: number): void {
     this.answer.emit(answer);
   }
 
-  retrieveAnswerMultiple(): void {
-    let answer = 0;
-    for (let i = 0; i < this.question.answers.length; i++) {
-      const el = document.getElementById('' + i) as HTMLInputElement;
-      answer += el.checked ? Math.pow(2, i) : 0;
+  retrieveAnswerMultiple(element: HTMLInputElement): void {
+    const elements: HTMLInputElement[] = Array.from(document.getElementsByTagName('input'));
+    let r = 0;
+    if (+element.value < 0 && element.checked) {
+      if (this.questionAnswers[element.id].special === 'none') {
+        elements.filter( (el: HTMLInputElement) => {
+          if (el.id !== element.id) {
+            return true;
+          }
+        }).forEach( (el: HTMLInputElement) => {
+          el.checked = false;
+        });
+      }
+    } else {
+      elements.filter( (el: HTMLInputElement) => {
+        if (+el.value < 0) {
+          return true;
+        }
+      }).forEach( (el: HTMLInputElement) => {
+        el.checked = false;
+      });
+      elements.slice().filter( (el: HTMLInputElement) => {
+        if (+el.value >= 0 && el.checked) {
+          return true;
+        }
+      }).forEach( (el: HTMLInputElement) => {
+        r += Math.pow(2, +el.value);
+      });
     }
-    this.retrieveAnswer(answer);
+    this.retrieveAnswer(r);
   }
 
   resetSlider(): void {
@@ -107,13 +130,29 @@ export class QuestionComponent implements OnInit, DoCheck {
   }
 
   setValueMultiple(answer: number): void {
-    let answers = -1;
-    while (answers++ < this.question.answers.length) {
-      if (answer % 2 === 1) {
-        this.setValue('' + answers, 'checked', true);
+    if (answer === 0) {
+      this.questionAnswers.filter( (ans: Answer) => {
+        if (ans.special === 'none') {
+          return true;
+        }
+      }).forEach( (ans: Answer) => {
+        this.setValue('' + ans.order, 'checked', true);
+      });
+    } else {
+      let answers = -1;
+      while (answers++ < this.questionAnswers.length) {
+        if (answer % 2 === 1) {
+          this.setValue('' + answers, 'checked', true);
+        }
+        answer = Math.floor(answer / 2);
       }
-      answer = Math.floor(answer / 2);
     }
+  }
+
+  sortAnswers(answers: Answer[]): Answer[] {
+    return answers.sort( (a: Answer, b: Answer) => {
+      return a.order - b.order;
+    });
   }
 
 }

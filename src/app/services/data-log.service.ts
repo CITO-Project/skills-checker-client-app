@@ -8,9 +8,11 @@ import { Question } from '../models/question';
 import { Product } from '../models/product';
 import { Category } from '../models/category';
 import { Log } from '../models/log';
+import { Answer } from '../models/answer';
 
 import { QuestionService } from './question.service';
 import { ScenarioService } from './scenario.service';
+import { AnswerService } from './answer.service';
 
 
 @Injectable({
@@ -20,12 +22,14 @@ export class DataLogService {
 
   private log: Log;
 
-  constructor(private questionService: QuestionService, private scenarioService: ScenarioService) {
-    this.initializeLog();
+  constructor(
+    private questionService: QuestionService,
+    private scenarioService: ScenarioService,
+    private answerService: AnswerService) {
+      this.initializeLog();
   }
 
   initializeLog() {
-    // TODO: Find why product is saved in the results in an array
     let product = null;
     if (!!this.log && !!this.log.product) {
       product = this.log.product;
@@ -37,6 +41,7 @@ export class DataLogService {
       scenarios: [],
       questions: [],
       answers: [],
+      question_answers: [],
       question_order: this.questionService.getQuestionOrder(),
       challenging_order: this.questionService.getChallengingOrder()
     };
@@ -75,6 +80,7 @@ export class DataLogService {
     this.log.scenarios = [];
     this.log.questions = [];
     this.log.answers = [];
+    this.log.question_answers = [];
   }
   //#endregion
 
@@ -82,7 +88,6 @@ export class DataLogService {
   loadScenarios(categoryid: number, interestid: number): Observable<void> {
     return this.scenarioService.getScenarios(categoryid, interestid).pipe(map( (data: Scenario[]) => {
       this.log.scenarios = data;
-      return;
     }));
   }
 
@@ -96,17 +101,19 @@ export class DataLogService {
   //#endregion
 
   //#region Question
-  loadQuestions(scenarioindex: number, categoryid: number, interestid: number, scenarioid: number): Observable<void> {
+  loadQuestions(scenarioindex: number, categoryid: number, interestid: number): Observable<void> {
+    const scenarioid = this.log.scenarios[scenarioindex].id;
     return this.questionService.getQuestions(categoryid, interestid, scenarioid).pipe(map( (data: Question[]) => {
       for (let i = 0; i < data.length; i++) {
-          const index = this.getIndex(scenarioindex, i);
-          data[i].scenario = scenarioid;
+        const index = this.getIndex(scenarioindex, i);
+        data[i].scenario = scenarioid;
+        this.loadAnswers(categoryid, interestid, scenarioid, data[i].id, index).subscribe(() => {
           this.log.questions[index] = this.questionService.getQuestionInOrder(data, i);
           if (this.getAnswer(scenarioindex, i) === undefined) {
             this.setAnswer(scenarioindex, i, -1);
           }
+        });
       }
-      return;
     }));
   }
 
@@ -132,6 +139,14 @@ export class DataLogService {
       }
     );
     return r;
+  }
+  //#endregion
+
+  //#region QuestionAnswers
+  loadAnswers(categoryid: number, interestid: number, scenarioid: number, questionid: number, questionindex: number): Observable<void> {
+    return this.answerService.getAnswers(categoryid, interestid, scenarioid, questionid).pipe(map( (data: Answer[]) => {
+      this.log.question_answers[questionindex] = data;
+    }));
   }
   //#endregion
 

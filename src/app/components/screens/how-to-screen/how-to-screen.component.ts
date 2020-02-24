@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { Category } from 'src/app/models/category';
 
 import { CommonService } from 'src/app/services/common.service';
 import { DataLogService } from 'src/app/services/data-log.service';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
-import { Category } from 'src/app/models/category';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-how-to-screen',
@@ -15,19 +18,27 @@ export class HowToScreenComponent implements OnInit {
   public selectedInterest: string;
   public category: Category;
 
+  public scenariosReady = false;
+
   constructor(
     private commonService: CommonService,
     private dataLogService: DataLogService,
-    private progressTrackerService: ProgressTrackerService) { }
+    private progressTrackerService: ProgressTrackerService,
+    private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
     this.category = this.dataLogService.getCategory();
     this.retrieveInterest();
-    this.progressTrackerService.initializeTracker();
+    this.progressTrackerService.initializeTracker().subscribe( (data: Observable<void>) => {
+      data.subscribe( () => {
+        this.scenariosReady = true;
+      });
+    });
   }
 
   btnClick() {
-    this.progressTrackerService.nextScenario();
+    this.googleAnalyticsService.addEvent('started_test');
+    this.commonService.goTo('scenarios');
   }
 
   retrieveInterest() {

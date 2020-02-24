@@ -6,8 +6,10 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class CommonService {
 
-  private apiUrl = 'http://localhost:3000/nala';
+  private productName = 'nala';
+  private apiUrl = 'http://localhost:3000/' + this.productName;
   private RESOURCE_PATH = 'assets/';
+  private GATrackID = 'UA-157405394-1';
 
 
   constructor(private router: Router) { }
@@ -19,6 +21,10 @@ export class CommonService {
   // getHttpHeaders(): HttpHeaders {
   //    return this.httpHeaders;
   //  }
+
+  getProductName(): string {
+    return this.productName;
+  }
 
   getApiUrl(): string {
     return this.apiUrl;
@@ -32,25 +38,25 @@ export class CommonService {
     this.router.navigate(['/' + url], { state: extras });
   }
 
-  log(data?: any): void {
+  log(...data: any): void {
     const currentdate = new Date();
     const datetime = '[' +
-      this.addZero(currentdate.getDate()) + '/' +
-      this.addZero(currentdate.getMonth() + 1)  + '/' +
+      this.addZeros('' + currentdate.getDate()) + '/' +
+      this.addZeros('' + currentdate.getMonth() + 1)  + '/' +
       currentdate.getFullYear() + ' @ ' +
-      this.addZero(currentdate.getHours()) + ':' +
-      this.addZero(currentdate.getMinutes()) + ':' +
-      this.addZero(currentdate.getSeconds()) + '.' +
-      this.addZeroMiliseconds(currentdate.getMilliseconds()) + ']';
+      this.addZeros('' + currentdate.getHours()) + ':' +
+      this.addZeros('' + currentdate.getMinutes()) + ':' +
+      this.addZeros('' + currentdate.getSeconds()) + '.' +
+      this.addZeros('' + currentdate.getMilliseconds(), 3) + ']';
     console.log( datetime + ' >> ', (data !== undefined ? data : 'check') );
   }
 
-  addZero(value: number): string {
-    return value < 10 ? '0' + value : '' + value;
-  }
-
-  addZeroMiliseconds(value: number): string {
-    return value < 10 ? '00' + value : (value < 100 ? '0' + value : '' + value);
+  addZeros(value: string, nZeros: number = 2): string {
+    if (value.length >= nZeros) {
+      return value;
+    } else {
+      return this.addZeros('0' + value, nZeros);
+    }
   }
 
   loadLink(link: string) {
@@ -59,15 +65,17 @@ export class CommonService {
 
   getPath(name: string, type: string): string {
     let r = '';
-    const file = name.split('/').pop();
     switch (type) {
       case 'images':
       case 'icons':
       case 'resources':
-        r = this.RESOURCE_PATH + type + '/' + file;
+        r = this.RESOURCE_PATH + type + '/' + name;
         break;
     }
-    return r;
+    const http = new XMLHttpRequest();
+    http.open('HEAD', r, false);
+    http.send();
+    return http.status === 404 ? 'default' : r;
   }
 
   getIconPath(name: string): string {
@@ -80,6 +88,10 @@ export class CommonService {
 
   getResourcePath(name: string): string {
     return this.getPath(name, 'resources');
+  }
+
+  getGATrackID(): string {
+    return this.GATrackID;
   }
 
 }

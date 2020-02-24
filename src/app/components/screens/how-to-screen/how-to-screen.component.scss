@@ -3,20 +3,39 @@
 #description {
   color: $color-font-dark;
   text-align: center;
-  padding: 30px;
+  padding: 20px 30px;
+  @include setStyleTablet {
+    padding: 30px;
+  }
 
   .heading {
-    margin-top: initial;
+    margin-bottom: 30px;
+    font-size: 150%;
   }
-
   .text {
-    font-weight: 200;
-    margin: 30px 0;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 120%;
+    @include setStyleTablet {
+      margin-bottom: 50px;
+    }
   }
-
+  .muted {
+    text-align: center;
+    font-size: 100%;
+    padding: 0 40px;
+  }
   .button {
-    margin-top: 30px;
+    margin-bottom: 30px;
+    background-image: linear-gradient($color-blue, $color-blue);
     padding: 0 60px;
+    white-space: pre;
+    @include setStyleTablet {
+      padding: 20px 100px;
+      i::before {
+        font-size: 200%;
+      }
+    }
   }
 
 }

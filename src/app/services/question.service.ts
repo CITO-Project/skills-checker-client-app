@@ -15,9 +15,11 @@ export class QuestionService {
   private QUESTION_ORDER = [
     'task_question',
     'challenging_skill',
-    'dimension_independence',
-    'dimension_confidence',
-    'dimension_fluency'
+    'dimension_independence_1',
+    'dimension_confidence_1',
+    'dimension_confidence_2',
+    'dimension_fluency_1',
+    'dimension_fluency_2'
   ];
 
   private CHALLENGING_ORDER = [
@@ -28,41 +30,21 @@ export class QuestionService {
 
   constructor(private httpClient: HttpClient, private common: CommonService) { }
 
-  getQuestions(categoryid: number, interestid: number, scenarioId: number): Observable<Question[]> {
+  getQuestions(categoryid: number, interestid: number, scenarioid: number): Observable<Question[]> {
     if (categoryid === undefined) {
       categoryid = -1;
     } else if (interestid === undefined) {
       interestid = -1;
-    } else if (scenarioId === undefined) {
-      scenarioId = -1;
+    } else if (scenarioid === undefined) {
+      scenarioid = -1;
     } else {
-      const url = `/categories/${categoryid}/interests/${interestid}/scenarios/${scenarioId}/questions`;
+      const url = `/categories/${categoryid}/interests/${interestid}/scenarios/${scenarioid}/questions`;
       return this.httpClient.get(this.common.getApiUrl() + url)
         .pipe(map( (data: Question[]) => {
           return data;
         })
       );
     }
-  }
-
-  shouldSkipScenario(question: Question, answer: number): boolean {
-    answer = +answer;
-    let r = false;
-    switch (question.pedagogical_type) {
-      case 'task_question':
-        if (answer === question.answers.length - 1) {
-          r = true;
-        }
-        break;
-      case 'dimension_independence':
-      case 'dimension_confidence':
-      case 'dimension_fluency':
-        if (answer === question.answers.length - 1) {
-          r = true;
-        }
-        break;
-    }
-    return r;
   }
 
   getPedagogicalType(order: number): string {
@@ -78,13 +60,14 @@ export class QuestionService {
   }
 
   getQuestionInOrder(questions: Question[], questionindex: number): Question {
-    // TODO: Change foreach so it doesnt check every single value in the list
     let r: Question = null;
-    questions.forEach((question: Question) => {
-      if (question.pedagogical_type === this.QUESTION_ORDER[questionindex]) {
-        r = question;
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < questions.length; i++) {
+      if (questions[i].pedagogical_type === this.QUESTION_ORDER[questionindex]) {
+        r = questions[i];
+        break;
       }
-    });
+    }
     return r;
   }
 

@@ -2,23 +2,15 @@
 
 
 .content {
-  color: $color-font-dark;
-  margin: 30px 20px;
-  font-size: 0.9em;
+  padding: 15px 20px;
   #header {
-    .description {
+    .text {
       padding-top: 10px;
-      font-weight: 200;
-    }
-    .heading {
-      margin-top: 0;
-      font-size: 1.4em;
+      text-align: center;
+      font-size: 90%;
     }
   }
-  hr {
-    width: 100%;
-  }
-  app-question {
+  hr, app-question {
     width: 100%;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DataLogService } from 'src/app/services/data-log.service';
+
 import { CommonService } from 'src/app/services/common.service';
+import { DataLogService } from 'src/app/services/data-log.service';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +11,8 @@ import { CommonService } from 'src/app/services/common.service';
 export class HeaderComponent implements OnInit {
 
   @Input() text: string;
-  @Input() skip: boolean;
 
-
-  constructor(private dataLogService: DataLogService, private commonService: CommonService) { }
+  constructor(private commonService: CommonService, private dataLogService:  DataLogService) { }
 
   ngOnInit() {
     if (this.text === 'default') {
@@ -23,10 +22,6 @@ export class HeaderComponent implements OnInit {
 
   goToIndex() {
     this.commonService.goTo('');
-  }
-
-  goToResults() {
-    this.commonService.goTo('results');
   }
 
 }

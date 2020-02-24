@@ -14,6 +14,9 @@ $color-grey-lighter: #E0E6EB;
 
 $color-blue-light: #0285D1;
 $color-black-transparent: #00000030;
+$color-green-translucid: #3FBDA880;
+$color-pure-white: #fff;
+$color-transparent: #fff0;
 
 // Components
 $color-button: $color-green;
@@ -37,9 +40,10 @@ $color-background-dark: $color-black;
 $color-slider-background: $color-grey;
 $color-slider-start: $color-red;
 $color-slider-end: $color-green;
+$color-slider-pointer-hover: $color-green-translucid;
 
 // Single and multiple option
-$color-option-background: white;
+$color-option-background: $color-pure-white;
 $color-option-border: $color-grey-light;
 $color-option-background-active: $color-green;
 $color-option-border-active: $color-font;
