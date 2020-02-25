@@ -15,3 +15,7 @@ body{
     padding-bottom: $bottom-height * 2;
   }
 }
+// Safari Bootstrap fix
+.row:before, .row:after {
+  display: inline-block;
+}

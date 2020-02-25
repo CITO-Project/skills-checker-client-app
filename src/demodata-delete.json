@@ -26,40 +26,40 @@
     {
       "id": 1,
       "name": "school_trip",
-      "text": "School trip Scenario",
+      "text": "School trip",
       "level": 1,
-      "resource": "first_scenario.mp4",
-      "description": "Look at tomorrow's weather forecast on your phone and decide if you can select appropiate clothing for your child",
+      "resource": "choose-clothes-for-child.mp4",
+      "description": "Your child is going on school trip tomorrow. You want to choose the clothes your child willwear. Look at tomorrow’s weather forecast on your phone and decide if you can select appropriate clothing foryour child",
       "product": 1,
       "interest": 3
     },
     {
       "id": 2,
       "name": "birthday_party",
-      "text": "Birthday party Scenario",
+      "text": "Birthday party",
       "level": 2,
-      "resource": "second_scenario.mp4",
-      "description": "You want to type and send a short message on WhatsApp to invite your friends to the party",
+      "resource": "organize-party-via-whatsapp.mp4",
+      "description": "It’s your partner’s birthday. You are organising a party for them at a local restaurant and want to invite your friends. Decide if you can type and send a short message on WhatsApp to invite your friends to the party.",
       "product": 1,
       "interest": 3
     },
     {
       "id": 3,
-      "name": "buying_car",
-      "text": "Buying a car Scenario",
+      "name": "car_loan",
+      "text": "Calculate car loan",
       "level": 3,
-      "resource": "third_scenario.mp4",
-      "description": "You want to use the online loan calculator to find out how much you can borrow and what monthly repayment you can afford",
+      "resource": "use-online-loan-calculator.mp4",
+      "description": "You are thinking of buying a car and you would like to know how much you could borrow from the bank. Look at the online loan calculator and decide if you can find out how much you can borrow and what monthly repayment you can afford.",
       "product": 1,
       "interest": 3
     },
     {
-      "id": 4,
-      "name": "credit_card",
-      "text": "Credit card Scenario",
+      "id": 23,
+      "name": "credit_card_interest",
+      "text": "Credit card interest",
       "level": 4,
-      "resource": "forth_scenario.mp4",
-      "description": "Work out the interest charged on this amount using the calculator on your phone",
+      "resource": "calculate-interest.mp4",
+      "description": "Your credit card bill is €500. Your credit card monthly interest rate is 4.5%. After you have made a minimum payment of €5, your balance owed is €495. Decide if you can work out the interest charged on this amount using the calculator on your phone.",
       "product": 1,
       "interest": 3
     }
@@ -69,8 +69,8 @@
       "id": 1,
       "type": "slider",
       "pedagogical_type": "task_question",
-      "question": "For me, selecting appropriate clothes fro my child after looking at the weather forecast on my phone is",
-      "description": "Description for numeracy 1",
+      "question": "For me, selecting appropriate clothes for my child after looking at the weather forecast on my phone is",
+      "description": null,
       "product": 1,
       "scenario": 1
     },
@@ -79,34 +79,52 @@
       "type": "multiple",
       "pedagogical_type": "challenging_skill",
       "question": "The most challenging aspect in this scenario is:",
-      "description": "Description for digital skills 1",
+      "description": null,
       "product": 1,
       "scenario": 1
     },
     {
       "id": 3,
       "type": "single",
-      "pedagogical_type": "dimension_independence",
-      "question": "How difficult do you find this task?",
-      "description": "Description for literacy 1",
+      "pedagogical_type": "dimension_independence_1",
+      "question": "Would you find this task easier with help?",
+      "description": null,
       "product": 1,
       "scenario": 1
     },
     {
       "id": 4,
       "type": "single",
-      "pedagogical_type": "dimension_confidence",
-      "question": "How confident are you performing this task?",
-      "description": "Description for literacy 2",
+      "pedagogical_type": "dimension_confidence_1",
+      "question": "Would you feel comfortable doing this task in public?",
+      "description": null,
+      "product": 1,
+      "scenario": 1
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "pedagogical_type": "dimension_confidence_2",
+      "question": "Would you feel more comfortable doing this task in private?",
+      "description": null,
       "product": 1,
       "scenario": 1
     },
     {
       "id": 5,
       "type": "single",
-      "pedagogical_type": "dimension_fluency",
-      "question": "How long do you think I may take you?",
-      "description": "Description for numeracy 2",
+      "pedagogical_type": "dimension_fluency_1",
+      "question": "Would it take you less or more than 5 minutes to complete this task?",
+      "description": null,
+      "product": 1,
+      "scenario": 1
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "pedagogical_type": "dimension_fluency_2",
+      "question": "Would it take you less or more than 30 minutes to complete this task?",
+      "description": null,
       "product": 1,
       "scenario": 1
     },
@@ -115,7 +133,7 @@
       "type": "slider",
       "pedagogical_type": "task_question",
       "question": "For me, sending a message on WhatsApp to invite friends to a birthday party is",
-      "description": "Description for digital skills 2",
+      "description": null,
       "product": 1,
       "scenario": 2
     },
@@ -124,34 +142,52 @@
       "type": "multiple",
       "pedagogical_type": "challenging_skill",
       "question": "The most challenging aspect in this scenario is:",
-      "description": "Description for literacy 3",
+      "description": null,
       "product": 1,
       "scenario": 2
     },
     {
       "id": 3,
       "type": "single",
-      "pedagogical_type": "dimension_independence",
-      "question": "How difficult do you find this task?",
-      "description": "Description for literacy 1",
+      "pedagogical_type": "dimension_independence_1",
+      "question": "Would you find this task easier with help?",
+      "description": null,
       "product": 1,
       "scenario": 2
     },
     {
       "id": 4,
       "type": "single",
-      "pedagogical_type": "dimension_confidence",
-      "question": "How confident are you performing this task?",
-      "description": "Description for literacy 2",
+      "pedagogical_type": "dimension_confidence_1",
+      "question": "Would you feel comfortable doing this task in public?",
+      "description": null,
+      "product": 1,
+      "scenario": 2
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "pedagogical_type": "dimension_confidence_2",
+      "question": "Would you feel more comfortable doing this task in private?",
+      "description": null,
       "product": 1,
       "scenario": 2
     },
     {
       "id": 5,
       "type": "single",
-      "pedagogical_type": "dimension_fluency",
-      "question": "How long do you think I may take you?",
-      "description": "Description for numeracy 2",
+      "pedagogical_type": "dimension_fluency_1",
+      "question": "Would it take you less or more than 5 minutes to complete this task?",
+      "description": null,
+      "product": 1,
+      "scenario": 2
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "pedagogical_type": "dimension_fluency_2",
+      "question": "Would it take you less or more than 30 minutes to complete this task?",
+      "description": null,
       "product": 1,
       "scenario": 2
     },
@@ -160,7 +196,7 @@
       "type": "slider",
       "pedagogical_type": "task_question",
       "question": "For me, using the online loan calculator is",
-      "description": "Description for numeracy 3",
+      "description": null,
       "product": 1,
       "scenario": 3
     },
@@ -169,81 +205,117 @@
       "type": "multiple",
       "pedagogical_type": "challenging_skill",
       "question": "The most challenging aspect in this scenario is:",
-      "description": "Description for digital skills 3",
+      "description": null,
       "product": 1,
       "scenario": 3
     },
     {
       "id": 3,
       "type": "single",
-      "pedagogical_type": "dimension_independence",
-      "question": "How difficult do you find this task?",
-      "description": "Description for literacy 1",
+      "pedagogical_type": "dimension_independence_1",
+      "question": "Would you find this task easier with help?",
+      "description": null,
       "product": 1,
       "scenario": 3
     },
     {
       "id": 4,
       "type": "single",
-      "pedagogical_type": "dimension_confidence",
-      "question": "How confident are you performing this task?",
-      "description": "Description for literacy 2",
+      "pedagogical_type": "dimension_confidence_1",
+      "question": "Would you feel comfortable doing this task in public?",
+      "description": null,
+      "product": 1,
+      "scenario": 3
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "pedagogical_type": "dimension_confidence_2",
+      "question": "Would you feel more comfortable doing this task in private?",
+      "description": null,
       "product": 1,
       "scenario": 3
     },
     {
       "id": 5,
       "type": "single",
-      "pedagogical_type": "dimension_fluency",
-      "question": "How long do you think I may take you?",
-      "description": "Description for numeracy 2",
+      "pedagogical_type": "dimension_fluency_1",
+      "question": "Would it take you less or more than 5 minutes to complete this task?",
+      "description": null,
       "product": 1,
       "scenario": 3
     },
     {
-      "id": 10,
+      "id": 14,
+      "type": "single",
+      "pedagogical_type": "dimension_fluency_2",
+      "question": "Would it take you less or more than 30 minutes to complete this task?",
+      "description": null,
+      "product": 1,
+      "scenario": 3
+    },
+    {
+      "id": 37,
       "type": "slider",
       "pedagogical_type": "task_question",
       "question": "For me, calculating the interest I will be charged on this amount is",
-      "description": "Description for numeracy 4",
+      "description": null,
       "product": 1,
-      "scenario": 4
+      "scenario": 23
     },
     {
-      "id": 11,
+      "id": 38,
       "type": "multiple",
       "pedagogical_type": "challenging_skill",
       "question": "The most challenging aspect in this scenario is:",
-      "description": "Description for literacy 4",
+      "description": null,
       "product": 1,
-      "scenario": 4
+      "scenario": 23
     },
     {
       "id": 3,
       "type": "single",
-      "pedagogical_type": "dimension_independence",
-      "question": "How difficult do you find this task?",
-      "description": "Description for literacy 1",
+      "pedagogical_type": "dimension_independence_1",
+      "question": "Would you find this task easier with help?",
+      "description": null,
       "product": 1,
-      "scenario": 4
+      "scenario": 23
     },
     {
       "id": 4,
       "type": "single",
-      "pedagogical_type": "dimension_confidence",
-      "question": "How confident are you performing this task?",
-      "description": "Description for literacy 2",
+      "pedagogical_type": "dimension_confidence_1",
+      "question": "Would you feel comfortable doing this task in public?",
+      "description": null,
       "product": 1,
-      "scenario": 4
+      "scenario": 23
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "pedagogical_type": "dimension_confidence_2",
+      "question": "Would you feel more comfortable doing this task in private?",
+      "description": null,
+      "product": 1,
+      "scenario": 23
     },
     {
       "id": 5,
       "type": "single",
-      "pedagogical_type": "dimension_fluency",
-      "question": "How long do you think I may take you?",
-      "description": "Description for numeracy 2",
+      "pedagogical_type": "dimension_fluency_1",
+      "question": "Would it take you less or more than 5 minutes to complete this task?",
+      "description": null,
       "product": 1,
-      "scenario": 4
+      "scenario": 23
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "pedagogical_type": "dimension_fluency_2",
+      "question": "Would it take you less or more than 30 minutes to complete this task?",
+      "description": null,
+      "product": 1,
+      "scenario": 23
     }
   ],
   "question_answers": [
@@ -268,7 +340,7 @@
       },
       {
         "id": 3,
-        "text": "Middling",
+        "text": "A little difficult",
         "value": 2,
         "order": 2,
         "special": null,
@@ -288,7 +360,7 @@
     [
       {
         "id": 5,
-        "text": "Reading words in the weather forecast",
+        "text": "Reading the words in the weather forecast",
         "value": 0,
         "order": 0,
         "special": null,
@@ -326,7 +398,7 @@
     [
       {
         "id": 8,
-        "text": "Without help",
+        "text": "Yes",
         "value": 0,
         "order": 0,
         "special": null,
@@ -335,7 +407,7 @@
       },
       {
         "id": 9,
-        "text": "With help",
+        "text": "No",
         "value": 1,
         "order": 1,
         "special": null,
@@ -346,7 +418,7 @@
     [
       {
         "id": 10,
-        "text": "In public",
+        "text": "Yes",
         "value": 0,
         "order": 0,
         "special": null,
@@ -355,7 +427,7 @@
       },
       {
         "id": 11,
-        "text": "When no one is watching",
+        "text": "No",
         "value": 1,
         "order": 1,
         "special": null,
@@ -366,7 +438,7 @@
     [
       {
         "id": 12,
-        "text": "It takes me 5 minutes",
+        "text": "Yes",
         "value": 0,
         "order": 0,
         "special": null,
@@ -375,7 +447,7 @@
       },
       {
         "id": 13,
-        "text": "It takes me 30 minutes",
+        "text": "No",
         "value": 1,
         "order": 1,
         "special": null,
@@ -385,62 +457,42 @@
     ],
     [
       {
-        "id": 8,
-        "text": "Without help",
+        "id": 39,
+        "text": "Yes",
         "value": 0,
         "order": 0,
-        "special": null,
+        "special": "none",
         "product": 1,
-        "question": 3
+        "question": 13
       },
       {
-        "id": 9,
-        "text": "With help",
+        "id": 40,
+        "text": "No",
         "value": 1,
         "order": 1,
-        "special": null,
+        "special": "none",
         "product": 1,
-        "question": 3
+        "question": 13
       }
     ],
     [
       {
-        "id": 10,
-        "text": "In public",
+        "id": 41,
+        "text": "Yes",
         "value": 0,
         "order": 0,
-        "special": null,
+        "special": "none",
         "product": 1,
-        "question": 4
+        "question": 14
       },
       {
-        "id": 11,
-        "text": "When no one is watching",
+        "id": 42,
+        "text": "No",
         "value": 1,
         "order": 1,
-        "special": null,
+        "special": "none",
         "product": 1,
-        "question": 4
-      }
-    ],
-    [
-      {
-        "id": 12,
-        "text": "It takes me 5 minutes",
-        "value": 0,
-        "order": 0,
-        "special": null,
-        "product": 1,
-        "question": 5
-      },
-      {
-        "id": 13,
-        "text": "It takes me 30 minutes",
-        "value": 1,
-        "order": 1,
-        "special": null,
-        "product": 1,
-        "question": 5
+        "question": 14
       }
     ],
     [
@@ -464,7 +516,7 @@
       },
       {
         "id": 16,
-        "text": "Middling",
+        "text": "A little difficult",
         "value": 2,
         "order": 2,
         "special": null,
@@ -522,7 +574,7 @@
     [
       {
         "id": 8,
-        "text": "Without help",
+        "text": "Yes",
         "value": 0,
         "order": 0,
         "special": null,
@@ -531,7 +583,7 @@
       },
       {
         "id": 9,
-        "text": "With help",
+        "text": "No",
         "value": 1,
         "order": 1,
         "special": null,
@@ -542,7 +594,7 @@
     [
       {
         "id": 10,
-        "text": "In public",
+        "text": "Yes",
         "value": 0,
         "order": 0,
         "special": null,
@@ -551,7 +603,7 @@
       },
       {
         "id": 11,
-        "text": "When no one is watching",
+        "text": "No",
         "value": 1,
         "order": 1,
         "special": null,
@@ -562,7 +614,7 @@
     [
       {
         "id": 12,
-        "text": "It takes me 5 minutes",
+        "text": "Yes",
         "value": 0,
         "order": 0,
         "special": null,
@@ -571,12 +623,52 @@
       },
       {
         "id": 13,
-        "text": "It takes me 30 minutes",
+        "text": "No",
         "value": 1,
         "order": 1,
         "special": null,
         "product": 1,
         "question": 5
+      }
+    ],
+    [
+      {
+        "id": 39,
+        "text": "Yes",
+        "value": 0,
+        "order": 0,
+        "special": "none",
+        "product": 1,
+        "question": 13
+      },
+      {
+        "id": 40,
+        "text": "No",
+        "value": 1,
+        "order": 1,
+        "special": "none",
+        "product": 1,
+        "question": 13
+      }
+    ],
+    [
+      {
+        "id": 41,
+        "text": "Yes",
+        "value": 0,
+        "order": 0,
+        "special": "none",
+        "product": 1,
+        "question": 14
+      },
+      {
+        "id": 42,
+        "text": "No",
+        "value": 1,
+        "order": 1,
+        "special": "none",
+        "product": 1,
+        "question": 14
       }
     ],
     [
@@ -600,7 +692,7 @@
       },
       {
         "id": 23,
-        "text": "Middling",
+        "text": "A little difficult",
         "value": 2,
         "order": 2,
         "special": null,
@@ -658,7 +750,7 @@
     [
       {
         "id": 8,
-        "text": "Without help",
+        "text": "Yes",
         "value": 0,
         "order": 0,
         "special": null,
@@ -667,7 +759,7 @@
       },
       {
         "id": 9,
-        "text": "With help",
+        "text": "No",
         "value": 1,
         "order": 1,
         "special": null,
@@ -678,7 +770,7 @@
     [
       {
         "id": 10,
-        "text": "In public",
+        "text": "Yes",
         "value": 0,
         "order": 0,
         "special": null,
@@ -687,7 +779,7 @@
       },
       {
         "id": 11,
-        "text": "When no one is watching",
+        "text": "No",
         "value": 1,
         "order": 1,
         "special": null,
@@ -698,7 +790,7 @@
     [
       {
         "id": 12,
-        "text": "It takes me 5 minutes",
+        "text": "Yes",
         "value": 0,
         "order": 0,
         "special": null,
@@ -707,7 +799,7 @@
       },
       {
         "id": 13,
-        "text": "It takes me 30 minutes",
+        "text": "No",
         "value": 1,
         "order": 1,
         "special": null,
@@ -717,87 +809,229 @@
     ],
     [
       {
-        "id": 28,
+        "id": 39,
+        "text": "Yes",
+        "value": 0,
+        "order": 0,
+        "special": "none",
+        "product": 1,
+        "question": 13
+      },
+      {
+        "id": 40,
+        "text": "No",
+        "value": 1,
+        "order": 1,
+        "special": "none",
+        "product": 1,
+        "question": 13
+      }
+    ],
+    [
+      {
+        "id": 41,
+        "text": "Yes",
+        "value": 0,
+        "order": 0,
+        "special": "none",
+        "product": 1,
+        "question": 14
+      },
+      {
+        "id": 42,
+        "text": "No",
+        "value": 1,
+        "order": 1,
+        "special": "none",
+        "product": 1,
+        "question": 14
+      }
+    ],
+    [
+      {
+        "id": 221,
         "text": "Very difficult",
         "value": 0,
         "order": 0,
         "special": null,
         "product": 1,
-        "question": 10
+        "question": 37
       },
       {
-        "id": 29,
+        "id": 222,
         "text": "Difficult",
         "value": 1,
         "order": 1,
         "special": null,
         "product": 1,
-        "question": 10
+        "question": 37
       },
       {
-        "id": 30,
-        "text": "Middling",
+        "id": 223,
+        "text": "A little difficult",
         "value": 2,
         "order": 2,
         "special": null,
         "product": 1,
-        "question": 10
+        "question": 37
       },
       {
-        "id": 31,
+        "id": 224,
         "text": "Easy",
         "value": 3,
         "order": 3,
         "special": null,
         "product": 1,
-        "question": 10
+        "question": 37
       }
     ],
     [
       {
-        "id": 32,
+        "id": 225,
         "text": "Reading the text in the video",
         "value": 0,
         "order": 0,
         "special": null,
         "product": 1,
-        "question": 11
+        "question": 38
       },
       {
-        "id": 33,
+        "id": 226,
         "text": "Calculating the interest charged",
         "value": 1,
         "order": 1,
         "special": null,
         "product": 1,
-        "question": 11
+        "question": 38
       },
       {
-        "id": 34,
+        "id": 227,
         "text": "Using the calculator on my phone",
         "value": 2,
         "order": 2,
         "special": null,
         "product": 1,
-        "question": 11
+        "question": 38
       },
       {
-        "id": 38,
+        "id": 228,
         "text": "None",
         "value": -1,
         "order": 3,
         "special": "none",
         "product": 1,
-        "question": 11
+        "question": 38
+      }
+    ],
+    [
+      {
+        "id": 8,
+        "text": "Yes",
+        "value": 0,
+        "order": 0,
+        "special": null,
+        "product": 1,
+        "question": 3
+      },
+      {
+        "id": 9,
+        "text": "No",
+        "value": 1,
+        "order": 1,
+        "special": null,
+        "product": 1,
+        "question": 3
+      }
+    ],
+    [
+      {
+        "id": 10,
+        "text": "Yes",
+        "value": 0,
+        "order": 0,
+        "special": null,
+        "product": 1,
+        "question": 4
+      },
+      {
+        "id": 11,
+        "text": "No",
+        "value": 1,
+        "order": 1,
+        "special": null,
+        "product": 1,
+        "question": 4
+      }
+    ],
+    [
+      {
+        "id": 12,
+        "text": "Yes",
+        "value": 0,
+        "order": 0,
+        "special": null,
+        "product": 1,
+        "question": 5
+      },
+      {
+        "id": 13,
+        "text": "No",
+        "value": 1,
+        "order": 1,
+        "special": null,
+        "product": 1,
+        "question": 5
+      }
+    ],
+    [
+      {
+        "id": 39,
+        "text": "Yes",
+        "value": 0,
+        "order": 0,
+        "special": "none",
+        "product": 1,
+        "question": 13
+      },
+      {
+        "id": 40,
+        "text": "No",
+        "value": 1,
+        "order": 1,
+        "special": "none",
+        "product": 1,
+        "question": 13
+      }
+    ],
+    [
+      {
+        "id": 41,
+        "text": "Yes",
+        "value": 0,
+        "order": 0,
+        "special": "none",
+        "product": 1,
+        "question": 14
+      },
+      {
+        "id": 42,
+        "text": "No",
+        "value": 1,
+        "order": 1,
+        "special": "none",
+        "product": 1,
+        "question": 14
       }
     ]
   ],
   "question_order": [
     "task_question",
     "challenging_skill",
-    "dimension_independence",
-    "dimension_confidence",
-    "dimension_fluency"
+    "dimension_independence_1",
+    "dimension_confidence_1",
+    "dimension_confidence_2",
+    "dimension_fluency_1",
+    "dimension_fluency_2"
   ],
   "challenging_order": [
     "literacy",
@@ -805,23 +1039,31 @@
     "digital_skills"
   ],
   "answers": [
+    2,
+    6,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    7,
+    1,
+    0,
+    -1,
+    0,
+    -1,
     3,
+    0,
+    1,
+    0,
+    -1,
+    0,
+    -1,
+    0,
     7,
     1,
     1,
-    1,
-    2,
-    4,
-    0,
-    0,
-    0,
-    1,
-    2,
-    0,
-    1,
-    0,
-    0,
-    7,
     1,
     1,
     1
