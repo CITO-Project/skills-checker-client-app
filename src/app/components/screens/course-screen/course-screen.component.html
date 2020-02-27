@@ -1,4 +1,24 @@
 <app-header text='default'></app-header>
+
+<app-sign-post
+  [data]="[
+    {
+      text: 'Literacy'
+    },
+    {
+      text: 'Numeracy',
+      isRight: true
+    },
+    {
+      text: 'Digital skills'
+    },
+    {
+      text: 'Independence',
+      isRight: true
+    }
+  ]">
+</app-sign-post>
+
 <div class="container" *ngIf="!!course">
   <div class="heading">{{ course.title }}</div>
   <div class="row">

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GraphicGeneratorComponent } from './graphic-generator.component';
+import { SignPostComponent } from './sign-post.component';
 
-describe('GraphicGeneratorComponent', () => {
-  let component: GraphicGeneratorComponent;
-  let fixture: ComponentFixture<GraphicGeneratorComponent>;
+describe('SignPostComponent', () => {
+  let component: SignPostComponent;
+  let fixture: ComponentFixture<SignPostComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GraphicGeneratorComponent ]
+      declarations: [ SignPostComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GraphicGeneratorComponent);
+    fixture = TestBed.createComponent(SignPostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

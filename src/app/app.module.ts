@@ -27,7 +27,7 @@ import { CourseComponent } from './components/course/course.component';
 // tslint:disable-next-line:max-line-length
 import { ScenarioIntroductionScreenComponent } from './components/screens/scenario-introduction-screen/scenario-introduction-screen.component';
 import { CourseScreenComponent } from './components/screens/course-screen/course-screen.component';
-import { GraphicGeneratorComponent } from './components/graphic-generator/graphic-generator.component';
+import { SignPostComponent } from './components/graphics/sign-post/sign-post.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { GraphicGeneratorComponent } from './components/graphic-generator/graphi
     CourseComponent,
     ScenarioIntroductionScreenComponent,
     CourseScreenComponent,
-    GraphicGeneratorComponent
+    SignPostComponent
   ],
   imports: [
     BrowserModule,

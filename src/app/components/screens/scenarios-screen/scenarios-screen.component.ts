@@ -99,7 +99,7 @@ export class ScenariosScreenComponent implements OnInit {
 
   saveAnswer(): boolean {
     if (this.currentAnswer < 0) {
-      this.showError('Please, select one of the options bellow');
+      this.showError('Please, select one of the options below');
       return false;
     } else {
       this.dataLogService.setAnswer(this.currentScenario, this.currentQuestion, this.currentAnswer);
