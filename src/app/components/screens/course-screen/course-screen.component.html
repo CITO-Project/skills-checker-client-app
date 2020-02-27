@@ -1,6 +1,6 @@
 <app-header text='default'></app-header>
 
-<app-sign-post
+<app-tree
   [data]="[
     {
       text: 'Literacy'
@@ -17,7 +17,7 @@
       isRight: true
     }
   ]">
-</app-sign-post>
+</app-tree>
 
 <div class="container" *ngIf="!!course">
   <div class="heading">{{ course.title }}</div>

@@ -1,11 +1,6 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
+import { GraphicsData } from 'src/app/models/graphics-data';
 
-interface Sign {
-  text: string;
-  weight: number;
-  isRight: boolean;
-  HTMLelement: HTMLElement;
-}
 
 @Component({
   selector: 'app-sign-post',
@@ -14,7 +9,7 @@ interface Sign {
 })
 export class SignPostComponent implements AfterViewInit {
 
-  @Input() data: Sign[];
+  @Input() data: GraphicsData[];
 
   private totalWeight = 0;
 
@@ -29,7 +24,7 @@ export class SignPostComponent implements AfterViewInit {
 
   processSigns(): void {
     this.totalWeight = 0;
-    this.data.forEach( (sign: Sign, index: number) => {
+    this.data.forEach( (sign: GraphicsData, index: number) => {
       const orientation = !!sign.isRight ? 'right' : 'left';
       sign.HTMLelement = document.
         getElementsByClassName(`row${index + 1} ${orientation}`).item(0).
@@ -42,7 +37,7 @@ export class SignPostComponent implements AfterViewInit {
   }
 
   setWeights(): void {
-    this.data.forEach( (sign: Sign, index: number) => {
+    this.data.forEach( (sign: GraphicsData, index: number) => {
       if (!!sign.isRight) {
         sign.HTMLelement.style.paddingRight = `${4-index}0%`;
       } else {
