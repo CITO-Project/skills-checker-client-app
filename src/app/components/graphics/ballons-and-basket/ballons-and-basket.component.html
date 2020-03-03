@@ -1,1 +1,60 @@
-<p>ballons-and-basket works!</p>
+<div class="balloon one yellow">
+  <div class="content">
+    <div class="content">
+      <div class="content">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="balloon two blue">
+  <div class="content">
+    Numeracy
+  </div>
+</div>
+<div class="balloon three green">
+  <div class="content">
+    Digital skills
+  </div>
+</div>
+<div class="basket">
+  <img [src]="commonService.getImagePath('basket.svg')" alt="Basket SVG">
+</div>
+
+
+
+
+<svg viewbox='100 100'>
+  <path d='M0 0 h100' stroke-width='1' stroke='green'/>
+  <path d='M0 10 h100' stroke-width='.2' stroke='green'/>
+  <path d='M0 20 h100' stroke-width='.2' stroke='green'/>
+  <path d='M0 30 h100' stroke-width='.2' stroke='green'/>
+  <path d='M0 40 h100' stroke-width='.2' stroke='green'/>
+  <path d='M0 50 h100' stroke-width='.5' stroke='green'/>
+  <path d='M0 60 h100' stroke-width='.2' stroke='green'/>
+  <path d='M0 70 h100' stroke-width='.2' stroke='green'/>
+  <path d='M0 80 h100' stroke-width='.2' stroke='green'/>
+  <path d='M0 90 h100' stroke-width='.2' stroke='green'/>
+  <path d='M0 100 h100' stroke-width='1' stroke='green'/>
+
+  <path d='M0 0 v100' stroke-width='1' stroke='green'/>
+  <path d='M10 0 v100' stroke-width='.2' stroke='green'/>
+  <path d='M20 0 v100' stroke-width='.2' stroke='green'/>
+  <path d='M30 0 v100' stroke-width='.2' stroke='green'/>
+  <path d='M40 0 v100' stroke-width='.2' stroke='green'/>
+  <path d='M50 0 v100' stroke-width='.5' stroke='green'/>
+  <path d='M60 0 v100' stroke-width='.2' stroke='green'/>
+  <path d='M70 0 v100' stroke-width='.2' stroke='green'/>
+  <path d='M80 0 v100' stroke-width='.2' stroke='green'/>
+  <path d='M90 0 v100' stroke-width='.2' stroke='green'/>
+  <path d='M100 0 v100' stroke-width='1' stroke='green'/>
+
+  <path id='myPath' d='M30 50 A10 1, -10, 0 1, 70 50' stroke='red' stroke-width='.2' fill='none'/>
+  <text font-size='10'>
+    <textPath href="http://localhost:4200/course/1#myPath">
+      Quick brown fox jumps over the lazy dog. Quick brown fox jumps over the lazy dog. Quick brown fox jumps over the lazy dog.
+    </textPath>
+  </text>
+</svg>
+<div id='canvas'>
+
+</div>

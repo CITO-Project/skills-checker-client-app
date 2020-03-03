@@ -1,0 +1,19 @@
+.egg {
+  display: block;
+  $size: 180px;
+  $width: 126px;
+  width: $width;
+  background-color: red;
+  overflow: visible;
+  .upper {
+    height: $size / 3;
+    width: $width;
+    border: 1px solid transparent;
+    border-radius: 50px;
+  }
+  .lower {
+     background-color: blue;
+     height: ($size / 3) * 2;
+     width: $width;
+   }
+}
