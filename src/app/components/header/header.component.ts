@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() text: string;
 
-  constructor(private commonService: CommonService, private dataLogService:  DataLogService) { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
     if (this.text === 'default') {

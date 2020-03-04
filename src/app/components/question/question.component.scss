@@ -153,17 +153,17 @@
       }
 
       &:after {
-        @include font-awesome;
-        content: '\f0dc' !important;
-        transform: rotate(90deg);
+        content: url('../../../assets/images/pointer.png') !important;
+        transform: scale(40%);
         color: $color-font !important;
         background-color: transparent !important;
         font-size: 160%;
-        top: 8px !important;
-        left: 26px !important;
+        top: -1px !important;
+        left: -1px !important;
         @include setStyleTablet {
-          top: 12px !important;
-          left: 43px !important;
+          transform: scale(60%);
+          top: 1px !important;
+          left: 0px !important;
         }
       }
       &:hover {
