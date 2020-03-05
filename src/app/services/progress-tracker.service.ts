@@ -66,6 +66,9 @@ export class ProgressTrackerService {
 
   next(answerValue?: number): Observable<CustomResponse> {
     this.question++;
+    if (this.shouldSkipScenario(answerValue === undefined ? -1 : answerValue)) {
+      return this.nextScenario();
+    }
     if (this.shouldSkip(answerValue === undefined ? -1 : answerValue)) {
       this.question++;
     }
@@ -131,6 +134,25 @@ export class ProgressTrackerService {
         if (+answer === 0) {
           r = true;
         }
+      }
+    }
+    return r;
+  }
+
+  shouldSkipScenario(answer: number): boolean {
+    let r = false;
+    if (this.question > 0) {
+      const { questions, question_order, question_answers } = this.dataLogService.getAll();
+      const currentQuestionIndex = (question_order.length * this.scenario + this.question) - 1;
+      if (
+        // tslint:disable-next-line:max-line-length
+        (questions[currentQuestionIndex].pedagogical_type === 'task_question' && answer === question_answers[currentQuestionIndex].length - 1)
+        ||
+        (questions[currentQuestionIndex].pedagogical_type === 'dimension_independence_1' && answer === 0)
+        ||
+        (questions[currentQuestionIndex].pedagogical_type === 'dimension_confidence_2' && answer === 1)
+        ) {
+          r = true;
       }
     }
     return r;
