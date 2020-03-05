@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { CommonService } from 'src/app/services/common.service';
 
@@ -10,6 +10,7 @@ import { CommonService } from 'src/app/services/common.service';
 export class HeaderComponent implements OnInit {
 
   @Input() text: string;
+  @Output() customClick = new EventEmitter<void>();
 
   constructor(private commonService: CommonService) { }
 
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToIndex() {
+    this.customClick.emit();
     this.commonService.goTo('');
   }
 

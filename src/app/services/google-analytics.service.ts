@@ -58,10 +58,15 @@ export class GoogleAnalyticsService {
     'selected_location',
     'selected_interest',
     'started_app',
-    'started_test'
+    'started_test',
+    'left_interest',
+    'left_scenario'
   ];
 
-  constructor(private router: Router, private commonService: CommonService) { }
+  constructor(
+    private router: Router,
+    private commonService: CommonService
+    ) { }
 
   initializeGA(): void {
     this.router.events.subscribe(event => {
@@ -163,9 +168,9 @@ export class GoogleAnalyticsService {
   }
   //#endregion
 
-  addEvent(action: string, label?: string): void {
+  addEvent(action: string, label?: string, value: number = 1): void {
     if (this.EVENTS.includes(action)) {
-      this.eventEmitter(action, 1, label);
+      this.eventEmitter(action, value, label);
     }
   }
 }
