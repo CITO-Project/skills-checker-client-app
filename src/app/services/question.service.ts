@@ -60,13 +60,14 @@ export class QuestionService {
   }
 
   getQuestionInOrder(questions: Question[], questionindex: number): Question {
-    // TODO: Change foreach so it doesnt check every single value in the list
     let r: Question = null;
-    questions.forEach((question: Question) => {
-      if (question.pedagogical_type === this.QUESTION_ORDER[questionindex]) {
-        r = question;
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < questions.length; i++) {
+      if (questions[i].pedagogical_type === this.QUESTION_ORDER[questionindex]) {
+        r = questions[i];
+        break;
       }
-    });
+    }
     return r;
   }
 

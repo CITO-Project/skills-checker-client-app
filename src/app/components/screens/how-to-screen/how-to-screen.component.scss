@@ -3,21 +3,30 @@
 #description {
   color: $color-font-dark;
   text-align: center;
-  padding: 30px;
+  padding: 20px 30px;
+  @include setStyleTablet {
+    padding: 30px;
+  }
 
   .heading {
     margin-bottom: 30px;
+    font-size: 150%;
   }
   .text {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+    font-size: 120%;
+    @include setStyleTablet {
+      margin-bottom: 50px;
+    }
   }
   .muted {
     text-align: center;
+    font-size: 100%;
+    padding: 0 40px;
   }
   .button {
     margin-bottom: 30px;
-    background-image: linear-gradient($color-blue, $color-blue);
     padding: 0 60px;
     white-space: pre;
     @include setStyleTablet {

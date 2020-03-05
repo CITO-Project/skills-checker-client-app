@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+
 import { Course } from 'src/app/models/course';
+
 import { CoursesService } from 'src/app/services/courses.service';
 import { CommonService } from 'src/app/services/common.service';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-course-screen',
@@ -13,13 +16,18 @@ export class CourseScreenComponent implements OnInit {
 
   public course: Course;
 
-  constructor(private route: ActivatedRoute, private courseService: CoursesService, private commonService: CommonService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private courseService: CoursesService,
+    private commonService: CommonService,
+    private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
     this.route.params.subscribe( (params: Params) => {
       if (Object.keys(params).length < 1 || !params.courseid || params.courseid < 1) {
         this.commonService.goTo('results');
       }
+      this.googleAnalyticsService.addEvent('selected_course', params.courseid);
       this.loadCourse(params.courseid);
     });
   }

@@ -1,8 +1,14 @@
 @import '../../../../_imports.scss';
 
 .container {
-  margin-top: $header-height * 2;
   word-break: break-word;
+  > .heading {
+    margin: 15px 0px;
+    font-size: 150%;
+    @include setStyleTablet {
+      margin: 20px 0px;
+    }
+  }
 }
 
 .heading {

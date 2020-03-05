@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Course } from '../models/course';
 import { Observable, Observer } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CommonService } from './common.service';
+
+import { Course } from '../models/course';
 import { Result } from '../models/result';
+
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root'

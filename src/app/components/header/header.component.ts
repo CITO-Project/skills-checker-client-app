@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 import { CommonService } from 'src/app/services/common.service';
-import { DataLogService } from 'src/app/services/data-log.service';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +10,9 @@ import { DataLogService } from 'src/app/services/data-log.service';
 export class HeaderComponent implements OnInit {
 
   @Input() text: string;
-  @Input() skip: boolean;
+  @Output() customClick = new EventEmitter<void>();
 
-
-  constructor(private commonService: CommonService, private dataLogService: DataLogService) { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
     if (this.text === 'default') {
@@ -22,11 +21,8 @@ export class HeaderComponent implements OnInit {
   }
 
   goToIndex() {
+    this.customClick.emit();
     this.commonService.goTo('');
-  }
-
-  goToResults() {
-    this.commonService.goTo('results');
   }
 
 }

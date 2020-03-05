@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Course } from 'src/app/models/course';
 import { CommonService } from 'src/app/services/common.service';
 
@@ -7,14 +7,12 @@ import { CommonService } from 'src/app/services/common.service';
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.scss']
 })
-export class CourseComponent implements OnInit {
+export class CourseComponent {
 
   @Input() course: Course;
   @Input() colour: string;
 
   constructor(public commonService: CommonService) { }
-
-  ngOnInit() { }
 
   loadLink(courseid: number): void {
     this.commonService.goTo(`course/${courseid}`);

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { VgAPI, VgMedia } from 'videogular2/compiled/core';
+
 import { CommonService } from 'src/app/services/common.service';
-import { VgAPI } from 'videogular2/compiled/core';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-media',
@@ -13,12 +15,18 @@ export class MediaComponent implements OnInit, OnChanges {
   @Input() resource: string;
   @Input() replay: boolean;
 
+  private vgApi: VgAPI;
+  private videoFinished = false;
+
   public resourceFile: string;
   public subtitleFile: string;
   public supportedVideo = ['mp4', 'webm', 'ogg'];
   public supportedImages = ['apng', 'bmp', 'gif', 'ico', 'cur', 'jpg', 'jpeg', 'jfif', 'pjpej', 'pjp', 'png', 'svg', 'tif', 'tiff', 'webp'];
 
-  constructor(private commonService: CommonService) { }
+  constructor(
+    private commonService: CommonService,
+    private googleAnalyticsService: GoogleAnalyticsService
+    ) { }
 
   ngOnInit() {
     this.loadResource();
@@ -31,13 +39,20 @@ export class MediaComponent implements OnInit, OnChanges {
   }
 
   loadResource() {
-    if (this.resource === undefined) {
-      console.error('Need to provide resource to show > ', this.resource);
-    } else {
-      this.resourceFile = this.commonService.getResourcePath(this.resource);
-      if (this.getType() === 'video') {
+    if (this.resource === undefined || !this.resource) {
+      this.resource = 'default.mp4';
+    }
+    switch (this.getType()) {
+      case 'video':
+        this.resourceFile = this.commonService.getResourcePath(`videos/${this.resource}`);
         this.loadSubtitles();
-      }
+        if (!!this.vgApi) {
+          (this.vgApi.getDefaultMedia() as VgMedia).loadMedia();
+          (this.vgApi.getDefaultMedia() as VgMedia).play();
+        }
+        break;
+      case 'image':
+        this.resourceFile = this.commonService.getResourcePath(`images/${this.resource}`);
     }
   }
 
@@ -45,10 +60,9 @@ export class MediaComponent implements OnInit, OnChanges {
     return this.resource.split('.').pop();
   }
 
-  loadSubtitles() {
-    const r = this.resourceFile.split('.').slice(0, -1);
-    r.push('.vtt');
-    this.subtitleFile = r.join('');
+  loadSubtitles(): void {
+    const fileName = this.resource.split('.').slice(0, -1).join();
+    this.subtitleFile = this.commonService.getResourcePath(`subtitles/${fileName}.vtt`);
   }
 
   getType(): string {
@@ -59,6 +73,23 @@ export class MediaComponent implements OnInit, OnChanges {
     } else {
       return '';
     }
+  }
+
+  onPlayerReady(vgAPI: VgAPI): void {
+    this.vgApi = vgAPI;
+    this.addListenersToVideo();
+    this.googleAnalyticsService.addCounter('count_plays_per_scenario');
+  }
+
+  addListenersToVideo(): void {
+    this.vgApi.getDefaultMedia().subscriptions.ended.subscribe( () => {
+      this.videoFinished = true;
+    });
+    this.vgApi.getDefaultMedia().subscriptions.playing.subscribe( () => {
+      if (!!this.videoFinished) {
+        this.googleAnalyticsService.addCounter('count_plays_per_scenario');
+      }
+    });
   }
 
 }
