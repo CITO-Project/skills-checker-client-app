@@ -47,27 +47,6 @@ export class QuestionService {
     }
   }
 
-  shouldSkipScenario(question: Question, answer: number): boolean {
-    return false;
-    // answer = +answer;
-    // let r = false;
-    // switch (question.pedagogical_type) {
-    //   case 'task_question':
-    //     if (answer === question.answers.length - 1) {
-    //       r = true;
-    //     }
-    //     break;
-    //   case 'dimension_independence':
-    //   case 'dimension_confidence':
-    //   case 'dimension_fluency':
-    //     if (answer === question.answers.length - 1) {
-    //       r = true;
-    //     }
-    //     break;
-    // }
-    // return r;
-  }
-
   getPedagogicalType(order: number): string {
     return this.QUESTION_ORDER[order];
   }
@@ -81,13 +60,14 @@ export class QuestionService {
   }
 
   getQuestionInOrder(questions: Question[], questionindex: number): Question {
-    // TODO: Change foreach so it doesnt check every single value in the list
     let r: Question = null;
-    questions.forEach((question: Question) => {
-      if (question.pedagogical_type === this.QUESTION_ORDER[questionindex]) {
-        r = question;
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < questions.length; i++) {
+      if (questions[i].pedagogical_type === this.QUESTION_ORDER[questionindex]) {
+        r = questions[i];
+        break;
       }
-    });
+    }
     return r;
   }
 

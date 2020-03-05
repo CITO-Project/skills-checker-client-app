@@ -37,7 +37,7 @@ $color-background-colour: $color-green;
 $color-background-dark: $color-black;
 
 // Slider
-$color-slider-background: $color-grey;
+$color-slider-background: $color-grey-light;
 $color-slider-start: $color-red;
 $color-slider-end: $color-green;
 $color-slider-pointer-hover: $color-green-translucid;
@@ -47,3 +47,7 @@ $color-option-background: $color-pure-white;
 $color-option-border: $color-grey-light;
 $color-option-background-active: $color-green;
 $color-option-border-active: $color-font;
+
+// Subtitles
+$color-subtitles: $color-white;
+$color-subtitles-background: $color-black;
