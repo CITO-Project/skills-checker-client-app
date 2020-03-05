@@ -12,6 +12,7 @@
     position: relative;
     overflow: hidden;
     height: 150px;
+    cursor: pointer;
     @include setStyleTablet {
       height: 250px;
     }
