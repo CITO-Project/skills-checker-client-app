@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { GoogleAnalyticsService } from './google-analytics.service';
 
 @Injectable({
   providedIn: 'root'
@@ -66,15 +65,17 @@ export class CommonService {
 
   getPath(name: string, type: string): string {
     let r = '';
-    const file = name.split('/').pop();
     switch (type) {
       case 'images':
       case 'icons':
       case 'resources':
-        r = this.RESOURCE_PATH + type + '/' + file;
+        r = this.RESOURCE_PATH + type + '/' + name;
         break;
     }
-    return r;
+    const http = new XMLHttpRequest();
+    http.open('HEAD', r, false);
+    http.send();
+    return http.status === 404 ? 'default' : r;
   }
 
   getIconPath(name: string): string {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+
 import { CommonService } from './common.service';
 
 // tslint:disable-next-line:ban-types
@@ -9,6 +10,8 @@ declare let gtag: Function;
   providedIn: 'root'
 })
 export class GoogleAnalyticsService {
+
+  private readonly GOOGLE_ANALYTICS_ENABLED = false;
 
   private starts: {
     time_answer_interest: {
@@ -93,11 +96,13 @@ export class GoogleAnalyticsService {
     eventValue: number = 1,
     eventLabel: string = null
   ) {
-    // gtag('event', eventName, {
-    //   event_category: this.commonService.getProductName(),
-    //   event_label: eventLabel,
-    //   value: eventValue
-    // });
+    if (this.GOOGLE_ANALYTICS_ENABLED) {
+      gtag('event', eventName, {
+        event_category: this.commonService.getProductName(),
+        event_label: eventLabel,
+        value: eventValue
+      });
+    }
   }
 
   //#region Timer

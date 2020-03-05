@@ -23,10 +23,10 @@
   .muted {
     text-align: center;
     font-size: 100%;
+    padding: 0 40px;
   }
   .button {
     margin-bottom: 30px;
-    background-image: linear-gradient($color-blue, $color-blue);
     padding: 0 60px;
     white-space: pre;
     @include setStyleTablet {

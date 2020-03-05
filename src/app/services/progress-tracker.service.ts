@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable, Observer, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { CommonService } from './common.service';
-import { DataLogService } from './data-log.service';
-import { QuestionService } from './question.service';
-
 import { Category } from '../models/category';
 import { Interest } from '../models/interest';
 import { CustomResponse } from '../models/custom-response';
+import { Answer } from '../models/answer';
+
+import { CommonService } from './common.service';
+import { DataLogService } from './data-log.service';
+import { QuestionService } from './question.service';
 import { GoogleAnalyticsService } from './google-analytics.service';
 
 @Injectable({
@@ -28,7 +29,7 @@ export class ProgressTrackerService {
     private dataLogService: DataLogService,
     private questionService: QuestionService,
     private googleAnalyticsService: GoogleAnalyticsService) {
-    this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
+      this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
   }
 
   initializeTracker(): Observable<Observable<void>> {
@@ -152,12 +153,20 @@ export class ProgressTrackerService {
       return r as Observable<CustomResponse>;
     } else {
       const log = this.dataLogService.getAll();
+      if (log.questions.length < 1 || log.question_answers.length < 1) {
+        this.commonService.goTo('how-to');
+      }
+      const questionIndexInLog = this.scenario * this.QUESTIONS_PER_SCENARIO + this.question;
+      const questionid = log.questions[questionIndexInLog].id;
+      const questionIndex = log.question_answers.findIndex( (item: Answer[]) => {
+        return item.length > 0 && item[0].question === questionid;
+      });
       return {
         scenarioIndex: this.scenario,
         questionIndex: this.question,
         scenario: log.scenarios[this.scenario],
-        question: log.questions[this.question],
-        question_answers: log.question_answers[this.question],
+        question: log.questions[questionIndexInLog],
+        question_answers: log.question_answers[questionIndex],
         answer: log.answers[this.question],
         isFirstQuestion: this.scenario === 0 && this.question === 0,
         isLastQuestion: this.scenario >= this.NUMBER_OF_SCENARIOS - 1 && this.question >= this.QUESTIONS_PER_SCENARIO - 1,

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+import { Product } from 'src/app/models/product';
+
 import { DataLogService } from 'src/app/services/data-log.service';
 import { ProductService } from 'src/app/services/product.service';
-import { Product } from 'src/app/models/product';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 

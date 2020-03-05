@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
     window.addEventListener('beforeunload', () => {
       googleAnalyticsService.stopTimer('time_use_app');
       googleAnalyticsService.stopTimer('time_review_results');
-
     });
   }
 

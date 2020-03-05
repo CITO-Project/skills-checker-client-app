@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { DataLogService } from 'src/app/services/data-log.service';
+import { Observable } from 'rxjs';
+
+import { Course } from 'src/app/models/course';
+import { Result } from 'src/app/models/result';
+
 import { DataProcessingService } from 'src/app/services/data-processing.service';
 import { CommonService } from 'src/app/services/common.service';
 import { CoursesService } from 'src/app/services/courses.service';
-import { Course } from 'src/app/models/course';
-import { Observable } from 'rxjs';
-import { Result } from 'src/app/models/result';
+import { DataLogService } from 'src/app/services/data-log.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
