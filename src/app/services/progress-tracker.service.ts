@@ -96,6 +96,7 @@ export class ProgressTrackerService {
   nextScenario(): Observable<CustomResponse> {
     this.scenario++;
     if (this.scenario >= this.NUMBER_OF_SCENARIOS) {
+      this.calculateNumberOfAnsweredQuestions();
       this.googleAnalyticsService.addEvent('finished_test', '' + this.dataLogService.getInterest().id);
       this.commonService.goTo('results');
     } else {
@@ -176,4 +177,26 @@ export class ProgressTrackerService {
     }
   }
 
+  calculateNumberOfAnsweredQuestions(): void {
+    const { answers, question_order, scenarios, interest } = this.dataLogService.getAll();
+    let total = 0;
+    let scenarioTotal = 0;
+    answers.forEach( (value: number, index: number) => {
+      if (value >= 0) {
+        total++;
+        scenarioTotal++;
+      }
+      if ((index + 1) % question_order.length === 0) {
+        this.googleAnalyticsService.addEvent(
+          'answered_questions_per_scenario',
+          '' + scenarios[Math.floor(index / question_order.length)].id,
+          scenarioTotal);
+        scenarioTotal = 0;
+      }
+    });
+    this.googleAnalyticsService.addEvent(
+      'answered_questions_per_interest',
+      '' + interest.id,
+      total);
+  }
 }

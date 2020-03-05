@@ -5,83 +5,83 @@
     "description": null
   },
   "category": {
-    "id": 1,
-    "name": "personal",
-    "text": "Personal",
-    "colour": "green",
-    "resource": "person-laptop.svg",
+    "id": 4,
+    "name": "social",
+    "text": "Social",
+    "colour": "red",
+    "resource": "meeting.svg",
     "description": null,
     "product": 1
   },
   "interest": {
-    "id": 3,
-    "name": "help_children",
-    "text": "Help with my children's learning",
-    "resource": "task-list-checked.svg",
+    "id": 22,
+    "name": "participate-activities",
+    "text": "Be able to participate in local activities and events with friends and peers",
+    "resource": "webpage-people.svg",
     "description": null,
     "product": 1,
-    "category": 1
+    "category": 4
   },
   "scenarios": [
     {
-      "id": 1,
-      "name": "school_trip",
-      "text": "School trip",
+      "id": 60,
+      "name": "look_train_timetable",
+      "text": "Look train timetable",
       "level": 1,
-      "resource": "choose-clothes-for-child.mp4",
-      "description": "Your child is going on school trip tomorrow. You want to choose the clothes your child willwear. Look at tomorrow’s weather forecast on your phone and decide if you can select appropriate clothing foryour child",
+      "resource": "select-train-time.mp4",
+      "description": "You are meeting a friend at Dublin Connolly at 3.00 PM. You have to take the train from Malahide to Dublin Connolly. You have the train timetable saved on your phone as an offline file. Look at the train timetable on your phone and decide if you can select the train that will allow you to arrive at Dublin Connolly a few minutes before 3.00 PM",
       "product": 1,
-      "interest": 3
+      "interest": 22
     },
     {
-      "id": 2,
-      "name": "birthday_party",
-      "text": "Birthday party",
+      "id": 61,
+      "name": "check_rain_for_holidays",
+      "text": "Check rain for holidays",
       "level": 2,
-      "resource": "organize-party-via-whatsapp.mp4",
-      "description": "It’s your partner’s birthday. You are organising a party for them at a local restaurant and want to invite your friends. Decide if you can type and send a short message on WhatsApp to invite your friends to the party.",
+      "resource": "select-month-least-rain.mp4",
+      "description": "You would like to go to Rome, Italy for your summer holiday with two friends. Decide if you can find weather information for Rome online and then look at the weather forecast graph and decide if you can select the month with no chance of rain.",
       "product": 1,
-      "interest": 3
+      "interest": 22
     },
     {
-      "id": 3,
-      "name": "car_loan",
-      "text": "Calculate car loan",
+      "id": 62,
+      "name": "calculate_recipe",
+      "text": "Calculate recipe",
       "level": 3,
-      "resource": "use-online-loan-calculator.mp4",
-      "description": "You are thinking of buying a car and you would like to know how much you could borrow from the bank. Look at the online loan calculator and decide if you can find out how much you can borrow and what monthly repayment you can afford.",
+      "resource": "calculate-quantities-cooking.mp4",
+      "description": "Your friends are coming to your house for dinner. You want to make spaghetti carbonara for them and want to check if anyone is allergic to any of the ingredients. Read the recipe and decide if you can text your friends the ingredients. Then, decide if you can adjust the quantities in the recipe so as to serve 8 people.",
       "product": 1,
-      "interest": 3
+      "interest": 22
     },
     {
-      "id": 23,
-      "name": "credit_card_interest",
-      "text": "Credit card interest",
+      "id": 63,
+      "name": "create_fish_pond",
+      "text": "Create fish pond",
       "level": 4,
-      "resource": "calculate-interest.mp4",
-      "description": "Your credit card bill is €500. Your credit card monthly interest rate is 4.5%. After you have made a minimum payment of €5, your balance owed is €495. Decide if you can work out the interest charged on this amount using the calculator on your phone.",
+      "resource": "calculate-area-pond.mp4",
+      "description": "You are creating a community garden with a circular fish pond in the centre. The fish pond is 6 m in diameter. Decide if you can calculate the area of the fish pond. You also want to share pictures of the garden with your neighbours on Facebook.",
       "product": 1,
-      "interest": 3
+      "interest": 22
     }
   ],
   "questions": [
     {
-      "id": 1,
+      "id": 114,
       "type": "slider",
       "pedagogical_type": "task_question",
-      "question": "For me, selecting appropriate clothes for my child after looking at the weather forecast on my phone is",
+      "question": "For me, selecting the train that will allow me to arrive in Dublin just a few minutes before 3.00 PM is",
       "description": null,
       "product": 1,
-      "scenario": 1
+      "scenario": 60
     },
     {
-      "id": 2,
+      "id": 113,
       "type": "multiple",
       "pedagogical_type": "challenging_skill",
       "question": "The most challenging aspect in this scenario is:",
       "description": null,
       "product": 1,
-      "scenario": 1
+      "scenario": 60
     },
     {
       "id": 3,
@@ -90,7 +90,7 @@
       "question": "Would you find this task easier with help?",
       "description": null,
       "product": 1,
-      "scenario": 1
+      "scenario": 60
     },
     {
       "id": 4,
@@ -99,7 +99,7 @@
       "question": "Would you feel comfortable doing this task in public?",
       "description": null,
       "product": 1,
-      "scenario": 1
+      "scenario": 60
     },
     {
       "id": 13,
@@ -108,43 +108,43 @@
       "question": "Would you feel more comfortable doing this task in private?",
       "description": null,
       "product": 1,
-      "scenario": 1
+      "scenario": 60
     },
     {
       "id": 5,
       "type": "single",
       "pedagogical_type": "dimension_fluency_1",
-      "question": "Would it take you less or more than 5 minutes to complete this task?",
+      "question": "Would it take you less than 5 minutes to complete this task?",
       "description": null,
       "product": 1,
-      "scenario": 1
+      "scenario": 60
     },
     {
       "id": 14,
       "type": "single",
       "pedagogical_type": "dimension_fluency_2",
-      "question": "Would it take you less or more than 30 minutes to complete this task?",
+      "question": "Would it take you more than 30 minutes to complete this task?",
       "description": null,
       "product": 1,
-      "scenario": 1
+      "scenario": 60
     },
     {
-      "id": 6,
+      "id": 115,
       "type": "slider",
       "pedagogical_type": "task_question",
-      "question": "For me, sending a message on WhatsApp to invite friends to a birthday party is",
+      "question": "For me, selecting the month with no chance of rain by looking at the weather forecast graph is",
       "description": null,
       "product": 1,
-      "scenario": 2
+      "scenario": 61
     },
     {
-      "id": 7,
+      "id": 116,
       "type": "multiple",
       "pedagogical_type": "challenging_skill",
       "question": "The most challenging aspect in this scenario is:",
       "description": null,
       "product": 1,
-      "scenario": 2
+      "scenario": 61
     },
     {
       "id": 3,
@@ -153,7 +153,7 @@
       "question": "Would you find this task easier with help?",
       "description": null,
       "product": 1,
-      "scenario": 2
+      "scenario": 61
     },
     {
       "id": 4,
@@ -162,7 +162,7 @@
       "question": "Would you feel comfortable doing this task in public?",
       "description": null,
       "product": 1,
-      "scenario": 2
+      "scenario": 61
     },
     {
       "id": 13,
@@ -171,43 +171,43 @@
       "question": "Would you feel more comfortable doing this task in private?",
       "description": null,
       "product": 1,
-      "scenario": 2
+      "scenario": 61
     },
     {
       "id": 5,
       "type": "single",
       "pedagogical_type": "dimension_fluency_1",
-      "question": "Would it take you less or more than 5 minutes to complete this task?",
+      "question": "Would it take you less than 5 minutes to complete this task?",
       "description": null,
       "product": 1,
-      "scenario": 2
+      "scenario": 61
     },
     {
       "id": 14,
       "type": "single",
       "pedagogical_type": "dimension_fluency_2",
-      "question": "Would it take you less or more than 30 minutes to complete this task?",
+      "question": "Would it take you more than 30 minutes to complete this task?",
       "description": null,
       "product": 1,
-      "scenario": 2
+      "scenario": 61
     },
     {
-      "id": 8,
+      "id": 118,
       "type": "slider",
       "pedagogical_type": "task_question",
-      "question": "For me, using the online loan calculator is",
+      "question": "For me, texting the ingredients to my friends and adjusting the quantities in the recipe to serve 8 people is",
       "description": null,
       "product": 1,
-      "scenario": 3
+      "scenario": 62
     },
     {
-      "id": 9,
+      "id": 117,
       "type": "multiple",
       "pedagogical_type": "challenging_skill",
       "question": "The most challenging aspect in this scenario is:",
       "description": null,
       "product": 1,
-      "scenario": 3
+      "scenario": 62
     },
     {
       "id": 3,
@@ -216,7 +216,7 @@
       "question": "Would you find this task easier with help?",
       "description": null,
       "product": 1,
-      "scenario": 3
+      "scenario": 62
     },
     {
       "id": 4,
@@ -225,7 +225,7 @@
       "question": "Would you feel comfortable doing this task in public?",
       "description": null,
       "product": 1,
-      "scenario": 3
+      "scenario": 62
     },
     {
       "id": 13,
@@ -234,43 +234,43 @@
       "question": "Would you feel more comfortable doing this task in private?",
       "description": null,
       "product": 1,
-      "scenario": 3
+      "scenario": 62
     },
     {
       "id": 5,
       "type": "single",
       "pedagogical_type": "dimension_fluency_1",
-      "question": "Would it take you less or more than 5 minutes to complete this task?",
+      "question": "Would it take you less than 5 minutes to complete this task?",
       "description": null,
       "product": 1,
-      "scenario": 3
+      "scenario": 62
     },
     {
       "id": 14,
       "type": "single",
       "pedagogical_type": "dimension_fluency_2",
-      "question": "Would it take you less or more than 30 minutes to complete this task?",
+      "question": "Would it take you more than 30 minutes to complete this task?",
       "description": null,
       "product": 1,
-      "scenario": 3
+      "scenario": 62
     },
     {
-      "id": 37,
+      "id": 120,
       "type": "slider",
       "pedagogical_type": "task_question",
-      "question": "For me, calculating the interest I will be charged on this amount is",
+      "question": "For me, calculating the area of the fish pond and uploading photos of the garden to Facebook to share with members of my community is",
       "description": null,
       "product": 1,
-      "scenario": 23
+      "scenario": 63
     },
     {
-      "id": 38,
+      "id": 119,
       "type": "multiple",
       "pedagogical_type": "challenging_skill",
       "question": "The most challenging aspect in this scenario is:",
       "description": null,
       "product": 1,
-      "scenario": 23
+      "scenario": 63
     },
     {
       "id": 3,
@@ -279,7 +279,7 @@
       "question": "Would you find this task easier with help?",
       "description": null,
       "product": 1,
-      "scenario": 23
+      "scenario": 63
     },
     {
       "id": 4,
@@ -288,7 +288,7 @@
       "question": "Would you feel comfortable doing this task in public?",
       "description": null,
       "product": 1,
-      "scenario": 23
+      "scenario": 63
     },
     {
       "id": 13,
@@ -297,102 +297,102 @@
       "question": "Would you feel more comfortable doing this task in private?",
       "description": null,
       "product": 1,
-      "scenario": 23
+      "scenario": 63
     },
     {
       "id": 5,
       "type": "single",
       "pedagogical_type": "dimension_fluency_1",
-      "question": "Would it take you less or more than 5 minutes to complete this task?",
+      "question": "Would it take you less than 5 minutes to complete this task?",
       "description": null,
       "product": 1,
-      "scenario": 23
+      "scenario": 63
     },
     {
       "id": 14,
       "type": "single",
       "pedagogical_type": "dimension_fluency_2",
-      "question": "Would it take you less or more than 30 minutes to complete this task?",
+      "question": "Would it take you more than 30 minutes to complete this task?",
       "description": null,
       "product": 1,
-      "scenario": 23
+      "scenario": 63
     }
   ],
   "question_answers": [
     [
       {
-        "id": 1,
-        "text": "Very diffucult",
+        "id": 568,
+        "text": "Reading the words",
         "value": 0,
         "order": 0,
         "special": null,
         "product": 1,
-        "question": 1
+        "question": 113
       },
       {
-        "id": 2,
-        "text": "Difficult",
-        "value": 1,
-        "order": 1,
-        "special": null,
-        "product": 1,
-        "question": 1
-      },
-      {
-        "id": 3,
-        "text": "A little difficult",
-        "value": 2,
-        "order": 2,
-        "special": null,
-        "product": 1,
-        "question": 1
-      },
-      {
-        "id": 4,
-        "text": "Easy",
-        "value": 3,
-        "order": 3,
-        "special": null,
-        "product": 1,
-        "question": 1
-      }
-    ],
-    [
-      {
-        "id": 5,
-        "text": "Reading the words in the weather forecast",
-        "value": 0,
-        "order": 0,
-        "special": null,
-        "product": 1,
-        "question": 2
-      },
-      {
-        "id": 6,
+        "id": 569,
         "text": "Recognising the numbers",
         "value": 1,
         "order": 1,
         "special": null,
         "product": 1,
-        "question": 2
+        "question": 113
       },
       {
-        "id": 7,
-        "text": "Finding the weather information on my phone",
+        "id": 570,
+        "text": "Finding the train timetable file on my phone",
         "value": 2,
         "order": 2,
         "special": null,
         "product": 1,
-        "question": 2
+        "question": 113
       },
       {
-        "id": 35,
+        "id": 571,
         "text": "None",
         "value": -1,
         "order": 3,
         "special": "none",
         "product": 1,
-        "question": 2
+        "question": 113
+      }
+    ],
+    [
+      {
+        "id": 572,
+        "text": "Very difficult",
+        "value": 0,
+        "order": 0,
+        "special": null,
+        "product": 1,
+        "question": 114
+      },
+      {
+        "id": 573,
+        "text": "Difficult",
+        "value": 1,
+        "order": 1,
+        "special": null,
+        "product": 1,
+        "question": 114
+      },
+      {
+        "id": 574,
+        "text": "A little difficult",
+        "value": 2,
+        "order": 2,
+        "special": null,
+        "product": 1,
+        "question": 114
+      },
+      {
+        "id": 575,
+        "text": "Easy",
+        "value": 3,
+        "order": 3,
+        "special": null,
+        "product": 1,
+        "question": 114
       }
     ],
     [
@@ -497,78 +497,78 @@
     ],
     [
       {
-        "id": 14,
+        "id": 576,
         "text": "Very difficult",
         "value": 0,
         "order": 0,
         "special": null,
         "product": 1,
-        "question": 6
+        "question": 115
       },
       {
-        "id": 15,
+        "id": 577,
         "text": "Difficult",
         "value": 1,
         "order": 1,
         "special": null,
         "product": 1,
-        "question": 6
+        "question": 115
       },
       {
-        "id": 16,
+        "id": 578,
         "text": "A little difficult",
         "value": 2,
         "order": 2,
         "special": null,
         "product": 1,
-        "question": 6
+        "question": 115
       },
       {
-        "id": 17,
+        "id": 579,
         "text": "Easy",
         "value": 3,
         "order": 3,
         "special": null,
         "product": 1,
-        "question": 6
+        "question": 115
       }
     ],
     [
       {
-        "id": 18,
-        "text": "Typing the invitation text",
+        "id": 580,
+        "text": "Reading the text",
         "value": 0,
         "order": 0,
         "special": null,
         "product": 1,
-        "question": 7
+        "question": 116
       },
       {
-        "id": 19,
-        "text": "Writing the date, start time and end time",
+        "id": 581,
+        "text": "Interpreting the graph",
         "value": 1,
         "order": 1,
         "special": null,
         "product": 1,
-        "question": 7
+        "question": 116
       },
       {
-        "id": 20,
-        "text": "Using applications such as WhatsApp to send and receive messages",
+        "id": 582,
+        "text": "Finding weather information for Rome online",
         "value": 2,
         "order": 2,
         "special": null,
         "product": 1,
-        "question": 7
+        "question": 116
       },
       {
-        "id": 36,
+        "id": 583,
         "text": "None",
         "value": -1,
         "order": 3,
         "special": "none",
         "product": 1,
-        "question": 7
+        "question": 116
       }
     ],
     [
@@ -673,78 +673,78 @@
     ],
     [
       {
-        "id": 21,
-        "text": "Very difficult",
+        "id": 584,
+        "text": "Reading the recipe",
         "value": 0,
         "order": 0,
         "special": null,
         "product": 1,
-        "question": 8
+        "question": 117
       },
       {
-        "id": 22,
-        "text": "Difficult",
+        "id": 585,
+        "text": "Adjusting the quantities",
         "value": 1,
         "order": 1,
         "special": null,
         "product": 1,
-        "question": 8
+        "question": 117
       },
       {
-        "id": 23,
-        "text": "A little difficult",
+        "id": 586,
+        "text": "Texting the ingredients to my friends",
         "value": 2,
         "order": 2,
         "special": null,
         "product": 1,
-        "question": 8
+        "question": 117
       },
       {
-        "id": 24,
-        "text": "Easy",
-        "value": 3,
-        "order": 3,
-        "special": null,
-        "product": 1,
-        "question": 8
-      }
-    ],
-    [
-      {
-        "id": 25,
-        "text": "Reading the information required to use the online loan calculator",
-        "value": 0,
-        "order": 0,
-        "special": null,
-        "product": 1,
-        "question": 9
-      },
-      {
-        "id": 26,
-        "text": "Selecting a suitable monthly repayment option based on my income and expenses",
-        "value": 1,
-        "order": 1,
-        "special": null,
-        "product": 1,
-        "question": 9
-      },
-      {
-        "id": 27,
-        "text": "Accessing and using the online loan calculator",
-        "value": 2,
-        "order": 2,
-        "special": null,
-        "product": 1,
-        "question": 9
-      },
-      {
-        "id": 37,
+        "id": 587,
         "text": "None",
         "value": -1,
         "order": 3,
         "special": "none",
         "product": 1,
-        "question": 9
+        "question": 117
+      }
+    ],
+    [
+      {
+        "id": 588,
+        "text": "Very difficult",
+        "value": 0,
+        "order": 0,
+        "special": null,
+        "product": 1,
+        "question": 118
+      },
+      {
+        "id": 589,
+        "text": "Difficult",
+        "value": 1,
+        "order": 1,
+        "special": null,
+        "product": 1,
+        "question": 118
+      },
+      {
+        "id": 590,
+        "text": "A little difficult",
+        "value": 2,
+        "order": 2,
+        "special": null,
+        "product": 1,
+        "question": 118
+      },
+      {
+        "id": 591,
+        "text": "Easy",
+        "value": 3,
+        "order": 3,
+        "special": null,
+        "product": 1,
+        "question": 118
       }
     ],
     [
@@ -849,78 +849,78 @@
     ],
     [
       {
-        "id": 221,
-        "text": "Very difficult",
+        "id": 592,
+        "text": "Reading the text",
         "value": 0,
         "order": 0,
         "special": null,
         "product": 1,
-        "question": 37
+        "question": 119
       },
       {
-        "id": 222,
-        "text": "Difficult",
+        "id": 593,
+        "text": "Calculating the area of the fish pond",
         "value": 1,
         "order": 1,
         "special": null,
         "product": 1,
-        "question": 37
+        "question": 119
       },
       {
-        "id": 223,
-        "text": "A little difficult",
+        "id": 594,
+        "text": "Uploading pictures to Facebook and sharing them with specific friends",
         "value": 2,
         "order": 2,
         "special": null,
         "product": 1,
-        "question": 37
+        "question": 119
       },
       {
-        "id": 224,
-        "text": "Easy",
-        "value": 3,
-        "order": 3,
-        "special": null,
-        "product": 1,
-        "question": 37
-      }
-    ],
-    [
-      {
-        "id": 225,
-        "text": "Reading the text in the video",
-        "value": 0,
-        "order": 0,
-        "special": null,
-        "product": 1,
-        "question": 38
-      },
-      {
-        "id": 226,
-        "text": "Calculating the interest charged",
-        "value": 1,
-        "order": 1,
-        "special": null,
-        "product": 1,
-        "question": 38
-      },
-      {
-        "id": 227,
-        "text": "Using the calculator on my phone",
-        "value": 2,
-        "order": 2,
-        "special": null,
-        "product": 1,
-        "question": 38
-      },
-      {
-        "id": 228,
+        "id": 595,
         "text": "None",
         "value": -1,
         "order": 3,
         "special": "none",
         "product": 1,
-        "question": 38
+        "question": 119
+      }
+    ],
+    [
+      {
+        "id": 596,
+        "text": "Very difficult",
+        "value": 0,
+        "order": 0,
+        "special": null,
+        "product": 1,
+        "question": 120
+      },
+      {
+        "id": 597,
+        "text": "Difficult",
+        "value": 1,
+        "order": 1,
+        "special": null,
+        "product": 1,
+        "question": 120
+      },
+      {
+        "id": 598,
+        "text": "A little difficult",
+        "value": 2,
+        "order": 2,
+        "special": null,
+        "product": 1,
+        "question": 120
+      },
+      {
+        "id": 599,
+        "text": "Easy",
+        "value": 3,
+        "order": 3,
+        "special": null,
+        "product": 1,
+        "question": 120
       }
     ],
     [
@@ -1039,27 +1039,30 @@
     "digital_skills"
   ],
   "answers": [
+    3,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    -1,
+
     2,
     6,
+    0,
+    0,
+    -1,
     1,
-    1,
-    1,
-    1,
-    1,
+    0,
+
     1,
     7,
     1,
-    0,
-    -1,
-    0,
-    -1,
-    3,
-    0,
     1,
     0,
-    -1,
     0,
     -1,
+
     0,
     7,
     1,
