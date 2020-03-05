@@ -128,4 +128,16 @@ export class ScenariosScreenComponent implements OnInit {
     this.currentAnswer = answer;
   }
 
+  clickHeader() {
+    //#region Duplicated code in constructor() in app.component.ts
+    const {scenarioIndex, questionIndex} = this.progressTrackerService.getResponse() as CustomResponse;
+    if (!(scenarioIndex === 0 && questionIndex === 0)) {
+      const interest = this.dataLogService.getInterest();
+      const scenario = this.dataLogService.getScenario(scenarioIndex);
+      this.googleAnalyticsService.addEvent('left_interest', '' + interest.id, scenarioIndex + 1);
+      this.googleAnalyticsService.addEvent('left_scenario', '' + scenario.id, questionIndex + 1);
+    }
+    //#endregion
+  }
+
 }
