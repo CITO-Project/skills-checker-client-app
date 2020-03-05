@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { CommonService } from 'src/app/services/common.service';
-import { DataLogService } from 'src/app/services/data-log.service';
 
 @Component({
   selector: 'app-header',

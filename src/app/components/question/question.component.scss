@@ -154,6 +154,7 @@
 
       &:after {
         content: url('../../../assets/images/pointer.png') !important;
+        -webkit-transform:scale(0.4, 0.4);
         transform: scale(40%);
         color: $color-font !important;
         background-color: transparent !important;
@@ -161,6 +162,7 @@
         top: -1px !important;
         left: -1px !important;
         @include setStyleTablet {
+          -webkit-transform:scale(0.6, 0.6);
           transform: scale(60%);
           top: 1px !important;
           left: 0px !important;
