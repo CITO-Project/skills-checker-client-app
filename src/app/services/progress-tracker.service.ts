@@ -77,6 +77,9 @@ export class ProgressTrackerService {
   }
 
   previous(): Observable<CustomResponse> {
+    if (this.question <= 0 && this.scenario <= 0) {
+      this.commonService.goTo('how-to');
+    }
     this.question--;
     const { answers, question_order } = this.dataLogService.getAll();
     let questionIndex = this.getQuestionIndexInLog(this.question, this.scenario);
@@ -118,6 +121,9 @@ export class ProgressTrackerService {
 
   shouldSkipScenario(answer: number): boolean {
     answer = +answer;
+    if (answer < 0) {
+      return false;
+    }
     const { questions, question_answers, question_order } = this.dataLogService.getAll();
     const question = questions[this.getQuestionIndexInLog(this.question > 0 ? this.question - 1 : this.question)];
     const currentAnswer = question_answers[this.getAnswerIndexPerQuestionId(question.id)].find( (value: Answer) => {
