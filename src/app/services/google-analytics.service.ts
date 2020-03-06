@@ -59,8 +59,10 @@ export class GoogleAnalyticsService {
     'selected_interest',
     'started_app',
     'started_test',
-    'left_interest',
-    'left_scenario'
+    'left_interest_at_level',
+    'left_scenario_at_question_number',
+    'answered_questions_per_scenario',
+    'answered_questions_per_interest'
   ];
 
   constructor(
