@@ -38,7 +38,7 @@ export class ScenariosScreenComponent implements OnInit {
     private progressTrackerService: ProgressTrackerService,
     private googleAnalyticsService: GoogleAnalyticsService
     ) {
-      if (this.dataLogService.getCategory() === undefined) {
+      if (!dataLogService.getCategory()) {
         commonService.goTo('how-to');
       }
     }
