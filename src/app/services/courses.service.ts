@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -13,7 +12,7 @@ import { CommonService } from './common.service';
 })
 export class CoursesService {
 
-  constructor(private httpClient: HttpClient, private commonService: CommonService) { }
+  constructor(private commonService: CommonService) { }
 
   retrieveCourses(
     results: Result,
@@ -41,7 +40,7 @@ export class CoursesService {
         url += field + '&';
       });
     }
-    return this.httpClient.get(this.commonService.getApiUrl() + url)
+    return this.commonService.getAPICaller(url)
       .pipe(map( (data: Course[]) => {
         this.resetStorage();
         data.map( (course: Course) => {
@@ -55,7 +54,7 @@ export class CoursesService {
 
   retrieveCourse(courseid: number): Observable<Course> {
     const url = `/courses/${courseid}`;
-    return this.httpClient.get(this.commonService.getApiUrl() + url)
+    return this.commonService.getAPICaller(url)
       .pipe(map( (data: Course) => {
         this.saveCourse(data);
         return data;

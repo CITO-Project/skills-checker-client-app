@@ -14,9 +14,10 @@
         <vg-play-pause></vg-play-pause>
         <vg-scrub-bar></vg-scrub-bar>
         <vg-track-selector></vg-track-selector>
+        <vg-mute></vg-mute>
         <vg-fullscreen></vg-fullscreen>
       </vg-controls>
-      <video [vgMedia]="media" #media id="singleVideo" preload="auto" autoplay muted>
+      <video [vgMedia]="media" #media id="singleVideo" preload="auto" autoplay>
         <source [src]="resourceFile" type="video/mp4">
         <track *ngIf="!!subtitleFile" kind="subtitles" label="English" [src]="subtitleFile" srclang="en" default>
       </video>

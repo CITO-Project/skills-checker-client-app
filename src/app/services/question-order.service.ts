@@ -4,19 +4,20 @@ import { map } from 'rxjs/operators';
 
 import { CommonService } from './common.service';
 
-import { Category } from '../models/category';
+import { QuestionOrder } from '../models/question-order';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class QuestionOrderService {
 
   constructor(private commonService: CommonService) { }
 
-  getCategories(): Observable<Category[]> {
-    const url = '/categories';
+  getQuestionOrder(): Observable<QuestionOrder[]> {
+    const url = '/questionorder';
     return this.commonService.getAPICaller(url).pipe(map(
-      (data: Category[]) => {
+      (data: QuestionOrder[]) => {
         return data;
       }
     ));
