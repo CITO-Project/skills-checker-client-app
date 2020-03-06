@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -12,14 +11,14 @@ import { CommonService } from './common.service';
 })
 export class InterestService {
 
-  constructor(private httpClient: HttpClient, private common: CommonService) { }
+  constructor(private commonService: CommonService) { }
 
   getInterests(categoryid: number): Observable<Interest[]> {
     if (categoryid < 1) {
-      this.common.goTo('categories');
+      this.commonService.goTo('categories');
     } else {
       const url = `/categories/${categoryid}/interests`;
-      return this.httpClient.get(this.common.getApiUrl() + url).pipe(map(
+      return this.commonService.getAPICaller(url).pipe(map(
         (data: Interest[]) => {
           return data;
         }

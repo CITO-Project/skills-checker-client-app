@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -28,7 +27,7 @@ export class QuestionService {
     'digital_skills'
   ];
 
-  constructor(private httpClient: HttpClient, private common: CommonService) { }
+  constructor(private commonService: CommonService) { }
 
   getQuestions(categoryid: number, interestid: number, scenarioid: number): Observable<Question[]> {
     if (categoryid === undefined) {
@@ -39,7 +38,7 @@ export class QuestionService {
       scenarioid = -1;
     } else {
       const url = `/categories/${categoryid}/interests/${interestid}/scenarios/${scenarioid}/questions`;
-      return this.httpClient.get(this.common.getApiUrl() + url)
+      return this.commonService.getAPICaller(url)
         .pipe(map( (data: Question[]) => {
           return data;
         })

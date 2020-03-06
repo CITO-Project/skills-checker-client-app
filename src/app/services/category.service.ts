@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { CommonService } from './common.service';
 import { Observable } from 'rxjs';
-import { Category } from '../models/category';
 import { map } from 'rxjs/operators';
+
+import { CommonService } from './common.service';
+
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  constructor(private httpClient: HttpClient, private common: CommonService) { }
+  constructor(private commonService: CommonService) { }
 
   getCategories(): Observable<Category[]> {
     const url = '/categories';
-    return this.httpClient.get( this.common.getApiUrl() + url ).pipe(map(
+    return this.commonService.getAPICaller(url).pipe(map(
       (data: Category[]) => {
         return data;
       }
