@@ -27,8 +27,8 @@ export class ProgressTrackerService {
   constructor(
     private commonService: CommonService,
     private dataLogService: DataLogService,
-    private questionService: QuestionService,
-    private googleAnalyticsService: GoogleAnalyticsService) {
+    private googleAnalyticsService: GoogleAnalyticsService,
+    questionService: QuestionService) {
       this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
   }
 
@@ -44,16 +44,6 @@ export class ProgressTrackerService {
     }));
   }
 
-  loadScenarios(category: Category, interest: Interest): Observable<void> {
-    if (category === null) {
-      this.commonService.goTo('categories');
-    } else if (interest === null) {
-      this.commonService.goTo('interests');
-    } else {
-      return this.dataLogService.loadScenarios(category.id, interest.id);
-    }
-  }
-
   loadStart(numberOfScenarios: number): Observable<void> {
     const r: Observable<void>[] = [];
     for (let i = 0; i < numberOfScenarios; i++) {
@@ -64,13 +54,20 @@ export class ProgressTrackerService {
     }));
   }
 
+  loadScenarios(category: Category, interest: Interest): Observable<void> {
+    if (category === null) {
+      this.commonService.goTo('categories');
+    } else if (interest === null) {
+      this.commonService.goTo('interests');
+    } else {
+      return this.dataLogService.loadScenarios(category.id, interest.id);
+    }
+  }
+
   next(answerValue?: number): Observable<CustomResponse> {
     this.question++;
     if (this.shouldSkipScenario(answerValue === undefined ? -1 : answerValue)) {
       return this.nextScenario();
-    }
-    if (this.shouldSkip(answerValue === undefined ? -1 : answerValue)) {
-      this.question++;
     }
     if (this.question >= this.QUESTIONS_PER_SCENARIO) {
       return this.nextScenario();
@@ -81,19 +78,21 @@ export class ProgressTrackerService {
 
   previous(): Observable<CustomResponse> {
     this.question--;
-    if (this.isPreviousSkipped()) {
-      this.question--;
-    }
-    if (this.question <= -1) {
-      this.previousScenario();
-      this.question = this.QUESTIONS_PER_SCENARIO - 1;
-      if (this.isPreviousSkipped()) {
-        this.question--;
+    const { answers, question_order } = this.dataLogService.getAll();
+    let questionIndex = this.getQuestionIndexInLog(this.question, this.scenario);
+    while (answers[questionIndex] < 0) {
+      if (this.question < 0) {
+        this.scenario--;
+        if (this.scenario < 0) {
+          this.commonService.goTo('how-to');
+        } else {
+          this.question = question_order.length - 1;
+        }
       }
-      return this.getResponse(true) as Observable<CustomResponse>;
-    } else {
-      return this.getResponse(true) as Observable<CustomResponse>;
+      this.question--;
+      questionIndex = this.getQuestionIndexInLog(this.question, this.scenario);
     }
+    return this.getResponse(true) as Observable<CustomResponse>;
   }
 
   nextScenario(): Observable<CustomResponse> {
@@ -107,13 +106,6 @@ export class ProgressTrackerService {
     }
   }
 
-  previousScenario(): void {
-    this.scenario--;
-    if (this.scenario < 0) {
-      this.commonService.goTo('how-to');
-    }
-  }
-
   loadScenario(scenarioindex: number): Observable<void> {
     this.question = 0;
     return this.dataLogService.loadQuestions(
@@ -123,47 +115,23 @@ export class ProgressTrackerService {
     );
   }
 
-  shouldSkip(answer: number): boolean {
-    let r = false;
-    if (this.question > 0) {
-      const previousQuestion = this.question - 1;
-      if (
-        previousQuestion === this.questionService.getQuestionOrder().indexOf('dimension_confidence_1') ||
-        previousQuestion === this.questionService.getQuestionOrder().indexOf('dimension_fluency_1')
-        ) {
-        if (+answer === 0) {
-          r = true;
+  shouldSkipScenario(answer: number): boolean {
+    answer = +answer;
+    const { questions, question_answers, question_order } = this.dataLogService.getAll();
+    const question = questions[this.getQuestionIndexInLog(this.question > 0 ? this.question - 1 : this.question)];
+    const currentAnswer = question_answers[this.getAnswerIndexPerQuestionId(question.id)].find( (value: Answer) => {
+      return value.value === answer;
+    });
+    if (!!currentAnswer && !!currentAnswer.skipTo) {
+      if (currentAnswer.skipTo === 'nextScenario') {
+        return true;
+      } else if (question_order.includes(currentAnswer.skipTo)) {
+        while (this.question < question_order.length && questions[this.question].pedagogical_type !== currentAnswer.skipTo) {
+          this.question++;
         }
       }
     }
-    return r;
-  }
-
-  shouldSkipScenario(answer: number): boolean {
-    let r = false;
-    if (this.question > 0) {
-      const { questions, question_order, question_answers } = this.dataLogService.getAll();
-      const currentQuestionIndex = (question_order.length * this.scenario + this.question) - 1;
-      if (
-        // tslint:disable-next-line:max-line-length
-        (questions[currentQuestionIndex].pedagogical_type === 'task_question' && answer === question_answers[currentQuestionIndex].length - 1)
-        ||
-        (questions[currentQuestionIndex].pedagogical_type === 'dimension_independence_1' && answer === 0)
-        ||
-        (questions[currentQuestionIndex].pedagogical_type === 'dimension_confidence_2' && answer === 1)
-        ) {
-          r = true;
-      }
-    }
-    return r;
-  }
-
-  isPreviousSkipped(): boolean {
-    let r = false;
-    if (this.dataLogService.getAnswer(this.scenario, this.question) < 0) {
-      r = true;
-    }
-    return r;
+    return false;
   }
 
   getResponse(asObservable: boolean = false): CustomResponse | Observable<CustomResponse> {
@@ -178,17 +146,15 @@ export class ProgressTrackerService {
       if (log.questions.length < 1 || log.question_answers.length < 1) {
         this.commonService.goTo('how-to');
       }
-      const questionIndexInLog = this.scenario * this.QUESTIONS_PER_SCENARIO + this.question;
+      const questionIndexInLog = this.getQuestionIndexInLog();
       const questionid = log.questions[questionIndexInLog].id;
-      const questionIndex = log.question_answers.findIndex( (item: Answer[]) => {
-        return item.length > 0 && item[0].question === questionid;
-      });
+      const answersIndex = this.getAnswerIndexPerQuestionId(questionid);
       return {
         scenarioIndex: this.scenario,
         questionIndex: this.question,
         scenario: log.scenarios[this.scenario],
         question: log.questions[questionIndexInLog],
-        question_answers: log.question_answers[questionIndex],
+        question_answers: log.question_answers[answersIndex],
         answer: log.answers[this.question],
         isFirstQuestion: this.scenario === 0 && this.question === 0,
         isLastQuestion: this.scenario >= this.NUMBER_OF_SCENARIOS - 1 && this.question >= this.QUESTIONS_PER_SCENARIO - 1,
@@ -196,6 +162,16 @@ export class ProgressTrackerService {
         isLastQuestionInScenario: this.question >= this.QUESTIONS_PER_SCENARIO - 1
       } as CustomResponse;
     }
+  }
+
+  getAnswerIndexPerQuestionId(questionid: number): number {
+    return this.dataLogService.getAll().question_answers.findIndex( (item: Answer[]) => {
+      return item.length > 0 && item[0].question === questionid;
+    });
+  }
+
+  getQuestionIndexInLog(questionIndex: number = this.question, scenarioIndex: number = this.scenario): number {
+    return scenarioIndex * this.QUESTIONS_PER_SCENARIO + questionIndex;
   }
 
 }
