@@ -58,7 +58,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
     if (--this.scenarioindex > -1) {
       this.loadScenario(this.scenarioindex);
     }
-    this.progressTrackerService.previousScenario();
+    // this.progressTrackerService.previousScenario();
   }
 
   startScenario(): void {
