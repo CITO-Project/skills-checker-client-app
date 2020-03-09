@@ -1,3 +1,5 @@
+@import '../../../../_imports.scss';
+
 .egg {
   display: block;
   $size: 180px;
@@ -8,7 +10,7 @@
   .upper {
     height: $size / 3;
     width: $width;
-    border: 1px solid transparent;
+    border: 1px solid $color-transparent;
     border-radius: 50px;
   }
   .lower {

@@ -38,7 +38,7 @@
           $reduction: 50%;
           width: $reduction;
           height: $reduction;
-          background-color: transparent;
+          background-color: $color-transparent;
         }
       }
       .text {

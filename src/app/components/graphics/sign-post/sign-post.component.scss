@@ -20,8 +20,8 @@
     background-color: aquamarine;
   }
   .arrow {
-    border: transparent solid 20px;
-    background-color: transparent;
+    border: $color-transparent solid 20px;
+    background-color: $color-transparent;
     width: 0px;
     height: 100%;
   }
