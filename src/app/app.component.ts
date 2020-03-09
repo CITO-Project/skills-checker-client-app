@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
 import { GoogleAnalyticsService } from './services/google-analytics.service';
+import { ProgressTrackerService } from './services/progress-tracker.service';
+import { DataLogService } from './services/data-log.service';
+
+import { CustomResponse } from './models/custom-response';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +16,26 @@ export class AppComponent implements OnInit {
 
   title = 'skills-checker';
 
-  constructor(private googleAnalyticsService: GoogleAnalyticsService) {
-    googleAnalyticsService.initializeGA();
+  constructor(
+    private googleAnalyticsService: GoogleAnalyticsService,
+    progressTrackerService: ProgressTrackerService,
+    dataLogService: DataLogService) {
+      googleAnalyticsService.initializeGA();
 
-    window.addEventListener('beforeunload', () => {
-      googleAnalyticsService.stopTimer('time_use_app');
-      googleAnalyticsService.stopTimer('time_review_results');
-    });
+      window.addEventListener('beforeunload', () => {
+        googleAnalyticsService.stopTimer('time_use_app');
+        googleAnalyticsService.stopTimer('time_review_results');
+
+        //#region Duplicated code in clickHeader() in scenarios-screen.component.ts
+        const {scenarioIndex, questionIndex} = progressTrackerService.getResponse() as CustomResponse;
+        if (!(scenarioIndex === 0 && questionIndex === 0)) {
+          const interest = dataLogService.getInterest();
+          const scenario = dataLogService.getScenario(scenarioIndex);
+          this.googleAnalyticsService.addEvent('left_interest_at_level', '' + interest.id, scenarioIndex + 1);
+          this.googleAnalyticsService.addEvent('left_scenario_at_question_number', '' + scenario.id, questionIndex + 1);
+        }
+        //#endregion
+      });
   }
 
   ngOnInit() {

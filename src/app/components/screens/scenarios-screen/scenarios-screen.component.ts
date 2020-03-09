@@ -38,7 +38,7 @@ export class ScenariosScreenComponent implements OnInit {
     private progressTrackerService: ProgressTrackerService,
     private googleAnalyticsService: GoogleAnalyticsService
     ) {
-      if (this.dataLogService.getCategory() === undefined) {
+      if (!dataLogService.getCategory()) {
         commonService.goTo('how-to');
       }
     }
@@ -129,6 +129,18 @@ export class ScenariosScreenComponent implements OnInit {
 
   processAnswer(answer: number): void {
     this.currentAnswer = answer;
+  }
+
+  clickHeader() {
+    //#region Duplicated code in constructor() in app.component.ts
+    const {scenarioIndex, questionIndex} = this.progressTrackerService.getResponse() as CustomResponse;
+    if (!(scenarioIndex === 0 && questionIndex === 0)) {
+      const interest = this.dataLogService.getInterest();
+      const scenario = this.dataLogService.getScenario(scenarioIndex);
+      this.googleAnalyticsService.addEvent('left_interest_at_level', '' + interest.id, scenarioIndex + 1);
+      this.googleAnalyticsService.addEvent('left_scenario_at_question_number', '' + scenario.id, questionIndex + 1);
+    }
+    //#endregion
   }
 
 }

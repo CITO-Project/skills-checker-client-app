@@ -19,3 +19,12 @@ body{
 .row:before, .row:after {
   display: inline-block;
 }
+
+// Added this here otherwise it doesn't work (media component)
+vg-overlay-play .vg-overlay-play .overlay-play-container.vg-icon-play_arrow {
+  color: black !important;
+  font-size: 150% !important;
+  @include setStyleTablet {
+    font-size: 300% !important;
+  }
+}

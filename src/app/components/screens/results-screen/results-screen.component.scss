@@ -11,7 +11,7 @@
 }
 
 .avatar > img {
-  height: 120px;
+  height: 240px;
   padding-left: 20px;
 }
 
@@ -54,7 +54,7 @@
 
 .dialog:after {
 	right: 100%;
-	top: 60px;
+  bottom: 40px;
 	border: solid transparent;
 	content: " ";
 	height: 0;

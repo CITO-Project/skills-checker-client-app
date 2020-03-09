@@ -153,17 +153,19 @@
       }
 
       &:after {
-        @include font-awesome;
-        content: '\f0dc' !important;
-        transform: rotate(90deg);
+        content: url('../../../assets/images/pointer.png') !important;
+        -webkit-transform:scale(0.4, 0.4);
+        transform: scale(40%);
         color: $color-font !important;
         background-color: transparent !important;
         font-size: 160%;
-        top: 8px !important;
-        left: 26px !important;
+        top: -1px !important;
+        left: -1px !important;
         @include setStyleTablet {
-          top: 12px !important;
-          left: 43px !important;
+          -webkit-transform:scale(0.6, 0.6);
+          transform: scale(60%);
+          top: 1px !important;
+          left: 0px !important;
         }
       }
       &:hover {
@@ -172,6 +174,8 @@
       }
     }
     .ng5-slider-tick-legend {
+      color: $color-slider-text;
+      font-weight: 300;
       @include setStyleTablet {
         top: 35px !important;
         left: 5px !important;
