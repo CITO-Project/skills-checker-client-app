@@ -1,9 +1,10 @@
-// .bnb {
-//   width: 400px;
-//   height: 100px;
-//   position: absolute;
-//   top: 420px;
-//   left: -30px;
-//   transform: translate(50%);
-//   z-index: 11;
-// }
+@import '../../../../_imports.scss';
+
+
+.bnb {
+  img {
+    @include setStyleTablet {
+      width: 100%;
+    }
+  }
+}
