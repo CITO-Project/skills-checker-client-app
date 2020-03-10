@@ -57,4 +57,8 @@ export class OrientationScreenComponent implements OnInit {
     this.commonService.goTo('categories');
   }
 
+  loadVideo(): void {
+    console.log('loading video');
+  }
+
 }
