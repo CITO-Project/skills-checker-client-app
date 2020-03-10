@@ -39,14 +39,14 @@ export class ScenariosScreenComponent implements OnInit {
     private googleAnalyticsService: GoogleAnalyticsService
     ) {
       if (this.dataLogService.getCategory() === undefined) {
-        commonService.goTo('how-to');
+        commonService.goTo('categories');
       }
     }
 
   ngOnInit() {
     this.progressTrackerService.next().subscribe((data: CustomResponse) => {
       if (data.question === undefined || data.scenario === undefined) {
-        this.commonService.goTo('how-to');
+        this.commonService.goTo('categories');
       } else {
         this.updateData(data);
       }
