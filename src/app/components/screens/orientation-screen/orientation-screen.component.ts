@@ -14,6 +14,12 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 })
 export class OrientationScreenComponent implements OnInit {
 
+  readonly DEFAULT_IMAGE = 'orientation.png';
+  readonly DEFAULT_VIDEO = 'default.mp4';
+
+  public currentResource: string;
+  public addReplay: boolean;
+
   public FEATURES = [
     {
       text: 'Private',
@@ -39,6 +45,8 @@ export class OrientationScreenComponent implements OnInit {
     private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
+    this.currentResource = this.DEFAULT_IMAGE;
+    this.addReplay = false;
     this.dataLogService.initializeLog();
     this.productService.getProduct().subscribe(
       (product: Product) => {
@@ -58,7 +66,10 @@ export class OrientationScreenComponent implements OnInit {
   }
 
   loadVideo(): void {
-    console.log('loading video');
+    if (this.currentResource !== this.DEFAULT_VIDEO) {
+      this.currentResource = this.DEFAULT_VIDEO;
+      this.addReplay = true;
+    }
   }
 
 }

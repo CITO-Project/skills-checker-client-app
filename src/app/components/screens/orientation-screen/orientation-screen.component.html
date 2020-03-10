@@ -1,5 +1,5 @@
 <app-header text='default'></app-header>
-<app-media resource='orientation.png'></app-media>
+<app-media [resource]=currentResource [replay]=addReplay></app-media>
 <div id="description">
   <button class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
     How to use
