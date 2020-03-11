@@ -21,6 +21,9 @@ export class ProgressTrackerService {
   private QUESTIONS_PER_SCENARIO: number;
   private NUMBER_OF_SCENARIOS: number;
 
+  readonly PREVIOUS_SCREEN = 'interests';
+  readonly NEXT_SCREEN = 'results';
+
   private scenario: number;
   private question: number;
 
@@ -78,7 +81,7 @@ export class ProgressTrackerService {
 
   previous(): Observable<CustomResponse> {
     if (this.question <= 0 && this.scenario <= 0) {
-      this.commonService.goTo('how-to');
+      this.commonService.goTo(this.PREVIOUS_SCREEN);
     }
     this.question--;
     const { answers, question_order } = this.dataLogService.getAll();
@@ -87,7 +90,7 @@ export class ProgressTrackerService {
       if (this.question < 0) {
         this.scenario--;
         if (this.scenario < 0) {
-          this.commonService.goTo('how-to');
+          this.commonService.goTo(this.PREVIOUS_SCREEN);
         } else {
           this.question = question_order.length - 1;
         }
@@ -103,7 +106,7 @@ export class ProgressTrackerService {
     if (this.scenario >= this.NUMBER_OF_SCENARIOS) {
       this.calculateNumberOfAnsweredQuestions();
       this.googleAnalyticsService.addEvent('finished_test', '' + this.dataLogService.getInterest().id);
-      this.commonService.goTo('results');
+      this.commonService.goTo(this.NEXT_SCREEN);
     } else {
       this.question = 0;
       return this.getResponse(true) as Observable<CustomResponse>;
@@ -151,7 +154,7 @@ export class ProgressTrackerService {
     } else {
       const log = this.dataLogService.getAll();
       if (log.questions.length < 1 || log.question_answers.length < 1) {
-        this.commonService.goTo('how-to');
+        this.commonService.goTo(this.PREVIOUS_SCREEN);
       }
       const questionIndexInLog = this.getQuestionIndexInLog();
       const questionid = log.questions[questionIndexInLog].id;
