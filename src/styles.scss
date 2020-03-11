@@ -9,7 +9,7 @@ body{
   font-size: 1em;
   background-color: $color-background;
   padding: 0;
-  padding-bottom: $bottom-height;
+  padding-bottom: $bottom-height * 1.7;
   @include setStyleTablet {
     font-size: 1.5em;
     padding-bottom: $bottom-height * 2;
@@ -23,5 +23,8 @@ body{
 // Added this here otherwise it doesn't work (media component)
 vg-overlay-play .vg-overlay-play .overlay-play-container.vg-icon-play_arrow {
   color: black !important;
-  font-size: 300% !important;
+  font-size: 150% !important;
+  @include setStyleTablet {
+    font-size: 300% !important;
+  }
 }

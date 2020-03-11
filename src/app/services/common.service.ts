@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class CommonService {
   private GATrackID = 'UA-157405394-1';
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private httpClient: HttpClient) { }
 
   // constructor(private httpHeaders: HttpHeaders) {
   //   httpHeaders.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
@@ -92,6 +94,10 @@ export class CommonService {
 
   getGATrackID(): string {
     return this.GATrackID;
+  }
+
+  getAPICaller(url: string): Observable<any> {
+    return this.httpClient.get( this.getApiUrl() + url );
   }
 
 }

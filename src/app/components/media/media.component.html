@@ -12,7 +12,7 @@
       <vg-overlay-play *ngIf="!!replay" vgFor="singleVideo"></vg-overlay-play>
       <vg-controls *ngIf="!!replay" vgFor="singleVideo" [vgAutohide]="true" [vgAutohideTime]=".1">
         <vg-play-pause></vg-play-pause>
-        <vg-scrub-bar></vg-scrub-bar>
+        <div class="flex-grow-1"></div>
         <vg-track-selector></vg-track-selector>
         <vg-mute></vg-mute>
         <vg-fullscreen></vg-fullscreen>

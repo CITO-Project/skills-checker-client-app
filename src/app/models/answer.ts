@@ -6,4 +6,5 @@ export interface Answer {
   value: number;
   order: number;
   special?: string;
+  skipTo?: string;
 }
