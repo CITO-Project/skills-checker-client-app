@@ -39,7 +39,6 @@ export class MediaComponent implements OnInit, OnChanges {
   }
 
   loadResource() {
-    console.log(this.resource);
     if (this.resource === undefined || !this.resource) {
       this.resourceFile = 'default.mp4';
     }
