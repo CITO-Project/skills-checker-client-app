@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter, DoCheck } from '@angular/core';
 import { Question } from 'src/app/models/question';
 import { Answer } from 'src/app/models/answer';
+import { DataLogService } from 'src/app/services/data-log.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-question',
@@ -33,7 +35,10 @@ export class QuestionComponent implements DoCheck {
     }
   };
 
-  constructor() { }
+  constructor(
+    private commonService: CommonService,
+    private deleteThis: DataLogService
+  ) { }
 
   ngDoCheck() {
     this.updateSlider();
@@ -150,9 +155,14 @@ export class QuestionComponent implements DoCheck {
   }
 
   sortAnswers(answers: Answer[]): Answer[] {
-    return answers.sort( (a: Answer, b: Answer) => {
-      return a.order - b.order;
-    });
+    if (!!answers && answers.length > 0) {
+      return answers.sort( (a: Answer, b: Answer) => {
+        return a.order - b.order;
+      });
+    } else {
+      console.log(answers.toString(), this.deleteThis.getAll().toString());
+      this.commonService.goTo('interests');
+    }
   }
 
 }

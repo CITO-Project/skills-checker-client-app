@@ -1,26 +1,17 @@
 <app-header text='Results'></app-header>
 <div id="content">
   <div id="result">
-    <div class="message d-flex">
-      <div class="avatar">
-        <img [src]="getPath('assistant.png')" alt="assistant_image">
+    <div class="background-shape">
+      <img [src]="commonService.getImagePath('background-results.svg')" alt=" ">
+    </div>
+    <div class="d-flex content">
+      <div class="flex-column flex-grow-1">
+        <app-ballons-and-basket></app-ballons-and-basket>
       </div>
-      <div class="container-fluid">
-        <div class="row no-gutters">
-          <div class="col">
-            <div class="dialog">
-              <div class="heading">Well done!</div>
-              <div class="text">
-                It seems that you can do 'x task' but you think you might need a bit more help so that you can do that faster/ by yourself/ with more confidence.
-              </div>
-            </div>
-            <div class="support text">
-              <a (click)="loadLink('http://www.example.org/support')">Click here</a> or call NALA on <br> 1800 20 20 65 for more support
-            </div>
-          </div>
-        </div>
-        </div>
+      <div class="flex-column flex-shrink-1 align-self-center text">
+        An example of some additional text beside the balloons... in this space here!
       </div>
+    </div>
   </div>
   <div class="holder"></div>
   <div id="pathway">

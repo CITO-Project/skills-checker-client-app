@@ -21,6 +21,9 @@ export class ProgressTrackerService {
   private QUESTIONS_PER_SCENARIO: number;
   private NUMBER_OF_SCENARIOS: number;
 
+  readonly PREVIOUS_SCREEN = 'interests';
+  readonly NEXT_SCREEN = 'results';
+
   private scenario: number;
   private question: number;
 
@@ -78,7 +81,7 @@ export class ProgressTrackerService {
 
   previous(): Observable<CustomResponse> {
     if (this.question <= 0 && this.scenario <= 0) {
-      this.commonService.goTo('how-to');
+      this.commonService.goTo(this.PREVIOUS_SCREEN);
     }
     this.question--;
     const { answers, question_order } = this.dataLogService.getAll();
@@ -87,7 +90,7 @@ export class ProgressTrackerService {
       if (this.question < 0) {
         this.scenario--;
         if (this.scenario < 0) {
-          this.commonService.goTo('how-to');
+          this.commonService.goTo(this.PREVIOUS_SCREEN);
         } else {
           this.question = question_order.length - 1;
         }
@@ -103,7 +106,7 @@ export class ProgressTrackerService {
     if (this.scenario >= this.NUMBER_OF_SCENARIOS) {
       this.calculateNumberOfAnsweredQuestions();
       this.googleAnalyticsService.addEvent('finished_test', '' + this.dataLogService.getInterest().id);
-      this.commonService.goTo('results');
+      this.commonService.goTo(this.NEXT_SCREEN);
     } else {
       this.question = 0;
       return this.getResponse(true) as Observable<CustomResponse>;
@@ -151,23 +154,29 @@ export class ProgressTrackerService {
     } else {
       const log = this.dataLogService.getAll();
       if (log.questions.length < 1 || log.question_answers.length < 1) {
-        this.commonService.goTo('how-to');
+        this.commonService.goTo(this.PREVIOUS_SCREEN);
       }
       const questionIndexInLog = this.getQuestionIndexInLog();
-      const questionid = log.questions[questionIndexInLog].id;
-      const answersIndex = this.getAnswerIndexPerQuestionId(questionid);
-      return {
-        scenarioIndex: this.scenario,
-        questionIndex: this.question,
-        scenario: log.scenarios[this.scenario],
-        question: log.questions[questionIndexInLog],
-        question_answers: log.question_answers[answersIndex],
-        answer: log.answers[this.question],
-        isFirstQuestion: this.scenario === 0 && this.question === 0,
-        isLastQuestion: this.scenario >= this.NUMBER_OF_SCENARIOS - 1 && this.question >= this.QUESTIONS_PER_SCENARIO - 1,
-        isFirstQuestionInScenario: this.question === 0,
-        isLastQuestionInScenario: this.question >= this.QUESTIONS_PER_SCENARIO - 1
-      } as CustomResponse;
+      if (!!log.questions && log.questions.length > 0) {
+        const questionid = log.questions[questionIndexInLog].id;
+        const answersIndex = this.getAnswerIndexPerQuestionId(questionid);
+        return {
+          scenarioIndex: this.scenario,
+          questionIndex: this.question,
+          scenario: log.scenarios[this.scenario],
+          question: log.questions[questionIndexInLog],
+          question_answers: log.question_answers[answersIndex],
+          answer: log.answers[this.question],
+          isFirstQuestion: this.scenario === 0 && this.question === 0,
+          isLastQuestion: this.scenario >= this.NUMBER_OF_SCENARIOS - 1 && this.question >= this.QUESTIONS_PER_SCENARIO - 1,
+          isFirstQuestionInScenario: this.question === 0,
+          isLastQuestionInScenario: this.question >= this.QUESTIONS_PER_SCENARIO - 1
+        } as CustomResponse;
+      } else {
+        // DELETE console.log()
+        console.log(log.toString());
+        this.commonService.goTo('interests')
+      }
     }
   }
 

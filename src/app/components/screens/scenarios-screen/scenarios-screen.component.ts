@@ -39,14 +39,14 @@ export class ScenariosScreenComponent implements OnInit {
     private googleAnalyticsService: GoogleAnalyticsService
     ) {
       if (!dataLogService.getCategory()) {
-        commonService.goTo('how-to');
+        commonService.goTo('interests');
       }
     }
 
   ngOnInit() {
     this.progressTrackerService.next().subscribe((data: CustomResponse) => {
       if (data.question === undefined || data.scenario === undefined) {
-        this.commonService.goTo('how-to');
+        this.commonService.goTo('categories');
       } else {
         this.updateData(data);
       }
@@ -56,9 +56,12 @@ export class ScenariosScreenComponent implements OnInit {
   nextQuestion() {
     if (this.saveAnswer()) {
       this.googleAnalyticsService.stopTimer('time_answer_question');
-      this.progressTrackerService.next(this.currentAnswer).subscribe((data: CustomResponse) => {
-        this.updateData(data);
-      });
+      const next$ = this.progressTrackerService.next(this.currentAnswer);
+      if (!!next$) {
+        next$.subscribe((data: CustomResponse) => {
+          this.updateData(data);
+        });
+      }
     }
   }
 
@@ -96,7 +99,7 @@ export class ScenariosScreenComponent implements OnInit {
 
   saveAnswer(): boolean {
     if (this.currentAnswer < 0) {
-      this.showError('Please, select one of the options bellow');
+      this.showError('Please, select one of the options below');
       return false;
     } else {
       this.dataLogService.setAnswer(this.currentScenario, this.currentQuestion, this.currentAnswer);

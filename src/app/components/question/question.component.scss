@@ -53,8 +53,8 @@
           margin-right: 10px;
           padding-top: 1px;
           border: $border solid $color-option-border;
-          color: transparent;
-          background-color: transparent;
+          color: $color-transparent;
+          background-color: $color-transparent;
           border-radius: 5px;
           font-size: 70%;
           display: block;
@@ -157,7 +157,7 @@
         -webkit-transform:scale(0.4, 0.4);
         transform: scale(40%);
         color: $color-font !important;
-        background-color: transparent !important;
+        background-color: $color-transparent !important;
         font-size: 160%;
         top: -1px !important;
         left: -1px !important;

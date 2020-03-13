@@ -40,7 +40,7 @@ export class MediaComponent implements OnInit, OnChanges {
 
   loadResource() {
     if (this.resource === undefined || !this.resource) {
-      this.resource = 'default.mp4';
+      this.resourceFile = 'default.mp4';
     }
     switch (this.getType()) {
       case 'video':

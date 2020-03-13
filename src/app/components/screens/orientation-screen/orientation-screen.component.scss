@@ -1,11 +1,15 @@
 @import '../../../../_imports.scss';
 
 #description {
+  text-align: center;
   padding: 0px 20px;
   @include setStyleTablet {
     padding: 30px 20px;
   }
 
+  #how-to-use {
+    margin-top: 20px;
+  }
   .main {
     padding: 10px;
     font-size: 150%;
@@ -38,7 +42,7 @@
           $reduction: 50%;
           width: $reduction;
           height: $reduction;
-          background-color: transparent;
+          background-color: $color-transparent;
         }
       }
       .text {

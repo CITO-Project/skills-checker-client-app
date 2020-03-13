@@ -29,11 +29,6 @@ $default-font: 'Raleway';
   border: 0;
 }
 
-@mixin body{
-  padding-top: $header-height;
-  padding-bottom: $bottom-height;
-}
-
 @mixin limits{
   // Only for testing
   border: 1px red solid;
