@@ -145,6 +145,8 @@ export class ProgressTrackerService {
   }
 
   getResponse(asObservable: boolean = false): CustomResponse | Observable<CustomResponse> {
+    console.log('getResponse1', JSON.stringify(this.dataLogService.getAll()));
+    console.log('getResponse2', this.dataLogService.getAll());
     if (!!asObservable) {
       const r = new Observable<CustomResponse>( (observer: Observer<CustomResponse>) => {
         observer.next(this.getResponse() as CustomResponse);
@@ -174,7 +176,8 @@ export class ProgressTrackerService {
         } as CustomResponse;
       } else {
         // DELETE console.log()
-        console.log(log.toString());
+        console.log('getResponse3', JSON.stringify(log));
+        console.log('getResponse4', log);
         this.commonService.goTo('interests')
       }
     }
