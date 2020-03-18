@@ -31,7 +31,10 @@ export class MediaComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.loadResource();
     const el = document.getElementById('media');
-    el.style.height = this.height;
+    if (!!this.height) {
+      el.style.height = this.height;
+      el.style.width = 'auto';
+    }
   }
 
   ngOnChanges() {

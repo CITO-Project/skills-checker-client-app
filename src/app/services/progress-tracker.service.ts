@@ -21,8 +21,8 @@ export class ProgressTrackerService {
   private QUESTIONS_PER_SCENARIO: number;
   private NUMBER_OF_SCENARIOS: number;
 
-  readonly PREVIOUS_SCREEN = 'interests';
-  readonly NEXT_SCREEN = 'results';
+  private readonly PREVIOUS_SCREEN = 'interests';
+  private readonly NEXT_SCREEN = 'results';
 
   private scenario: number;
   private question: number;
@@ -123,11 +123,17 @@ export class ProgressTrackerService {
   }
 
   shouldSkipScenario(answer: number): boolean {
+    this.commonService.trace(`shouldSKipScenario(${answer})`);
+    this.commonService.log(this.dataLogService.getAll());
     answer = +answer;
     if (answer < 0) {
       return false;
     }
     const { questions, question_answers, question_order } = this.dataLogService.getAll();
+    if (questions.length < 1) {
+      this.commonService.log('shouldSkipScenario1');
+      this.commonService.goTo('interests');
+    }
     const question = questions[this.getQuestionIndexInLog(this.question > 0 ? this.question - 1 : this.question)];
     const currentAnswer = question_answers[this.getAnswerIndexPerQuestionId(question.id)].find( (value: Answer) => {
       return value.value === answer;
@@ -145,8 +151,8 @@ export class ProgressTrackerService {
   }
 
   getResponse(asObservable: boolean = false): CustomResponse | Observable<CustomResponse> {
-    console.log('getResponse1', JSON.stringify(this.dataLogService.getAll()));
-    console.log('getResponse2', this.dataLogService.getAll());
+    this.commonService.log('getResponse1', JSON.stringify(this.dataLogService.getAll()));
+    this.commonService.log('getResponse2', this.dataLogService.getAll());
     if (!!asObservable) {
       const r = new Observable<CustomResponse>( (observer: Observer<CustomResponse>) => {
         observer.next(this.getResponse() as CustomResponse);
@@ -175,10 +181,11 @@ export class ProgressTrackerService {
           isLastQuestionInScenario: this.question >= this.QUESTIONS_PER_SCENARIO - 1
         } as CustomResponse;
       } else {
-        // DELETE console.log()
-        console.log('getResponse3', JSON.stringify(log));
-        console.log('getResponse4', log);
-        this.commonService.goTo('interests')
+        // DELETE logs
+        this.commonService.log('getResponse3', JSON.stringify(log));
+        this.commonService.log('getResponse4', log);
+        this.commonService.trace(`getResponse(${asObservable})`);
+        this.commonService.goTo('interests');
       }
     }
   }

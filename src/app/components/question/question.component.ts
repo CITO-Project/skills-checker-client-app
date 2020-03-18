@@ -155,15 +155,15 @@ export class QuestionComponent implements DoCheck {
   }
 
   sortAnswers(answers: Answer[]): Answer[] {
-    console.log('sortAnswer1', answers, this.deleteThis.getAll());
-    console.log('sortAnswer2', JSON.stringify(answers), JSON.stringify(this.deleteThis.getAll()));
+    this.commonService.log('sortAnswer1', answers, this.deleteThis.getAll());
+    this.commonService.log('sortAnswer2', JSON.stringify(answers), JSON.stringify(this.deleteThis.getAll()));
     if (!!answers && answers.length > 0) {
       return answers.sort( (a: Answer, b: Answer) => {
         return a.order - b.order;
       });
     } else {
-      console.log('sortAnswer3', answers, this.deleteThis.getAll());
-      console.log('sortAnswer4', JSON.stringify(answers), JSON.stringify(this.deleteThis.getAll()));
+      this.commonService.log('sortAnswer3', answers, this.deleteThis.getAll());
+      this.commonService.log('sortAnswer4', JSON.stringify(answers), JSON.stringify(this.deleteThis.getAll()));
       this.commonService.goTo('interests');
     }
   }
