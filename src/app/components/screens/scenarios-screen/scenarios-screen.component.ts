@@ -46,7 +46,7 @@ export class ScenariosScreenComponent implements OnInit {
   ngOnInit() {
     this.progressTrackerService.next().subscribe((data: CustomResponse) => {
       if (data.question === undefined || data.scenario === undefined) {
-        this.commonService.goTo('categories');
+        this.commonService.goTo('interests');
       } else {
         this.updateData(data);
       }

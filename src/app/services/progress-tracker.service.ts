@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer, forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, flatMap } from 'rxjs/operators';
 
 import { Category } from '../models/category';
 import { Interest } from '../models/interest';
@@ -35,16 +35,23 @@ export class ProgressTrackerService {
       this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
   }
 
-  initializeTracker(): Observable<Observable<void>> {
+  initializeTracker(): Observable<void> {
     const category = this.dataLogService.getCategory();
     const interest = this.dataLogService.getInterest();
     this.dataLogService.resetInterest();
-    return this.loadScenarios(category, interest).pipe(map( () => {
-      this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
-      return this.loadStart(this.NUMBER_OF_SCENARIOS).pipe(map (() => {
-        this.question = -1;
-      }));
-    }));
+    return this.loadScenarios(category, interest)
+      .pipe(flatMap( () => {
+        this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
+        return this.loadStart(this.NUMBER_OF_SCENARIOS).pipe(map( () => {
+          this.question = -1;
+        }))
+      }))
+    // .pipe(map( () => {
+    //   this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
+    //   return this.loadStart(this.NUMBER_OF_SCENARIOS).pipe(map (() => {
+    //     this.question = -1;
+    //   }));
+    // }));
   }
 
   loadStart(numberOfScenarios: number): Observable<void> {
@@ -123,15 +130,12 @@ export class ProgressTrackerService {
   }
 
   shouldSkipScenario(answer: number): boolean {
-    this.commonService.trace(`shouldSKipScenario(${answer})`);
-    this.commonService.log(this.dataLogService.getAll());
     answer = +answer;
     if (answer < 0) {
       return false;
     }
     const { questions, question_answers, question_order } = this.dataLogService.getAll();
     if (questions.length < 1) {
-      this.commonService.log('shouldSkipScenario1');
       this.commonService.goTo('interests');
     }
     const question = questions[this.getQuestionIndexInLog(this.question > 0 ? this.question - 1 : this.question)];
@@ -151,8 +155,6 @@ export class ProgressTrackerService {
   }
 
   getResponse(asObservable: boolean = false): CustomResponse | Observable<CustomResponse> {
-    this.commonService.log('getResponse1', JSON.stringify(this.dataLogService.getAll()));
-    this.commonService.log('getResponse2', this.dataLogService.getAll());
     if (!!asObservable) {
       const r = new Observable<CustomResponse>( (observer: Observer<CustomResponse>) => {
         observer.next(this.getResponse() as CustomResponse);
@@ -165,7 +167,7 @@ export class ProgressTrackerService {
         this.commonService.goTo(this.PREVIOUS_SCREEN);
       }
       const questionIndexInLog = this.getQuestionIndexInLog();
-      if (!!log.questions && log.questions.length > 0) {
+      if (!!log.questions && log.questions.length > 0 && !!log.questions[questionIndexInLog]) {
         const questionid = log.questions[questionIndexInLog].id;
         const answersIndex = this.getAnswerIndexPerQuestionId(questionid);
         return {
@@ -182,8 +184,7 @@ export class ProgressTrackerService {
         } as CustomResponse;
       } else {
         // DELETE logs
-        this.commonService.log('getResponse3', JSON.stringify(log));
-        this.commonService.log('getResponse4', log);
+        this.commonService.log('getResponse2', `index: ${questionIndexInLog}`, JSON.stringify(log), log);
         this.commonService.trace(`getResponse(${asObservable})`);
         this.commonService.goTo('interests');
       }
