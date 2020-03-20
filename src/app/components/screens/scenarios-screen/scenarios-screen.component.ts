@@ -114,13 +114,17 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   updateData(data: CustomResponse): void {
-    this.currentScenario = data.scenarioIndex;
-    this.currentQuestion = data.questionIndex;
-    this.scenario = data.scenario;
-    this.question = data.question;
-    this.questionAnswers = data.question_answers;
-    this.currentAnswer = data.answer;
-    this.afterLoadQuestion(data);
+    if (!!data) {
+      this.currentScenario = data.scenarioIndex;
+      this.currentQuestion = data.questionIndex;
+      this.scenario = data.scenario;
+      this.question = data.question;
+      this.questionAnswers = data.question_answers;
+      this.currentAnswer = data.answer;
+      this.afterLoadQuestion(data);
+    } else {
+      this.commonService.goTo('interests');
+    }
   }
 
   showError(message: string): void {

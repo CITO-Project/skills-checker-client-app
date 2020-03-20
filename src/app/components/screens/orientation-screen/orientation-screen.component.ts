@@ -15,7 +15,7 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 export class OrientationScreenComponent implements OnInit {
 
   private readonly DEFAULT_IMAGE = 'orientation.png';
-  private readonly DEFAULT_VIDEO = 'how-to.mp4';
+  private readonly DEFAULT_VIDEO = 'default.mp4';
 
   public currentResource: string;
   public addReplay: boolean;

@@ -35,26 +35,17 @@ export class ProgressTrackerService {
       this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
   }
 
-  initializeTracker(): Observable<void> {
+  async initializeTracker(): Promise<void> {
     const category = this.dataLogService.getCategory();
     const interest = this.dataLogService.getInterest();
     this.dataLogService.resetInterest();
-    return this.loadScenarios(category, interest)
-      .pipe(flatMap( () => {
-        this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
-        return this.loadStart(this.NUMBER_OF_SCENARIOS).pipe(map( () => {
-          this.question = -1;
-        }))
-      }))
-    // .pipe(map( () => {
-    //   this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
-    //   return this.loadStart(this.NUMBER_OF_SCENARIOS).pipe(map (() => {
-    //     this.question = -1;
-    //   }));
-    // }));
+    await this.loadScenarios(category, interest).toPromise();
+    this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
+    await this.loadQuestions(this.NUMBER_OF_SCENARIOS).toPromise();
+    this.question = -1;
   }
 
-  loadStart(numberOfScenarios: number): Observable<void> {
+  loadQuestions(numberOfScenarios: number): Observable<void> {
     const r: Observable<void>[] = [];
     for (let i = 0; i < numberOfScenarios; i++) {
       r.push(this.loadScenario(i));
@@ -192,6 +183,7 @@ export class ProgressTrackerService {
   }
 
   getAnswerIndexPerQuestionId(questionid: number): number {
+    console.trace(this.dataLogService.getAll().questions.length, JSON.stringify(this.dataLogService.getAll().questions));
     return this.dataLogService.getAll().question_answers.findIndex( (item: Answer[]) => {
       return item.length > 0 && item[0].question === questionid;
     });
