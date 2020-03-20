@@ -59,8 +59,10 @@ export class GoogleAnalyticsService {
     'selected_interest',
     'started_app',
     'started_test',
-    'left_interest',
-    'left_scenario'
+    'left_interest_at_level',
+    'left_scenario_at_question_number',
+    'answered_questions_per_scenario',
+    'answered_questions_per_interest'
   ];
 
   constructor(
@@ -69,15 +71,17 @@ export class GoogleAnalyticsService {
     ) { }
 
   initializeGA(): void {
-    this.router.events.subscribe(event => {
-    if (event instanceof NavigationEnd) {
-      gtag('config', this.commonService.getGATrackID(),
-        {
-          page_path: event.urlAfterRedirects
+    if (!!this.GOOGLE_ANALYTICS_ENABLED) {
+      this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        gtag('config', this.commonService.getGATrackID(),
+          {
+            page_path: event.urlAfterRedirects
+          }
+        );
         }
-      );
-      }
-    });
+      });
+    }
     this.initializeTrackers();
   }
 

@@ -38,15 +38,15 @@ export class ScenariosScreenComponent implements OnInit {
     private progressTrackerService: ProgressTrackerService,
     private googleAnalyticsService: GoogleAnalyticsService
     ) {
-      if (this.dataLogService.getCategory() === undefined) {
-        commonService.goTo('categories');
+      if (!dataLogService.getCategory()) {
+        commonService.goTo('interests');
       }
     }
 
   ngOnInit() {
     this.progressTrackerService.next().subscribe((data: CustomResponse) => {
       if (data.question === undefined || data.scenario === undefined) {
-        this.commonService.goTo('categories');
+        this.commonService.goTo('interests');
       } else {
         this.updateData(data);
       }
@@ -56,9 +56,12 @@ export class ScenariosScreenComponent implements OnInit {
   nextQuestion() {
     if (this.saveAnswer()) {
       this.googleAnalyticsService.stopTimer('time_answer_question');
-      this.progressTrackerService.next(this.currentAnswer).subscribe((data: CustomResponse) => {
-        this.updateData(data);
-      });
+      const next$ = this.progressTrackerService.next(this.currentAnswer);
+      if (!!next$) {
+        next$.subscribe((data: CustomResponse) => {
+          this.updateData(data);
+        });
+      }
     }
   }
 
@@ -96,7 +99,7 @@ export class ScenariosScreenComponent implements OnInit {
 
   saveAnswer(): boolean {
     if (this.currentAnswer < 0) {
-      this.showError('Please, select one of the options bellow');
+      this.showError('Please, select one of the options below');
       return false;
     } else {
       this.dataLogService.setAnswer(this.currentScenario, this.currentQuestion, this.currentAnswer);
@@ -134,8 +137,8 @@ export class ScenariosScreenComponent implements OnInit {
     if (!(scenarioIndex === 0 && questionIndex === 0)) {
       const interest = this.dataLogService.getInterest();
       const scenario = this.dataLogService.getScenario(scenarioIndex);
-      this.googleAnalyticsService.addEvent('left_interest', '' + interest.id, scenarioIndex + 1);
-      this.googleAnalyticsService.addEvent('left_scenario', '' + scenario.id, questionIndex + 1);
+      this.googleAnalyticsService.addEvent('left_interest_at_level', '' + interest.id, scenarioIndex + 1);
+      this.googleAnalyticsService.addEvent('left_scenario_at_question_number', '' + scenario.id, questionIndex + 1);
     }
     //#endregion
   }

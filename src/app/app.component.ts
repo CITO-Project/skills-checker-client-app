@@ -31,8 +31,8 @@ export class AppComponent implements OnInit {
         if (!(scenarioIndex === 0 && questionIndex === 0)) {
           const interest = dataLogService.getInterest();
           const scenario = dataLogService.getScenario(scenarioIndex);
-          this.googleAnalyticsService.addEvent('left_interest', '' + interest.id, scenarioIndex + 1);
-          this.googleAnalyticsService.addEvent('left_scenario', '' + scenario.id, questionIndex + 1);
+          this.googleAnalyticsService.addEvent('left_interest_at_level', '' + interest.id, scenarioIndex + 1);
+          this.googleAnalyticsService.addEvent('left_scenario_at_question_number', '' + scenario.id, questionIndex + 1);
         }
         //#endregion
       });
