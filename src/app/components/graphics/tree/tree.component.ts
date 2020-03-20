@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { GraphicsData } from 'src/app/models/graphics-data';
 
 @Component({
@@ -6,17 +6,10 @@ import { GraphicsData } from 'src/app/models/graphics-data';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss']
 })
-export class TreeComponent implements AfterViewInit {
+export class TreeComponent {
 
   @Input() data: GraphicsData[];
 
-  private totalWeight = 0;
-
-  constructor() {
-  }
-
-  ngAfterViewInit() {
-    console.log(this.data);
-  }
+  constructor() { }
 
 }

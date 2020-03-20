@@ -46,11 +46,9 @@ export class InterestsScreenComponent implements OnInit {
     if (this.dataLogService.getInterest().id === interest.id) {
       this.googleAnalyticsService.stopTimer('time_select_interest', '' + interest.id);
       this.googleAnalyticsService.addEvent('selected_interest', '' + interest.id);
-      this.progressTrackerService.initializeTracker().subscribe( (data: Observable<void>) => {
-        data.subscribe( () => {
-          this.googleAnalyticsService.addEvent('started_test');
-          this.commonService.goTo('scenarios');
-        });
+      this.progressTrackerService.initializeTracker().subscribe( () => {
+        this.googleAnalyticsService.addEvent('started_test');
+        this.commonService.goTo('scenarios');
       });
     }
   }
