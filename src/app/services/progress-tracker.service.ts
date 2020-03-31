@@ -124,12 +124,12 @@ export class ProgressTrackerService {
     if (answer < 0) {
       return false;
     }
-    const { questions, question_answers, question_order } = this.dataLogService.getAll();
+    const { questions, question_order } = this.dataLogService.getAll();
     if (questions.length < 1) {
       this.commonService.goTo('interests');
     }
     const question = questions[this.getQuestionIndexInLog(this.question > 0 ? this.question - 1 : this.question)];
-    const currentAnswer = question_answers[this.getAnswerIndexPerQuestionId(question.id)].find( (value: Answer) => {
+    const currentAnswer = question.answers.find( (value: Answer) => {
       return value.value === answer;
     });
     if (!!currentAnswer && !!currentAnswer.skipTo) {
@@ -153,14 +153,14 @@ export class ProgressTrackerService {
       return r as Observable<CustomResponse>;
     } else {
       const log = this.dataLogService.getAll();
-      if (log.questions.length < 1 || log.question_answers.length < 1) {
+      if (log.questions.length < 1) {
         this.commonService.goTo(this.PREVIOUS_SCREEN);
       }
       const questionIndexInLog = this.getQuestionIndexInLog();
       if (!!log.questions && log.questions.length > 0 && !!log.questions[questionIndexInLog]) {
         const questionid = log.questions[questionIndexInLog].id;
         let answersIndex = -1;
-		answersIndex = this.getAnswerIndexPerQuestionId(questionid) | -1;
+        answersIndex = this.getAnswerIndexPerQuestionId(questionid) | -1;
         return {
           scenarioIndex: this.scenario,
           questionIndex: this.question,

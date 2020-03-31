@@ -103,17 +103,18 @@ export class DataLogService {
   //#region Question
   loadQuestions(scenarioindex: number, categoryid: number, interestid: number): Observable<void> {
     const scenarioid = this.log.scenarios[scenarioindex].id;
+    if (this.log.questions.length <= 0) {
+      this.log.questions = [];
+    }
     return this.questionService.getQuestions(categoryid, interestid, scenarioid).pipe(map( (data: Question[]) => {
-      for (let i = 0; i < data.length; i++) {
-        const index = this.getIndex(scenarioindex, i);
-        data[i].scenario = scenarioid;
-        this.loadAnswers(categoryid, interestid, scenarioid, data[i].id, index).subscribe(() => {
-          this.log.questions[index] = this.questionService.getQuestionInOrder(data, i);
-          if (this.getAnswer(scenarioindex, i) === undefined) {
-            this.setAnswer(scenarioindex, i, -1);
-          }
-        });
-      }
+      const _questions = [];
+      this.log.question_order.forEach( (orderValue: string) => {
+        this.log.answers.push(-1);
+        _questions.push(data.find( (question: Question) => {
+          return question.pedagogical_type === orderValue;
+        }))
+      })
+      this.log.questions = this.log.questions.concat(_questions);
     }));
   }
 
@@ -142,7 +143,7 @@ export class DataLogService {
   }
   //#endregion
 
-  //#region QuestionAnswers
+  //#region QuestionAnswers (deprecated)
   loadAnswers(categoryid: number, interestid: number, scenarioid: number, questionid: number, questionindex: number): Observable<void> {
     return this.answerService.getAnswers(categoryid, interestid, scenarioid, questionid).pipe(map( (data: Answer[]) => {
       this.log.question_answers[questionindex] = data;
