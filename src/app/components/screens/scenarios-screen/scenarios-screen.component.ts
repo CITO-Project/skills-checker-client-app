@@ -39,6 +39,8 @@ export class ScenariosScreenComponent implements OnInit {
     private googleAnalyticsService: GoogleAnalyticsService
     ) {
       if (!dataLogService.getCategory()) {
+        commonService.goTo('categories');
+      } else if (!dataLogService.getInterest()) {
         commonService.goTo('interests');
       }
     }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer, forkJoin } from 'rxjs';
-import { map, flatMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { Category } from '../models/category';
 import { Interest } from '../models/interest';
@@ -41,18 +41,17 @@ export class ProgressTrackerService {
     this.dataLogService.resetInterest();
     await this.loadScenarios(category, interest).toPromise();
     this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
-    await this.loadQuestions(this.NUMBER_OF_SCENARIOS).toPromise();
+    await this.loadQuestions(this.NUMBER_OF_SCENARIOS);
+    this.scenario = 0;
     this.question = -1;
   }
 
-  loadQuestions(numberOfScenarios: number): Observable<void> {
-    const r: Observable<void>[] = [];
+  loadQuestions(numberOfScenarios: number): Promise<void[]> {
+    const r: Promise<void>[] = [];
     for (let i = 0; i < numberOfScenarios; i++) {
-      r.push(this.loadScenario(i));
+      r.push(this.loadScenario(i).toPromise());
     }
-    return forkJoin(r).pipe(map( () => {
-      this.scenario = 0;
-    }));
+    return Promise.all(r);
   }
 
   loadScenarios(category: Category, interest: Interest): Observable<void> {
@@ -160,7 +159,8 @@ export class ProgressTrackerService {
       const questionIndexInLog = this.getQuestionIndexInLog();
       if (!!log.questions && log.questions.length > 0 && !!log.questions[questionIndexInLog]) {
         const questionid = log.questions[questionIndexInLog].id;
-        const answersIndex = this.getAnswerIndexPerQuestionId(questionid);
+        let answersIndex = -1;
+		answersIndex = this.getAnswerIndexPerQuestionId(questionid) | -1;
         return {
           scenarioIndex: this.scenario,
           questionIndex: this.question,
@@ -183,7 +183,6 @@ export class ProgressTrackerService {
   }
 
   getAnswerIndexPerQuestionId(questionid: number): number {
-    console.trace(this.dataLogService.getAll().questions.length, JSON.stringify(this.dataLogService.getAll().questions));
     return this.dataLogService.getAll().question_answers.findIndex( (item: Answer[]) => {
       return item.length > 0 && item[0].question === questionid;
     });
