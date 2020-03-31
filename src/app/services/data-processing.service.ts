@@ -39,10 +39,10 @@ export class DataProcessingService {
     let currentQuestions: Question[] = this.getItemsPerLevel(questions, questionOrder, level);
     while (currentQuestions.length > 0) {
       const currentAnswers: number[] = this.getItemsPerLevel(answers, questionOrder, level);
-      const currentQuestionAnswers: Answer[] = this.getItemsPerLevel(questionAnswers, questionOrder, level);
       if (this.getItemByPedagogicalType(currentAnswers, questionOrder, 'task_question') < this.brushUpThreshold) {
         let answer = this.getItemByPedagogicalType(currentAnswers, questionOrder, 'challenging_skill').toString(2);
-        while (answer.length < this.getItemByPedagogicalType(currentQuestionAnswers, questionOrder, 'challenging_skill').filter(
+        const challenging_question: Question = this.getItemByPedagogicalType(currentQuestions, questionOrder, 'challenging_skill');
+        while (answer.length < challenging_question.answers.filter(
           (questionAnswer: Answer) => {
           if (questionAnswer.value >= 0) {
             return true;
