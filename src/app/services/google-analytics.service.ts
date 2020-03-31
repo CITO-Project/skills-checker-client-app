@@ -71,15 +71,17 @@ export class GoogleAnalyticsService {
     ) { }
 
   initializeGA(): void {
-    this.router.events.subscribe(event => {
-    if (event instanceof NavigationEnd) {
-      gtag('config', this.commonService.getGATrackID(),
-        {
-          page_path: event.urlAfterRedirects
+    if (!!this.GOOGLE_ANALYTICS_ENABLED) {
+      this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        gtag('config', this.commonService.getGATrackID(),
+          {
+            page_path: event.urlAfterRedirects
+          }
+        );
         }
-      );
-      }
-    });
+      });
+    }
     this.initializeTrackers();
   }
 

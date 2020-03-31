@@ -8,7 +8,6 @@ import { DataLogService } from 'src/app/services/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -46,11 +45,9 @@ export class InterestsScreenComponent implements OnInit {
     if (this.dataLogService.getInterest().id === interest.id) {
       this.googleAnalyticsService.stopTimer('time_select_interest', '' + interest.id);
       this.googleAnalyticsService.addEvent('selected_interest', '' + interest.id);
-      this.progressTrackerService.initializeTracker().subscribe( (data: Observable<void>) => {
-        data.subscribe( () => {
-          this.googleAnalyticsService.addEvent('started_test');
-          this.commonService.goTo('scenarios');
-        });
+      this.progressTrackerService.initializeTracker().then( () => {
+        this.googleAnalyticsService.addEvent('started_test');
+        this.commonService.goTo('scenarios');
       });
     }
   }

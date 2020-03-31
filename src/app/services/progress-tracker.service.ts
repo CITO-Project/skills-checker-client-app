@@ -21,8 +21,8 @@ export class ProgressTrackerService {
   private QUESTIONS_PER_SCENARIO: number;
   private NUMBER_OF_SCENARIOS: number;
 
-  readonly PREVIOUS_SCREEN = 'interests';
-  readonly NEXT_SCREEN = 'results';
+  private readonly PREVIOUS_SCREEN = 'interests';
+  private readonly NEXT_SCREEN = 'results';
 
   private scenario: number;
   private question: number;
@@ -35,26 +35,23 @@ export class ProgressTrackerService {
       this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
   }
 
-  initializeTracker(): Observable<Observable<void>> {
+  async initializeTracker(): Promise<void> {
     const category = this.dataLogService.getCategory();
     const interest = this.dataLogService.getInterest();
     this.dataLogService.resetInterest();
-    return this.loadScenarios(category, interest).pipe(map( () => {
-      this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
-      return this.loadStart(this.NUMBER_OF_SCENARIOS).pipe(map (() => {
-        this.question = -1;
-      }));
-    }));
+    await this.loadScenarios(category, interest).toPromise();
+    this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
+    await this.loadQuestions(this.NUMBER_OF_SCENARIOS);
+    this.scenario = 0;
+    this.question = -1;
   }
 
-  loadStart(numberOfScenarios: number): Observable<void> {
-    const r: Observable<void>[] = [];
+  loadQuestions(numberOfScenarios: number): Promise<void[]> {
+    const r: Promise<void>[] = [];
     for (let i = 0; i < numberOfScenarios; i++) {
-      r.push(this.loadScenario(i));
+      r.push(this.loadScenario(i).toPromise());
     }
-    return forkJoin(r).pipe(map( () => {
-      this.scenario = 0;
-    }));
+    return Promise.all(r);
   }
 
   loadScenarios(category: Category, interest: Interest): Observable<void> {
@@ -127,9 +124,12 @@ export class ProgressTrackerService {
     if (answer < 0) {
       return false;
     }
-    const { questions, question_answers, question_order } = this.dataLogService.getAll();
+    const { questions, question_order } = this.dataLogService.getAll();
+    if (questions.length < 1) {
+      this.commonService.goTo('interests');
+    }
     const question = questions[this.getQuestionIndexInLog(this.question > 0 ? this.question - 1 : this.question)];
-    const currentAnswer = question_answers[this.getAnswerIndexPerQuestionId(question.id)].find( (value: Answer) => {
+    const currentAnswer = question.answers.find( (value: Answer) => {
       return value.value === answer;
     });
     if (!!currentAnswer && !!currentAnswer.skipTo) {
@@ -153,13 +153,14 @@ export class ProgressTrackerService {
       return r as Observable<CustomResponse>;
     } else {
       const log = this.dataLogService.getAll();
-      if (log.questions.length < 1 || log.question_answers.length < 1) {
+      if (log.questions.length < 1) {
         this.commonService.goTo(this.PREVIOUS_SCREEN);
       }
       const questionIndexInLog = this.getQuestionIndexInLog();
-      if (!!log.questions && log.questions.length > 0) {
+      if (!!log.questions && log.questions.length > 0 && !!log.questions[questionIndexInLog]) {
         const questionid = log.questions[questionIndexInLog].id;
-        const answersIndex = this.getAnswerIndexPerQuestionId(questionid);
+        let answersIndex = -1;
+        answersIndex = this.getAnswerIndexPerQuestionId(questionid) | -1;
         return {
           scenarioIndex: this.scenario,
           questionIndex: this.question,
@@ -173,9 +174,10 @@ export class ProgressTrackerService {
           isLastQuestionInScenario: this.question >= this.QUESTIONS_PER_SCENARIO - 1
         } as CustomResponse;
       } else {
-        // DELETE console.log()
-        console.log(log.toString());
-        this.commonService.goTo('interests')
+        // DELETE logs
+        this.commonService.log('getResponse2', `index: ${questionIndexInLog}`, JSON.stringify(log), log);
+        this.commonService.trace(`getResponse(${asObservable})`);
+        this.commonService.goTo('interests');
       }
     }
   }

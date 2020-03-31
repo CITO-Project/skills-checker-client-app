@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommonService {
 
+  private readonly USE_CONSOLE_LOG = false;
+
   private productName = 'nala';
   private apiUrl = 'http://localhost:3000/' + this.productName;
   private RESOURCE_PATH = 'assets/';
@@ -40,17 +42,56 @@ export class CommonService {
     this.router.navigate(['/' + url], { state: extras });
   }
 
-  log(...data: any): void {
-    const currentdate = new Date();
-    const datetime = '[' +
-      this.addZeros('' + currentdate.getDate()) + '/' +
-      this.addZeros('' + currentdate.getMonth() + 1)  + '/' +
-      currentdate.getFullYear() + ' @ ' +
-      this.addZeros('' + currentdate.getHours()) + ':' +
-      this.addZeros('' + currentdate.getMinutes()) + ':' +
-      this.addZeros('' + currentdate.getSeconds()) + '.' +
-      this.addZeros('' + currentdate.getMilliseconds(), 3) + ']';
-    console.log( datetime + ' >> ', (data !== undefined ? data : 'check') );
+  logging(type: string, ...data) {
+    const available_funcs = ['log', 'error', 'warn', 'trace'];
+    if (this.USE_CONSOLE_LOG && available_funcs.includes(type)) {
+      const currentdate = new Date();
+      const datetime = '[' +
+        this.addZeros('' + currentdate.getDate()) + '/' +
+        this.addZeros('' + currentdate.getMonth() + 1)  + '/' +
+        currentdate.getFullYear() + ' @ ' +
+        this.addZeros('' + currentdate.getHours()) + ':' +
+        this.addZeros('' + currentdate.getMinutes()) + ':' +
+        this.addZeros('' + currentdate.getSeconds()) + '.' +
+        this.addZeros('' + currentdate.getMilliseconds(), 3) + ']';
+      console.log(`%c${datetime} >> ${type}`, 'background-color: black; color: white;')
+      let content: any;
+      if (data.length > 0 && data[0].length > 0) {
+        content = data[0];
+      } else {
+        content = 'check';
+      }
+      switch (type) {
+        case 'log':
+          console.log(data);
+          break;
+        case 'error':
+          console.error(content);
+          break;
+        case 'warn':
+          console.warn(content);
+          break;
+        case 'trace':
+          console.trace(content);
+          break;
+      }
+    }
+  }
+
+  log(...data): void {
+    this.logging('log', ...data);
+  }
+
+  error(...data): void {
+    this.logging('error', data);
+  }
+
+  warn(...data): void {
+    this.logging('warn', data);
+  }
+
+  trace(...data): void {
+    this.logging('trace', data);
   }
 
   addZeros(value: string, nZeros: number = 2): string {

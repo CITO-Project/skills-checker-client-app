@@ -20,7 +20,6 @@ export class ScenariosScreenComponent implements OnInit {
 
   public scenario: Scenario;
   public question: Question;
-  public questionAnswers: Answer[];
   public currentAnswer = -1;
 
   public errorMessage = '';
@@ -39,14 +38,16 @@ export class ScenariosScreenComponent implements OnInit {
     private googleAnalyticsService: GoogleAnalyticsService
     ) {
       if (!dataLogService.getCategory()) {
+        commonService.goTo('categories');
+      } else if (!dataLogService.getInterest()) {
         commonService.goTo('interests');
       }
     }
 
   ngOnInit() {
     this.progressTrackerService.next().subscribe((data: CustomResponse) => {
-      if (data.question === undefined || data.scenario === undefined) {
-        this.commonService.goTo('categories');
+      if (!data || data.question === undefined || data.scenario === undefined) {
+        this.commonService.goTo('interests');
       } else {
         this.updateData(data);
       }
@@ -114,13 +115,16 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   updateData(data: CustomResponse): void {
-    this.currentScenario = data.scenarioIndex;
-    this.currentQuestion = data.questionIndex;
-    this.scenario = data.scenario;
-    this.question = data.question;
-    this.questionAnswers = data.question_answers;
-    this.currentAnswer = data.answer;
-    this.afterLoadQuestion(data);
+    if (!!data) {
+      this.currentScenario = data.scenarioIndex;
+      this.currentQuestion = data.questionIndex;
+      this.scenario = data.scenario;
+      this.question = data.question;
+      this.currentAnswer = data.answer;
+      this.afterLoadQuestion(data);
+    } else {
+      this.commonService.goTo('interests');
+    }
   }
 
   showError(message: string): void {
