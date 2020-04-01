@@ -217,7 +217,6 @@ export class DataLogService {
   }
 
   getQuestionOrder(): string[] {
-    console.log(JSON.parse(JSON.stringify(this.log)));
     return this.log.question_order;
   }
   //#endregion

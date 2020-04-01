@@ -12,7 +12,7 @@
   </div>
   <div class="features d-flex flex-row justify-content-around">
     <div class="flex-column feature" *ngFor="let feature of FEATURES">
-      <div [ngClass]="feature.color" class="icon box shadows gradient"><img src="{{ feature.icon }}"></div>
+      <div [ngClass]="feature.color" class="icon box shadows gradient"><img src="{{ feature.icon }}" onerror="this.remove()"></div>
       <div class="text flex-grow-0">{{ feature.text }}</div>
     </div>
   </div>
