@@ -13,7 +13,16 @@ export class InterestService {
 
   constructor(private commonService: CommonService) { }
 
-  getInterests(categoryid: number): Observable<Interest[]> {
+  getInterests(): Observable<Interest[]> {
+    const url = `/interests`;
+    return this.commonService.getAPICaller(url).pipe(map(
+      (data: Interest[]) => {
+        return data;
+      }
+    ));
+  }
+
+  getInterestsByCategory(categoryid: number): Observable<Interest[]> {
     if (categoryid < 1) {
       this.commonService.goTo('categories');
     } else {

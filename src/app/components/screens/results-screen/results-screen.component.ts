@@ -63,7 +63,7 @@ export class ResultsScreenComponent implements OnInit {
   selectNewInterest(): void {
     this.dataLogService.initializeLog();
     this.googleAnalyticsService.stopTimer('time_review_results');
-    this.commonService.goTo('categories');
+    this.commonService.goTo('interests');
   }
 
   getPath(name: string): string {

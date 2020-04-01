@@ -8,7 +8,6 @@ import { DataLogService } from 'src/app/services/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -20,7 +19,6 @@ export class InterestsScreenComponent implements OnInit {
 
   public interests: Interest[];
   public colour: string;
-  public category: Category;
 
   constructor(
     private interestService: InterestService,
@@ -30,15 +28,13 @@ export class InterestsScreenComponent implements OnInit {
     private progressTrackerService: ProgressTrackerService) { }
 
   ngOnInit() {
-    this.category = this.dataLogService.getCategory();
-    if (this.category === null) {
-      this.commonService.goTo('categories');
-    } else {
-      this.colour = this.category.colour;
-      this.interestService.getInterests(this.category.id).subscribe( (data: Interest[]) => {
-        this.interests = data;
-      });
+    if (!this.dataLogService.getProduct()) {
+      this.commonService.goTo('');
     }
+    this.colour = 'green';
+    this.interestService.getInterests().subscribe( (data: Interest[]) => {
+      this.interests = data;
+    });
   }
 
   selectInterest(interest: Interest): void {
@@ -46,7 +42,7 @@ export class InterestsScreenComponent implements OnInit {
     if (this.dataLogService.getInterest().id === interest.id) {
       this.googleAnalyticsService.stopTimer('time_select_interest', '' + interest.id);
       this.googleAnalyticsService.addEvent('selected_interest', '' + interest.id);
-      this.progressTrackerService.initializeTracker().subscribe( () => {
+      this.progressTrackerService.initializeTracker().then( () => {
         this.googleAnalyticsService.addEvent('started_test');
         this.commonService.goTo('scenarios');
       });
