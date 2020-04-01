@@ -115,10 +115,7 @@ export class CommonService {
         r = this.RESOURCE_PATH + type + '/' + name;
         break;
     }
-    const http = new XMLHttpRequest();
-    http.open('HEAD', r, false);
-    http.send();
-    return http.status === 404 ? 'default' : r;
+    return r;
   }
 
   getIconPath(name: string): string {
