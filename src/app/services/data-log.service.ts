@@ -13,6 +13,8 @@ import { Answer } from '../models/answer';
 import { QuestionService } from './question.service';
 import { ScenarioService } from './scenario.service';
 import { AnswerService } from './answer.service';
+import { QuestionOrder } from '../models/question-order';
+import { QuestionOrderService } from './question-order.service';
 
 
 @Injectable({
@@ -25,24 +27,27 @@ export class DataLogService {
   constructor(
     private questionService: QuestionService,
     private scenarioService: ScenarioService,
-    private answerService: AnswerService) {
+    private answerService: AnswerService,
+    private questionOrderService: QuestionOrderService) {
       this.initializeLog();
   }
 
   initializeLog() {
-    let product = null;
+    let product = null, question_order = null;
     if (!!this.log && !!this.log.product) {
       product = this.log.product;
     }
+    if (!!this.log && !!this.log.question_order) {
+      question_order = this.log.question_order
+    }
     this.log = {
       product,
-      category: null,
       interest: null,
       scenarios: [],
       questions: [],
       answers: [],
       question_answers: [],
-      question_order: this.questionService.getQuestionOrder(),
+      question_order,
       challenging_order: this.questionService.getChallengingOrder()
     };
   }
@@ -85,8 +90,13 @@ export class DataLogService {
   //#endregion
 
   //#region Scenario
-  loadScenarios(categoryid: number, interestid: number): Observable<void> {
-    return this.scenarioService.getScenarios(categoryid, interestid).pipe(map( (data: Scenario[]) => {
+  loadScenarios(interestid: number): Observable<void> {
+    return this.scenarioService.getScenarios(interestid).pipe(map( (data: Scenario[]) => {
+      this.log.scenarios = data;
+    }));
+  }
+  loadScenariosByCategory(categoryid: number, interestid: number): Observable<void> {
+    return this.scenarioService.getScenarios(interestid).pipe(map( (data: Scenario[]) => {
       this.log.scenarios = data;
     }));
   }
@@ -101,12 +111,28 @@ export class DataLogService {
   //#endregion
 
   //#region Question
-  loadQuestions(scenarioindex: number, categoryid: number, interestid: number): Observable<void> {
+  loadQuestions(scenarioindex: number, interestid: number): Observable<void> {
     const scenarioid = this.log.scenarios[scenarioindex].id;
     if (this.log.questions.length <= 0) {
       this.log.questions = [];
     }
-    return this.questionService.getQuestions(categoryid, interestid, scenarioid).pipe(map( (data: Question[]) => {
+    return this.questionService.getQuestions(interestid, scenarioid).pipe(map( (data: Question[]) => {
+      const _questions = [];
+      this.log.question_order.forEach( (orderValue: string) => {
+        this.log.answers.push(-1);
+        _questions.push(data.find( (question: Question) => {
+          return question.pedagogical_type === orderValue;
+        }))
+      })
+      this.log.questions = this.log.questions.concat(_questions);
+    }));
+  }
+  loadQuestionsByCategory(scenarioindex: number, categoryid: number, interestid: number): Observable<void> {
+    const scenarioid = this.log.scenarios[scenarioindex].id;
+    if (this.log.questions.length <= 0) {
+      this.log.questions = [];
+    }
+    return this.questionService.getQuestionsByCategory(categoryid, interestid, scenarioid).pipe(map( (data: Question[]) => {
       const _questions = [];
       this.log.question_order.forEach( (orderValue: string) => {
         this.log.answers.push(-1);
@@ -131,7 +157,7 @@ export class DataLogService {
     let r = 0;
     this.log.answers.slice(
         this.getIndex(scenarioindex, 0),
-        this.getIndex(scenarioindex, this.questionService.getQuestionOrder().length)
+        this.getIndex(scenarioindex, this.getQuestionOrder().length)
       ).forEach(
       (answer: number) => {
         if (answer !== -1) {
@@ -176,6 +202,23 @@ export class DataLogService {
     for (let i = index + 1; i < this.log.answers.length; i++) {
       this.log.answers[i] = -1;
     }
+  }
+  //#endregion
+
+  //#region QuestionOrder
+  setQuestionOrder(_questionOrder: QuestionOrder[]): void {
+    this.log.question_order = _questionOrder
+      .sort( (a: QuestionOrder, b: QuestionOrder) => {
+        return a.order - b.order;
+      })
+      .map( (value: QuestionOrder) => {
+        return value.name
+      });
+  }
+
+  getQuestionOrder(): string[] {
+    console.log(JSON.parse(JSON.stringify(this.log)));
+    return this.log.question_order;
   }
   //#endregion
 

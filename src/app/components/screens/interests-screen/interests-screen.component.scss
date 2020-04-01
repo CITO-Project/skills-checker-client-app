@@ -5,6 +5,13 @@
   padding: 10px;
 }
 
+.description.text{
+  padding: 0 20px;
+  @include setStyleTablet {
+    padding: 0 40px;
+  }
+}
+
 .interest {
   margin: 10px 0;
   overflow: hidden;

@@ -30,9 +30,7 @@ export class ProgressTrackerService {
   constructor(
     private commonService: CommonService,
     private dataLogService: DataLogService,
-    private googleAnalyticsService: GoogleAnalyticsService,
-    questionService: QuestionService) {
-      this.QUESTIONS_PER_SCENARIO = questionService.getQuestionOrder().length;
+    private googleAnalyticsService: GoogleAnalyticsService) {
   }
 
   async initializeTracker(): Promise<void> {
@@ -40,6 +38,7 @@ export class ProgressTrackerService {
     const interest = this.dataLogService.getInterest();
     this.dataLogService.resetInterest();
     await this.loadScenarios(category, interest).toPromise();
+    this.QUESTIONS_PER_SCENARIO = this.dataLogService.getQuestionOrder().length;
     this.NUMBER_OF_SCENARIOS = this.dataLogService.getScenarioCount();
     await this.loadQuestions(this.NUMBER_OF_SCENARIOS);
     this.scenario = 0;
@@ -55,12 +54,10 @@ export class ProgressTrackerService {
   }
 
   loadScenarios(category: Category, interest: Interest): Observable<void> {
-    if (category === null) {
-      this.commonService.goTo('categories');
-    } else if (interest === null) {
+    if (interest === null) {
       this.commonService.goTo('interests');
     } else {
-      return this.dataLogService.loadScenarios(category.id, interest.id);
+      return this.dataLogService.loadScenarios(interest.id);
     }
   }
 
@@ -114,7 +111,6 @@ export class ProgressTrackerService {
     this.question = 0;
     return this.dataLogService.loadQuestions(
       scenarioindex,
-      this.dataLogService.getCategory().id,
       this.dataLogService.getInterest().id
     );
   }
