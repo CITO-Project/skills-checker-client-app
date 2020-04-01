@@ -28,6 +28,9 @@ export class InterestsScreenComponent implements OnInit {
     private progressTrackerService: ProgressTrackerService) { }
 
   ngOnInit() {
+    if (!this.dataLogService.getProduct()) {
+      this.commonService.goTo('');
+    }
     this.colour = 'green';
     this.interestService.getInterests().subscribe( (data: Interest[]) => {
       this.interests = data;

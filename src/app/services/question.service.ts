@@ -11,16 +11,6 @@ import { CommonService } from './common.service';
 })
 export class QuestionService {
 
-  private QUESTION_ORDER = [
-    'task_question',
-    'challenging_skill',
-    'dimension_independence_1',
-    'dimension_confidence_1',
-    'dimension_confidence_2',
-    'dimension_fluency_1',
-    'dimension_fluency_2'
-  ];
-
   private CHALLENGING_ORDER = [
     'literacy',
     'numeracy',
@@ -61,23 +51,15 @@ export class QuestionService {
     }
   }
 
-  getPedagogicalType(order: number): string {
-    return this.QUESTION_ORDER[order];
-  }
-
-  getQuestionOrder(): string[] {
-    return this.QUESTION_ORDER;
-  }
-
   getChallengingOrder(): string[] {
     return this.CHALLENGING_ORDER;
   }
 
-  getQuestionInOrder(questions: Question[], questionindex: number): Question {
+  getQuestionInOrder(questions: Question[], questionindex: number, questionOrder: string[]): Question {
     let r: Question = null;
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < questions.length; i++) {
-      if (questions[i].pedagogical_type === this.QUESTION_ORDER[questionindex]) {
+      if (questions[i].pedagogical_type === questionOrder[questionindex]) {
         r = questions[i];
         break;
       }

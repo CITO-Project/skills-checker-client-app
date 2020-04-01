@@ -13,6 +13,8 @@ import { Answer } from '../models/answer';
 import { QuestionService } from './question.service';
 import { ScenarioService } from './scenario.service';
 import { AnswerService } from './answer.service';
+import { QuestionOrder } from '../models/question-order';
+import { QuestionOrderService } from './question-order.service';
 
 
 @Injectable({
@@ -25,14 +27,18 @@ export class DataLogService {
   constructor(
     private questionService: QuestionService,
     private scenarioService: ScenarioService,
-    private answerService: AnswerService) {
+    private answerService: AnswerService,
+    private questionOrderService: QuestionOrderService) {
       this.initializeLog();
   }
 
   initializeLog() {
-    let product = null;
+    let product = null, question_order = null;
     if (!!this.log && !!this.log.product) {
       product = this.log.product;
+    }
+    if (!!this.log && !!this.log.question_order) {
+      question_order = this.log.question_order
     }
     this.log = {
       product,
@@ -41,7 +47,7 @@ export class DataLogService {
       questions: [],
       answers: [],
       question_answers: [],
-      question_order: this.questionService.getQuestionOrder(),
+      question_order,
       challenging_order: this.questionService.getChallengingOrder()
     };
   }
@@ -151,7 +157,7 @@ export class DataLogService {
     let r = 0;
     this.log.answers.slice(
         this.getIndex(scenarioindex, 0),
-        this.getIndex(scenarioindex, this.questionService.getQuestionOrder().length)
+        this.getIndex(scenarioindex, this.getQuestionOrder().length)
       ).forEach(
       (answer: number) => {
         if (answer !== -1) {
@@ -196,6 +202,23 @@ export class DataLogService {
     for (let i = index + 1; i < this.log.answers.length; i++) {
       this.log.answers[i] = -1;
     }
+  }
+  //#endregion
+
+  //#region QuestionOrder
+  setQuestionOrder(_questionOrder: QuestionOrder[]): void {
+    this.log.question_order = _questionOrder
+      .sort( (a: QuestionOrder, b: QuestionOrder) => {
+        return a.order - b.order;
+      })
+      .map( (value: QuestionOrder) => {
+        return value.name
+      });
+  }
+
+  getQuestionOrder(): string[] {
+    console.log(JSON.parse(JSON.stringify(this.log)));
+    return this.log.question_order;
   }
   //#endregion
 
