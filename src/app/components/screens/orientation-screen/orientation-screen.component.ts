@@ -62,7 +62,7 @@ export class OrientationScreenComponent implements OnInit {
 
   onClick(): void {
     this.googleAnalyticsService.restartTimer('time_select_interest');
-    this.commonService.goTo('categories');
+    this.commonService.goTo('interests');
   }
 
   loadVideo(): void {

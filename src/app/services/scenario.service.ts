@@ -13,13 +13,11 @@ export class ScenarioService {
 
   constructor(private commonService: CommonService) { }
 
-  getScenarios(categoryid: number, interestid: number): Observable<Scenario[]> {
-    if (categoryid === undefined) {
-      categoryid = -1;
-    } else if (interestid === undefined) {
+  getScenarios(interestid: number): Observable<Scenario[]> {
+    if (interestid === undefined) {
       interestid = -1;
     } else {
-      const url = `/categories/${categoryid}/interests/${interestid}/scenarios`;
+      const url = `/categories/-1/interests/${interestid}/scenarios`;
       return this.commonService.getAPICaller(url).pipe(map(
         (data: Scenario[]) => {
           return data;

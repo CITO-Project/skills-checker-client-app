@@ -36,7 +36,6 @@ export class DataLogService {
     }
     this.log = {
       product,
-      category: null,
       interest: null,
       scenarios: [],
       questions: [],
@@ -85,8 +84,13 @@ export class DataLogService {
   //#endregion
 
   //#region Scenario
-  loadScenarios(categoryid: number, interestid: number): Observable<void> {
-    return this.scenarioService.getScenarios(categoryid, interestid).pipe(map( (data: Scenario[]) => {
+  loadScenarios(interestid: number): Observable<void> {
+    return this.scenarioService.getScenarios(interestid).pipe(map( (data: Scenario[]) => {
+      this.log.scenarios = data;
+    }));
+  }
+  loadScenariosByCategory(categoryid: number, interestid: number): Observable<void> {
+    return this.scenarioService.getScenarios(interestid).pipe(map( (data: Scenario[]) => {
       this.log.scenarios = data;
     }));
   }
@@ -101,12 +105,28 @@ export class DataLogService {
   //#endregion
 
   //#region Question
-  loadQuestions(scenarioindex: number, categoryid: number, interestid: number): Observable<void> {
+  loadQuestions(scenarioindex: number, interestid: number): Observable<void> {
     const scenarioid = this.log.scenarios[scenarioindex].id;
     if (this.log.questions.length <= 0) {
       this.log.questions = [];
     }
-    return this.questionService.getQuestions(categoryid, interestid, scenarioid).pipe(map( (data: Question[]) => {
+    return this.questionService.getQuestions(interestid, scenarioid).pipe(map( (data: Question[]) => {
+      const _questions = [];
+      this.log.question_order.forEach( (orderValue: string) => {
+        this.log.answers.push(-1);
+        _questions.push(data.find( (question: Question) => {
+          return question.pedagogical_type === orderValue;
+        }))
+      })
+      this.log.questions = this.log.questions.concat(_questions);
+    }));
+  }
+  loadQuestionsByCategory(scenarioindex: number, categoryid: number, interestid: number): Observable<void> {
+    const scenarioid = this.log.scenarios[scenarioindex].id;
+    if (this.log.questions.length <= 0) {
+      this.log.questions = [];
+    }
+    return this.questionService.getQuestionsByCategory(categoryid, interestid, scenarioid).pipe(map( (data: Question[]) => {
       const _questions = [];
       this.log.question_order.forEach( (orderValue: string) => {
         this.log.answers.push(-1);

@@ -55,12 +55,10 @@ export class ProgressTrackerService {
   }
 
   loadScenarios(category: Category, interest: Interest): Observable<void> {
-    if (category === null) {
-      this.commonService.goTo('categories');
-    } else if (interest === null) {
+    if (interest === null) {
       this.commonService.goTo('interests');
     } else {
-      return this.dataLogService.loadScenarios(category.id, interest.id);
+      return this.dataLogService.loadScenarios(interest.id);
     }
   }
 
@@ -114,7 +112,6 @@ export class ProgressTrackerService {
     this.question = 0;
     return this.dataLogService.loadQuestions(
       scenarioindex,
-      this.dataLogService.getCategory().id,
       this.dataLogService.getInterest().id
     );
   }

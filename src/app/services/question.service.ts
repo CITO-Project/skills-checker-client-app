@@ -29,7 +29,22 @@ export class QuestionService {
 
   constructor(private commonService: CommonService) { }
 
-  getQuestions(categoryid: number, interestid: number, scenarioid: number): Observable<Question[]> {
+  getQuestions(interestid: number, scenarioid: number): Observable<Question[]> {
+    if (interestid === undefined) {
+      interestid = -1;
+    } else if (scenarioid === undefined) {
+      scenarioid = -1;
+    } else {
+      const url = `/interests/${interestid}/scenarios/${scenarioid}/questions`;
+      return this.commonService.getAPICaller(url)
+        .pipe(map( (data: Question[]) => {
+          return data;
+        })
+      );
+    }
+  }
+
+  getQuestionsByCategory(categoryid: number, interestid: number, scenarioid: number): Observable<Question[]> {
     if (categoryid === undefined) {
       categoryid = -1;
     } else if (interestid === undefined) {
