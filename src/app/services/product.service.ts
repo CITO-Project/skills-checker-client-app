@@ -1,24 +1,25 @@
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 import { Product } from '../models/product';
+
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private product: Product;
+  constructor(private commonService: CommonService) { }
 
-  constructor() { }
-
-  getProduct(): Product  {
-    return this.product;
+  getProduct(): Observable<Product>  {
+    const url = '/product';
+    return this.commonService.getAPICaller(url)
+      .pipe(map( (data: Product) => {
+        return data;
+      })
+    );
   }
 
-  setProduct() {
-    this.product = {
-      id: 1,
-      name: 'nala',
-      description: 'First version of SkillsChecker'
-    };
-  }
 }

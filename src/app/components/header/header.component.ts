@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TestResultsService } from 'src/app/services/test-results.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +9,20 @@ import { TestResultsService } from 'src/app/services/test-results.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, private testResultsService: TestResultsService) { }
+  @Input() text: string;
+  @Output() customClick = new EventEmitter<void>();
 
-  ngOnInit() { }
+  constructor(private commonService: CommonService) { }
 
-  goToIndex() {
-    this.router.navigate(['']);
+  ngOnInit() {
+    if (this.text === 'default') {
+      this.text = 'SkillsChecker';
+    }
   }
 
-  showMore() {
-    console.log(this.testResultsService.getAll());
+  goToIndex() {
+    this.customClick.emit();
+    this.commonService.goTo('');
   }
 
 }

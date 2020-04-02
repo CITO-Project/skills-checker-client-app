@@ -1,0 +1,44 @@
+@import '../../../../_imports.scss';
+
+
+#content {
+  padding: 0 17px;
+  color: $color-font-dark;
+}
+
+#header {
+  text-align: center;
+  .title {
+    letter-spacing: 1px;
+    font-size: 160%;
+    font-weight: 400;
+    padding: 20px 0;
+    margin-top: 40px;
+  }
+  .description {
+    font-size: 90%;
+    padding-bottom: 20px;
+  }
+  .custom-select {
+    font-size: 120%;
+  }
+}
+
+#courses{
+  padding: 0;
+  text-align: center;
+}
+
+.learning-oportunities{
+  .heading {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 100%;
+    font-weight: 400;
+    text-align: left;
+    padding-left: 10px;
+  }
+  .course {
+    width: 100%;
+  }
+}

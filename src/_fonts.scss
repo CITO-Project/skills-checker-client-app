@@ -4,10 +4,8 @@
   If you try to load all the fonts into one file and then load that file wherever is needed, all the paths will fail. This happens because the paths depends on what file is importing it. This happens even if you import it to a general imports file and then import it because you are still importing that fonts whenever you make that import.
 */
 
-// Ubuntu
-@import './assets/fonts/_ubuntu-font.scss';
-// Roboto
-@import './assets/fonts/_roboto-font.scss';
+// Raleway
+@import './assets/fonts/_raleway-font.scss';
 
 
 /* Template to import fonts (comment out the ones that are not avaliable)

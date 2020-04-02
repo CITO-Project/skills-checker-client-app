@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonService } from 'src/app/services/common.service';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-navigate-button',
@@ -20,13 +21,24 @@ export class NavigateButtonComponent implements OnInit {
   @Input() destination: string;
   @Output() event =  new EventEmitter();
 
-  constructor(private router: Router) { }
+  constructor(private commonService: CommonService, private googleAnalyticsService: GoogleAnalyticsService) {
+  }
 
-  ngOnInit() { }
+  ngOnInit() {
+    if (this.text === 'default') {
+      this.text = '<< Back';
+    }
+    if (this.backText === 'default') {
+      this.backText = '<< Back';
+    }
+    if (this.forwardText === 'default') {
+      this.forwardText = 'Next >>';
+    }
+  }
 
   btnClick() {
     if (this.destination !== undefined) {
-      this.router.navigate([this.destination]);
+      this.commonService.goTo(this.destination);
     } else {
       this.event.emit();
     }
@@ -34,15 +46,16 @@ export class NavigateButtonComponent implements OnInit {
 
   btnClickBack() {
     if (this.backDestination !== undefined) {
-      this.router.navigate([this.backDestination]);
+      this.commonService.goTo(this.backDestination);
     } else {
+      this.googleAnalyticsService.addCounter('count_corrected_questions_per_scenario');
       this.backEvent.emit();
     }
   }
 
   btnClickForward() {
     if (this.forwardDestination !== undefined) {
-      this.router.navigate([this.forwardDestination]);
+      this.commonService.goTo(this.forwardDestination);
     } else {
       this.forwardEvent.emit();
     }

@@ -1,0 +1,54 @@
+<div id="question" *ngIf="!!question">
+
+  <!-- Question text -->
+  <div class="heading" *ngIf="question.pedagogical_type === 'task_question'">Your skills</div>
+  <div class="question">
+    <div>
+      <div class="text">{{ question.question }}</div>
+      <div *ngIf="question.pedagogical_type === 'challenging_skill'" class="muted">(Select all that apply)</div>
+    </div>
+    </div>
+  <!-- End question text -->
+
+  <!-- Answer -->
+  <div class="answer" [ngSwitch]="question.type">
+    <div class="error animated shake text" *ngIf="error !== ''">{{ error }}</div>
+
+
+    <!-- Slider option -->
+    <div class="slider" *ngSwitchCase="'slider'">
+      <div class="thumbs d-flex justify-content-between">
+        <div class="far fa-thumbs-up fa-rotate-180 low"></div>
+        <div class="far fa-thumbs-up high"></div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ng5-slider [value]='sliderProperties.value' [options]='sliderProperties.options' (valueChange)='retrieveAnswer($event)'></ng5-slider>
+      </div>
+
+      <div class="instructions muted">
+        Drag the slider to share your level of knowledge
+      </div>
+    </div>
+    <!-- End slider option -->
+
+
+    <!-- Boxes option -->
+    <div class="boxes" *ngIf="question.type === 'single' || question.type === 'multiple'">
+      <form>
+        <div *ngFor="let answer of sortAnswers(question.answers)">
+          <input *ngSwitchCase="'single'" id="{{ answer.order }}" type="radio" name="answer" class="custom-control-input" value="{{ answer.value }}" (change)="retrieveAnswer($event.target.value)">
+          <input *ngSwitchCase="'multiple'" id="{{ answer.order }}" type="checkbox" name="answer" class="custom-control-input" value="{{ answer.value }}" (change)="retrieveAnswerMultiple($event.target)">
+          <div class="d-flex flex-row justify-content-between answerOptions transition">
+            <label for="{{ answer.order }}" class="checkbox">&#xf00c;</label>
+            <label for="{{ answer.order }}" class="answerText text">{{ answer.text }}</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- End boxes option -->
+
+
+  </div>
+  <!-- End answer -->
+</div>

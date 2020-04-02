@@ -1,25 +1,21 @@
 @import '../../../_imports.scss';
 
-.buttons {
-  z-index: 1;
-  width: 100vw;
-  height: $bottom-height;
+#buttons {
+  background-image: linear-gradient(to top, $color-white 80%, $color-transparent 100%);
   position: fixed;
   bottom: 0;
-
-  background-color: $color-button;
-  color: $color-white;
-  font-size: 1.3em;
-  cursor: pointer;
-  text-align: center;
-
-  .button {
-    margin: 0;
-    height: $bottom-height;
-    background-color: $color-button;
-  }
-
-  button:hover{
-      color: $color-font-light;
+  width: 100vw;
+  z-index: 301;
+  .buttons {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    button {
+      $lateral-padding: 8%;
+      padding: 0 $lateral-padding;
+      @include setStyleTablet {
+        padding: 20px $lateral-padding;
+      }
+    }
   }
 }

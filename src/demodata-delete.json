@@ -1,0 +1,84 @@
+{
+  "product": {
+      "id": 1,
+      "name": "nala",
+      "description": null
+  },
+  "category": {
+      "id": 4,
+      "name": "social",
+      "text": "Social",
+      "colour": "red",
+      "resource": "meeting.svg",
+      "description": null,
+      "product": 1
+  },
+  "interest": {
+      "id": 22,
+      "name": "participate-activities",
+      "text": "Be able to participate in local activities and events with friends and peers",
+      "resource": "webpage-people.svg",
+      "description": null,
+      "product": 1,
+      "category": 4
+  },
+  "scenarios": [
+      {
+          "id": 60,
+          "name": "look_train_timetable",
+          "text": "Look train timetable",
+          "level": 1,
+          "resource": "select-train-time.mp4",
+          "description": "You are meeting a friend at the central bus station of your nearest city at 11:00. You have to take the bus from your local station to the central station. You have the bus timetable saved on your phone. Look at the bus timetable on your phone and decide if you can select the bus that will allow you to arrive at the central station a few minutes before 11:00.",
+          "product": 1,
+          "interest": 22
+      },
+      {
+          "id": 61,
+          "name": "check_rain_for_holidays",
+          "text": "Check rain for holidays",
+          "level": 2,
+          "resource": "select-month-least-rain.mp4",
+          "description": "You would like to go to Rome, Italy for your summer holiday with two friends. Decide if you can find weather information for Rome online. Look at the weather forecast graph and decide if you can select the month with the least chance of rain.",
+          "product": 1,
+          "interest": 22
+      },
+      {
+          "id": 62,
+          "name": "calculate_recipe",
+          "text": "Calculate recipe",
+          "level": 3,
+          "resource": "calculate-quantities-cooking.mp4",
+          "description": "Your friends are coming to your house for dinner. You want to make Spaghetti Bolognese for them and you want to check if anyone is allergic to any of the ingredients. Read the recipe and decide if you can text your friends the ingredients and adjust the quantities in the recipe to serve 8 people.",
+          "product": 1,
+          "interest": 22
+      },
+      {
+          "id": 63,
+          "name": "create_fish_pond",
+          "text": "Create fish pond",
+          "level": 4,
+          "resource": "calculate-area-pond.mp4",
+          "description": "You are creating a community garden and you want to build a patio area 5 metres long and 3 metres wide, using decking. Your local DIY store is selling planks of wood that are 2 metres long and 0.25 metres wide. To help with the project you want to ask for volunteers from the community. Decide if you can calculate the area of the patio and work out how much decking you will need to buy and share photos of the garden on Facebook inviting your neighbours to help.",
+          "product": 1,
+          "interest": 22
+      }
+  ],
+  "questions": [],
+  "answers": [],
+  "question_answers": [],
+  "question_order": [
+      "task_question",
+      "challenging_skill",
+      "dimension_independence_1",
+      "dimension_confidence_1",
+      "dimension_confidence_2",
+      "dimension_fluency_1",
+      "dimension_fluency_2"
+  ],
+  "challenging_order": [
+      "literacy",
+      "numeracy",
+      "digital_skills"
+  ]
+}

@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { Interest } from '../models/interest';
+
 import { CommonService } from './common.service';
 
 @Injectable({
@@ -7,14 +11,28 @@ import { CommonService } from './common.service';
 })
 export class InterestService {
 
-  constructor(private http: HttpClient, private common: CommonService) { }
+  constructor(private commonService: CommonService) { }
 
-  getInterest(interestId: number) {
-    return this.http.get(this.common.getApiUrl() + 'interests/' + interestId);
+  getInterests(): Observable<Interest[]> {
+    const url = `/interests`;
+    return this.commonService.getAPICaller(url).pipe(map(
+      (data: Interest[]) => {
+        return data;
+      }
+    ));
   }
 
-  getInterests() {
-    return this.http.get(this.common.getApiUrl() + 'interests');
+  getInterestsByCategory(categoryid: number): Observable<Interest[]> {
+    if (categoryid < 1) {
+      this.commonService.goTo('categories');
+    } else {
+      const url = `/categories/${categoryid}/interests`;
+      return this.commonService.getAPICaller(url).pipe(map(
+        (data: Interest[]) => {
+          return data;
+        }
+      ));
+    }
   }
 
 }

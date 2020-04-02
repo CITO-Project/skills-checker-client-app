@@ -1,42 +1,35 @@
 @import '../../../../_imports.scss';
 
-#video {
-  width: 100vw;
-  height: 170px;
-  background-color: $color-grey;
-  text-align: center;
-
-  // Placeholder styling
-  padding-top: 30px;
-  font-size: 5em;
-}
-
 #description {
-  color: $color-font;
   text-align: center;
-  padding: 30px 20px;
-
-  .main {
-    padding: 10px;
-    font-size: 1.5em;
-    font-weight: 100;
+  padding: 0px 20px;
+  @include setStyleTablet {
+    padding: 30px 20px;
   }
 
-  .text {
+  #how-to-use {
+    margin-top: 20px;
+  }
+  .main {
+    padding: 10px;
+    font-size: 150%;
     font-weight: 400;
   }
 
+  .text {
+    text-align: center;
+    padding: 0px 20px;
+    @include setStyleTablet {
+      padding: 10px 20px;
+    }
+  }
+
   .features {
-    padding: 40px 20px;
-
+    padding-top: 30px;
     > .feature {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
       .icon {
         // Size
-        $size: 55px;
+        $size: 80px;
         width: $size;
         height: $size;
 
@@ -45,20 +38,31 @@
         align-items: center;
         justify-content: center;
 
-        font-size: 1.3em;
-        background-color: $color-grey;
-        i {
-          color: $color-font-light;
+        > img {
+          $reduction: 50%;
+          width: $reduction;
+          height: $reduction;
+          background-color: $color-transparent;
         }
       }
-
       .text {
+        width: 100%;
         margin-top: 15px;
         text-transform: uppercase;
-        font-weight: 400;
-        font-size: .8em;
+        font-weight: 700;
+        font-size: 80%;
         letter-spacing: 1px;
+        padding: unset;
       }
     }
   }
 }
+
+#description .features > .feature .icon {
+  @include setStyleTablet {
+    $size: 120px;
+    width: $size;
+    height: $size;
+  }
+}
+

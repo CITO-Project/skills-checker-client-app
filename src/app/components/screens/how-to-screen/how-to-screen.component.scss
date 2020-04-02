@@ -1,38 +1,40 @@
 @import '../../../../_imports.scss';
 
-#video {
-  width: 100vw;
-  height: 170px;
-  background-color: $color-grey;
-  text-align: center;
-
-  // Placeholder styling
-  padding-top: 30px;
-  font-size: 5em;
-}
-
 #description {
-  color: $color-font;
+  color: $color-font-dark;
   text-align: center;
-  padding: 30px 50px;
-
-  .main {
-    font-size: 1.5em;
-    font-weight: 100;
+  padding: 20px 30px;
+  @include setStyleTablet {
+    padding: 30px;
   }
 
+  .heading {
+    margin-bottom: 30px;
+    font-size: 150%;
+  }
   .text {
-    font-weight: 400;
-    margin: 30px 0;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 120%;
+    @include setStyleTablet {
+      margin-bottom: 50px;
+    }
   }
-
-  .start {
-    padding: 10px 50px;
-    margin: 30px 0;
-    background-color: $color-background-dark;
-    color: $color-font-light;
-    font-size: 1.2em;
-    cursor: pointer;
+  .muted {
+    text-align: center;
+    font-size: 100%;
+    padding: 0 40px;
+  }
+  .button {
+    margin-bottom: 30px;
+    padding: 0 60px;
+    white-space: pre;
+    @include setStyleTablet {
+      padding: 20px 100px;
+      i::before {
+        font-size: 200%;
+      }
+    }
   }
 
 }

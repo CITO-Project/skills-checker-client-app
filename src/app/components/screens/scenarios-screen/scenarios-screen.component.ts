@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { TestResultsService } from 'src/app/services/test-results.service';
-import { Interest } from 'src/app/models/interest';
-import { ScenarioService } from 'src/app/services/scenario.service';
+
 import { Scenario } from 'src/app/models/scenario';
-import { QuestionService } from 'src/app/services/question.service';
 import { Question } from 'src/app/models/question';
-import { Router } from '@angular/router';
+import { Category } from 'src/app/models/category';
+import { Answer } from 'src/app/models/answer';
+import { CustomResponse } from 'src/app/models/custom-response';
+
+import { DataLogService } from 'src/app/services/data-log.service';
+import { CommonService } from 'src/app/services/common.service';
+import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -14,110 +18,131 @@ import { Router } from '@angular/router';
 })
 export class ScenariosScreenComponent implements OnInit {
 
-  public interest: Interest;
   public scenario: Scenario;
   public question: Question;
+  public currentAnswer = -1;
 
+  public errorMessage = '';
+  public category: Category;
 
-  private scenarios: number[] = [];
-  private nScenario = 0;
-  private questions: number[] = [];
-  private nQuestion = 0;
+  public btnBack = 'default';
+  public btnForward = 'default';
 
-  private currentAnswer: number = 0;
+  public currentScenario = -1;
+  public currentQuestion = -1;
 
   constructor(
-    private testResultsService: TestResultsService,
-    private scenarioService: ScenarioService,
-    private questionService: QuestionService,
-    private router: Router
-    ) { }
+    private dataLogService: DataLogService,
+    private commonService: CommonService,
+    private progressTrackerService: ProgressTrackerService,
+    private googleAnalyticsService: GoogleAnalyticsService
+    ) {
+      if (!dataLogService.getInterest()) {
+        commonService.goTo('interests');
+      }
+    }
 
   ngOnInit() {
-    this.getScenarios();
-  }
-
-  getScenarios() {
-    // Retrieve selected interest
-    // const interestid = this.testResults.getInterestId();
-    // this.interestService.getInterest(interestid).subscribe( (data: Interest) => {
-    //   interest = data;
-    //   console.log(interest);
-    // });
-
-    const interest: Interest = {
-      id: 3,
-      product: 1,
-      name: 'shop',
-      text: 'Using a digital catalogue',
-      illustration: null,
-      description: null
-    };
-    this.interest = interest;
-
-    this.scenarioService.getScenarios(interest.id).subscribe( (scenarios: {
-      id: number
-    }[]) => {
-      scenarios.forEach( scenario => {
-        this.scenarios.push(scenario.id);
-      });
-      this.nextScenario();
-    });
-  }
-
-  nextScenario() {
-    if (this.nScenario === this.scenarios.length - 1 ) {
-      this.router.navigate(['results']);
-    } else {
-      const scenarioId = this.scenarios[this.nScenario++];
-      this.loadScenario(scenarioId);
-    }
-  }
-
-  loadScenario(scenarioId: number) {
-    this.scenarioService.getScenario(scenarioId).subscribe( (scenario: Scenario) => {
-      this.scenario = scenario;
-      this.testResultsService.setScenario(scenario);
-      this.getQuestions(scenario.id);
-    });
-  }
-
-  getQuestions(scenarioId: number) {
-    this.nQuestion = 0;
-    this.questions = [];
-    this.questionService.getQuestions(scenarioId).subscribe( (questions: {
-      id: number
-    }[]) => {
-      questions.forEach( question => {
-        this.questions.push(question.id);
-      });
-      this.nextQuestion();
+    this.progressTrackerService.next().subscribe((data: CustomResponse) => {
+      if (!data || data.question === undefined || data.scenario === undefined) {
+        this.commonService.goTo('interests');
+      } else {
+        this.updateData(data);
+      }
     });
   }
 
   nextQuestion() {
-    if (this.nQuestion === this.questions.length ) {
-      this.nextScenario();
-    } else {
-      const questionId = this.questions[this.nQuestion++];
-      this.loadQuestion(questionId);
+    if (this.saveAnswer()) {
+      this.googleAnalyticsService.stopTimer('time_answer_question');
+      const next$ = this.progressTrackerService.next(this.currentAnswer);
+      if (!!next$) {
+        next$.subscribe((data: CustomResponse) => {
+          this.updateData(data);
+        });
+      }
     }
   }
 
-  loadQuestion(questionId: number) {
-    this.questionService.getQuestion(questionId).subscribe( (question: Question) => {
-      this.testResultsService.setQuestion(question);
-      this.question = question;
+  afterLoadQuestion(data: CustomResponse) {
+    if (this.question.type === 'slider') {
+      this.currentAnswer = 0;
+    } else {
+      this.currentAnswer = -1;
+    }
+    const savedAnswer = this.dataLogService.getAnswer(this.currentScenario, this.currentQuestion);
+    if (savedAnswer !== -1) {
+      this.currentAnswer = savedAnswer;
+    }
+    this.errorMessage = '';
+
+    this.btnForward = 'default';
+    this.btnBack = 'default';
+    if (data.isLastQuestion) {
+      this.btnForward = 'See results';
+    }
+    if (data.isFirstQuestion) {
+      this.googleAnalyticsService.restartTimer('time_answer_interest', '' + this.dataLogService.getInterest().id);
+    }
+    if (data.isFirstQuestionInScenario) {
+      this.googleAnalyticsService.stopTimer('time_answer_scenario');
+      this.googleAnalyticsService.stopCounter('count_corrected_questions_per_scenario');
+      this.googleAnalyticsService.stopCounter('count_plays_per_scenario');
+
+      this.googleAnalyticsService.restartTimer('time_answer_scenario', '' + this.scenario.id);
+      this.googleAnalyticsService.restartCounter('count_corrected_questions_per_scenario', '' + this.dataLogService.getInterest().id);
+      this.googleAnalyticsService.restartCounter('count_plays_per_scenario', '' + this.dataLogService.getInterest().id);
+    }
+    this.googleAnalyticsService.restartTimer('time_answer_question', '' + this.question.id, this.question.pedagogical_type);
+  }
+
+  saveAnswer(): boolean {
+    if (this.currentAnswer < 0) {
+      this.showError('Please, select one of the options below');
+      return false;
+    } else {
+      this.dataLogService.setAnswer(this.currentScenario, this.currentQuestion, this.currentAnswer);
+      return true;
+    }
+  }
+
+  previousQuestion() {
+    this.progressTrackerService.previous().subscribe((data: CustomResponse) => {
+      this.updateData(data);
     });
   }
 
-  retrieveAnswer(answer: any) {
-    this.currentAnswer = answer.target.value;
+  updateData(data: CustomResponse): void {
+    if (!!data) {
+      this.currentScenario = data.scenarioIndex;
+      this.currentQuestion = data.questionIndex;
+      this.scenario = data.scenario;
+      this.question = data.question;
+      this.currentAnswer = data.answer;
+      this.afterLoadQuestion(data);
+    } else {
+      this.commonService.goTo('interests');
+    }
   }
 
-  saveAnswer() {
-    this.testResultsService.setAnswer(this.question.id, this.currentAnswer);
-    this.nextQuestion();
+  showError(message: string): void {
+    this.errorMessage = message;
+  }
+
+  processAnswer(answer: number): void {
+    this.currentAnswer = answer;
+  }
+
+  clickHeader() {
+    //#region Duplicated code in constructor() in app.component.ts
+    const {scenarioIndex, questionIndex} = this.progressTrackerService.getResponse() as CustomResponse;
+    if (!(scenarioIndex === 0 && questionIndex === 0)) {
+      const interest = this.dataLogService.getInterest();
+      const scenario = this.dataLogService.getScenario(scenarioIndex);
+      this.googleAnalyticsService.addEvent('left_interest_at_level', '' + interest.id, scenarioIndex + 1);
+      this.googleAnalyticsService.addEvent('left_scenario_at_question_number', '' + scenario.id, questionIndex + 1);
+    }
+    //#endregion
   }
 
 }

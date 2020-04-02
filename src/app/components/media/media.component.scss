@@ -1,0 +1,18 @@
+@import '../../../_imports.scss';
+
+#media {
+  width: 100vw;
+  overflow: hidden;
+  img, vg-player {
+    width: 100%;
+    z-index: 299;
+  }
+}
+
+video::cue {
+  font-size: 80%;
+  font-weight: 600;
+  font-family: 'Raleway';
+  background-color: $color-subtitles-background;
+  color: $color-subtitles;
+}

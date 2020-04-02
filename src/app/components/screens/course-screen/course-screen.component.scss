@@ -1,0 +1,42 @@
+@import '../../../../_imports.scss';
+
+.container {
+  padding-top: 20px;
+  word-break: break-word;
+}
+
+.extras {
+  @include setStyleTablet {
+    font-size: 70%;
+  }
+  .extra {
+    margin-bottom: 10px;
+    > div {
+      border-radius: 5px;
+      > .heading {
+        padding-left: 10px;
+        background-color: $color-course-heading-background;
+        border-bottom: 1px solid $color-course-border;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+      > * {
+        padding-left: 10px;
+      }
+      border: 1px solid $color-course-border;
+      background-color: $color-course-background;
+    }
+  }
+}
+
+.text {
+  white-space: pre-line;
+}
+
+.heading {
+  text-align: left;
+}
+
+span {
+  display: inline-block;
+}

@@ -1,0 +1,190 @@
+@import '../../../_imports.scss';
+
+#question {
+  .heading {
+    margin-top: 0;
+    padding-bottom: 10px;
+    font-size: 140%;
+  }
+  .question {
+    text-align: left;
+    padding: 0 5px;
+    font-weight: 200;
+
+    .dimension {
+      font-size: 140%;
+      font-weight: 400;
+      text-transform: capitalize;
+      text-align: center;
+    }
+  }
+  .answer {
+    padding: 20px 0;
+    .slider {
+      @include setStyleTablet {
+        padding: 0 20px;
+      }
+      .instructions {
+        padding-top: 60px;
+      }
+      .fa-thumbs-up {
+        font-size: 130%;
+        margin-bottom: -10px;
+        &.low {
+          color: $color-red;
+        }
+        &.high {
+          color: $color-green;
+        }
+      }
+    }
+    .boxes {
+      text-align: left;
+      padding-left: 0;
+      input[type="radio"]+.answerOptions,
+      input[type="checkbox"]+.answerOptions {
+        .checkbox {
+          @include font-awesome();
+          $border: 1px;
+          $size: 20px;
+          width: $size + $border * 2;
+          height: $size;
+          margin-top: 3px;
+          margin-right: 10px;
+          padding-top: 1px;
+          border: $border solid $color-option-border;
+          color: $color-transparent;
+          background-color: $color-transparent;
+          border-radius: 5px;
+          font-size: 70%;
+          display: block;
+          text-align: center;
+          @include setStyleTablet {
+            $size: 35px;
+            width: $size + $border * 2;
+            height: $size;
+            padding-top: 3px;
+            margin-right: 20px;
+          }
+        }
+        .text {
+          width: 100%;
+        }
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 110%;
+        font-weight: 400;
+        margin-bottom: 10px;
+        border: 1px solid $color-option-border;
+        background-color: $color-option-background;
+        @include setStyleTablet {
+          padding: 15px;
+        }
+      }
+      input[type="radio"]:checked+.answerOptions,
+      input[type="checkbox"]:checked+.answerOptions {
+        background-color: $color-option-background-active;
+        border-color: $color-option-background-active;
+        .checkbox {
+          border-color: $color-option-border-active;
+          color: $color-option-border-active;
+          background-color: $color-option-background-active;
+        }
+        .text {
+          font-weight: 600;
+          color: $color-font;
+        }
+      }
+    }
+    > .error {
+      font-size: 110%;
+      font-weight: 300;
+      margin-bottom: 10px;
+      margin-top: -10px;
+    }
+    .error {
+      color: red;
+    }
+  }
+}
+.transition {
+  $time: 0.2s;
+  $speed: linear;
+  transition: color $time $speed;
+  transition: border-color $time $speed;
+  transition: background-color $time $speed;
+}
+.instructions.muted {
+  @include setStyleTablet {
+    padding-top: 120px !important;
+  }
+}
+
+::ng-deep {
+  .ng5-slider {
+    .ng5-slider-tick {
+      border-radius: 10px !important;
+      width: 4px !important;
+      height: 13px !important;
+      background: $color-slider-background !important;
+      @include setStyleTablet {
+        width: 8px !important;
+        height: 20px !important;
+      }
+    }
+    .ng5-slider-bar {
+      height: 5px !important;
+      border-radius: 10px !important;
+      @include setStyleTablet {
+        height: 10px !important;
+      }
+    }
+    .ng5-slider-full-bar > .ng5-slider-bar {
+      background: $color-slider-background !important;
+    }
+    .ng5-slider-pointer {
+      background-color: $color-green !important;
+      @include setStyleTablet {
+        $size: 48px;
+        width: $size !important;
+        height: $size !important;
+        border-radius: $size/2 !important;
+        top: -20px !important;
+      }
+
+      &:after {
+        content: url('../../../assets/images/pointer.png') !important;
+        -webkit-transform:scale(0.4, 0.4);
+        transform: scale(40%);
+        color: $color-font !important;
+        background-color: $color-transparent !important;
+        font-size: 160%;
+        top: -1px !important;
+        left: -1px !important;
+        @include setStyleTablet {
+          -webkit-transform:scale(0.6, 0.6);
+          transform: scale(60%);
+          top: 1px !important;
+          left: 0px !important;
+        }
+      }
+      &:hover {
+        transition: box-shadow .5s linear;
+        box-shadow: 0px 0px 0px 10px $color-slider-pointer-hover;
+      }
+    }
+    .ng5-slider-tick-legend {
+      color: $color-slider-text;
+      font-weight: 300;
+      @include setStyleTablet {
+        top: 35px !important;
+        left: 5px !important;
+        max-width: unset !important;
+      }
+    }
+  }
+}
+
+label {
+  margin-bottom: unset;
+}

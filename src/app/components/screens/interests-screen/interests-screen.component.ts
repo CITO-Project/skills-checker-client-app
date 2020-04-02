@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { InterestService } from 'src/app/services/interest.service';
+
 import { Interest } from 'src/app/models/interest';
-import { TestResultsService } from 'src/app/services/test-results.service';
-import { Router } from '@angular/router';
+import { Category } from 'src/app/models/category';
+
+import { InterestService } from 'src/app/services/interest.service';
+import { DataLogService } from 'src/app/services/data-log.service';
+import { CommonService } from 'src/app/services/common.service';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
+import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+
 
 @Component({
   selector: 'app-interests-screen',
@@ -11,26 +17,40 @@ import { Router } from '@angular/router';
 })
 export class InterestsScreenComponent implements OnInit {
 
-  public interests;
+  public interests: Interest[];
+  public colour: string;
 
-  constructor(private interestService: InterestService, private testResults: TestResultsService, private router: Router) { }
+  constructor(
+    private interestService: InterestService,
+    private dataLogService: DataLogService,
+    private commonService: CommonService,
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private progressTrackerService: ProgressTrackerService) { }
 
   ngOnInit() {
-    this.interestService.getInterests().subscribe( data => {
+    if (!this.dataLogService.getProduct()) {
+      this.commonService.goTo('');
+    }
+    this.colour = 'green';
+    this.interestService.getInterests().subscribe( (data: Interest[]) => {
       this.interests = data;
     });
-    // this.testResults.resetInterest();
   }
 
-  selectInterest(interest: Interest) {
-    this.testResults.setInterest(interest);
-    if (this.testResults.getInterest().id === interest.id) {
-      this.router.navigate(['how-to']);
+  selectInterest(interest: Interest): void {
+    this.dataLogService.setInterest(interest);
+    if (this.dataLogService.getInterest().id === interest.id) {
+      this.googleAnalyticsService.stopTimer('time_select_interest', '' + interest.id);
+      this.googleAnalyticsService.addEvent('selected_interest', '' + interest.id);
+      this.progressTrackerService.initializeTracker().then( () => {
+        this.googleAnalyticsService.addEvent('started_test');
+        this.commonService.goTo('scenarios');
+      });
     }
   }
 
-  test() {
-    console.log('test');
+  getPath(name: string): string {
+    return this.commonService.getIconPath(name);
   }
 
 }
