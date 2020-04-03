@@ -3,12 +3,12 @@
 $default-font: 'Raleway';
 
 @mixin font-awesome ($secondary: $default-font) {
-  font-family: 'Font Awesome\ 5 Free', $secondary;
+  font-family: 'Font Awesome 5 Free', $secondary;
   font-weight: 900;
 }
 @mixin font-awesome-first ($secondary: $default-font) {
   ::first-letter{
-    font-family: 'Font Awesome\ 5 Free', $secondary;
+    font-family: 'Font Awesome 5 Free', $secondary;
     font-weight: 900;
   }
 }
