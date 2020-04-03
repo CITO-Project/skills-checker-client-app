@@ -25,6 +25,7 @@ export class NavigateButtonComponent implements OnInit {
     text: string;
     icon: string;
     event: string;
+    special: boolean;
   }[];
   @Output() buttonsEvent = new EventEmitter();
 

@@ -17,7 +17,6 @@ export class DataProcessingService {
 
   getChallengingSkills(
     questions: Question[],
-    questionAnswers: Answer[][],
     answers: number[],
     challengingOrder: string[],
     questionOrder: string[]): Result {
@@ -87,7 +86,7 @@ export class DataProcessingService {
   }
 
   getResults(log: Log): Result {
-    return this.getChallengingSkills(log.questions, log.question_answers, log.answers, log.challenging_order, log.question_order);
+    return this.getChallengingSkills(log.questions, log.answers, log.challenging_order, log.question_order);
   }
 
 }
