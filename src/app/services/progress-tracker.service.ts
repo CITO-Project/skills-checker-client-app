@@ -167,10 +167,10 @@ export class ProgressTrackerService {
           isFirstQuestionInScenario: this.question === 0,
           isLastQuestionInScenario: this.question >= this.QUESTIONS_PER_SCENARIO - 1
         } as CustomResponse;
+      } else if (this.scenario === 0 && this.question === -1){
+        this.question = 0;
+        return this.getResponse(asObservable);
       } else {
-        // DELETE logs
-        this.commonService.log('getResponse2', `index: ${questionIndexInLog}`, JSON.stringify(log), log);
-        this.commonService.trace(`getResponse(${asObservable})`);
         this.commonService.goTo('interests');
       }
     }

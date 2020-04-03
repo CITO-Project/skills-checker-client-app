@@ -31,6 +31,8 @@ export class ScenariosScreenComponent implements OnInit {
   public currentScenario = -1;
   public currentQuestion = -1;
 
+  private isFirstQuestionLoaded = false;
+
   constructor(
     private dataLogService: DataLogService,
     private commonService: CommonService,
@@ -115,6 +117,9 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   previousQuestion() {
+    if (this.isFirstQuestionLoaded) {
+      this.commonService.goTo('interests');
+    }
     this.progressTrackerService.previous().subscribe((data: CustomResponse) => {
       this.updateData(data);
     });
@@ -127,6 +132,7 @@ export class ScenariosScreenComponent implements OnInit {
       this.scenario = data.scenario;
       this.question = data.question;
       this.currentAnswer = data.answer;
+      this.isFirstQuestionLoaded = data.isFirstQuestion;
       this.afterLoadQuestion(data);
     } else {
       this.commonService.goTo('interests');

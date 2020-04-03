@@ -20,7 +20,7 @@ export class DataProcessingService {
     answers: number[],
     challengingOrder: string[],
     questionOrder: string[]): Result {
-    const r: Result = {
+    const _r: Result = {
       literacy: {
         level: 0,
         priority: ''
@@ -38,36 +38,39 @@ export class DataProcessingService {
     let currentQuestions: Question[] = this.getItemsPerLevel(questions, questionOrder, level);
     while (currentQuestions.length > 0) {
       const currentAnswers: number[] = this.getItemsPerLevel(answers, questionOrder, level);
-      if (this.getItemByPedagogicalType(currentAnswers, questionOrder, 'task_question') < this.brushUpThreshold) {
-        let answer = this.getItemByPedagogicalType(currentAnswers, questionOrder, 'challenging_skill').toString(2);
-        const challenging_question: Question = this.getItemByPedagogicalType(currentQuestions, questionOrder, 'challenging_skill');
-        while (answer.length < challenging_question.answers.filter(
-          (questionAnswer: Answer) => {
-          if (questionAnswer.value >= 0) {
-            return true;
-          }
-        }).length) {
-          answer = '0' + answer;
-        }
-        answer = answer.split('').reverse().join('');
-        for (let i = 0; i < answer.length; i++) {
-          if (answer.charAt(i) === '1' && r[challengingOrder[i]].level <= 0) {
-            const answerTaskQuestion = this.getItemByPedagogicalType(currentAnswers, questionOrder, 'task_question');
-            let priority = 'brush_up';
-            if (answerTaskQuestion < this.developThreshold) {
-              priority = 'develop';
+      if (
+        this.getItemByPedagogicalType(currentAnswers, questionOrder, 'task_question') < this.brushUpThreshold &&
+        this.getItemByPedagogicalType(currentAnswers, questionOrder, 'challenging_skill') > -1
+        ) {
+          let answer = this.getItemByPedagogicalType(currentAnswers, questionOrder, 'challenging_skill').toString(2);
+          const challenging_question: Question = this.getItemByPedagogicalType(currentQuestions, questionOrder, 'challenging_skill');
+          while (answer.length < challenging_question.answers.filter(
+            (questionAnswer: Answer) => {
+            if (questionAnswer.value >= 0) {
+              return true;
             }
-            r[challengingOrder[i]] = {
-              level: level + 1,
-              priority
-            };
+          }).length) {
+            answer = '0' + answer;
           }
-        }
+          answer = answer.split('').reverse().join('');
+          for (let i = 0; i < answer.length; i++) {
+            if (answer.charAt(i) === '1' && _r[challengingOrder[i]].level <= 0) {
+              const answerTaskQuestion = this.getItemByPedagogicalType(currentAnswers, questionOrder, 'task_question');
+              let priority = 'brush_up';
+              if (answerTaskQuestion < this.developThreshold) {
+                priority = 'develop';
+              }
+              _r[challengingOrder[i]] = {
+                level: level + 1,
+                priority
+              };
+            }
+          }
       }
       level++;
       currentQuestions = this.getItemsPerLevel(questions, questionOrder, level);
     }
-    return r;
+    return _r;
   }
 
   getItemsPerLevel(items: any[], questionOrder: string[], level: number): any[] {
@@ -76,13 +79,13 @@ export class DataProcessingService {
   }
 
   getItemByPedagogicalType(items: any[], questionOrder: string[], pedagogicalType: string): any {
-    let r: any = null;
+    let _r: any = null;
     questionOrder.forEach( (question: string, index: number) => {
       if (question === pedagogicalType) {
-        r = items[index];
+        _r = items[index];
       }
     });
-    return r;
+    return _r;
   }
 
   getResults(log: Log): Result {
