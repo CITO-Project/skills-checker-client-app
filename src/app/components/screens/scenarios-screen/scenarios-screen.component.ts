@@ -25,8 +25,8 @@ export class ScenariosScreenComponent implements OnInit {
   public errorMessage = '';
   public category: Category;
 
-  public btnBack = 'default';
-  public btnForward = 'default';
+  public btnBack = 'Back';
+  public btnForward = 'Next';
 
   public currentScenario = -1;
   public currentQuestion = -1;
@@ -52,7 +52,7 @@ export class ScenariosScreenComponent implements OnInit {
     });
   }
 
-  nextQuestion() {
+  nextQuestion(): void {
     if (this.saveAnswer()) {
       this.googleAnalyticsService.stopTimer('time_answer_question');
       const next$ = this.progressTrackerService.next(this.currentAnswer);
@@ -61,6 +61,15 @@ export class ScenariosScreenComponent implements OnInit {
           this.updateData(data);
         });
       }
+    }
+  }
+
+  nextScenario(): void {
+    const $next = this.progressTrackerService.nextScenario();
+    if (!!$next) {
+      $next.subscribe( (data: CustomResponse) => {
+        this.updateData(data);
+      })
     }
   }
 
@@ -76,8 +85,7 @@ export class ScenariosScreenComponent implements OnInit {
     }
     this.errorMessage = '';
 
-    this.btnForward = 'default';
-    this.btnBack = 'default';
+    this.btnForward = 'Next';
     if (data.isLastQuestion) {
       this.btnForward = 'See results';
     }
@@ -143,6 +151,23 @@ export class ScenariosScreenComponent implements OnInit {
       this.googleAnalyticsService.addEvent('left_scenario_at_question_number', '' + scenario.id, questionIndex + 1);
     }
     //#endregion
+  }
+
+  onButtonsEvent(data: string): void {
+    switch(data) {
+      case 'back':
+        this.previousQuestion();
+        break;
+      case 'skip_scenario':
+        this.nextScenario();
+        break;
+      case 'go_results':
+        this.commonService.goTo('results');
+        break;
+      case 'forward':
+        this.nextQuestion();
+        break;
+    }
   }
 
 }

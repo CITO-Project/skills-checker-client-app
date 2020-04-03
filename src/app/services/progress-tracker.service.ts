@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer, forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Observer } from 'rxjs';
 
 import { Category } from '../models/category';
 import { Interest } from '../models/interest';
@@ -9,7 +8,6 @@ import { Answer } from '../models/answer';
 
 import { CommonService } from './common.service';
 import { DataLogService } from './data-log.service';
-import { QuestionService } from './question.service';
 import { GoogleAnalyticsService } from './google-analytics.service';
 
 @Injectable({
