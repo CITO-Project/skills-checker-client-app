@@ -12,6 +12,7 @@ export class CommonService {
 
   private productName = 'nala';
   private apiUrl = 'http://localhost:3000/' + this.productName;
+  private resourceFolderUrl = 'http://34.254.132.188/static/'
   private RESOURCE_PATH = 'assets/';
   private GATrackID = 'UA-157405394-1';
 
@@ -111,8 +112,10 @@ export class CommonService {
     switch (type) {
       case 'images':
       case 'icons':
-      case 'resources':
         r = this.RESOURCE_PATH + type + '/' + name;
+        break;
+      case 'resources':
+        r = this.resourceFolderUrl + name;
         break;
     }
     return r;
