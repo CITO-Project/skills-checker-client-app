@@ -1,7 +1,7 @@
 <app-header text='default'></app-header>
 <app-media [resource]=currentResource [replay]=addReplay></app-media>
 <div id="description">
-  <button class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
+  <button *ngIf='!isVideoLoaded' class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
     How to use
   </button>
   <div class="main heading">

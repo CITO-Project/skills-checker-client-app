@@ -14,7 +14,6 @@ import { QuestionService } from './question.service';
 import { ScenarioService } from './scenario.service';
 import { AnswerService } from './answer.service';
 import { QuestionOrder } from '../models/question-order';
-import { QuestionOrderService } from './question-order.service';
 
 
 @Injectable({
@@ -27,8 +26,7 @@ export class DataLogService {
   constructor(
     private questionService: QuestionService,
     private scenarioService: ScenarioService,
-    private answerService: AnswerService,
-    private questionOrderService: QuestionOrderService) {
+    private answerService: AnswerService) {
       this.initializeLog();
   }
 
