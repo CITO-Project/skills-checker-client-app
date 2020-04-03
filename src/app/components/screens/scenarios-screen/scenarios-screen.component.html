@@ -15,8 +15,29 @@
 
 </div>
 <app-navigate-button
-  backText="{{ btnBack }}"
-  forwardText="{{ btnForward }}"
-  (backEvent)="previousQuestion()"
-  (forwardEvent)="nextQuestion()"
+  [buttons] = "[
+  {
+    text: btnBack,
+    icon: '&#xf104;',
+    event: 'back'
+  },
+  {
+    text: 'Skip scenario',
+    icon: '&#xf054;&#xf054;',
+    event: 'skip_scenario',
+    special: true
+  },
+  {
+    text: 'Go to results',
+    icon: '&#xf00c;',
+    event: 'go_results',
+    special: true
+  },
+  {
+    text: btnForward,
+    icon: '&#xf054;',
+    event: 'forward'
+  }
+  ]"
+  (buttonsEvent)='onButtonsEvent($event)'
   ></app-navigate-button>

@@ -17,10 +17,11 @@ import { QuestionOrder } from 'src/app/models/question-order';
 export class OrientationScreenComponent implements OnInit {
 
   private readonly DEFAULT_IMAGE = 'orientation.png';
-  private readonly DEFAULT_VIDEO = 'default.mp4';
+  private readonly DEFAULT_VIDEO = 'how-to.mp4';
 
   public currentResource: string;
   public addReplay: boolean;
+  public isVideoLoaded = false;
 
   public FEATURES = [
     {
@@ -77,6 +78,7 @@ export class OrientationScreenComponent implements OnInit {
     if (this.currentResource !== this.DEFAULT_VIDEO) {
       this.currentResource = this.DEFAULT_VIDEO;
       this.addReplay = true;
+      this.isVideoLoaded = true;
     }
   }
 
