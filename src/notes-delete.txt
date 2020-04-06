@@ -18,3 +18,6 @@ pg_dump -U develop -F p -a skillschecker > ./data.sql
 
 Backup schema
 pg_dump -U develop -F p -s skillschecker > ./schema.sql
+
+Restore .sql backup
+psql -U <username> -d <dbname> -1 -f <filename>.sql
