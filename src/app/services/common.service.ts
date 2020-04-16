@@ -9,13 +9,13 @@ import { HttpClient } from '@angular/common/http';
 export class CommonService {
 
   private readonly USE_CONSOLE_LOG = false;
-  private readonly useAWSServer = true;
+  private readonly useAWSServer = false;
 
-  private readonly localhostUrl = 'localhost';
+  private readonly localhostUrl = 'http://localhost';
   private readonly AWSUrl = 'http://34.254.132.188/';
 
   private productName = 'nala';
-  private apiUrl = (this.useAWSServer ? this.AWSUrl + 'api/' : this.localhostUrl + ':3000') + this.productName;
+  private apiUrl = (this.useAWSServer ? this.AWSUrl + 'api/' : this.localhostUrl + ':3000/') + this.productName;
   private resourceFolderUrl = this.AWSUrl + 'static/';
   private RESOURCE_PATH = 'assets/';
   private GATrackID = 'UA-157405394-1';
