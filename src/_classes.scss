@@ -13,7 +13,7 @@
   display: inline-block;
   margin: 0 20px;
   border-radius: 50px;
-  min-height: $bottom-height;
+  min-height: $button-height;
   background-color: $color-button;
   @include gradient($color-button);
 

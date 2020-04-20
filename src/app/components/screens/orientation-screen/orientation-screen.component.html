@@ -1,6 +1,9 @@
 <app-header text='default'></app-header>
-<app-media resource='orientation.png'></app-media>
+<app-media [resource]=currentResource [replay]=addReplay></app-media>
 <div id="description">
+  <button *ngIf='!isVideoLoaded' class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
+    How to use
+  </button>
   <div class="main heading">
     Do you want to learn new skills to improve your life?
   </div>
@@ -9,8 +12,8 @@
   </div>
   <div class="features d-flex flex-row justify-content-around">
     <div class="flex-column feature" *ngFor="let feature of FEATURES">
-        <div [ngClass]="feature.color" class="icon box shadows gradient"><img src="{{ feature.icon }}"></div>
-        <div class="text flex-grow-0">{{ feature.text }}</div>
+      <div [ngClass]="feature.color" class="icon box shadows gradient"><img src="{{ feature.icon }}" onerror="this.remove()"></div>
+      <div class="text flex-grow-0">{{ feature.text }}</div>
     </div>
   </div>
 </div>

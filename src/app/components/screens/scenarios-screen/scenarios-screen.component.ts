@@ -20,17 +20,18 @@ export class ScenariosScreenComponent implements OnInit {
 
   public scenario: Scenario;
   public question: Question;
-  public questionAnswers: Answer[];
   public currentAnswer = -1;
 
   public errorMessage = '';
   public category: Category;
 
-  public btnBack = 'default';
-  public btnForward = 'default';
+  public btnBack = 'Back';
+  public btnForward = 'Next';
 
   public currentScenario = -1;
   public currentQuestion = -1;
+
+  private isFirstQuestionLoaded = false;
 
   constructor(
     private dataLogService: DataLogService,
@@ -38,22 +39,22 @@ export class ScenariosScreenComponent implements OnInit {
     private progressTrackerService: ProgressTrackerService,
     private googleAnalyticsService: GoogleAnalyticsService
     ) {
-      if (!dataLogService.getCategory()) {
-        commonService.goTo('how-to');
+      if (!dataLogService.getInterest()) {
+        commonService.goTo('interests');
       }
     }
 
   ngOnInit() {
     this.progressTrackerService.next().subscribe((data: CustomResponse) => {
-      if (data.question === undefined || data.scenario === undefined) {
-        this.commonService.goTo('how-to');
+      if (!data || data.question === undefined || data.scenario === undefined) {
+        this.commonService.goTo('interests');
       } else {
         this.updateData(data);
       }
     });
   }
 
-  nextQuestion() {
+  nextQuestion(): void {
     if (this.saveAnswer()) {
       this.googleAnalyticsService.stopTimer('time_answer_question');
       const next$ = this.progressTrackerService.next(this.currentAnswer);
@@ -62,6 +63,15 @@ export class ScenariosScreenComponent implements OnInit {
           this.updateData(data);
         });
       }
+    }
+  }
+
+  nextScenario(): void {
+    const $next = this.progressTrackerService.nextScenario();
+    if (!!$next) {
+      $next.subscribe( (data: CustomResponse) => {
+        this.updateData(data);
+      })
     }
   }
 
@@ -77,8 +87,7 @@ export class ScenariosScreenComponent implements OnInit {
     }
     this.errorMessage = '';
 
-    this.btnForward = 'default';
-    this.btnBack = 'default';
+    this.btnForward = 'Next';
     if (data.isLastQuestion) {
       this.btnForward = 'See results';
     }
@@ -108,19 +117,26 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   previousQuestion() {
+    if (this.isFirstQuestionLoaded) {
+      this.commonService.goTo('interests');
+    }
     this.progressTrackerService.previous().subscribe((data: CustomResponse) => {
       this.updateData(data);
     });
   }
 
   updateData(data: CustomResponse): void {
-    this.currentScenario = data.scenarioIndex;
-    this.currentQuestion = data.questionIndex;
-    this.scenario = data.scenario;
-    this.question = data.question;
-    this.questionAnswers = data.question_answers;
-    this.currentAnswer = data.answer;
-    this.afterLoadQuestion(data);
+    if (!!data) {
+      this.currentScenario = data.scenarioIndex;
+      this.currentQuestion = data.questionIndex;
+      this.scenario = data.scenario;
+      this.question = data.question;
+      this.currentAnswer = data.answer;
+      this.isFirstQuestionLoaded = data.isFirstQuestion;
+      this.afterLoadQuestion(data);
+    } else {
+      this.commonService.goTo('interests');
+    }
   }
 
   showError(message: string): void {
@@ -141,6 +157,23 @@ export class ScenariosScreenComponent implements OnInit {
       this.googleAnalyticsService.addEvent('left_scenario_at_question_number', '' + scenario.id, questionIndex + 1);
     }
     //#endregion
+  }
+
+  onButtonsEvent(data: string): void {
+    switch(data) {
+      case 'back':
+        this.previousQuestion();
+        break;
+      case 'skip_scenario':
+        this.nextScenario();
+        break;
+      case 'go_results':
+        this.commonService.goTo('results');
+        break;
+      case 'forward':
+        this.nextQuestion();
+        break;
+    }
   }
 
 }

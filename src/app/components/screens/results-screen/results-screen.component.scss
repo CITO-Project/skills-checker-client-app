@@ -29,9 +29,8 @@
   .content {
     padding: 0 20px;
     position: relative;
-    > .text {
+    .text {
       padding-left: 10px;
-      width: 50%;
       @include setStyleTablet {
         padding-left: 20px;
         padding-right: 50px;

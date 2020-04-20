@@ -40,7 +40,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
 
   loadScenario(scenarioindex: number): void {
     this.scenario = this.dataLogService.getScenario(scenarioindex);
-    this.dataLogService.loadQuestions(
+    this.dataLogService.loadQuestionsByCategory(
       scenarioindex,
       this.dataLogService.getCategory().id,
       this.scenario.interest
