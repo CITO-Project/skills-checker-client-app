@@ -9,6 +9,8 @@ declare let FontFace: any;
 })
 export class ResultsSaverService {
 
+  private readonly TEMPORARY_TOP_SEPARATION_RESULTS_TEXT = 150;
+
   private readonly FILE_MAX_WIDTH = 1000;
   private readonly FILE_MAX_HEIGHT = 2500;
   private readonly IMG_MAX_HEIGHT = 460;
@@ -17,12 +19,13 @@ export class ResultsSaverService {
   private readonly TEXT_SIZE = 40;
   
   private readonly BALLOONS_TEXT_SEPARATION = 150;
-  private readonly BALLONS_LEARNING_PATHWAY_SEPARATION = 50;
-  private readonly TEMPORARY_TOP_SEPARATION_RESULTS_TEXT = 150;
+  private readonly BALLONS_LEARNING_PATHWAY_SEPARATION = 100;
   private readonly LINES_SEPARATION = 20;
 
   private readonly PADDING = 60;
-  private readonly BACKGROUND_PADDING = 80;
+  private readonly TITLE_PADDING = 50;
+  private readonly BACKGROUND_PADDING_SIDES = 80;
+  private readonly BACKGROUND_PADDING_TOP = this.TITLE_PADDING + 100;
   private readonly SECTION_PADDING = 40;
   private readonly COURSE_PADDING = 40;
   private readonly COURSES_BORDER_RADIUS = 40;
@@ -32,7 +35,8 @@ export class ResultsSaverService {
   private readonly MAX_LINES_COURSE_DESCRIPTION = 2;
 
   private readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway'
-  private readonly FILE_DOWNLOAD_NAME = 'results.png'
+  private readonly FILE_HEADER = 'Check-In Take-Off'
+  private readonly FILE_DOWNLOAD_NAME = 'SkillsChecker Results.png'
 
   private readonly BACKGROUND_COLOR = '#fff'
   private readonly GRADIENT_COLOR = '#3FBDA8'
@@ -72,6 +76,7 @@ export class ResultsSaverService {
       (new FontFace(this.TEXT_FONT_FAMILY, `url(${this.TEXT_FONT_FAMILY_SOURCE})`)).load().then( () => {
         this.loadResources(graphDataURI, (data) => {
           let tempTextSplit = [], multiplier = 1;
+          this.canvasContext.textBaseline = 'top'
 
           //#region Drawing background
           let backgroundGradient = this.canvasContext.createLinearGradient(this.FILE_MAX_WIDTH / 2, 0, this.FILE_MAX_WIDTH / 2, 500);
@@ -80,17 +85,35 @@ export class ResultsSaverService {
           this.canvasContext.fillStyle = backgroundGradient;
           this.canvasContext.fillRect(0, 0, this.FILE_MAX_WIDTH, this.FILE_MAX_HEIGHT);
           //#endregion
+
+          //#region Printing header
+          this.canvasContext.textAlign = 'center'
+          this.canvasContext.fillStyle = this.TEXT_COLOR_LIGHT
+          this.yCoord += this.TITLE_PADDING
+          this.printHeader(this.FILE_HEADER, 'bold', this.FILE_MAX_WIDTH / 2)
+          this.yCoord += this.TITLE_PADDING
+          //#endregion
           
           //#region Drawing graph
-          multiplier = 2.5;
-          this.canvasContext.drawImage(data.backgroundImage, this.PADDING, this.yCoord += this.PADDING, data.backgroundImage.width * multiplier, data.backgroundImage.height * multiplier)
+          multiplier = (this.FILE_MAX_WIDTH - this.BACKGROUND_PADDING_SIDES * 2) / data.backgroundImage.width;
+          this.canvasContext.drawImage(
+            data.backgroundImage,
+            this.BACKGROUND_PADDING_SIDES,
+            this.BACKGROUND_PADDING_TOP,
+            data.backgroundImage.width * multiplier,
+            data.backgroundImage.height * multiplier)
           multiplier = this.IMG_MAX_HEIGHT / data.balloonsAndBasketImage.height;
-          this.canvasContext.drawImage(data.balloonsAndBasketImage, this.BACKGROUND_PADDING, this.BACKGROUND_PADDING, data.balloonsAndBasketImage.width * multiplier, data.balloonsAndBasketImage.height * multiplier);
+          this.canvasContext.drawImage(
+            data.balloonsAndBasketImage,
+            this.PADDING,
+            this.yCoord,
+            data.balloonsAndBasketImage.width * multiplier,
+            data.balloonsAndBasketImage.height * multiplier);
           //#endregion
           
           //#region Writing resultsText
           tempTextSplit = this.splitTextInLines(resultsText, 25);
-          this.canvasContext.textBaseline = 'top'
+          this.canvasContext.textAlign = 'left'
           this.canvasContext.fillStyle = this.TEXT_COLOR
           // TODO Need to vertical align this text
           this.yCoord += this.TEMPORARY_TOP_SEPARATION_RESULTS_TEXT;
@@ -98,7 +121,7 @@ export class ResultsSaverService {
             this.yCoord += this.LINES_SEPARATION;
             this.printText(text, '', data.balloonsAndBasketImage.width * multiplier + this.BALLOONS_TEXT_SEPARATION)
           })
-          this.yCoord = this.BACKGROUND_PADDING + this.IMG_MAX_HEIGHT
+          this.yCoord = this.IMG_MAX_HEIGHT + this.TITLE_PADDING * 2 + this.TEXT_SIZE
           //#endregion
           
           //#region Printing Pathway description
@@ -268,7 +291,8 @@ export class ResultsSaverService {
 
   calculateHeight(resultsText: string, learningPathwayDescription: string, learningPathway: Course[]): number {
     let r = 0;
-    r += this.BACKGROUND_PADDING + this.IMG_MAX_HEIGHT + this.BALLONS_LEARNING_PATHWAY_SEPARATION + this.LINES_SEPARATION
+    r += this.TITLE_PADDING * 2 + this.HEADING_SIZE
+    r += this.IMG_MAX_HEIGHT + this.BALLONS_LEARNING_PATHWAY_SEPARATION
     r += this.HEADING_SIZE + 20 + (this.TEXT_SIZE + 10) * this.splitTextInLines(learningPathwayDescription, this.SPLIT_LEARNING_PATHWAY_DESCRIPTION).length
     r += this.calculateHeightSection(learningPathway.filter( (course: Course) => course.priority === 'brush_up').slice(0, 3))
     r += this.calculateHeightSection(learningPathway.filter( (course: Course) => course.priority === 'develop').slice(0, 3))
