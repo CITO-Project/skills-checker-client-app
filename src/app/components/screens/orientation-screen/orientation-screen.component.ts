@@ -3,12 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { QuestionOrder } from 'src/app/models/question-order';
 
-import { DataLogService } from 'src/app/services/data-log.service';
-import { ProductService } from 'src/app/services/product.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
+import { ProductService } from 'src/app/services/api-call/product.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
-import { QuestionOrderService } from 'src/app/services/question-order.service';
-import { ResultsSaverService } from 'src/app/services/results-saver.service';
+import { QuestionOrderService } from 'src/app/services/api-call/question-order.service';
 
 @Component({
   selector: 'app-orientation-screen',

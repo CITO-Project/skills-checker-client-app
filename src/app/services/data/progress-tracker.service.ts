@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 
-import { Category } from '../models/category';
-import { Interest } from '../models/interest';
-import { CustomResponse } from '../models/custom-response';
-import { Answer } from '../models/answer';
+import { Category } from '../../models/category';
+import { Interest } from '../../models/interest';
+import { CustomResponse } from '../../models/custom-response';
+import { Answer } from '../../models/answer';
 
-import { CommonService } from './common.service';
+import { CommonService } from '../common.service';
 import { DataLogService } from './data-log.service';
-import { GoogleAnalyticsService } from './google-analytics.service';
+import { GoogleAnalyticsService } from '../google-analytics.service';
 
 @Injectable({
   providedIn: 'root'

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { Scenario } from '../models/scenario';
+import { Scenario } from '../../models/scenario';
 
-import { CommonService } from './common.service';
+import { CommonService } from '../common.service';
 
 @Injectable({
   providedIn: 'root'

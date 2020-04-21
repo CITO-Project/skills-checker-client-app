@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Interest } from '../models/interest';
-import { Scenario } from '../models/scenario';
-import { Question } from '../models/question';
-import { Product } from '../models/product';
-import { Category } from '../models/category';
-import { Log } from '../models/log';
-import { Answer } from '../models/answer';
+import { Interest } from '../../models/interest';
+import { Scenario } from '../../models/scenario';
+import { Question } from '../../models/question';
+import { Product } from '../../models/product';
+import { Category } from '../../models/category';
+import { Log } from '../../models/log';
+import { Answer } from '../../models/answer';
+import { QuestionOrder } from '../../models/question-order';
 
-import { QuestionService } from './question.service';
-import { ScenarioService } from './scenario.service';
-import { AnswerService } from './answer.service';
-import { QuestionOrder } from '../models/question-order';
+import { QuestionService } from '../api-call/question.service';
+import { ScenarioService } from '../api-call/scenario.service';
+import { AnswerService } from '../api-call/answer.service';
 
 
 @Injectable({

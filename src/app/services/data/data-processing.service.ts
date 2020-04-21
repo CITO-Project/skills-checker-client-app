@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { Log } from '../models/log';
-import { Question } from '../models/question';
-import { Result } from '../models/result';
-import { Answer } from '../models/answer';
+import { Log } from '../../models/log';
+import { Question } from '../../models/question';
+import { Result } from '../../models/result';
+import { Answer } from '../../models/answer';
 
 @Injectable({
   providedIn: 'root'

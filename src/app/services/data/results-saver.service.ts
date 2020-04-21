@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { saveAs } from 'file-saver';
-import { Course } from '../models/course';
-import { CommonService } from './common.service';
+import { Course } from '../../models/course';
+import { CommonService } from '../common.service';
 declare let FontFace: any;
 
 @Injectable({

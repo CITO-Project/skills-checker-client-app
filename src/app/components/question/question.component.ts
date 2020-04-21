@@ -1,7 +1,9 @@
 import { Component, Input, Output, EventEmitter, DoCheck } from '@angular/core';
+
 import { Question } from 'src/app/models/question';
 import { Answer } from 'src/app/models/answer';
-import { DataLogService } from 'src/app/services/data-log.service';
+
+import { DataLogService } from 'src/app/services/data/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({

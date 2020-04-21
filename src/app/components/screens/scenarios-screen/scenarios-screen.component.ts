@@ -3,12 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Scenario } from 'src/app/models/scenario';
 import { Question } from 'src/app/models/question';
 import { Category } from 'src/app/models/category';
-import { Answer } from 'src/app/models/answer';
 import { CustomResponse } from 'src/app/models/custom-response';
 
-import { DataLogService } from 'src/app/services/data-log.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
-import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({

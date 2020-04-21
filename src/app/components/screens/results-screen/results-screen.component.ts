@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { Course } from 'src/app/models/course';
 import { Result } from 'src/app/models/result';
 
-import { DataProcessingService } from 'src/app/services/data-processing.service';
+import { DataProcessingService } from 'src/app/services/data/data-processing.service';
 import { CommonService } from 'src/app/services/common.service';
-import { CoursesService } from 'src/app/services/courses.service';
-import { DataLogService } from 'src/app/services/data-log.service';
+import { CoursesService } from 'src/app/services/api-call/courses.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
-import { ResultsSaverService } from 'src/app/services/results-saver.service';
+import { ResultsSaverService } from 'src/app/services/data/results-saver.service';
 
 @Component({
   selector: 'app-results-screen',

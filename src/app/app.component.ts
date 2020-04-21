@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { GoogleAnalyticsService } from './services/google-analytics.service';
-import { ProgressTrackerService } from './services/progress-tracker.service';
-import { DataLogService } from './services/data-log.service';
+import { ProgressTrackerService } from './services/data/progress-tracker.service';
+import { DataLogService } from './services/data/data-log.service';
 
 import { CustomResponse } from './models/custom-response';
 

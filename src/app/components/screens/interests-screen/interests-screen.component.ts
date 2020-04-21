@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Interest } from 'src/app/models/interest';
-import { Category } from 'src/app/models/category';
 
-import { InterestService } from 'src/app/services/interest.service';
-import { DataLogService } from 'src/app/services/data-log.service';
+import { InterestService } from 'src/app/services/api-call/interest.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
-import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.service';
 
 
 @Component({

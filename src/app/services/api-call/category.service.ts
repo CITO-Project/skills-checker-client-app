@@ -2,22 +2,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { CommonService } from './common.service';
+import { CommonService } from '../common.service';
 
-import { QuestionOrder } from '../models/question-order';
-
+import { Category } from '../../models/category';
 
 @Injectable({
   providedIn: 'root'
 })
-export class QuestionOrderService {
+export class CategoryService {
 
   constructor(private commonService: CommonService) { }
 
-  getQuestionOrder(): Observable<QuestionOrder[]> {
-    const url = '/questionorder';
+  getCategories(): Observable<Category[]> {
+    const url = '/categories';
     return this.commonService.getAPICaller(url).pipe(map(
-      (data: QuestionOrder[]) => {
+      (data: Category[]) => {
         return data;
       }
     ));
