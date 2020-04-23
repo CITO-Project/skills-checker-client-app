@@ -10,6 +10,9 @@ import { CoursesService } from 'src/app/services/api-call/courses.service';
 import { DataLogService } from 'src/app/services/data/data-log.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { ResultsSaverService } from 'src/app/services/data/results-saver.service';
+import { ResultsVisualizationService } from 'src/app/services/data/results-visualization.service';
+import { ResultsProcessingService } from 'src/app/services/data/results-processing.service';
+import { Log } from 'src/app/models/log';
 
 @Component({
   selector: 'app-results-screen',
@@ -18,12 +21,15 @@ import { ResultsSaverService } from 'src/app/services/data/results-saver.service
 })
 export class ResultsScreenComponent implements OnInit {
 
-  public readonly RESULTS_TEXT = 'An example of some additional text beside the balloons... in this space here!'
-  public readonly LEARNING_PATHWAY_HEADING = 'My Learning Pathway'
+  public resultsText;
+  public readonly HEADER = 'Check-In Take-Off'
+  public readonly SUBTITLE = 'My Learning Pathway'
+  public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway'
   public readonly LEARNING_PATHWAY = 'If you want to develop your digital skills, try one of these courses below:'
 
   public courses: Course[];
   public results: Result;
+  public resultsImage
 
   constructor(
     private commonService: CommonService,
@@ -31,7 +37,9 @@ export class ResultsScreenComponent implements OnInit {
     private coursesService: CoursesService,
     private dataProcessingService: DataProcessingService,
     private googleAnalyticsService: GoogleAnalyticsService,
-    private resultsSaverService: ResultsSaverService) { }
+    private resultsSaverService: ResultsSaverService,
+    private resultsVisualizationService: ResultsVisualizationService,
+    private resultsProcessingService: ResultsProcessingService) { }
 
   ngOnInit() {
     if (
@@ -43,7 +51,7 @@ export class ResultsScreenComponent implements OnInit {
     }
     // DELETE this
     // this.results = this.dataProcessingService.getResults(this.dataLogService.getAll());
-    this.results = this.dataProcessingService.getResults({
+    const deleteThisLog: Log = {
       "product": {
         "id": 1,
         "name": "nala",
@@ -1175,7 +1183,9 @@ export class ResultsScreenComponent implements OnInit {
         "numeracy",
         "digital_skills"
       ]
-    })
+    }
+    this.results = this.dataProcessingService.getResults(deleteThisLog)
+    this.resultsVisualizationService.generateGraph(deleteThisLog, data => this.resultsImage = data)
     this.loadCourses(this.results).subscribe( (courses: Course[]) => {
       this.courses = courses;
       this.googleAnalyticsService.stopTimer('time_answer_interest');
@@ -1186,6 +1196,7 @@ export class ResultsScreenComponent implements OnInit {
 
       this.googleAnalyticsService.startTimer('time_review_results', '' + this.dataLogService.getInterest().id);
     });
+    this.resultsText = this.resultsProcessingService.generateText(deleteThisLog)
   }
 
   loadCourses(results: Result): Observable<Course[]> {
@@ -1211,7 +1222,13 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   saveResults(): void {
-    console.log('Printing image')
+    this.resultsSaverService.generateImage(
+      this.resultsVisualizationService.imageToDataURI(this.resultsImage),
+      this.HEADER,
+      this.resultsText,
+      this.LEARNING_PATHWAY_HEADER,
+      this.LEARNING_PATHWAY,
+      this.courses)
   }
 
   getCourses(priority: string): Course[] {
@@ -1219,6 +1236,12 @@ export class ResultsScreenComponent implements OnInit {
       return [];
     }
     return this.courses.filter( course => course.priority === priority);
+  }
+
+  getResultsImage(): string {
+    let r = '';
+    r = this.resultsVisualizationService.imageToDataURI(this.resultsImage)
+    return r;
   }
 
 }

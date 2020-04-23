@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
+
 import { saveAs } from 'file-saver';
+
 import { Course } from '../../models/course';
+
 import { CommonService } from '../common.service';
+
 declare let FontFace: any;
 
 @Injectable({
@@ -34,8 +38,6 @@ export class ResultsSaverService {
   private readonly SPLIT_COURSE_DESCRIPTION = 47;
   private readonly MAX_LINES_COURSE_DESCRIPTION = 2;
 
-  private readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway'
-  private readonly FILE_HEADER = 'Check-In Take-Off'
   private readonly FILE_DOWNLOAD_NAME = 'SkillsChecker Results.png'
 
   private readonly BACKGROUND_COLOR = '#fff'
@@ -65,7 +67,9 @@ export class ResultsSaverService {
 
   generateImage(
     graphDataURI: string,
+    header: string,
     resultsText: string,
+    learningPathwayHeader: string,
     learningPathwayDescription: string,
     learningPathway: Course[]
     ) {
@@ -90,7 +94,7 @@ export class ResultsSaverService {
           this.canvasContext.textAlign = 'center'
           this.canvasContext.fillStyle = this.TEXT_COLOR_LIGHT
           this.yCoord += this.TITLE_PADDING
-          this.printHeader(this.FILE_HEADER, 'bold', this.FILE_MAX_WIDTH / 2)
+          this.printHeader(header, 'bold', this.FILE_MAX_WIDTH / 2)
           this.yCoord += this.TITLE_PADDING
           //#endregion
           
@@ -128,7 +132,7 @@ export class ResultsSaverService {
           this.canvasContext.textAlign = 'center'
           this.xCoord = this.FILE_MAX_WIDTH / 2;
           this.yCoord += this.BALLONS_LEARNING_PATHWAY_SEPARATION
-          this.printHeader(this.LEARNING_PATHWAY_HEADER, 'bold')
+          this.printHeader(learningPathwayHeader, 'bold')
           this.yCoord += 20
           tempTextSplit = this.splitTextInLines(learningPathwayDescription, this.SPLIT_LEARNING_PATHWAY_DESCRIPTION);
           tempTextSplit.forEach( (text: string) => {
