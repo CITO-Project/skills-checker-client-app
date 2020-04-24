@@ -26,6 +26,14 @@ export class ScenariosScreenComponent implements OnInit {
 
   public btnBack = 'Back';
   public btnForward = 'Next';
+  private allButtons: {
+    text: string,
+    icon: string,
+    event: string,
+    visible?: boolean,
+    special?: boolean
+  }[];
+  public buttons;
 
   public currentScenario = -1;
   public currentQuestion = -1;
@@ -41,6 +49,32 @@ export class ScenariosScreenComponent implements OnInit {
       if (!dataLogService.getInterest()) {
         commonService.goTo('interests');
       }
+      this.allButtons = [
+        {
+          text: this.btnBack,
+          icon: String.fromCharCode(61700),
+          visible: true,
+          event: 'back'
+        },
+        {
+          text: 'Skip scenario',
+          icon: String.fromCharCode(61524) + String.fromCharCode(61524),
+          event: 'skip_scenario',
+          special: true
+        },
+        {
+          text: 'Go to results',
+          icon: String.fromCharCode(61452),
+          event: 'go_results',
+          special: true
+        },
+        {
+          text: this.btnForward,
+          icon: String.fromCharCode(61524),
+          visible: true,
+          event: 'forward'
+        }
+        ]
     }
 
   ngOnInit() {
@@ -86,6 +120,7 @@ export class ScenariosScreenComponent implements OnInit {
     }
     this.errorMessage = '';
 
+    this.updateMenu(data);
     this.btnForward = 'Next';
     if (data.isLastQuestion) {
       this.btnForward = 'See results';
@@ -156,6 +191,20 @@ export class ScenariosScreenComponent implements OnInit {
       this.googleAnalyticsService.addEvent('left_scenario_at_question_number', '' + scenario.id, questionIndex + 1);
     }
     //#endregion
+  }
+
+  updateMenu(data: CustomResponse): void {
+    if (data.scenarioIndex > 0 || data.questionIndex > 1) {
+      this.allButtons.find( button => button.event === 'go_results').visible = true
+    } else {
+      this.allButtons.find( button => button.event === 'go_results').visible = false
+    }
+    if (data.questionIndex > 1) {
+      this.allButtons.find( button => button.event === 'skip_scenario').visible = true
+    } else {
+      this.allButtons.find( button => button.event === 'skip_scenario').visible = false
+    }
+    this.buttons = this.allButtons.filter( button => button.visible)
   }
 
   onButtonsEvent(data: string): void {

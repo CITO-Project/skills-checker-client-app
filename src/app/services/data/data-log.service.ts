@@ -115,14 +115,17 @@ export class DataLogService {
       this.log.questions = [];
     }
     return this.questionService.getQuestions(interestid, scenarioid).pipe(map( (data: Question[]) => {
-      const _questions = [];
+      const questions = [];
       this.log.question_order.forEach( (orderValue: string) => {
         this.log.answers.push(-1);
-        _questions.push(data.find( (question: Question) => {
+        questions.push(data.find( (question: Question) => {
           return question.pedagogical_type === orderValue;
         }))
       })
-      this.log.questions = this.log.questions.concat(_questions);
+      for (let i = 0; i < data.length; i++) {
+        this.log.questions[this.getIndex(scenarioindex, i)] = questions[i]
+      }
+      this.log.questions = this.log.questions.concat(questions);
     }));
   }
   loadQuestionsByCategory(scenarioindex: number, categoryid: number, interestid: number): Observable<void> {

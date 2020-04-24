@@ -15,29 +15,6 @@
 
 </div>
 <app-navigate-button
-  [buttons] = "[
-  {
-    text: btnBack,
-    icon: '&#xf104;',
-    event: 'back'
-  },
-  {
-    text: 'Skip scenario',
-    icon: '&#xf054;&#xf054;',
-    event: 'skip_scenario',
-    special: true
-  },
-  {
-    text: 'Go to results',
-    icon: '&#xf00c;',
-    event: 'go_results',
-    special: true
-  },
-  {
-    text: btnForward,
-    icon: '&#xf054;',
-    event: 'forward'
-  }
-  ]"
+  [buttons] = "buttons"
   (buttonsEvent)='onButtonsEvent($event)'
   ></app-navigate-button>

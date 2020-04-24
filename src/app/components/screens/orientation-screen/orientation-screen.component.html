@@ -5,16 +5,31 @@
     How to use
   </button>
   <div class="main heading">
-    Do you want to learn new skills to improve your life?
+    Discover your skills and strengths
   </div>
   <div class="text">
-    Learn how to improve your skills to get a new world of possibilities in your life. Watch the video in which Clare will guide you through this quick and easy experience.
+    The app will help find courses/learning options that match your skills and you can decide what is right for you
   </div>
-  <div class="features d-flex flex-row justify-content-around">
+  <div class="container-fluid">
+    <div class="row features">
+      <div class="col-4 feature" *ngFor="let feature of FEATURES">
+        <div [ngClass]="feature.color" class="row icon box shadows gradient">
+          <img src="{{ feature.icon }}" onerror="this.remove()">
+        </div>
+        <div class="row text">
+          {{ feature.text }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="features d-flex flex-row justify-content-around">
     <div class="flex-column feature" *ngFor="let feature of FEATURES">
       <div [ngClass]="feature.color" class="icon box shadows gradient"><img src="{{ feature.icon }}" onerror="this.remove()"></div>
       <div class="text flex-grow-0">{{ feature.text }}</div>
     </div>
+  </div> -->
+  <div class="main heading">
+    It's quick - All in less than 10 minutes!
   </div>
 </div>
-<app-navigate-button text="Start now" (event)="onClick()"></app-navigate-button>
+<app-navigate-button text="Get started" (event)="onClick()"></app-navigate-button>

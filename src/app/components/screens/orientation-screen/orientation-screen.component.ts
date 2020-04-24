@@ -25,18 +25,18 @@ export class OrientationScreenComponent implements OnInit {
 
   public FEATURES = [
     {
-      text: 'Private',
-      icon: this.getPath('key-emblem.svg'),
-      color: 'blue'
+      text: 'Computers',
+      icon: this.getPath('computers.svg'),
+      color: 'red'
     },
     {
-      text: 'Safe',
-      icon: this.getPath('laptop-checked.svg'),
+      text: 'Maths',
+      icon: this.getPath('maths.svg'),
       color: 'green'
     },
     {
-      text: 'Secure',
-      icon: this.getPath('lock.svg'),
+      text: 'Reading and Writing',
+      icon: this.getPath('reading.svg'),
       color: 'yellow'
     }
   ];

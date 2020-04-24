@@ -9,6 +9,9 @@
 
   #how-to-use {
     margin-top: 20px;
+    @include setStyleTablet {
+      margin-top: 0;
+    }
   }
   .main {
     padding: 10px;
@@ -26,20 +29,26 @@
 
   .features {
     padding-top: 30px;
-    > .feature {
+    .feature {
       .icon {
         // Size
         $size: 80px;
         width: $size;
         height: $size;
+        
+        @include setStyleTablet {
+          $size: 120px;
+          width: $size;
+          height: $size;
+        }
 
         // Alignment
         display: flex;
         align-items: center;
         justify-content: center;
 
-        > img {
-          $reduction: 50%;
+        img {
+          $reduction: 70%;
           width: $reduction;
           height: $reduction;
           background-color: $color-transparent;
@@ -49,7 +58,7 @@
         width: 100%;
         margin-top: 15px;
         text-transform: uppercase;
-        font-weight: 700;
+        font-weight: 500;
         font-size: 80%;
         letter-spacing: 1px;
         padding: unset;
@@ -57,12 +66,3 @@
     }
   }
 }
-
-#description .features > .feature .icon {
-  @include setStyleTablet {
-    $size: 120px;
-    width: $size;
-    height: $size;
-  }
-}
-

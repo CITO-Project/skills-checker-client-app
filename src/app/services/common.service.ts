@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class CommonService {
 
   private readonly USE_CONSOLE_LOG = false;
-  private readonly useAWSServer = false;
+  private readonly useAWSServer = true;
 
   private readonly localhostUrl = 'http://localhost';
   private readonly AWSUrl = 'http://34.254.132.188/';
