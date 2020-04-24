@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Product } from 'src/app/models/product';
+import { QuestionOrder } from 'src/app/models/question-order';
 
-import { DataLogService } from 'src/app/services/data-log.service';
-import { ProductService } from 'src/app/services/product.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
+import { ProductService } from 'src/app/services/api-call/product.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
+import { QuestionOrderService } from 'src/app/services/api-call/question-order.service';
 
 @Component({
   selector: 'app-orientation-screen',
@@ -19,6 +21,7 @@ export class OrientationScreenComponent implements OnInit {
 
   public currentResource: string;
   public addReplay: boolean;
+  public isVideoLoaded = false;
 
   public FEATURES = [
     {
@@ -41,6 +44,7 @@ export class OrientationScreenComponent implements OnInit {
   constructor(
     private dataLogService: DataLogService,
     private productService: ProductService,
+    private questionOrderService: QuestionOrderService,
     private commonService: CommonService,
     private googleAnalyticsService: GoogleAnalyticsService) { }
 
@@ -53,7 +57,14 @@ export class OrientationScreenComponent implements OnInit {
         this.dataLogService.setProduct(product);
       }
     );
+    this.questionOrderService.getQuestionOrder().subscribe(
+      (questionOrder: QuestionOrder[]) => {
+        this.dataLogService.setQuestionOrder(questionOrder);
+      }
+    )
     this.googleAnalyticsService.stopTimer('time_review_results');
+    const _temp = new Image()
+    _temp.src = this.getPath('lock.svg');
   }
 
   getPath(name: string): string {
@@ -62,13 +73,14 @@ export class OrientationScreenComponent implements OnInit {
 
   onClick(): void {
     this.googleAnalyticsService.restartTimer('time_select_interest');
-    this.commonService.goTo('categories');
+    this.commonService.goTo('interests');
   }
 
   loadVideo(): void {
     if (this.currentResource !== this.DEFAULT_VIDEO) {
       this.currentResource = this.DEFAULT_VIDEO;
       this.addReplay = true;
+      this.isVideoLoaded = true;
     }
   }
 

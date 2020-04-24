@@ -8,10 +8,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommonService {
 
-  private readonly USE_CONSOLE_LOG = true;
+  private readonly USE_CONSOLE_LOG = false;
+  private readonly useAWSServer = false;
+
+  private readonly localhostUrl = 'http://localhost';
+  private readonly AWSUrl = 'http://34.254.132.188/';
 
   private productName = 'nala';
-  private apiUrl = 'http://localhost:3000/' + this.productName;
+  private apiUrl = (this.useAWSServer ? this.AWSUrl + 'api/' : this.localhostUrl + ':3000/') + this.productName;
+  private resourceFolderUrl = this.AWSUrl + 'static/';
   private RESOURCE_PATH = 'assets/';
   private GATrackID = 'UA-157405394-1';
 
@@ -111,14 +116,13 @@ export class CommonService {
     switch (type) {
       case 'images':
       case 'icons':
-      case 'resources':
         r = this.RESOURCE_PATH + type + '/' + name;
         break;
+      case 'resources':
+        r = this.resourceFolderUrl + name;
+        break;
     }
-    const http = new XMLHttpRequest();
-    http.open('HEAD', r, false);
-    http.send();
-    return http.status === 404 ? 'default' : r;
+    return r;
   }
 
   getIconPath(name: string): string {

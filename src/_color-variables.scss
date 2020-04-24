@@ -1,4 +1,3 @@
-// All colors MUST be defined here
 // General
 $color-yellow: #FCB64C;
 $color-green: #3FBDA8;
@@ -20,9 +19,13 @@ $color-transparent: #fff0;
 
 // Components
 $color-button: $color-green;
+$color-button-background: $color-pure-white;
 $color-button-disabled: $color-grey-light;
 $color-button-text: $color-white;
 $color-button-text-disabled: $color-grey;
+$color-button-special: $color-green;
+$color-button-special-background: $color-white;
+$color-button-border: $color-grey-light;
 
 // Font
 $color-font: $color-white;

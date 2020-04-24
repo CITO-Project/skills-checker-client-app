@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CommonService } from './common.service';
+import { CommonService } from '../common.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Answer } from '../models/answer';
+import { Answer } from '../../models/answer';
 
 @Injectable({
   providedIn: 'root'

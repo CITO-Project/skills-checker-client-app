@@ -1,7 +1,9 @@
 import { Component, Input, Output, EventEmitter, DoCheck } from '@angular/core';
+
 import { Question } from 'src/app/models/question';
 import { Answer } from 'src/app/models/answer';
-import { DataLogService } from 'src/app/services/data-log.service';
+
+import { DataLogService } from 'src/app/services/data/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({
@@ -13,7 +15,6 @@ export class QuestionComponent implements DoCheck {
 
   @Input() question: Question;
   @Input() error: string;
-  @Input() questionAnswers: Answer[];
   @Input() initialAnswer = -1;
   @Output() answer = new EventEmitter<number>();
 
@@ -41,7 +42,9 @@ export class QuestionComponent implements DoCheck {
   ) { }
 
   ngDoCheck() {
-    this.updateSlider();
+    if (this.question.type === 'slider') {
+      this.updateSlider();
+    }
     if (this.initialAnswer > -1) {
       this.setAnswer(this.initialAnswer);
     } else {
@@ -52,10 +55,10 @@ export class QuestionComponent implements DoCheck {
   updateSlider(): void {
     this.sliderProperties.value = this.initialAnswer;
     this.sliderProperties.options.stepsArray = [];
-    this.sortAnswers(this.questionAnswers).forEach( (answer: Answer) => {
+    this.sortAnswers(this.question.answers).forEach( (answer: Answer) => {
       this.sliderProperties.options.stepsArray.push({ value: answer.value, legend: answer.text});
     });
-    this.sliderProperties.options.ceil = this.questionAnswers.length - 1;
+    this.sliderProperties.options.ceil = this.question.answers.length - 1;
   }
 
   retrieveAnswer(answer: number): void {
@@ -66,7 +69,7 @@ export class QuestionComponent implements DoCheck {
     const elements: HTMLInputElement[] = Array.from(document.getElementsByTagName('input'));
     let r = 0;
     if (+element.value < 0 && element.checked) {
-      if (this.questionAnswers[element.id].special === 'none') {
+      if (this.question.answers[element.id].special === 'none') {
         elements.filter( (el: HTMLInputElement) => {
           if (el.id !== element.id) {
             return true;
@@ -136,7 +139,7 @@ export class QuestionComponent implements DoCheck {
 
   setValueMultiple(answer: number): void {
     if (answer === 0) {
-      this.questionAnswers.filter( (ans: Answer) => {
+      this.question.answers.filter( (ans: Answer) => {
         if (ans.special === 'none') {
           return true;
         }
@@ -145,7 +148,7 @@ export class QuestionComponent implements DoCheck {
       });
     } else {
       let answers = -1;
-      while (answers++ < this.questionAnswers.length) {
+      while (answers++ < this.question.answers.length) {
         if (answer % 2 === 1) {
           this.setValue('' + answers, 'checked', true);
         }
@@ -159,8 +162,8 @@ export class QuestionComponent implements DoCheck {
       return answers.sort( (a: Answer, b: Answer) => {
         return a.order - b.order;
       });
-    } else {
-      this.commonService.goTo('interests');
+    // } else {
+    //   this.commonService.goTo('interests');
     }
   }
 
