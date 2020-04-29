@@ -122,6 +122,9 @@
 
 ::ng-deep {
   .ng5-slider {
+    .ng5-slider-active {
+      outline: 0;
+    }
     .ng5-slider-tick {
       border-radius: 10px !important;
       width: 4px !important;

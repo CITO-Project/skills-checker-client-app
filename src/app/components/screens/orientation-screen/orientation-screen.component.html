@@ -10,24 +10,20 @@
   <div class="text">
     The app will help find courses/learning options that match your skills and you can decide what is right for you
   </div>
-  <div class="container-fluid">
-    <div class="row features">
-      <div class="col-4 feature" *ngFor="let feature of FEATURES">
-        <div [ngClass]="feature.color" class="row icon box shadows gradient">
-          <img src="{{ feature.icon }}" onerror="this.remove()">
+  <div class="features container-fluid">
+    <div class="row">
+      <div class="col" *ngFor="let feature of FEATURES">
+        <div class="row icon d-flex justify-content-center">
+          <div [ngClass]="feature.color" class="box shadow gradient">
+            <img src="{{ feature.icon }}" onerror="this.remove()">
+          </div>
         </div>
-        <div class="row text">
+        <div class="row text d-flex justify-content-center">
           {{ feature.text }}
         </div>
       </div>
     </div>
   </div>
-  <!-- <div class="features d-flex flex-row justify-content-around">
-    <div class="flex-column feature" *ngFor="let feature of FEATURES">
-      <div [ngClass]="feature.color" class="icon box shadows gradient"><img src="{{ feature.icon }}" onerror="this.remove()"></div>
-      <div class="text flex-grow-0">{{ feature.text }}</div>
-    </div>
-  </div> -->
   <div class="main heading">
     It's quick - All in less than 10 minutes!
   </div>

@@ -125,7 +125,6 @@ export class DataLogService {
       for (let i = 0; i < data.length; i++) {
         this.log.questions[this.getIndex(scenarioindex, i)] = questions[i]
       }
-      this.log.questions = this.log.questions.concat(questions);
     }));
   }
   loadQuestionsByCategory(scenarioindex: number, categoryid: number, interestid: number): Observable<void> {
