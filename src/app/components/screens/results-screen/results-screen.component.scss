@@ -2,7 +2,7 @@
 
 
 #content {
-  background: linear-gradient(to bottom, $color-background-colour, $color-transparent 200px);
+  background: linear-gradient(to bottom, $color-background-colour, $color-background 200px);
   padding: 0 0;
   padding-bottom: 30px;
   .subtitle {
@@ -63,37 +63,6 @@
       }
     }
   }
-}
-
-.dialog {
-  color: $color-font-dark;
-  position: relative;
-  background-color: $color-background;
-  border-radius: 15px;
-  box-shadow: 0 0 10px $color-background-dark;
-  padding: 15px;
-  margin-left: 10px;
-  > .heading {
-    font-size: 100%;
-    font-weight: 600;
-  }
-  > .text {
-    text-align: center;
-    font-weight: 200;
-  }
-}
-
-.dialog:after {
-	right: 100%;
-  bottom: 40px;
-	border: solid $color-transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	border-right-color: $color-background;
-	border-width: 10px;
-	margin-top: -10px;
 }
 
 .holder {
