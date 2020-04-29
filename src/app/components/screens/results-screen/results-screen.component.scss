@@ -2,35 +2,66 @@
 
 
 #content {
-  background: linear-gradient(to bottom, $color-background-colour, $color-transparent 250px);
-  padding: 20px 0px 30px;
+  background: linear-gradient(to bottom, $color-background-colour, $color-transparent 200px);
+  padding: 0 0;
+  padding-bottom: 30px;
+  .subtitle {
+    text-align: center;
+    color: $color-font-dark;
+    font-weight: 500;
+    padding-bottom: 20px;
+    @include setStyleTablet {
+      font-size: 130%;
+    }
+  }
 }
 
 .heading {
   margin-top: 0;
 }
 
-.avatar > img {
-  height: 240px;
-  padding-left: 20px;
-}
-
 #result {
-  text-align: center;
-
-  .container-fluid {
-    padding-left: 0;
+  position: relative;
+  .background-shape {
+    width: 100vw;
+    position: absolute;
+    img {
+      width: 90%;
+      display: block;
+      margin: 0 auto;
+    }
   }
-  .support {
-    margin-top: 10px;
-    font-size: 95%;
-    font-weight: 200;
-    text-shadow: 0 5px 8px $color-font-dark ;
-    text-align: center;
-  }
-  a {
-    color: $color-font-link;
-    font-weight: 600;
+  .content {
+    padding: 0 20px;
+    position: relative;
+    .text {
+      padding-left: 10px;
+      padding-top: 20px;
+      @include setStyleTablet {
+        padding-top: 80px;
+        padding-left: 20px;
+        padding-right: 50px;
+      }
+    }
+    .results-image {
+      width: 150%;
+      text-align: center;
+      @include setStyleTablet {
+        width: 100%;
+      }
+      > img {
+        width: 100%;
+      }
+    }
+    .download {
+      font-size: 60%;
+      .btn {
+        padding: unset 2em;
+      }
+      @include setStyleTablet {
+        font-size: 100%;
+      }
+    }
   }
 }
 
@@ -55,7 +86,7 @@
 .dialog:after {
 	right: 100%;
   bottom: 40px;
-	border: solid transparent;
+	border: solid $color-transparent;
 	content: " ";
 	height: 0;
 	width: 0;
@@ -70,25 +101,33 @@
 }
 
 #pathway {
-  .heading {
-    color: $color-font-dark;
-    font-size: 150%;
-    margin-bottom: 10px;
-    font-weight: 300;
-    > img {
-      margin-right: 10px;
-      height: .7em;
+  margin-top: 30px;
+  .intro {
+    padding: 0 10px;
+    .heading {
+      color: $color-font-dark;
+      font-size: 130%;
+      margin-bottom: 10px;
+      font-weight: 300;
+      > img {
+        margin-right: 10px;
+        height: .7em;
+      }
     }
-  }
-  .message {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: 200;
-    font-size: 90%;
+    .message {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 200;
+      font-size: 90%;
+      padding: 0 40px;
+      @include setStyleTablet {
+        padding: 0 140px;
+      }
+    }
   }
   .learning-oportunities{
     background-color: $color-background-secondary;
-    padding: 10px 20px;
+    padding: 10px;
     .heading {
       margin-bottom: 10px;
       font-size: 100%;

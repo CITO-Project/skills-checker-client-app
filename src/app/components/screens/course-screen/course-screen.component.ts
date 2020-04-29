@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { Course } from 'src/app/models/course';
 
-import { CoursesService } from 'src/app/services/courses.service';
+import { CoursesService } from 'src/app/services/api-call/courses.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
@@ -70,14 +70,13 @@ export class CourseScreenComponent implements OnInit {
 
   addSufix(day: number): string {
     const j = day % 10;
-    const k = day % 100;
-    if (j === 1 && k !== 11) {
+    if (j === 1 && day !== 11) {
         return day + 'st';
     }
-    if (j === 2 && k !== 12) {
+    if (j === 2 && day !== 12) {
         return day + 'nd';
     }
-    if (j === 3 && k !== 13) {
+    if (j === 3 && day !== 13) {
         return day + 'rd';
     }
     return day + 'th';

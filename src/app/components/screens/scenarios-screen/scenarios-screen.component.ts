@@ -3,12 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Scenario } from 'src/app/models/scenario';
 import { Question } from 'src/app/models/question';
 import { Category } from 'src/app/models/category';
-import { Answer } from 'src/app/models/answer';
 import { CustomResponse } from 'src/app/models/custom-response';
 
-import { DataLogService } from 'src/app/services/data-log.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
-import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
@@ -20,17 +19,26 @@ export class ScenariosScreenComponent implements OnInit {
 
   public scenario: Scenario;
   public question: Question;
-  public questionAnswers: Answer[];
   public currentAnswer = -1;
 
   public errorMessage = '';
   public category: Category;
 
-  public btnBack = 'default';
-  public btnForward = 'default';
+  public btnBack = 'Back';
+  public btnForward = 'Next';
+  private allButtons: {
+    text: string,
+    icon: string,
+    event: string,
+    visible?: boolean,
+    special?: boolean
+  }[];
+  public buttons;
 
   public currentScenario = -1;
   public currentQuestion = -1;
+
+  private isFirstQuestionLoaded = false;
 
   constructor(
     private dataLogService: DataLogService,
@@ -38,27 +46,65 @@ export class ScenariosScreenComponent implements OnInit {
     private progressTrackerService: ProgressTrackerService,
     private googleAnalyticsService: GoogleAnalyticsService
     ) {
-      if (!dataLogService.getCategory()) {
-        commonService.goTo('how-to');
+      if (!dataLogService.getInterest()) {
+        commonService.goTo('interests');
       }
+      this.allButtons = [
+        {
+          text: this.btnBack,
+          icon: String.fromCharCode(61700),
+          visible: true,
+          event: 'back'
+        },
+        {
+          text: 'Skip scenario',
+          icon: String.fromCharCode(61524) + String.fromCharCode(61524),
+          event: 'skip_scenario',
+          special: true
+        },
+        {
+          text: 'Go to results',
+          icon: String.fromCharCode(61452),
+          event: 'go_results',
+          special: true
+        },
+        {
+          text: this.btnForward,
+          icon: String.fromCharCode(61524),
+          visible: true,
+          event: 'forward'
+        }
+        ]
     }
 
   ngOnInit() {
     this.progressTrackerService.next().subscribe((data: CustomResponse) => {
-      if (data.question === undefined || data.scenario === undefined) {
-        this.commonService.goTo('how-to');
+      if (!data || data.question === undefined || data.scenario === undefined) {
+        this.commonService.goTo('interests');
       } else {
         this.updateData(data);
       }
     });
   }
 
-  nextQuestion() {
+  nextQuestion(): void {
     if (this.saveAnswer()) {
       this.googleAnalyticsService.stopTimer('time_answer_question');
-      this.progressTrackerService.next(this.currentAnswer).subscribe((data: CustomResponse) => {
+      const next$ = this.progressTrackerService.next(this.currentAnswer);
+      if (!!next$) {
+        next$.subscribe((data: CustomResponse) => {
+          this.updateData(data);
+        });
+      }
+    }
+  }
+
+  nextScenario(): void {
+    const $next = this.progressTrackerService.nextScenario();
+    if (!!$next) {
+      $next.subscribe( (data: CustomResponse) => {
         this.updateData(data);
-      });
+      })
     }
   }
 
@@ -74,8 +120,8 @@ export class ScenariosScreenComponent implements OnInit {
     }
     this.errorMessage = '';
 
-    this.btnForward = 'default';
-    this.btnBack = 'default';
+    this.updateMenu(data);
+    this.btnForward = 'Next';
     if (data.isLastQuestion) {
       this.btnForward = 'See results';
     }
@@ -96,7 +142,7 @@ export class ScenariosScreenComponent implements OnInit {
 
   saveAnswer(): boolean {
     if (this.currentAnswer < 0) {
-      this.showError('Please, select one of the options bellow');
+      this.showError('Please, select one of the options below');
       return false;
     } else {
       this.dataLogService.setAnswer(this.currentScenario, this.currentQuestion, this.currentAnswer);
@@ -105,19 +151,26 @@ export class ScenariosScreenComponent implements OnInit {
   }
 
   previousQuestion() {
+    if (this.isFirstQuestionLoaded) {
+      this.commonService.goTo('interests');
+    }
     this.progressTrackerService.previous().subscribe((data: CustomResponse) => {
       this.updateData(data);
     });
   }
 
   updateData(data: CustomResponse): void {
-    this.currentScenario = data.scenarioIndex;
-    this.currentQuestion = data.questionIndex;
-    this.scenario = data.scenario;
-    this.question = data.question;
-    this.questionAnswers = data.question_answers;
-    this.currentAnswer = data.answer;
-    this.afterLoadQuestion(data);
+    if (!!data) {
+      this.currentScenario = data.scenarioIndex;
+      this.currentQuestion = data.questionIndex;
+      this.scenario = data.scenario;
+      this.question = data.question;
+      this.currentAnswer = data.answer;
+      this.isFirstQuestionLoaded = data.isFirstQuestion;
+      this.afterLoadQuestion(data);
+    } else {
+      this.commonService.goTo('interests');
+    }
   }
 
   showError(message: string): void {
@@ -126,6 +179,49 @@ export class ScenariosScreenComponent implements OnInit {
 
   processAnswer(answer: number): void {
     this.currentAnswer = answer;
+  }
+
+  clickHeader() {
+    //#region Duplicated code in constructor() in app.component.ts
+    const {scenarioIndex, questionIndex} = this.progressTrackerService.getResponse() as CustomResponse;
+    if (!(scenarioIndex === 0 && questionIndex === 0)) {
+      const interest = this.dataLogService.getInterest();
+      const scenario = this.dataLogService.getScenario(scenarioIndex);
+      this.googleAnalyticsService.addEvent('left_interest_at_level', '' + interest.id, scenarioIndex + 1);
+      this.googleAnalyticsService.addEvent('left_scenario_at_question_number', '' + scenario.id, questionIndex + 1);
+    }
+    //#endregion
+  }
+
+  updateMenu(data: CustomResponse): void {
+    if (data.scenarioIndex > 0 || data.questionIndex > 1) {
+      this.allButtons.find( button => button.event === 'go_results').visible = true
+    } else {
+      this.allButtons.find( button => button.event === 'go_results').visible = false
+    }
+    if (data.questionIndex > 1) {
+      this.allButtons.find( button => button.event === 'skip_scenario').visible = true
+    } else {
+      this.allButtons.find( button => button.event === 'skip_scenario').visible = false
+    }
+    this.buttons = this.allButtons.filter( button => button.visible)
+  }
+
+  onButtonsEvent(data: string): void {
+    switch(data) {
+      case 'back':
+        this.previousQuestion();
+        break;
+      case 'skip_scenario':
+        this.nextScenario();
+        break;
+      case 'go_results':
+        this.commonService.goTo('results');
+        break;
+      case 'forward':
+        this.nextQuestion();
+        break;
+    }
   }
 
 }

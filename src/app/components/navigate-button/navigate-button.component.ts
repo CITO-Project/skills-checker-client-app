@@ -21,6 +21,14 @@ export class NavigateButtonComponent implements OnInit {
   @Input() destination: string;
   @Output() event =  new EventEmitter();
 
+  @Input() buttons: {
+    text: string;
+    icon: string;
+    event: string;
+    special: boolean;
+  }[];
+  @Output() buttonsEvent = new EventEmitter();
+
   constructor(private commonService: CommonService, private googleAnalyticsService: GoogleAnalyticsService) {
   }
 

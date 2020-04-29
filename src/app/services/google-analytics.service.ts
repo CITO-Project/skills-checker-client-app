@@ -11,7 +11,7 @@ declare let gtag: Function;
 })
 export class GoogleAnalyticsService {
 
-  private readonly GOOGLE_ANALYTICS_ENABLED = false;
+  private readonly GOOGLE_ANALYTICS_ENABLED = true;
 
   private starts: {
     time_answer_interest: {
@@ -58,21 +58,30 @@ export class GoogleAnalyticsService {
     'selected_location',
     'selected_interest',
     'started_app',
-    'started_test'
+    'started_test',
+    'left_interest_at_level',
+    'left_scenario_at_question_number',
+    'answered_questions_per_scenario',
+    'answered_questions_per_interest'
   ];
 
-  constructor(private router: Router, private commonService: CommonService) { }
+  constructor(
+    private router: Router,
+    private commonService: CommonService
+    ) { }
 
   initializeGA(): void {
-    this.router.events.subscribe(event => {
-    if (event instanceof NavigationEnd) {
-      gtag('config', this.commonService.getGATrackID(),
-        {
-          page_path: event.urlAfterRedirects
+    if (!!this.GOOGLE_ANALYTICS_ENABLED) {
+      this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        gtag('config', this.commonService.getGATrackID(),
+          {
+            page_path: event.urlAfterRedirects
+          }
+        );
         }
-      );
-      }
-    });
+      });
+    }
     this.initializeTrackers();
   }
 
@@ -163,9 +172,9 @@ export class GoogleAnalyticsService {
   }
   //#endregion
 
-  addEvent(action: string, label?: string): void {
+  addEvent(action: string, label?: string, value: number = 1): void {
     if (this.EVENTS.includes(action)) {
-      this.eventEmitter(action, 1, label);
+      this.eventEmitter(action, value, label);
     }
   }
 }

@@ -4,11 +4,15 @@ import { Observable } from 'rxjs';
 import { Course } from 'src/app/models/course';
 import { Result } from 'src/app/models/result';
 
-import { DataProcessingService } from 'src/app/services/data-processing.service';
+import { DataProcessingService } from 'src/app/services/data/data-processing.service';
 import { CommonService } from 'src/app/services/common.service';
-import { CoursesService } from 'src/app/services/courses.service';
-import { DataLogService } from 'src/app/services/data-log.service';
+import { CoursesService } from 'src/app/services/api-call/courses.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
+import { ResultsSaverService } from 'src/app/services/data/results-saver.service';
+import { ResultsVisualizationService } from 'src/app/services/data/results-visualization.service';
+import { ResultsProcessingService } from 'src/app/services/data/results-processing.service';
+import { Log } from 'src/app/models/log';
 
 @Component({
   selector: 'app-results-screen',
@@ -17,15 +21,25 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 })
 export class ResultsScreenComponent implements OnInit {
 
+  public resultsText;
+  public readonly HEADER = 'Check-In Take-Off'
+  public readonly SUBTITLE = 'My Learning Pathway'
+  public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway'
+  public readonly LEARNING_PATHWAY = 'If you want to develop your digital skills, try one of these courses below:'
+
   public courses: Course[];
   public results: Result;
+  public resultsImage
 
   constructor(
     private commonService: CommonService,
     private dataLogService: DataLogService,
     private coursesService: CoursesService,
     private dataProcessingService: DataProcessingService,
-    private googleAnalyticsService: GoogleAnalyticsService) { }
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private resultsSaverService: ResultsSaverService,
+    private resultsVisualizationService: ResultsVisualizationService,
+    private resultsProcessingService: ResultsProcessingService) { }
 
   ngOnInit() {
     if (
@@ -35,7 +49,9 @@ export class ResultsScreenComponent implements OnInit {
     ) {
       this.commonService.goTo('');
     }
-    this.results = this.dataProcessingService.getResults(this.dataLogService.getAll());
+    const log = this.dataLogService.getAll()
+    this.results = this.dataProcessingService.getResults(log);
+    this.resultsVisualizationService.generateGraph(log, data => this.resultsImage = data)
     this.loadCourses(this.results).subscribe( (courses: Course[]) => {
       this.courses = courses;
       this.googleAnalyticsService.stopTimer('time_answer_interest');
@@ -46,6 +62,7 @@ export class ResultsScreenComponent implements OnInit {
 
       this.googleAnalyticsService.startTimer('time_review_results', '' + this.dataLogService.getInterest().id);
     });
+    this.resultsText = this.resultsProcessingService.generateText(log)
   }
 
   loadCourses(results: Result): Observable<Course[]> {
@@ -63,11 +80,21 @@ export class ResultsScreenComponent implements OnInit {
   selectNewInterest(): void {
     this.dataLogService.initializeLog();
     this.googleAnalyticsService.stopTimer('time_review_results');
-    this.commonService.goTo('categories');
+    this.commonService.goTo('interests');
   }
 
   getPath(name: string): string {
     return this.commonService.getImagePath(name);
+  }
+
+  saveResults(): void {
+    this.resultsSaverService.generateImage(
+      this.resultsVisualizationService.imageToDataURI(this.resultsImage),
+      this.HEADER,
+      this.resultsText,
+      this.LEARNING_PATHWAY_HEADER,
+      this.LEARNING_PATHWAY,
+      this.courses)
   }
 
   getCourses(priority: string): Course[] {
@@ -75,6 +102,12 @@ export class ResultsScreenComponent implements OnInit {
       return [];
     }
     return this.courses.filter( course => course.priority === priority);
+  }
+
+  getResultsImage(): string {
+    let r = '';
+    r = this.resultsVisualizationService.imageToDataURI(this.resultsImage)
+    return r;
   }
 
 }

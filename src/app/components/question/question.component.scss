@@ -53,8 +53,8 @@
           margin-right: 10px;
           padding-top: 1px;
           border: $border solid $color-option-border;
-          color: transparent;
-          background-color: transparent;
+          color: $color-option-background;
+          background-color: $color-option-background;
           border-radius: 5px;
           font-size: 70%;
           display: block;
@@ -122,6 +122,9 @@
 
 ::ng-deep {
   .ng5-slider {
+    .ng5-slider-active {
+      outline: 0;
+    }
     .ng5-slider-tick {
       border-radius: 10px !important;
       width: 4px !important;
@@ -157,7 +160,7 @@
         -webkit-transform:scale(0.4, 0.4);
         transform: scale(40%);
         color: $color-font !important;
-        background-color: transparent !important;
+        background-color: $color-transparent !important;
         font-size: 160%;
         top: -1px !important;
         left: -1px !important;

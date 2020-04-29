@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="135px" height="128px" viewBox="0 0 135 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="UI---DESIGN-LANGUAGE" transform="translate(-10849.000000, -369.000000)">
+            <g id="Group" transform="translate(10851.054711, 371.000000)">
+                <rect id="Rectangle" stroke="#1F2C5B" stroke-width="4" x="7.81597009e-13" y="68" width="59.0638298" height="56" rx="2"></rect>
+                <path d="M22.9927052,82 L27.2115502,88 C28.2873556,89.56 29.1944073,91 30.1647416,92.54 L30.3545897,92.54 C31.324924,90.88 32.2952584,89.44 33.2655927,87.94 L37.4844377,81.94 L43.2431611,81.94 L33.1179331,95.54 L43.4330091,110 L37.3789666,110 L33.1601216,103.74 C31.9999392,102.12 31.0506991,100.56 29.9959878,98.9 L29.8694225,98.9 C28.8990881,100.56 27.8654711,102.06 26.7896657,103.74 L22.5708207,110 L16.5589666,110 L27.106079,95.8 L17.0441337,82 L22.9927052,82 Z" id="Path" fill="#1F2C5B" fill-rule="nonzero"></path>
+                <rect id="Rectangle" stroke="#1F2C5B" stroke-width="4" x="71.7203647" y="68" width="59.0638298" height="56" rx="2"></rect>
+                <polygon id="Path" fill="#1F2C5B" fill-rule="nonzero" points="89.376231 110 108.361033 80 112.980669 80 93.9958663 110"></polygon>
+                <rect id="Rectangle" stroke="#1F2C5B" stroke-width="4" x="71.7203647" y="0" width="59.0638298" height="56" rx="2"></rect>
+                <polygon id="Path" fill="#1F2C5B" fill-rule="nonzero" points="103.192948 12.7 103.192948 26.22 116.904195 26.22 116.904195 29.66 103.192948 29.66 103.192948 43.3 99.3116109 43.3 99.3116109 29.66 85.6003647 29.66 85.6003647 26.22 99.3116109 26.22 99.3116109 12.7"></polygon>
+                <rect id="Rectangle" stroke="#1F2C5B" stroke-width="4" x="7.81597009e-13" y="0" width="59.0638298" height="56" rx="2"></rect>
+                <polygon id="Path" fill="#1F2C5B" fill-rule="nonzero" points="38.918845 25.78 38.918845 30.22 21.0942249 30.22 21.0942249 25.78"></polygon>
+                <line x1="10.5471125" y1="56" x2="10.5471125" y2="68" id="Path" stroke="#1F2C5B" stroke-width="4"></line>
+                <line x1="48.5167173" y1="56" x2="48.5167173" y2="68" id="Path" stroke="#1F2C5B" stroke-width="4"></line>
+                <line x1="82.2674772" y1="56" x2="82.2674772" y2="68" id="Path" stroke="#1F2C5B" stroke-width="4"></line>
+                <line x1="120.237082" y1="56" x2="120.237082" y2="68" id="Path" stroke="#1F2C5B" stroke-width="4"></line>
+                <line x1="71.7203647" y1="10" x2="59.0638298" y2="10" id="Path" stroke="#1F2C5B" stroke-width="4"></line>
+                <line x1="71.7203647" y1="46" x2="59.0638298" y2="46" id="Path" stroke="#1F2C5B" stroke-width="4"></line>
+                <line x1="71.7203647" y1="78" x2="59.0638298" y2="78" id="Path" stroke="#1F2C5B" stroke-width="4"></line>
+                <line x1="71.7203647" y1="114" x2="59.0638298" y2="114" id="Path" stroke="#1F2C5B" stroke-width="4"></line>
+                <line x1="90.7895441" y1="87.78" x2="95.0083891" y2="87.78" id="Path" stroke="#1F2C5B" stroke-width="4"></line>
+                <line x1="107.580547" y1="100.16" x2="111.799392" y2="100.16" id="Path" stroke="#1F2C5B" stroke-width="4"></line>
+            </g>
+        </g>
+    </g>
+</svg>

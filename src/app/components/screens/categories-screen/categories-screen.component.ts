@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Category } from 'src/app/models/category';
 
-import { CategoryService } from 'src/app/services/category.service';
-import { DataLogService } from 'src/app/services/data-log.service';
+import { CategoryService } from 'src/app/services/api-call/category.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({

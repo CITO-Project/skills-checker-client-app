@@ -1,4 +1,4 @@
-<app-header [text]='!!category ? category.text : "default"'></app-header>
+<app-header [text]='!!category ? category.text : "default"' (customClick)='clickHeader()'></app-header>
 <app-media *ngIf="!!scenario" [resource]='scenario.resource' replay=true></app-media>
 <div class="content d-flex flex-column align-items-center text-center">
   <div id="header" *ngIf="!!scenario">
@@ -10,14 +10,11 @@
   [(question)]="question"
   [(error)]="errorMessage"
   (answer)="processAnswer($event)"
-  [(questionAnswers)]="questionAnswers"
   [initialAnswer]="currentAnswer"
   ></app-question>
 
 </div>
 <app-navigate-button
-  backText="{{ btnBack }}"
-  forwardText="{{ btnForward }}"
-  (backEvent)="previousQuestion()"
-  (forwardEvent)="nextQuestion()"
+  [buttons] = "buttons"
+  (buttonsEvent)='onButtonsEvent($event)'
   ></app-navigate-button>
