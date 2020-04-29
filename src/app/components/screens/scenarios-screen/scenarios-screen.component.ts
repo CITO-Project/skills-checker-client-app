@@ -26,6 +26,7 @@ export class ScenariosScreenComponent implements OnInit {
 
   public btnBack = 'Back';
   public btnForward = 'Next';
+  private readonly ERROR_MESSAGE = 'Please select one or more of the options below';
   private allButtons: {
     text: string,
     icon: string,
@@ -142,7 +143,7 @@ export class ScenariosScreenComponent implements OnInit {
 
   saveAnswer(): boolean {
     if (this.currentAnswer < 0) {
-      this.showError('Please, select one of the options below');
+      this.showError(this.ERROR_MESSAGE);
       return false;
     } else {
       this.dataLogService.setAnswer(this.currentScenario, this.currentQuestion, this.currentAnswer);
