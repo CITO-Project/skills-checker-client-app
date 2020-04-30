@@ -77,93 +77,110 @@ export class ResultsSaverService {
       this.canvasContext = this.canvas.getContext('2d');
       this.xCoord = 0;
       this.yCoord = 0;
-      (new FontFace(this.TEXT_FONT_FAMILY, `url(${this.TEXT_FONT_FAMILY_SOURCE})`)).load().then( () => {
+      try {
+        (new FontFace(this.TEXT_FONT_FAMILY, `url(${this.TEXT_FONT_FAMILY_SOURCE})`)).load().then()
+      } catch (error) {
+        console.error('ERROR LOADING FONT', error)
+      } finally {
         this.loadResources(graphDataURI, (data) => {
-          let tempTextSplit = [], multiplier = 1;
-          this.canvasContext.textBaseline = 'top'
-
-          //#region Drawing background
-          let backgroundGradient = this.canvasContext.createLinearGradient(this.FILE_MAX_WIDTH / 2, 0, this.FILE_MAX_WIDTH / 2, 500);
-          backgroundGradient.addColorStop(0, this.GRADIENT_COLOR);
-          backgroundGradient.addColorStop(1, this.BACKGROUND_COLOR);
-          this.canvasContext.fillStyle = backgroundGradient;
-          this.canvasContext.fillRect(0, 0, this.FILE_MAX_WIDTH, this.FILE_MAX_HEIGHT);
-          //#endregion
-
-          //#region Printing header
-          this.canvasContext.textAlign = 'center'
-          this.canvasContext.fillStyle = this.TEXT_COLOR_LIGHT
-          this.yCoord += this.TITLE_PADDING
-          this.printHeader(header, 'bold', this.FILE_MAX_WIDTH / 2)
-          this.yCoord += this.TITLE_PADDING
-          //#endregion
-          
-          //#region Drawing graph
-          multiplier = (this.FILE_MAX_WIDTH - this.BACKGROUND_PADDING_SIDES * 2) / data.backgroundImage.width;
-          this.canvasContext.drawImage(
-            data.backgroundImage,
-            this.BACKGROUND_PADDING_SIDES,
-            this.BACKGROUND_PADDING_TOP,
-            data.backgroundImage.width * multiplier,
-            data.backgroundImage.height * multiplier)
-          multiplier = this.IMG_MAX_HEIGHT / data.balloonsAndBasketImage.height;
-          this.canvasContext.drawImage(
-            data.balloonsAndBasketImage,
-            this.PADDING,
-            this.yCoord,
-            data.balloonsAndBasketImage.width * multiplier,
-            data.balloonsAndBasketImage.height * multiplier);
-          //#endregion
-          
-          //#region Writing resultsText
-          tempTextSplit = this.splitTextInLines(resultsText, 25);
-          this.canvasContext.textAlign = 'left'
-          this.canvasContext.fillStyle = this.TEXT_COLOR
-          // TODO Need to vertical align this text
-          this.yCoord += this.TEMPORARY_TOP_SEPARATION_RESULTS_TEXT;
-          tempTextSplit.forEach( (text: string) => {
-            this.yCoord += this.LINES_SEPARATION;
-            this.printText(text, '', data.balloonsAndBasketImage.width * multiplier + this.BALLOONS_TEXT_SEPARATION)
-          })
-          this.yCoord = this.IMG_MAX_HEIGHT + this.TITLE_PADDING * 2 + this.TEXT_SIZE
-          //#endregion
-          
-          //#region Printing Pathway description
-          this.canvasContext.textAlign = 'center'
-          this.xCoord = this.FILE_MAX_WIDTH / 2;
-          this.yCoord += this.BALLONS_LEARNING_PATHWAY_SEPARATION
-          this.printHeader(learningPathwayHeader, 'bold')
-          this.yCoord += 20
-          tempTextSplit = this.splitTextInLines(learningPathwayDescription, this.SPLIT_LEARNING_PATHWAY_DESCRIPTION);
-          tempTextSplit.forEach( (text: string) => {
-            this.printText(text)
-            this.yCoord += 10
-          })
-          //#endregion
-  
-          const brushUpCourses = learningPathway.filter( (course: Course) => course.priority === 'brush_up').slice(0, 3)
-          const developCourses = learningPathway.filter( (course: Course) => course.priority === 'develop').slice(0, 3)
-          
-          //#region Printing 'brush_up' courses
-          if (brushUpCourses.length > 0) {
-            this.printSection('Brush up', brushUpCourses, this.BRUSH_UP_COLOR); 
-          }
-          //#endregion
-          
-          //#region Printing 'develop' courses
-          if (developCourses.length > 0) {
-            this.printSection('Further develop', developCourses, this.DEVELOP_COLOR)
-          }
-          //#endregion
-          
-          this.canvasContext.fillStyle = this.LEARNING_PATHWAY_BACKGROUND_COLOR
-          this.canvasContext.fillRect(0, this.yCoord += this.COURSES_BORDER_RADIUS / 2, this.FILE_MAX_WIDTH, 50)
-  
-          // Generating PNG and downloading
-          const temp = this.canvas.toDataURL('image/png').replace("image/png", "image/octet-stream")
-          saveAs(temp, this.FILE_DOWNLOAD_NAME)
+          this.drawingImage(graphDataURI, header, resultsText, learningPathwayHeader, learningPathwayDescription, learningPathway, data);
+          this.downloadImage()
         })
-      })
+      }
+  }
+
+  drawingImage(
+    graphDataURI: string,
+    header: string,
+    resultsText: string,
+    learningPathwayHeader: string,
+    learningPathwayDescription: string,
+    learningPathway: Course[],
+    data) {
+    let tempTextSplit = [], multiplier = 1;
+    this.canvasContext.textBaseline = 'top'
+
+    //#region Drawing background
+    let backgroundGradient = this.canvasContext.createLinearGradient(this.FILE_MAX_WIDTH / 2, 0, this.FILE_MAX_WIDTH / 2, 500);
+    backgroundGradient.addColorStop(0, this.GRADIENT_COLOR);
+    backgroundGradient.addColorStop(1, this.BACKGROUND_COLOR);
+    this.canvasContext.fillStyle = backgroundGradient;
+    this.canvasContext.fillRect(0, 0, this.FILE_MAX_WIDTH, this.FILE_MAX_HEIGHT);
+    //#endregion
+
+    //#region Printing header
+    this.canvasContext.textAlign = 'center'
+    this.canvasContext.fillStyle = this.TEXT_COLOR_LIGHT
+    this.yCoord += this.TITLE_PADDING
+    this.printHeader(header, 'bold', this.FILE_MAX_WIDTH / 2)
+    this.yCoord += this.TITLE_PADDING
+    //#endregion
+    
+    //#region Drawing graph
+    multiplier = (this.FILE_MAX_WIDTH - this.BACKGROUND_PADDING_SIDES * 2) / data.backgroundImage.width;
+    this.canvasContext.drawImage(
+      data.backgroundImage,
+      this.BACKGROUND_PADDING_SIDES,
+      this.BACKGROUND_PADDING_TOP,
+      data.backgroundImage.width * multiplier,
+      data.backgroundImage.height * multiplier)
+    multiplier = this.IMG_MAX_HEIGHT / data.balloonsAndBasketImage.height;
+    this.canvasContext.drawImage(
+      data.balloonsAndBasketImage,
+      this.PADDING,
+      this.yCoord,
+      data.balloonsAndBasketImage.width * multiplier,
+      data.balloonsAndBasketImage.height * multiplier);
+    //#endregion
+    
+    //#region Writing resultsText
+    tempTextSplit = this.splitTextInLines(resultsText, 25);
+    this.canvasContext.textAlign = 'left'
+    this.canvasContext.fillStyle = this.TEXT_COLOR
+    // TODO Need to vertical align this text
+    this.yCoord += this.TEMPORARY_TOP_SEPARATION_RESULTS_TEXT;
+    tempTextSplit.forEach( (text: string) => {
+      this.yCoord += this.LINES_SEPARATION;
+      this.printText(text, '', data.balloonsAndBasketImage.width * multiplier + this.BALLOONS_TEXT_SEPARATION)
+    })
+    this.yCoord = this.IMG_MAX_HEIGHT + this.TITLE_PADDING * 2 + this.TEXT_SIZE
+    //#endregion
+    
+    //#region Printing Pathway description
+    this.canvasContext.textAlign = 'center'
+    this.xCoord = this.FILE_MAX_WIDTH / 2;
+    this.yCoord += this.BALLONS_LEARNING_PATHWAY_SEPARATION
+    this.printHeader(learningPathwayHeader, 'bold')
+    this.yCoord += 20
+    tempTextSplit = this.splitTextInLines(learningPathwayDescription, this.SPLIT_LEARNING_PATHWAY_DESCRIPTION);
+    tempTextSplit.forEach( (text: string) => {
+      this.printText(text)
+      this.yCoord += 10
+    })
+    //#endregion
+
+    const brushUpCourses = learningPathway.filter( (course: Course) => course.priority === 'brush_up').slice(0, 3)
+    const developCourses = learningPathway.filter( (course: Course) => course.priority === 'develop').slice(0, 3)
+    
+    //#region Printing 'brush_up' courses
+    if (brushUpCourses.length > 0) {
+      this.printSection('Brush up', brushUpCourses, this.BRUSH_UP_COLOR); 
+    }
+    //#endregion
+    
+    //#region Printing 'develop' courses
+    if (developCourses.length > 0) {
+      this.printSection('Further develop', developCourses, this.DEVELOP_COLOR)
+    }
+    //#endregion
+    
+    this.canvasContext.fillStyle = this.LEARNING_PATHWAY_BACKGROUND_COLOR
+    this.canvasContext.fillRect(0, this.yCoord += this.COURSES_BORDER_RADIUS / 2, this.FILE_MAX_WIDTH, 50)
+  }
+
+  downloadImage() {
+    const temp = this.canvas.toDataURL('image/png').replace("image/png", "image/octet-stream")
+    saveAs(temp, this.FILE_DOWNLOAD_NAME)
   }
 
   loadResources(balloonsAndBasket: string, cb) {
