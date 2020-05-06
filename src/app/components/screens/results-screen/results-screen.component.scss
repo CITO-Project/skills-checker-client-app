@@ -1,9 +1,10 @@
 @import '../../../../style/_imports.scss';
 
-
-#content {
+#back-container {
   background: linear-gradient(to bottom, $color-background-colour, $color-background 200px);
-  padding: 0 0;
+}
+#content {
+  padding: 0;
   padding-bottom: 30px;
   .subtitle {
     text-align: center;
@@ -23,7 +24,8 @@
 #result {
   position: relative;
   .background-shape {
-    width: 100vw;
+    width: 100%;
+    max-width: $content-max-width;
     position: absolute;
     img {
       width: 90%;
@@ -45,8 +47,10 @@
     }
     .results-image {
       width: 150%;
+      max-width: 200px;
       text-align: center;
       @include setStyleTablet {
+        max-width: 400px;
         width: 100%;
       }
       > img {
@@ -66,7 +70,7 @@
 }
 
 .holder {
-  margin: 10px 0 20px;
+  margin: 10px 0 70px;
 }
 
 #pathway {

@@ -1,14 +1,15 @@
 <app-header [text]='!!category ? category.text : "default"' (customClick)='clickHeader()'></app-header>
 <app-media *ngIf="!!scenario" [resource]='scenario.resource' replay=true></app-media>
-<div class="content d-flex flex-column align-items-center text-center">
-  <app-question
-  *ngIf="!!question"
-  [(question)]="question"
-  [(error)]="errorMessage"
-  (answer)="processAnswer($event)"
-  [initialAnswer]="currentAnswer"
-  ></app-question>
-
+<div id="content">
+  <div class="content d-flex flex-column align-items-center text-center">
+    <app-question
+    *ngIf="!!question"
+    [(question)]="question"
+    [(error)]="errorMessage"
+    (answer)="processAnswer($event)"
+    [initialAnswer]="currentAnswer"
+    ></app-question>
+  </div>
 </div>
 <app-navigate-button
   [buttons] = "buttons"
