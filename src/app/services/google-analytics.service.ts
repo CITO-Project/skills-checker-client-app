@@ -11,7 +11,7 @@ declare let gtag: Function;
 })
 export class GoogleAnalyticsService {
 
-  private readonly GOOGLE_ANALYTICS_ENABLED = false;
+  private readonly GOOGLE_ANALYTICS_ENABLED = true;
 
   private starts: {
     time_answer_interest: {
@@ -71,15 +71,17 @@ export class GoogleAnalyticsService {
     ) { }
 
   initializeGA(): void {
-    this.router.events.subscribe(event => {
-    if (event instanceof NavigationEnd) {
-      gtag('config', this.commonService.getGATrackID(),
-        {
-          page_path: event.urlAfterRedirects
+    if (!!this.GOOGLE_ANALYTICS_ENABLED) {
+      this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        gtag('config', this.commonService.getGATrackID(),
+          {
+            page_path: event.urlAfterRedirects
+          }
+        );
         }
-      );
-      }
-    });
+      });
+    }
     this.initializeTrackers();
   }
 

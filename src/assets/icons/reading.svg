@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="135px" height="128px" viewBox="0 0 135 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="UI---DESIGN-LANGUAGE" transform="translate(-11098.000000, -369.000000)" stroke="#1F2C5B" stroke-width="4">
+            <g id="Group-2" transform="translate(11100.000000, 371.000000)">
+                <polyline id="Path" points="122.346505 8 130.784195 8 130.784195 66"></polyline>
+                <polyline id="Path" points="-6.71462885e-13 66 -6.71462885e-13 8 8.43768997 8"></polyline>
+                <polyline id="Path" points="122.346505 66 122.346505 0 73.8297872 0 65.3920973 8 56.9544073 0 8.43768997 0 8.43768997 66"></polyline>
+                <line x1="65.3920973" y1="8" x2="65.3920973" y2="66" id="Path"></line>
+                <line x1="14.7659574" y1="48" x2="59.0638298" y2="48" id="Path"></line>
+                <line x1="14.7659574" y1="56" x2="59.0638298" y2="56" id="Path"></line>
+                <line x1="14.7659574" y1="64" x2="59.0638298" y2="64" id="Path"></line>
+                <line x1="71.7203647" y1="12" x2="116.018237" y2="12" id="Path"></line>
+                <line x1="71.7203647" y1="20" x2="116.018237" y2="20" id="Path"></line>
+                <line x1="71.7203647" y1="28" x2="116.018237" y2="28" id="Path"></line>
+                <line x1="71.7203647" y1="56" x2="116.018237" y2="56" id="Path"></line>
+                <line x1="71.7203647" y1="64" x2="116.018237" y2="64" id="Path"></line>
+                <line x1="75.9392097" y1="42" x2="80.1580547" y2="42" id="Path"></line>
+                <line x1="84.3768997" y1="42" x2="103.361702" y2="42" id="Path"></line>
+                <line x1="107.580547" y1="42" x2="111.799392" y2="42" id="Path"></line>
+                <rect id="Rectangle" x="16.8753799" y="20" width="40.0790274" height="20"></rect>
+                <line x1="14.7659574" y1="12" x2="59.0638298" y2="12" id="Path"></line>
+                <line x1="67.5015198" y1="72" x2="63.2826748" y2="72" id="Path"></line>
+                <line x1="59.0638298" y1="72" x2="54.8449848" y2="72" id="Path"></line>
+                <line x1="75.9392097" y1="72" x2="71.7203647" y2="72" id="Path"></line>
+                <line x1="84.3768997" y1="72" x2="80.1580547" y2="72" id="Path"></line>
+                <line x1="50.6261398" y1="72" x2="46.4072948" y2="72" id="Path"></line>
+                <polyline id="Path" points="120.237082 72 130.784195 72 130.784195 124 -3.69482223e-13 124 -3.69482223e-13 72 10.5471125 72"></polyline>
+                <polyline id="Path" points="12.656535 90 12.656535 84 18.9848024 84"></polyline>
+                <polyline id="Path" points="25.3130699 90 25.3130699 84 31.6413374 84"></polyline>
+                <polyline id="Path" points="37.9696049 90 37.9696049 84 44.2978723 84"></polyline>
+                <polyline id="Path" points="50.6261398 90 50.6261398 84 56.9544073 84"></polyline>
+                <polyline id="Path" points="63.2826748 90 63.2826748 84 69.6109422 84"></polyline>
+                <polyline id="Path" points="75.9392097 90 75.9392097 84 82.2674772 84"></polyline>
+                <polyline id="Path" points="88.5957447 90 88.5957447 84 94.9240122 84"></polyline>
+                <polyline id="Path" points="29.5319149 102 29.5319149 96 35.8601824 96"></polyline>
+                <polyline id="Path" points="42.1884498 102 42.1884498 96 48.5167173 96"></polyline>
+                <polyline id="Path" points="12.656535 114 12.656535 108 18.9848024 108"></polyline>
+                <polyline id="Path" points="25.3130699 114 25.3130699 108 31.6413374 108"></polyline>
+                <polyline id="Path" points="101.25228 114 101.25228 108 107.580547 108"></polyline>
+                <polyline id="Path" points="113.908815 114 113.908815 108 120.237082 108"></polyline>
+                <polyline id="Path" points="54.8449848 102 54.8449848 96 61.1732523 96"></polyline>
+                <polyline id="Path" points="67.5015198 102 67.5015198 96 73.8297872 96"></polyline>
+                <polyline id="Path" points="80.1580547 102 80.1580547 96 86.4863222 96"></polyline>
+                <polyline id="Path" points="92.8145897 102 92.8145897 96 99.1428571 96"></polyline>
+                <polyline id="Path" points="92.8145897 114 92.8145897 108 37.9696049 108 37.9696049 114"></polyline>
+                <polyline id="Path" points="118.12766 102 118.12766 96 105.471125 96 105.471125 102"></polyline>
+                <polyline id="Path" points="118.12766 90 118.12766 84 101.25228 84 101.25228 90"></polyline>
+                <polyline id="Path" points="21.0942249 102 21.0942249 96 12.656535 96 12.656535 102"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,17 +1,39 @@
 <app-header text='default'></app-header>
-<app-media resource='orientation.png'></app-media>
-<div id="description">
-  <div class="main heading">
-    Do you want to learn new skills to improve your life?
-  </div>
-  <div class="text">
-    Learn how to improve your skills to get a new world of possibilities in your life. Watch the video in which Clare will guide you through this quick and easy experience.
-  </div>
-  <div class="features d-flex flex-row justify-content-around">
-    <div class="flex-column feature" *ngFor="let feature of FEATURES">
-        <div [ngClass]="feature.color" class="icon box shadows gradient"><img src="{{ feature.icon }}"></div>
-        <div class="text flex-grow-0">{{ feature.text }}</div>
+<app-media [resource]=currentResource [replay]=addReplay></app-media>
+<div id="content">
+  <div id="description">
+    <button *ngIf='!isVideoLoaded' class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
+      How to use
+    </button>
+    <!-- <button *ngIf="!isVideoLoaded; else elseIsVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
+      How to use
+    </button>
+    <ng-template #elseIsVideoLoaded>
+      <div class="muted">Press play to learn about the app</div>
+    </ng-template> -->
+    <div class="main heading">
+      Discover your skills and strengths
+    </div>
+    <div class="text">
+      The app will help find courses/learning options that match your skills and you can decide what is right for you
+    </div>
+    <div class="features container-fluid">
+      <div class="row">
+        <div class="col" *ngFor="let feature of FEATURES">
+          <div class="row icon d-flex justify-content-center">
+            <div [ngClass]="feature.color" class="box shadow gradient">
+              <img src="{{ feature.icon }}" onerror="this.remove()">
+            </div>
+          </div>
+          <div class="row text d-flex justify-content-center">
+            {{ feature.text }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main heading">
+      It's quick - All in less than 10 minutes!
     </div>
   </div>
 </div>
-<app-navigate-button text="Start now" (event)="onClick()"></app-navigate-button>
+<app-navigate-button text="Get started" (event)="onClick()"></app-navigate-button>

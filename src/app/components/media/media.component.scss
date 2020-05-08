@@ -1,11 +1,13 @@
-@import '../../../_imports.scss';
+@import '../../../style/_imports.scss';
 
 #media {
   width: 100vw;
   overflow: hidden;
+  background-color: $color-background;
   img, vg-player {
+    margin: 0 auto;
     width: 100%;
-    z-index: 299;
+    max-width: $content-max-width;
   }
 }
 

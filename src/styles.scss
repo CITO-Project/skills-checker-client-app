@@ -1,5 +1,5 @@
-@import './_imports.scss';
-@import './_fonts.scss';
+@import 'style/_imports.scss';
+@import 'style/_fonts.scss';
 @import '../node_modules/normalize.css/normalize.css';
 
 body{
@@ -9,10 +9,10 @@ body{
   font-size: 1em;
   background-color: $color-background;
   padding: 0;
-  padding-bottom: $bottom-height * 1.5;
+  padding-bottom: $bottom-height;
   @include setStyleTablet {
     font-size: 1.5em;
-    padding-bottom: $bottom-height * 2;
+    padding-bottom: $bottom-height * 1.2;
   }
 }
 // Safari Bootstrap fix

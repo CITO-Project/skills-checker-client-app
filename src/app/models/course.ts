@@ -14,8 +14,8 @@ export interface Course {
   duration?: string;
   frequency?: string;
   address?: string;
-  enrolment_start?: string;
-  enrolment_finish?: string;
+  enrolment_start?: Date;
+  enrolment_finish?: Date;
   contact_person?: string;
   contact_telephone?: string;
   contact_email?: string;

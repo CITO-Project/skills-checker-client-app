@@ -1,0 +1,178 @@
+/*
+  All font should only be load here because the path of the files has to be relative to where they are called. In this case './src'. So this way they only get called once and already set up in the 'styles.scss' file so it applies to the whole site.
+
+  If you try to load all the fonts into one file and then load that file wherever is needed, all the paths will fail. This happens because the paths depends on what file is importing it. This happens even if you import it to a general imports file and then import it because you are still importing that fonts whenever you make that import.
+*/
+
+// Raleway
+@import './assets/fonts/_raleway-font.scss';
+
+
+/* Template to import fonts (comment out the ones that are not avaliable)
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+// <Font name here> Font
+//
+// Font path has to be relative to './src' (from root angular app) because it is called only once from 'styles.scss'. More info in './src/_fonts.scss'
+$font-location: './assets/fonts/<Font name here>/';
+$font-name: '<Font name here>';
+$font-extension: '.ttf';
+//
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+@mixin load-font($font-name, $font-file, $font-weight, $font-style) {
+  @font-face {
+    font-family: $font-name;
+    src: url($font-file) format('truetype');
+    font-weight: unquote($font-weight);
+    font-style: unquote($font-style);
+  }
+}
+
+
+// 100 Normal
+$font-weight: "100";
+$font-style: "normal";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+// 100 Italic
+$font-weight: "100";
+$font-style: "italic";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+
+
+// 200 Normal
+$font-weight: "200";
+$font-style: "normal";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+// 200 Italic
+$font-weight: "200";
+$font-style: "italic";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+
+
+// 300 Normal
+$font-weight: "300";
+$font-style: "normal";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+// 300 Italic
+$font-weight: "300";
+$font-style: "italic";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+
+
+// 400 Normal
+$font-weight: "400";
+$font-style: "normal";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+// 400 Italic
+$font-weight: "400";
+$font-style: "italic";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+
+
+// 500 Normal
+$font-weight: "500";
+$font-style: "normal";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+// 500 Italic
+$font-weight: "500";
+$font-style: "italic";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+
+
+// 600 Normal
+$font-weight: "600";
+$font-style: "normal";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+// 600 Italic
+$font-weight: "600";
+$font-style: "italic";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+
+
+// 700 Normal
+$font-weight: "700";
+$font-style: "normal";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+// 700 Italic
+$font-weight: "700";
+$font-style: "italic";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+
+
+// 800 Normal
+$font-weight: "800";
+$font-style: "normal";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+// 800 Italic
+$font-weight: "800";
+$font-style: "italic";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+
+
+// 900 Normal
+$font-weight: "900";
+$font-style: "normal";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+// 900 Italic
+$font-weight: "900";
+$font-style: "italic";
+$file-name: $font-name + '-' + $font-weight + '-' + $font-style + $font-extension;
+$font-file: $font-location + $file-name;
+@include load-font($font-name, $font-file, $font-weight, $font-style);
+
+
+
+Template end */

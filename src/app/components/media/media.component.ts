@@ -31,7 +31,10 @@ export class MediaComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.loadResource();
     const el = document.getElementById('media');
-    el.style.height = this.height;
+    if (!!this.height) {
+      el.style.height = this.height;
+      el.style.width = 'auto';
+    }
   }
 
   ngOnChanges() {
@@ -40,7 +43,7 @@ export class MediaComponent implements OnInit, OnChanges {
 
   loadResource() {
     if (this.resource === undefined || !this.resource) {
-      this.resource = 'default.mp4';
+      this.resourceFile = 'default.mp4';
     }
     switch (this.getType()) {
       case 'video':

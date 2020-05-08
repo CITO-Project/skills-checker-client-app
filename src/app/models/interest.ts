@@ -6,4 +6,5 @@ export interface Interest {
   text?: string;
   resource?: string;
   description?: string;
+  colour?: string;
 }

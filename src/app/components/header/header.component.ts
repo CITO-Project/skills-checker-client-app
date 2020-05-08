@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     if (this.text === 'default') {
-      this.text = 'SkillsChecker';
+      this.text = 'Check-In Take-Off';
     }
   }
 
