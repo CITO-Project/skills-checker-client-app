@@ -6,7 +6,8 @@
   background-color: $color-background;
   img, vg-player {
     margin: 0 auto;
-    width: $content-max-width;
+    width: 100%;
+    max-width: $content-max-width;
   }
 }
 
