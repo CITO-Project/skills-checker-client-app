@@ -48,8 +48,7 @@ export class CommonService {
   }
 
   logging(type: string, ...data) {
-    const available_funcs = ['log', 'error', 'warn', 'trace'];
-    if (this.USE_CONSOLE_LOG && available_funcs.includes(type)) {
+    if (this.USE_CONSOLE_LOG && ['log', 'error', 'warn', 'trace'].includes(type)) {
       const currentdate = new Date();
       const datetime = '[' +
         this.addZeros('' + currentdate.getDate()) + '/' +
@@ -116,6 +115,7 @@ export class CommonService {
     switch (type) {
       case 'images':
       case 'icons':
+      case 'balloons':
         r = this.RESOURCE_PATH + type + '/' + name;
         break;
       case 'resources':
@@ -135,6 +135,10 @@ export class CommonService {
 
   getResourcePath(name: string): string {
     return this.getPath(name, 'resources');
+  }
+
+  getBalloonsPath(name: string): string {
+    return this.getPath(name, 'balloons');
   }
 
   getGATrackID(): string {

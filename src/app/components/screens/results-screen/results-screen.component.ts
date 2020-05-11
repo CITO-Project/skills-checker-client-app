@@ -12,7 +12,6 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 import { ResultsSaverService } from 'src/app/services/data/results-saver.service';
 import { ResultsVisualizationService } from 'src/app/services/data/results-visualization.service';
 import { ResultsProcessingService } from 'src/app/services/data/results-processing.service';
-import { Log } from 'src/app/models/log';
 
 @Component({
   selector: 'app-results-screen',
@@ -44,7 +43,6 @@ export class ResultsScreenComponent implements OnInit {
   ngOnInit() {
     if (
       this.dataLogService.getProduct() === null ||
-      this.dataLogService.getCategory() === null ||
       this.dataLogService.getInterest() === null
     ) {
       this.commonService.goTo('');
