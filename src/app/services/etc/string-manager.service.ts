@@ -6,30 +6,30 @@ import { Injectable } from '@angular/core';
 export class StringManagerService {
 
   constructor() { }
-  
+
   splitTextInLines(text: string, charsPerLine: number): string[] {
     const r = [];
     let splittedText = text.split('');
-    let endIndex: number = 0;
+    let endIndex = 0;
     while (text !== '') {
       if (text.length > charsPerLine) {
         if (splittedText[charsPerLine] !== ' ') {
-          endIndex = text.slice(0, charsPerLine).lastIndexOf(' ')
+          endIndex = text.slice(0, charsPerLine).lastIndexOf(' ');
         } else {
-          endIndex = charsPerLine
+          endIndex = charsPerLine;
         }
       } else {
-        endIndex = text.length
+        endIndex = text.length;
       }
-      r.push(text.slice(0, endIndex).trim())
-      splittedText = text.split('')
-      text = text.slice(endIndex)
+      r.push(text.slice(0, endIndex).trim());
+      splittedText = text.split('');
+      text = text.slice(endIndex);
     }
     return r;
   }
-  
-  ellipsisText(text: string, maxLength: number) : string {
-    return text.length > maxLength ? text.slice(0, maxLength - 3) + '...' : text
+
+  ellipsisText(text: string, maxLength: number): string {
+    return text.length > maxLength ? text.slice(0, maxLength - 3) + '...' : text;
   }
 
   addZeros(value: string, nZeros: number = 2): string {
@@ -39,5 +39,5 @@ export class StringManagerService {
       return this.addZeros('0' + value, nZeros);
     }
   }
-  
+
 }

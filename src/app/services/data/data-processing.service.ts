@@ -43,8 +43,8 @@ export class DataProcessingService {
         this.getItemByPedagogicalType(currentAnswers, questionOrder, 'challenging_skill') > -1
         ) {
           let answer = this.getItemByPedagogicalType(currentAnswers, questionOrder, 'challenging_skill').toString(2);
-          const challenging_question: Question = this.getItemByPedagogicalType(currentQuestions, questionOrder, 'challenging_skill');
-          while (answer.length < challenging_question.answers.filter(
+          const challengingQuestion: Question = this.getItemByPedagogicalType(currentQuestions, questionOrder, 'challenging_skill');
+          while (answer.length < challengingQuestion.answers.filter(
             (questionAnswer: Answer) => {
             if (questionAnswer.value >= 0) {
               return true;
@@ -93,13 +93,13 @@ export class DataProcessingService {
   }
 
   getBalloonSizes(log: Log, nSizes: number, nLevels: number): Result {
-    let r = this.getSkillsLevel(log.questions, log.answers, log.challenging_order, log.question_order);
+    const r = this.getSkillsLevel(log.questions, log.answers, log.challenging_order, log.question_order);
     Object.keys(r).forEach( (key: string) => {
-      r[key].level = Math.ceil(r[key].level * nSizes / nLevels)
+      r[key].level = Math.ceil(r[key].level * nSizes / nLevels);
       if (r[key].level === 0) {
-        r[key] = 1
+        r[key].level = 1;
       }
-    })
+    });
     return r;
   }
 

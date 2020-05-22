@@ -18,17 +18,6 @@ export class ResultsVisualizationService {
   private readonly TEXT_FONT_FAMILY = 'Raleway';
   private readonly TEXT_FONT_FAMILY_SOURCE = 'https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwPIsWqhPAMif.woff2';
   private readonly BALLOON_LEVELS = 'smb'.split('');
-  // private readonly BALLON_SKILLS_TEXT = {
-  //   literacy: {
-  //     text: 'Reading & Writing'
-  //   },
-  //   numeracy: {
-  //     text: 'Maths'
-  //   },
-  //   digital_skills: {
-  //     text: 'Computers'
-  //   }
-  // }
   private readonly BALLON_SKILLS_TEXT = {
     literacy: {
       text: 'Reading and Writing'
@@ -51,63 +40,35 @@ export class ResultsVisualizationService {
     const multiplier = 2;
     const fontSize = 8;
 
-    const results = this.dataProcessingService.getBalloonSizes(log, this.BALLOON_LEVELS.length, log.scenarios[log.scenarios.length - 1].level)
+    const results = this.dataProcessingService.getBalloonSizes(
+      log,
+      this.BALLOON_LEVELS.length,
+      log.scenarios[log.scenarios.length - 1].level
+      );
     const balloonSize = this.calculateBalloonsSize(results);
-    console.log('balloonSize', balloonSize)
-    const balloonsOrder = this.calculateBalloonsOrder(results, balloonSize)
-    console.log("balloonsOrder", balloonsOrder)
+    const balloonsOrder = this.calculateBalloonsOrder(results, balloonSize);
     const canvastemp = await this.loadBallonTemplate(balloonSize, multiplier);
 
-
-    // const canvastemp = new CanvasManagerService(
-    //   this.commonService,
-    //   ballonTemplate.height * multiplier,
-    //   ballonTemplate.width * multiplier
-    // )
-    // console.log(
-    //   ballonTemplate.width)
-    // const canvas = document.createElement("canvas");
-    // canvas.height = ballonTemplate.height * multiplier
-    // canvas.width = ballonTemplate.width * multiplier
-    // const context = canvas.getContext('2d');
-    // canvastemp.printImageFromSource(ballonTemplate, 0, 0, ballonTemplate.width * multiplier, ballonTemplate.height * multiplier)
     canvastemp.setFont(fontSize * multiplier, 'bold', 'Raleway');
     canvastemp.setTextAlignment('center');
     canvastemp.setColour('white');
-    // context.drawImage(ballonTemplate, 0, 0, ballonTemplate.width * multiplier, ballonTemplate.height * multiplier);
-    // context.font = `bold ${fontSize * multiplier}px Raleway`;
-    // context.fillStyle = 'white';
-    // context.textAlign = 'center';
-    console.log(balloonSize, balloonsOrder)
     this.calculateCoordinates(balloonSize).forEach( (coordinates: {x: number, y: number}, position: number) =>
       this.stringManagerService.splitTextInLines(
         balloonsOrder[position], 9
         ).forEach( (text: string, index: number) => {
-          // canvastemp.printLine('o', coordinates.x*multiplier, coordinates.y *multiplier)
-          // console.log(coordinates)
           if (index === 0) {
             canvastemp.setX(coordinates.x * multiplier);
             canvastemp.setY(coordinates.y * multiplier);
           }
           canvastemp.printLine(text);
         }
-          // context.fillText(text, coordinates.x * multiplier, coordinates.y * multiplier)
       )
-      // context.fillText(this.BALLON_SKILLS_TEXT[balloonSize[index + 1]].text, coordinates.x * multiplier, coordinates.y * multiplier)
-    )
-
+    );
     return canvastemp.exportToData();
-    // return new Promise( (resolve, reject) => {
-    //   const r = new Image()
-    //   r.onload = () => resolve(r);
-    //   r.onerror = () => reject('results-visualization.service.ts [generateGraph()] ERROR_GENERATING_GRAPH')
-    //   r.src = canvas.toDataURL("image/png")
-    // })
   }
 
   calculateBalloonsSize(results: Result): string {
-    let r: string = '';
-    // const nLevels = log.scenarios[log.scenarios.length - 1].level;
+    let r = '';
     const data: {
       skill: string,
       level: number
@@ -116,15 +77,15 @@ export class ResultsVisualizationService {
         return {
           skill: entry[0],
           level: entry[1].level
-        }
-      })
+        };
+      });
     const nUniqueLevels = data
       .map( entry => entry.level)
       .filter( (level: number, index: number, array: number[]) => array.indexOf(level) === index)
       .length;
     switch (nUniqueLevels) {
       case 1:
-        r = data[0].level > 0 ? 'bbb' : 'mmm';
+        r = data[0].level > 1 ? 'bbb' : 'mmm';
         break;
       case 2:
         const levelRepeated = data
@@ -150,21 +111,6 @@ export class ResultsVisualizationService {
         r = 'mbs';
         break;
     }
-    // r[0].split('').forEach( (size: string) => {
-    //   const level = this.BALLOON_LEVELS.indexOf(size) + 1;
-    //   results.find( (item: any) => {
-    //     if (item.level === 0) {
-    //       item.level++;
-    //     }
-    //     if (item.level === level) {
-    //       r.push(item.skill);
-    //       item.level = -1;
-    //       return true;
-    //     }
-    //   })
-    // })
-    // console.log(results);
-    // console.log(r);
     return r;
   }
 
@@ -175,141 +121,74 @@ export class ResultsVisualizationService {
         return {
           skill: value[0],
           level: value[1].level
-        }
+        };
       })
       .sort( (a: any, b: any) => {
-        return b.level - a.level
-      })
-    data.slice(1,2).concat(data[0]).concat(data.slice(-1)).forEach( (value: any) => {
-      r.push(this.BALLON_SKILLS_TEXT[value.skill].text)
-    })
-    // const data = Object.entries(results).map( ( value: [ string, any ]) => {
-    //   return {
-    //     skill: value[0],
-    //     level: value[1].level
-    //   }
-    // })
-    // console.log(this.getNumberLevelsRepeated(results), data)
-    // switch (this.getNumberLevelsRepeated(results)) {
-    //   case 1:
-    //     Object.values(this.BALLON_SKILLS_TEXT).forEach( (value: { text: string }) => r.push(value.text));
-    //     break;
-    //   case 2:
-    //     balloonSize.split('').forEach( (levelString: string) => {
-    //       this.BALLOON_LEVELS.find( (value: string, index: number) => {
-    //         if (value === levelString) {
-    //           const level = index + 1
-
-    //           r.push(data.find( (item: {skill: string, level: number}) => {
-    //             level === item.level
-    //             item.level = -2
-    //             return true
-    //           }).skill)
-    //           return true;
-    //         }
-    //       })
-    //     })
-    //     break;
-    //   case 3:
-    //     balloonSize.split('').forEach( (levelString: string) => {
-    //       this.BALLOON_LEVELS.find( (value: string, index: number) => {
-    //         if (value === levelString) {
-    //           const level = index + 1
-    //           r.push(data.find( (item: {skill: string, level: number}) => {
-    //             return level === item.level
-    //           }).skill)
-    //           return true;
-    //         }
-    //       })
-    //     })
-    //     break;
-
-    // }
-    // const data = Object.entries(results).map( (entry: [ string, number ]) => {
-    //   return {
-    //     skill: entry[0],
-    //     level: entry[1]
-    //   }
-    // })
-    // console.log('begin')
-    // console.log(results, data)
-    // balloonSize.split('').forEach( (size: string) => {
-    //   const level = this.BALLOON_LEVELS.indexOf(size) + 1
-    //   console.log(size, level)
-    //   data.find( (item: any) => {
-    //     console.log(item.level, level, item.level === level)
-    //     if (item.level === level) {
-    //       r.push(item.skill)
-    //       item.level = -1
-    //       return true
-    //     }
-    //     console.log('end')
-    //   })
-    // })
+        return b.level - a.level;
+      });
+    data.slice(1, 2).concat(data[0]).concat(data.slice(-1)).forEach( (value: any) => {
+      r.push(this.BALLON_SKILLS_TEXT[value.skill].text);
+    });
     return r;
   }
 
   calculateCoordinates(size: string): {x: number, y: number}[] {
-    let r = []
-    const thirdLetter = size[2]
+    const r = [];
+    const thirdLetter = size[2];
     switch (size.slice(0, 2)) {
       case 'bb':
-        r[0] = {x: 40, y: 110}
-        r[1] = {x: 93, y: 40}
+        r[0] = {x: 40, y: 103};
+        r[1] = {x: 93, y: 35};
         switch ( thirdLetter) {
           case 'b':
-            r[2] = {x: 131, y: 125}
+            r[2] = {x: 131, y: 118};
             break;
           case 'm':
-            r[2] = {x: 136, y: 115}
+            r[2] = {x: 136, y: 110};
             break;
           case 's':
-            r[2] = {x: 140, y: 102}
-            break
+            r[2] = {x: 140, y: 98};
+            break;
         }
         break;
       case 'mb':
         switch (thirdLetter) {
           case 'm':
-            r[0] = {x: 34, y: 103}
-            r[1] = {x: 86, y: 40}
-            r[2] = {x: 136, y: 105}
+            r[0] = {x: 34, y: 100};
+            r[1] = {x: 86, y: 34};
+            r[2] = {x: 136, y: 100};
             break;
           case 's':
-            r[0] = {x: 34, y: 92}
-            r[1] = {x: 93, y: 42}
-            r[2] = {x: 141, y: 100}
+            r[0] = {x: 34, y: 87};
+            r[1] = {x: 93, y: 34};
+            r[2] = {x: 141, y: 91};
             break;
         }
         break;
       case 'mm':
-        r[0] = {x: 34, y: 97}
-        r[1] = {x: 86, y: 40}
+        r[0] = {x: 34, y: 88};
+        r[1] = {x: 86, y: 31};
         switch (thirdLetter) {
           case 'm':
-            r[2] = {x: 136, y: 98}
+            r[2] = {x: 136, y: 88};
             break;
           case 's':
-            r[2] = {x: 140, y: 85}
+            r[2] = {x: 140, y: 75};
             break;
         }
         break;
       case 'sb':
         if (thirdLetter === 's') {
-          r = [
-            {x: 29, y: 100},
-            {x: 85, y: 42},
-            {x: 141, y: 101}
-          ];
+          r[0] = {x: 29, y: 94};
+          r[1] = {x: 85, y: 34};
+          r[2] = {x: 141, y: 94};
         }
         break;
       case 'sm':
         if (thirdLetter === 's') {
-          r = [
-            {x: 29, y: 75},
-            {x: 86, y: 30},
-            {x: 140, y: 75}
-          ];
+          r[0] = {x: 29, y: 74};
+          r[1] = {x: 86, y: 32};
+          r[2] = {x: 140, y: 75};
         }
         break;
     }
@@ -325,24 +204,20 @@ export class ResultsVisualizationService {
 
   loadBallonTemplate(size: string, multiplier: number): Promise<CanvasManagerService> {
     return new Promise( (resolve, reject) => {
-      const image = new Image()
+      const image = new Image();
       image.onload = () => {
-        const canvastemp = new CanvasManagerService(this.commonService, image.height * multiplier, image.width * multiplier)
-        canvastemp.printImage(image, 0, 0, image.width * multiplier, image.height * multiplier)
-        resolve(canvastemp)
-      }
-      image.onerror = () => reject('ERROR_LOADING_BALLOON_TEMPLATE')
-      image.src = this.commonService.getBalloonsPath(`balloons-${size}.svg`)
-    }) 
+        const canvastemp = new CanvasManagerService(image.height * multiplier, image.width * multiplier);
+        canvastemp.printImage(image, 0, 0, image.width * multiplier, image.height * multiplier);
+        resolve(canvastemp);
+      };
+      image.onerror = () => reject('ERROR_LOADING_BALLOON_TEMPLATE');
+      image.src = this.commonService.getBalloonsPath(`balloons-${size}.svg`);
+    });
   }
 
   async imageToDataURI(image): Promise<string> {
-    const canvastemp = new CanvasManagerService(this.commonService, image.height, image.width)
-    await canvastemp.printImageFromSource(image, 0, 0, image.width, image.height)
-    return await canvastemp.exportToData()
-    // await canvastemp.loadResource(image).then( (image: any) =>
-    //   canvastemp.printImage(image, 0, 0, image.width, image.height))
-    // context.drawImage(image, 0, 0, image.width, image.height);
-    // return canvas.toDataURL("image/png");
+    const canvastemp = new CanvasManagerService(image.height, image.width);
+    await canvastemp.printImageFromSource(image, 0, 0, image.width, image.height);
+    return await canvastemp.exportToData();
   }
 }

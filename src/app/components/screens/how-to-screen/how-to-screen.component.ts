@@ -27,11 +27,6 @@ export class HowToScreenComponent implements OnInit {
   ngOnInit() {
     this.category = this.dataLogService.getCategory();
     this.retrieveInterest();
-    // this.progressTrackerService.initializeTracker().subscribe( (data: Observable<void>) => {
-    //   data.subscribe( () => {
-    //     this.scenariosReady = true;
-    //   });
-    // });
   }
 
   btnClick() {
