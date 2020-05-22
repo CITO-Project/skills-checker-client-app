@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { StringManagerService } from './etc/string-manager.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,11 @@ export class CommonService {
   private GATrackID = 'UA-157405394-1';
 
 
-  constructor(private router: Router, private httpClient: HttpClient) { }
+  constructor(
+    private router: Router,
+    private httpClient: HttpClient,
+    private stringManagerService: StringManagerService
+    ) { }
 
   // constructor(private httpHeaders: HttpHeaders) {
   //   httpHeaders.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
@@ -51,13 +56,13 @@ export class CommonService {
     if (this.USE_CONSOLE_LOG && ['log', 'error', 'warn', 'trace'].includes(type)) {
       const currentdate = new Date();
       const datetime = '[' +
-        this.addZeros('' + currentdate.getDate()) + '/' +
-        this.addZeros('' + currentdate.getMonth() + 1)  + '/' +
+        this.stringManagerService.addZeros('' + currentdate.getDate()) + '/' +
+        this.stringManagerService.addZeros('' + currentdate.getMonth() + 1)  + '/' +
         currentdate.getFullYear() + ' @ ' +
-        this.addZeros('' + currentdate.getHours()) + ':' +
-        this.addZeros('' + currentdate.getMinutes()) + ':' +
-        this.addZeros('' + currentdate.getSeconds()) + '.' +
-        this.addZeros('' + currentdate.getMilliseconds(), 3) + ']';
+        this.stringManagerService.addZeros('' + currentdate.getHours()) + ':' +
+        this.stringManagerService.addZeros('' + currentdate.getMinutes()) + ':' +
+        this.stringManagerService.addZeros('' + currentdate.getSeconds()) + '.' +
+        this.stringManagerService.addZeros('' + currentdate.getMilliseconds(), 3) + ']';
       console.log(`%c${datetime} >> ${type}`, 'background-color: black; color: white;')
       let content: any;
       if (data.length > 0 && data[0].length > 0) {
@@ -96,14 +101,6 @@ export class CommonService {
 
   trace(...data): void {
     this.logging('trace', data);
-  }
-
-  addZeros(value: string, nZeros: number = 2): string {
-    if (value.length >= nZeros) {
-      return value;
-    } else {
-      return this.addZeros('0' + value, nZeros);
-    }
   }
 
   loadLink(link: string) {
