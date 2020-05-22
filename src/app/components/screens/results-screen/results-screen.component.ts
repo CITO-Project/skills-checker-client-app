@@ -22,7 +22,7 @@ export class ResultsScreenComponent implements OnInit {
 
   public resultsText;
   public readonly HEADER = 'Check-In Take-Off';
-  public readonly SUBTITLE = 'My Learning Pathway';
+  public readonly SUBTITLE = 'My Results';
   public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway';
   public readonly LEARNING_PATHWAY = 'If you want to develop your digital skills, try one of these courses below:';
 
