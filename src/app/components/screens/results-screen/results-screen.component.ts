@@ -12,7 +12,6 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 import { ResultsSaverService } from 'src/app/services/data/results-saver.service';
 import { ResultsVisualizationService } from 'src/app/services/data/results-visualization.service';
 import { ResultsProcessingService } from 'src/app/services/data/results-processing.service';
-import { Log } from 'src/app/models/log';
 
 @Component({
   selector: 'app-results-screen',
@@ -22,14 +21,14 @@ import { Log } from 'src/app/models/log';
 export class ResultsScreenComponent implements OnInit {
 
   public resultsText;
-  public readonly HEADER = 'Check-In Take-Off'
-  public readonly SUBTITLE = 'My Learning Pathway'
-  public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway'
-  public readonly LEARNING_PATHWAY = 'If you want to develop your digital skills, try one of these courses below:'
+  public readonly HEADER = 'Check-In Take-Off';
+  public readonly SUBTITLE = 'My Learning Pathway';
+  public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway';
+  public readonly LEARNING_PATHWAY = 'If you want to develop your digital skills, try one of these courses below:';
 
   public courses: Course[];
   public results: Result;
-  public resultsImage
+  public resultsImage: string;
 
   constructor(
     private commonService: CommonService,
@@ -44,14 +43,14 @@ export class ResultsScreenComponent implements OnInit {
   ngOnInit() {
     if (
       this.dataLogService.getProduct() === null ||
-      this.dataLogService.getCategory() === null ||
       this.dataLogService.getInterest() === null
     ) {
       this.commonService.goTo('');
     }
-    const log = this.dataLogService.getAll()
+    const log = this.dataLogService.getAll();
     this.results = this.dataProcessingService.getResults(log);
-    this.resultsVisualizationService.generateGraph(log, data => this.resultsImage = data)
+    this.resultsVisualizationService.generateGraph(log)
+      .then( (imgData: string) => this.resultsImage = imgData);
     this.loadCourses(this.results).subscribe( (courses: Course[]) => {
       this.courses = courses;
       this.googleAnalyticsService.stopTimer('time_answer_interest');
@@ -62,7 +61,7 @@ export class ResultsScreenComponent implements OnInit {
 
       this.googleAnalyticsService.startTimer('time_review_results', '' + this.dataLogService.getInterest().id);
     });
-    this.resultsText = this.resultsProcessingService.generateText(log)
+    this.resultsText = this.resultsProcessingService.generateText(log);
   }
 
   loadCourses(results: Result): Observable<Course[]> {
@@ -88,13 +87,13 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   saveResults(): void {
-    this.resultsSaverService.generateImage(
-      this.resultsVisualizationService.imageToDataURI(this.resultsImage),
-      this.HEADER,
-      this.resultsText,
-      this.LEARNING_PATHWAY_HEADER,
-      this.LEARNING_PATHWAY,
-      this.courses)
+      this.resultsSaverService.generateImage(
+        this.resultsImage,
+        this.HEADER,
+        this.resultsText,
+        this.LEARNING_PATHWAY_HEADER,
+        this.LEARNING_PATHWAY,
+        this.courses);
   }
 
   getCourses(priority: string): Course[] {
@@ -102,12 +101,6 @@ export class ResultsScreenComponent implements OnInit {
       return [];
     }
     return this.courses.filter( course => course.priority === priority);
-  }
-
-  getResultsImage(): string {
-    let r = '';
-    r = this.resultsVisualizationService.imageToDataURI(this.resultsImage)
-    return r;
   }
 
 }

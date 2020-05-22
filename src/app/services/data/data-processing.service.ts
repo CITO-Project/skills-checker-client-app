@@ -15,12 +15,12 @@ export class DataProcessingService {
 
   constructor() { }
 
-  getChallengingSkills(
+  getSkillsLevel(
     questions: Question[],
     answers: number[],
     challengingOrder: string[],
     questionOrder: string[]): Result {
-    const _r: Result = {
+    const r: Result = {
       literacy: {
         level: 0,
         priority: ''
@@ -43,8 +43,8 @@ export class DataProcessingService {
         this.getItemByPedagogicalType(currentAnswers, questionOrder, 'challenging_skill') > -1
         ) {
           let answer = this.getItemByPedagogicalType(currentAnswers, questionOrder, 'challenging_skill').toString(2);
-          const challenging_question: Question = this.getItemByPedagogicalType(currentQuestions, questionOrder, 'challenging_skill');
-          while (answer.length < challenging_question.answers.filter(
+          const challengingQuestion: Question = this.getItemByPedagogicalType(currentQuestions, questionOrder, 'challenging_skill');
+          while (answer.length < challengingQuestion.answers.filter(
             (questionAnswer: Answer) => {
             if (questionAnswer.value >= 0) {
               return true;
@@ -54,13 +54,13 @@ export class DataProcessingService {
           }
           answer = answer.split('').reverse().join('');
           for (let i = 0; i < answer.length; i++) {
-            if (answer.charAt(i) === '1' && _r[challengingOrder[i]].level <= 0) {
+            if (answer.charAt(i) === '1' && r[challengingOrder[i]].level <= 0) {
               const answerTaskQuestion = this.getItemByPedagogicalType(currentAnswers, questionOrder, 'task_question');
               let priority = 'brush_up';
               if (answerTaskQuestion < this.developThreshold) {
                 priority = 'develop';
               }
-              _r[challengingOrder[i]] = {
+              r[challengingOrder[i]] = {
                 level: level + 1,
                 priority
               };
@@ -70,7 +70,7 @@ export class DataProcessingService {
       level++;
       currentQuestions = this.getItemsPerLevel(questions, questionOrder, level);
     }
-    return _r;
+    return r;
   }
 
   getItemsPerLevel(items: any[], questionOrder: string[], level: number): any[] {
@@ -79,17 +79,28 @@ export class DataProcessingService {
   }
 
   getItemByPedagogicalType(items: any[], questionOrder: string[], pedagogicalType: string): any {
-    let _r: any = null;
+    let r: any = null;
     questionOrder.forEach( (question: string, index: number) => {
       if (question === pedagogicalType) {
-        _r = items[index];
+        r = items[index];
       }
     });
-    return _r;
+    return r;
   }
 
   getResults(log: Log): Result {
-    return this.getChallengingSkills(log.questions, log.answers, log.challenging_order, log.question_order);
+    return this.getSkillsLevel(log.questions, log.answers, log.challenging_order, log.question_order);
+  }
+
+  getBalloonSizes(log: Log, nSizes: number, nLevels: number): Result {
+    const r = this.getSkillsLevel(log.questions, log.answers, log.challenging_order, log.question_order);
+    Object.keys(r).forEach( (key: string) => {
+      r[key].level = Math.ceil(r[key].level * nSizes / nLevels);
+      if (r[key].level === 0) {
+        r[key].level = 1;
+      }
+    });
+    return r;
   }
 
 }
