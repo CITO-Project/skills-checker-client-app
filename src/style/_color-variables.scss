@@ -1,0 +1,61 @@
+// General
+$color-yellow: #fcb64c;
+$color-green: #40bda8;
+$color-red: #ec6543;
+$color-blue: #2E3C67;
+$color-grey: #AAABAC;
+$color-black: #5D5E5F;
+$color-white: #F2F3F3;
+$color-blue-light: #586385;
+$color-grey-dark: #62717A;
+$color-grey-light: #C4D0D9;
+$color-grey-lighter: #E0E6EB;
+
+$color-blue-light: #0285D1;
+$color-black-transparent: rgba(0, 0, 0, 0.3);
+$color-green-translucid: rgba(63, 189, 168, 0.50);
+$color-pure-white: #fff;
+
+// Components
+$color-button: $color-green;
+$color-button-background: $color-pure-white;
+$color-button-disabled: $color-grey-light;
+$color-button-text: $color-white;
+$color-button-text-disabled: $color-grey;
+$color-button-special: $color-green;
+$color-button-special-background: $color-white;
+$color-button-border: $color-grey-light;
+
+// Font
+$color-font: $color-white;
+$color-font-muted: $color-grey-lighter;
+$color-font-dark: $color-blue;
+$color-font-link: $color-blue-light;
+
+// Background
+$color-background: $color-white;
+$color-background-secondary: $color-grey-lighter;
+$color-background-colour: $color-green;
+$color-background-dark: $color-black;
+
+// Slider
+$color-slider-background: $color-grey-light;
+$color-slider-start: $color-red;
+$color-slider-end: $color-green;
+$color-slider-pointer-hover: $color-green-translucid;
+$color-slider-text: $color-grey-dark;
+
+// Single and multiple option
+$color-option-background: $color-pure-white;
+$color-option-border: $color-grey-light;
+$color-option-background-active: $color-green;
+$color-option-border-active: $color-font;
+
+// Subtitles
+$color-subtitles: $color-white;
+$color-subtitles-background: $color-black;
+
+// Course screen
+$color-course-heading-background: $color-grey-lighter;
+$color-course-background: $color-pure-white;
+$color-course-border: $color-grey;

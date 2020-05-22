@@ -3,12 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Scenario } from 'src/app/models/scenario';
 import { Question } from 'src/app/models/question';
 import { Category } from 'src/app/models/category';
-import { Answer } from 'src/app/models/answer';
 import { CustomResponse } from 'src/app/models/custom-response';
 
-import { DataLogService } from 'src/app/services/data-log.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
-import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
@@ -27,6 +26,16 @@ export class ScenariosScreenComponent implements OnInit {
 
   public btnBack = 'Back';
   public btnForward = 'Next';
+  private readonly ERROR_MESSAGE_MULTIPLE = 'Please select one or more of the options below';
+  private readonly ERROR_MESSAGE = 'Please select one of the options below';
+  private allButtons: {
+    text: string,
+    icon: string,
+    event: string,
+    visible?: boolean,
+    special?: boolean
+  }[];
+  public buttons;
 
   public currentScenario = -1;
   public currentQuestion = -1;
@@ -42,6 +51,32 @@ export class ScenariosScreenComponent implements OnInit {
       if (!dataLogService.getInterest()) {
         commonService.goTo('interests');
       }
+      this.allButtons = [
+        {
+          text: this.btnBack,
+          icon: String.fromCharCode(61700),
+          visible: true,
+          event: 'back'
+        },
+        {
+          text: 'Skip scenario',
+          icon: String.fromCharCode(61524) + String.fromCharCode(61524),
+          event: 'skip_scenario',
+          special: true
+        },
+        {
+          text: 'Go to results',
+          icon: String.fromCharCode(61452),
+          event: 'go_results',
+          special: true
+        },
+        {
+          text: this.btnForward,
+          icon: String.fromCharCode(61524),
+          visible: true,
+          event: 'forward'
+        }
+        ]
     }
 
   ngOnInit() {
@@ -87,6 +122,7 @@ export class ScenariosScreenComponent implements OnInit {
     }
     this.errorMessage = '';
 
+    this.updateMenu(data);
     this.btnForward = 'Next';
     if (data.isLastQuestion) {
       this.btnForward = 'See results';
@@ -108,7 +144,11 @@ export class ScenariosScreenComponent implements OnInit {
 
   saveAnswer(): boolean {
     if (this.currentAnswer < 0) {
-      this.showError('Please, select one of the options below');
+      if (this.question.pedagogical_type === 'challenging_skill') {
+        this.showError(this.ERROR_MESSAGE_MULTIPLE);
+      } else {
+        this.showError(this.ERROR_MESSAGE);
+      }
       return false;
     } else {
       this.dataLogService.setAnswer(this.currentScenario, this.currentQuestion, this.currentAnswer);
@@ -157,6 +197,20 @@ export class ScenariosScreenComponent implements OnInit {
       this.googleAnalyticsService.addEvent('left_scenario_at_question_number', '' + scenario.id, questionIndex + 1);
     }
     //#endregion
+  }
+
+  updateMenu(data: CustomResponse): void {
+    if (data.scenarioIndex > 0 || data.questionIndex > 1) {
+      this.allButtons.find( button => button.event === 'go_results').visible = true
+    } else {
+      this.allButtons.find( button => button.event === 'go_results').visible = false
+    }
+    if (data.questionIndex > 1) {
+      this.allButtons.find( button => button.event === 'skip_scenario').visible = true
+    } else {
+      this.allButtons.find( button => button.event === 'skip_scenario').visible = false
+    }
+    this.buttons = this.allButtons.filter( button => button.visible)
   }
 
   onButtonsEvent(data: string): void {

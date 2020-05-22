@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-
 import { Category } from 'src/app/models/category';
 
 import { CommonService } from 'src/app/services/common.service';
-import { DataLogService } from 'src/app/services/data-log.service';
-import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
+import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
@@ -29,11 +27,6 @@ export class HowToScreenComponent implements OnInit {
   ngOnInit() {
     this.category = this.dataLogService.getCategory();
     this.retrieveInterest();
-    // this.progressTrackerService.initializeTracker().subscribe( (data: Observable<void>) => {
-    //   data.subscribe( () => {
-    //     this.scenariosReady = true;
-    //   });
-    // });
   }
 
   btnClick() {

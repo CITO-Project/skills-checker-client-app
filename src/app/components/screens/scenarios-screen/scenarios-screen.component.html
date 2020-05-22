@@ -1,43 +1,17 @@
 <app-header [text]='!!category ? category.text : "default"' (customClick)='clickHeader()'></app-header>
 <app-media *ngIf="!!scenario" [resource]='scenario.resource' replay=true></app-media>
-<div class="content d-flex flex-column align-items-center text-center">
-  <div id="header" *ngIf="!!scenario">
-    <div class="heading">{{ scenario.text }}</div>
+<div id="content">
+  <div class="content d-flex flex-column align-items-center text-center">
+    <app-question
+    *ngIf="!!question"
+    [(question)]="question"
+    [(error)]="errorMessage"
+    (answer)="processAnswer($event)"
+    [initialAnswer]="currentAnswer"
+    ></app-question>
   </div>
-  <hr>
-  <app-question
-  *ngIf="!!question"
-  [(question)]="question"
-  [(error)]="errorMessage"
-  (answer)="processAnswer($event)"
-  [initialAnswer]="currentAnswer"
-  ></app-question>
-
 </div>
 <app-navigate-button
-  [buttons] = "[
-  {
-    text: btnBack,
-    icon: '&#xf104;',
-    event: 'back'
-  },
-  {
-    text: 'Skip scenario',
-    icon: '&#xf054;&#xf054;',
-    event: 'skip_scenario',
-    special: true
-  },
-  {
-    text: 'Go to results',
-    icon: '&#xf00c;',
-    event: 'go_results',
-    special: true
-  },
-  {
-    text: btnForward,
-    icon: '&#xf054;',
-    event: 'forward'
-  }
-  ]"
+  [buttons] = "buttons"
   (buttonsEvent)='onButtonsEvent($event)'
   ></app-navigate-button>

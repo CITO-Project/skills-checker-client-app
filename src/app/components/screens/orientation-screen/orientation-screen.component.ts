@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Product } from 'src/app/models/product';
+import { QuestionOrder } from 'src/app/models/question-order';
 
-import { DataLogService } from 'src/app/services/data-log.service';
-import { ProductService } from 'src/app/services/product.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
+import { ProductService } from 'src/app/services/api-call/product.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
-import { QuestionOrderService } from 'src/app/services/question-order.service';
-import { QuestionOrder } from 'src/app/models/question-order';
+import { QuestionOrderService } from 'src/app/services/api-call/question-order.service';
 
 @Component({
   selector: 'app-orientation-screen',
@@ -25,18 +25,18 @@ export class OrientationScreenComponent implements OnInit {
 
   public FEATURES = [
     {
-      text: 'Private',
-      icon: this.getPath('key-emblem.svg'),
-      color: 'blue'
+      text: 'Computers',
+      icon: this.getPath('computers.svg'),
+      color: 'red'
     },
     {
-      text: 'Safe',
-      icon: this.getPath('laptop-checked.svg'),
+      text: 'Maths',
+      icon: this.getPath('maths.svg'),
       color: 'green'
     },
     {
-      text: 'Secure',
-      icon: this.getPath('lock.svg'),
+      text: 'Reading and Writing',
+      icon: this.getPath('reading.svg'),
       color: 'yellow'
     }
   ];
@@ -63,6 +63,8 @@ export class OrientationScreenComponent implements OnInit {
       }
     )
     this.googleAnalyticsService.stopTimer('time_review_results');
+    const _temp = new Image()
+    _temp.src = this.getPath('lock.svg');
   }
 
   getPath(name: string): string {

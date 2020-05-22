@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Course } from 'src/app/models/course';
 import { Result } from 'src/app/models/result';
 
-import { CoursesService } from 'src/app/services/courses.service';
+import { CoursesService } from 'src/app/services/api-call/courses.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 

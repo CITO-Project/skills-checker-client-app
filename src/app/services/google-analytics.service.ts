@@ -11,7 +11,7 @@ declare let gtag: Function;
 })
 export class GoogleAnalyticsService {
 
-  private readonly GOOGLE_ANALYTICS_ENABLED = false;
+  private readonly GOOGLE_ANALYTICS_ENABLED = true;
 
   private starts: {
     time_answer_interest: {

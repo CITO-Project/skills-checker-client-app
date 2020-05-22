@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
-import { DataLogService } from 'src/app/services/data-log.service';
+import { DataLogService } from 'src/app/services/data/data-log.service';
 import { Scenario } from 'src/app/models/scenario';
-import { ProgressTrackerService } from 'src/app/services/progress-tracker.service';
+import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.service';
 import { Category } from 'src/app/models/category';
 
 @Component({
@@ -58,7 +58,6 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
     if (--this.scenarioindex > -1) {
       this.loadScenario(this.scenarioindex);
     }
-    // this.progressTrackerService.previousScenario();
   }
 
   startScenario(): void {
