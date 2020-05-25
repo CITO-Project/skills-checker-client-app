@@ -2,6 +2,11 @@
 @import './_mixins.scss';
 @import './_variables.scss';
 
+#content {
+  max-width: $content-max-width;
+  margin: 0 auto;
+}
+
 .box {
   border-radius: 10px;
   @include setStyleTablet {

@@ -19,6 +19,8 @@ export class InterestsScreenComponent implements OnInit {
   public interests: Interest[];
   public colour: string;
 
+  private readonly INTEREST_COLOURS = ['red', 'green', 'yellow', 'blue'];
+
   constructor(
     private interestService: InterestService,
     private dataLogService: DataLogService,
@@ -32,6 +34,9 @@ export class InterestsScreenComponent implements OnInit {
     }
     this.colour = 'green';
     this.interestService.getInterests().subscribe( (data: Interest[]) => {
+      data.forEach( (interest: Interest) => {
+        interest.colour = this.INTEREST_COLOURS[interest.category%this.INTEREST_COLOURS.length];
+      })
       this.interests = data;
     });
   }

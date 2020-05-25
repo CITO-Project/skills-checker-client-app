@@ -1,9 +1,10 @@
-@import '../../../../_imports.scss';
+@import '../../../../style/_imports.scss';
 
-
+#back-container {
+  background: linear-gradient(to bottom, $color-background-colour, $color-background 200px);
+}
 #content {
-  background: linear-gradient(to bottom, $color-background-colour, $color-transparent 200px);
-  padding: 0 0;
+  padding: 0;
   padding-bottom: 30px;
   .subtitle {
     text-align: center;
@@ -23,7 +24,8 @@
 #result {
   position: relative;
   .background-shape {
-    width: 100vw;
+    width: 100%;
+    max-width: $content-max-width;
     position: absolute;
     img {
       width: 90%;
@@ -45,8 +47,10 @@
     }
     .results-image {
       width: 150%;
+      max-width: 200px;
       text-align: center;
       @include setStyleTablet {
+        max-width: 400px;
         width: 100%;
       }
       > img {
@@ -65,39 +69,8 @@
   }
 }
 
-.dialog {
-  color: $color-font-dark;
-  position: relative;
-  background-color: $color-background;
-  border-radius: 15px;
-  box-shadow: 0 0 10px $color-background-dark;
-  padding: 15px;
-  margin-left: 10px;
-  > .heading {
-    font-size: 100%;
-    font-weight: 600;
-  }
-  > .text {
-    text-align: center;
-    font-weight: 200;
-  }
-}
-
-.dialog:after {
-	right: 100%;
-  bottom: 40px;
-	border: solid $color-transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	border-right-color: $color-background;
-	border-width: 10px;
-	margin-top: -10px;
-}
-
 .holder {
-  margin: 10px 0 20px;
+  margin: 10px 0 70px;
 }
 
 #pathway {

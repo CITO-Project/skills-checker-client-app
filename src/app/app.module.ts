@@ -16,19 +16,13 @@ import { OrientationScreenComponent } from './components/screens/orientation-scr
 import { HeaderComponent } from './components/header/header.component';
 import { NavigateButtonComponent } from './components/navigate-button/navigate-button.component';
 import { InterestsScreenComponent } from './components/screens/interests-screen/interests-screen.component';
-import { HowToScreenComponent } from './components/screens/how-to-screen/how-to-screen.component';
 import { ScenariosScreenComponent } from './components/screens/scenarios-screen/scenarios-screen.component';
 import { ResultsScreenComponent } from './components/screens/results-screen/results-screen.component';
 import { MediaComponent } from './components/media/media.component';
 import { QuestionComponent } from './components/question/question.component';
-import { CategoriesScreenComponent } from './components/screens/categories-screen/categories-screen.component';
 import { LocalizationScreenComponent } from './components/screens/localization-screen/localization-screen.component';
 import { CourseComponent } from './components/course/course.component';
-// tslint:disable-next-line:max-line-length
-import { ScenarioIntroductionScreenComponent } from './components/screens/scenario-introduction-screen/scenario-introduction-screen.component';
 import { CourseScreenComponent } from './components/screens/course-screen/course-screen.component';
-import { SignPostComponent } from './components/graphics/sign-post/sign-post.component';
-import { TreeComponent } from './components/graphics/tree/tree.component';
 import { BallonsAndBasketComponent } from './components/graphics/ballons-and-basket/ballons-and-basket.component';
 
 @NgModule({
@@ -38,18 +32,13 @@ import { BallonsAndBasketComponent } from './components/graphics/ballons-and-bas
     HeaderComponent,
     NavigateButtonComponent,
     InterestsScreenComponent,
-    HowToScreenComponent,
     ScenariosScreenComponent,
     ResultsScreenComponent,
     MediaComponent,
     QuestionComponent,
-    CategoriesScreenComponent,
     LocalizationScreenComponent,
     CourseComponent,
-    ScenarioIntroductionScreenComponent,
     CourseScreenComponent,
-    SignPostComponent,
-    TreeComponent,
     BallonsAndBasketComponent
   ],
   imports: [

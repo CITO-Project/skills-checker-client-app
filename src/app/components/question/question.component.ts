@@ -162,8 +162,6 @@ export class QuestionComponent implements DoCheck {
       return answers.sort( (a: Answer, b: Answer) => {
         return a.order - b.order;
       });
-    // } else {
-    //   this.commonService.goTo('interests');
     }
   }
 
