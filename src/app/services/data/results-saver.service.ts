@@ -197,7 +197,7 @@ export class ResultsSaverService {
     this.canvastemp.drawBox(
       this.FILE_MAX_WIDTH - this.COURSE_PADDING * 2,
       this.calculateHeightCourse(course),
-      0
+      this.COURSES_BORDER_RADIUS
     );
     //#endregion
 

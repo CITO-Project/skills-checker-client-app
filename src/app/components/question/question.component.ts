@@ -36,10 +36,7 @@ export class QuestionComponent implements DoCheck {
     }
   };
 
-  constructor(
-    private commonService: CommonService,
-    private deleteThis: DataLogService
-  ) { }
+  constructor() { }
 
   ngDoCheck() {
     if (this.question.type === 'slider') {

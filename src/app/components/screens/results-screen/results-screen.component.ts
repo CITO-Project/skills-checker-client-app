@@ -48,7 +48,7 @@ export class ResultsScreenComponent implements OnInit {
       this.commonService.goTo('');
     }
     const log = this.dataLogService.getAll();
-    this.results = this.dataProcessingService.getResults(log);
+    this.results = this.dataProcessingService.getCoursesLevel(log);
     this.resultsVisualizationService.generateGraph(log)
       .then( (imgData: string) => this.resultsImage = imgData);
     this.loadCourses(this.results).subscribe( (courses: Course[]) => {

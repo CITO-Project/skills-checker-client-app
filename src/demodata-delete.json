@@ -1086,34 +1086,37 @@
       }
     ],
     "answers": [
-      2,
-      6,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      0,
-      1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1,
-      -1
+      3,  // Difficulty
+      -1, // Challenging
+      -1, // I1
+      -1, // C1
+      -1, // C2
+      -1, // F1
+      -1, // F2
+
+      2,  // Difficulty
+      3,  // Challenging
+      1, // I1
+      1, // C1
+      0, // C2
+      0, // F1
+      -1, // F2
+
+      1, // Difficulty
+      5, // Challenging
+      1, // I1
+      1, // C1
+      1, // C2
+      -1, // F1
+      -1, // F2
+
+      0, // Difficulty
+      7, // Challenging
+      0, // I1
+      -1, // C1
+      -1, // C2
+      -1, // F1
+      -1  // F2
     ],
     "question_answers": [],
     "question_order": [

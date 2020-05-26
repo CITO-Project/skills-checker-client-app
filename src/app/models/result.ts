@@ -1,14 +1,14 @@
 export interface Result {
   literacy: {
     level: number;
-    priority: string;
+    priority?: string;
   };
   numeracy: {
     level: number;
-    priority: string;
+    priority?: string;
   };
   digital_skills: {
     level: number;
-    priority: string;
+    priority?: string;
   };
 }
