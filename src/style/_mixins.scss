@@ -43,7 +43,7 @@ $default-font: 'Raleway';
 }
 
 @mixin setStyleTablet {
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: $tablet-threshold) {
     @content
   }
 }

@@ -15,10 +15,10 @@
         <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
       </vg-scrub-bar>
       <vg-time-display [vgProperty]="'total'" [vgFormat]="'mm:ss'"></vg-time-display>
-      <vg-mute></vg-mute>
-      <vg-volume></vg-volume>
-      <vg-track-selector></vg-track-selector>
-      <vg-fullscreen></vg-fullscreen>
+      <vg-mute class='hide-control'></vg-mute>
+      <vg-volume class='hide-control'></vg-volume>
+      <vg-track-selector class='hide-control'></vg-track-selector>
+      <vg-fullscreen class='hide-control'></vg-fullscreen>
     </vg-controls>
     <video [vgMedia]="media" #media id="singleVideo" preload="auto" playsinline autoplay>
       <source [src]="resourceFile" type="video/mp4">
