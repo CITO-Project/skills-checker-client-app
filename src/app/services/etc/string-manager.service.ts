@@ -5,6 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class StringManagerService {
 
+  private readonly DICTIONARY = {
+    my: 'your'
+  };
+
   constructor() { }
 
   splitTextInLines(text: string, charsPerLine: number): string[] {
@@ -38,6 +42,26 @@ export class StringManagerService {
     } else {
       return this.addZeros('0' + value, nZeros);
     }
+  }
+
+  concatenateText(texts: string[], text: string = ''): string {
+    if (texts.length === 0) {
+      return '';
+    }
+    if (texts.length > 1) {
+      return this.concatenateText(texts.slice(1), text + texts[0] + ', ');
+    } else {
+      return `${text.slice(0, -2)} and ${texts[0]}`;
+    }
+  }
+
+  lowerCaseFirst(text: string): string {
+    return text.slice(0, 1).toLowerCase() + text.slice(1);
+  }
+
+  correctText(text: string): string {
+    Object.entries(this.DICTIONARY).forEach( ( value: [ string, string ]) => text = text.replace(value[0], value[1]));
+    return text;
   }
 
 }

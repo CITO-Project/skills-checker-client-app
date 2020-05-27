@@ -20,11 +20,12 @@ import { ResultsProcessingService } from 'src/app/services/data/results-processi
 })
 export class ResultsScreenComponent implements OnInit {
 
-  public resultsText;
+  public texts: {
+    resultsText: string,
+    learningPathwayDescription: string[]};
   public readonly HEADER = 'Check-In Take-Off';
   public readonly SUBTITLE = 'My Learning Pathway';
   public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway';
-  public readonly LEARNING_PATHWAY = 'If you want to develop your digital skills, try one of these courses below:';
 
   public courses: Course[];
   public results: Result;
@@ -49,6 +50,7 @@ export class ResultsScreenComponent implements OnInit {
     }
     const log = this.dataLogService.getAll();
     this.results = this.dataProcessingService.getCoursesLevel(log);
+    this.texts = this.dataProcessingService.getResultsText(log, this.results);
     this.resultsVisualizationService.generateGraph(log)
       .then( (imgData: string) => this.resultsImage = imgData);
     this.loadCourses(this.results).subscribe( (courses: Course[]) => {
@@ -61,7 +63,6 @@ export class ResultsScreenComponent implements OnInit {
 
       this.googleAnalyticsService.startTimer('time_review_results', '' + this.dataLogService.getInterest().id);
     });
-    this.resultsText = this.resultsProcessingService.generateText(log);
   }
 
   loadCourses(results: Result): Observable<Course[]> {
@@ -90,9 +91,9 @@ export class ResultsScreenComponent implements OnInit {
       this.resultsSaverService.generateImage(
         this.resultsImage,
         this.HEADER,
-        this.resultsText,
+        this.texts.resultsText,
         this.LEARNING_PATHWAY_HEADER,
-        this.LEARNING_PATHWAY,
+        this.texts.learningPathwayDescription[0],
         this.courses);
   }
 

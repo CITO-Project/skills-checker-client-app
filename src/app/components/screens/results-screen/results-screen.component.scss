@@ -15,6 +15,12 @@
       font-size: 130%;
     }
   }
+  .download > .button{
+    font-size: 150%;
+    @include setStyleTablet {
+      font-size: 100%;
+    }
+  }
 }
 
 .heading {
@@ -46,12 +52,12 @@
       }
     }
     .results-image {
-      width: 150%;
+      width: 230%;
       max-width: 200px;
       text-align: center;
       @include setStyleTablet {
         max-width: 400px;
-        width: 100%;
+        width: 130%;
       }
       > img {
         width: 100%;
@@ -70,11 +76,13 @@
 }
 
 .holder {
-  margin: 10px 0 70px;
+  margin: 10px 0 20px;
+  @include setStyleTablet {
+    margin-bottom: 70px;
+  }
 }
 
 #pathway {
-  margin-top: 30px;
   .intro {
     padding: 0 10px;
     .heading {
@@ -90,11 +98,11 @@
     .message {
       text-align: center;
       margin-bottom: 20px;
-      font-weight: 200;
+      font-weight: 300;
       font-size: 90%;
-      padding: 0 40px;
+      padding: 0 30px;
       @include setStyleTablet {
-        padding: 0 140px;
+        padding: 0 60px;
       }
     }
   }

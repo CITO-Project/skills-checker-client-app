@@ -17,8 +17,8 @@
             </button>
           </div>
           <div class="d-flex flex-row flex-grow-1">
-            <div *ngIf='!!resultsText' class="flex-column text align-self-center">
-              {{ resultsText }}
+            <div *ngIf='!!texts.resultsText' class="flex-column text align-self-center">
+              <b>Well done! </b>{{ texts.resultsText }}
             </div>
           </div>
         </div>
@@ -32,7 +32,10 @@
           {{ LEARNING_PATHWAY_HEADER }}
         </div>
         <div class="message container text">
-          {{ LEARNING_PATHWAY }}
+          {{ texts.learningPathwayDescription[0] }}
+        </div>
+        <div class="message container text">
+          {{ texts.learningPathwayDescription[1] }}
         </div>
       </div>
       <div class="learning-oportunities" *ngIf="getCourses('brush_up').length > 0 || getCourses('develop').length > 0">

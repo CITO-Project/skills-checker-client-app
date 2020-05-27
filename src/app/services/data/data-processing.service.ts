@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { StringManagerService } from '../etc/string-manager.service';
+
 import { Log } from '../../models/log';
 import { Question } from '../../models/question';
 import { Result } from '../../models/result';
@@ -10,10 +12,19 @@ import { Answer } from '../../models/answer';
 })
 export class DataProcessingService {
 
+  private readonly TEXTS = {
+    literacy: 'reading and writing',
+    numeracy: 'maths',
+    digital_skills: 'computer',
+    fluency: 'faster',
+    confidence: 'more confidently',
+    independence: 'by yourself'
+  };
+
   private brushUpThreshold = 3;
   private developThreshold = 2;
 
-  constructor() { }
+  constructor(private stringManagerService: StringManagerService) { }
 
   getSkillsLevel(
     questions: Question[],
@@ -169,6 +180,84 @@ export class DataProcessingService {
         r.push(challengingOrder[index]);
       }
     });
+    return r;
+  }
+
+  getDimensionsLevel(questions: Question[], answers: number[]): {
+    fluency: number,
+    confidence: number,
+    independence: number
+  } {
+    const r = {
+      fluency: 0,
+      confidence: 0,
+      independence: 0
+    };
+    const prefix = 'dimension_';
+    const dimensions = ['independence', 'confidence', 'fluency'];
+    dimensions.forEach( (dimension: string) => {
+      let currentIndex = 0;
+      dimension = prefix + dimension;
+      questions.filter(
+        (question: Question) => question.pedagogical_type.startsWith(dimension))
+          .forEach( (pedagogicalQuestion: Question) => {
+            currentIndex = questions.findIndex(
+              (question: Question, index: number) => index > currentIndex && question.id === pedagogicalQuestion.id);
+            if (this.shouldIncreaseLevel(pedagogicalQuestion.pedagogical_type, answers[currentIndex])) {
+              r[dimension.slice(prefix.length)]++;
+            }
+          });
+    });
+    return r;
+  }
+
+  getResultsText(log: Log, skillsResults: Result): {
+    resultsText: string,
+    learningPathwayDescription: string[]
+  } {
+    const interest = log.interest.text;
+    const dimensionResults = this.getDimensionsLevel(log.questions, log.answers);
+    const dimension = [];
+    Object.entries(dimensionResults).forEach( (value: [string, number]) => {
+      if (value[1] > 0) {
+        return dimension.push(this.getVariableText(value[0]));
+      }
+    });
+    const skills = [];
+    Object.entries(skillsResults).forEach( (value: [string, { level: number }]) => {
+      if (value[1].level > 0) {
+        return skills.push(this.getVariableText(value[0]));
+      }
+    });
+    const r = {
+      resultsText: `You have taken the first step towards achieving your goal of being able to ${
+        this.stringManagerService.lowerCaseFirst(this.stringManagerService.correctText(interest))}`,
+      learningPathwayDescription: [
+        `Take the next step and develop your ${this.stringManagerService.concatenateText(skills)} skills ` +
+        `so that you can do similar tasks ${this.stringManagerService.concatenateText(dimension)}`,
+        'Check out the courses below and find one that\'s right for you'
+      ]};
+    return r;
+  }
+
+  getVariableText(variable: string): string {
+    return this.TEXTS[variable];
+  }
+
+  shouldIncreaseLevel(questionType: string, value: number): boolean {
+    const prefix = 'dimension_';
+    const increaseIfYes = ['independence_1', 'confidence_1', 'fluency_1'];
+    const increaseIfNo = ['confidence_2'];
+
+    if (questionType.startsWith(prefix)) {
+      questionType = questionType.slice(prefix.length);
+    }
+    let r = false;
+    if (
+      (increaseIfYes.includes(questionType) && value === 0) ||
+      (increaseIfNo.includes(questionType) && value === 1) ) {
+        r = true;
+    }
     return r;
   }
 

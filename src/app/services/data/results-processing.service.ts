@@ -10,7 +10,7 @@ export class ResultsProcessingService {
   constructor() { }
 
   generateText(log: Log): string {
-    return 'An example of some additional text beside the balloons... in this space here!'
+    return 'An example of some additional text beside the balloons... in this space here!';
   }
 
 }
