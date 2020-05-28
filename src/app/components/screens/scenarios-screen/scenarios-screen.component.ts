@@ -76,7 +76,7 @@ export class ScenariosScreenComponent implements OnInit {
           visible: true,
           event: 'forward'
         }
-        ]
+        ];
     }
 
   ngOnInit() {
@@ -106,7 +106,7 @@ export class ScenariosScreenComponent implements OnInit {
     if (!!$next) {
       $next.subscribe( (data: CustomResponse) => {
         this.updateData(data);
-      })
+      });
     }
   }
 
@@ -201,20 +201,20 @@ export class ScenariosScreenComponent implements OnInit {
 
   updateMenu(data: CustomResponse): void {
     if (data.scenarioIndex > 0 || data.questionIndex > 1) {
-      this.allButtons.find( button => button.event === 'go_results').visible = true
+      this.allButtons.find( button => button.event === 'go_results').visible = true;
     } else {
-      this.allButtons.find( button => button.event === 'go_results').visible = false
+      this.allButtons.find( button => button.event === 'go_results').visible = false;
     }
     if (data.questionIndex > 1) {
-      this.allButtons.find( button => button.event === 'skip_scenario').visible = true
+      this.allButtons.find( button => button.event === 'skip_scenario').visible = true;
     } else {
-      this.allButtons.find( button => button.event === 'skip_scenario').visible = false
+      this.allButtons.find( button => button.event === 'skip_scenario').visible = false;
     }
-    this.buttons = this.allButtons.filter( button => button.visible)
+    this.buttons = this.allButtons.filter( button => button.visible);
   }
 
   onButtonsEvent(data: string): void {
-    switch(data) {
+    switch (data) {
       case 'back':
         this.previousQuestion();
         break;
@@ -222,12 +222,16 @@ export class ScenariosScreenComponent implements OnInit {
         this.nextScenario();
         break;
       case 'go_results':
-        this.commonService.goTo('results');
+        document.getElementById('resultsModal').click();
         break;
       case 'forward':
         this.nextQuestion();
         break;
     }
+  }
+
+  goToResults(): void {
+    this.commonService.goTo('results');
   }
 
 }
