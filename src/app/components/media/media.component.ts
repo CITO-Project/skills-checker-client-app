@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { VgAPI, VgMedia } from 'videogular2/compiled/core';
 
 import { CommonService } from 'src/app/services/common.service';
@@ -14,6 +14,8 @@ export class MediaComponent implements OnInit, OnChanges {
   @Input() height: string;
   @Input() resource: string;
   @Input() replay: boolean;
+
+  @Output() ready = new EventEmitter<VgAPI>();
 
   private vgApi: VgAPI;
   private videoFinished = false;
@@ -81,6 +83,7 @@ export class MediaComponent implements OnInit, OnChanges {
   onPlayerReady(vgAPI: VgAPI): void {
     this.vgApi = vgAPI;
     this.addListenersToVideo();
+    this.ready.emit(this.vgApi);
     this.googleAnalyticsService.addCounter('count_plays_per_scenario');
   }
 

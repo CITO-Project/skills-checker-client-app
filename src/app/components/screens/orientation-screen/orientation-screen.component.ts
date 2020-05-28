@@ -8,6 +8,7 @@ import { ProductService } from 'src/app/services/api-call/product.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { QuestionOrderService } from 'src/app/services/api-call/question-order.service';
+import { VgAPI } from 'videogular2/compiled/core';
 
 @Component({
   selector: 'app-orientation-screen',
@@ -22,6 +23,7 @@ export class OrientationScreenComponent implements OnInit {
   public currentResource: string;
   public addReplay: boolean;
   public isVideoLoaded = false;
+  public isVideoPaused = false;
 
   public FEATURES = [
     {
@@ -61,10 +63,10 @@ export class OrientationScreenComponent implements OnInit {
       (questionOrder: QuestionOrder[]) => {
         this.dataLogService.setQuestionOrder(questionOrder);
       }
-    )
+    );
     this.googleAnalyticsService.stopTimer('time_review_results');
-    const _temp = new Image()
-    _temp.src = this.getPath('lock.svg');
+    const temp = new Image();
+    temp.src = this.getPath('lock.svg');
   }
 
   getPath(name: string): string {
@@ -82,6 +84,13 @@ export class OrientationScreenComponent implements OnInit {
       this.addReplay = true;
       this.isVideoLoaded = true;
     }
+  }
+
+  mediaLoaded(vgAPI: VgAPI): void {
+    vgAPI.getDefaultMedia().subscriptions.playing.subscribe(
+      () => this.isVideoPaused = false);
+    vgAPI.getDefaultMedia().subscriptions.pause.subscribe(
+      () => this.isVideoPaused = true);
   }
 
 }
