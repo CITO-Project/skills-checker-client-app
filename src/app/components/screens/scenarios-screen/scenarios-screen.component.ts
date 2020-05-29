@@ -222,12 +222,16 @@ export class ScenariosScreenComponent implements OnInit {
         this.nextScenario();
         break;
       case 'go_results':
-        this.commonService.goTo('results');
+        document.getElementById('resultsModal').click();
         break;
       case 'forward':
         this.nextQuestion();
         break;
     }
+  }
+
+  goToResults(): void {
+    this.commonService.goTo('results');
   }
 
 }

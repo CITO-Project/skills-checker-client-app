@@ -2,17 +2,11 @@
 
 #description {
   text-align: center;
-  padding: 0px 20px;
+  padding: 20px;
   @include setStyleTablet {
     padding: 30px 20px;
   }
-
-  #how-to-use {
-    margin-top: 20px;
-    @include setStyleTablet {
-      margin-top: 0;
-    }
-  }
+  
   .main {
     padding: 10px;
     font-size: 150%;

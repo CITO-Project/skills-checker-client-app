@@ -1,15 +1,18 @@
 <app-header text='default'></app-header>
-<app-media [resource]=currentResource [replay]=addReplay></app-media>
+<app-media [resource]=currentResource [replay]=addReplay (ready)='mediaLoaded($event)'></app-media>
 <div id="content">
   <div id="description">
-    <button *ngIf='!isVideoLoaded' class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
+    <button *ngIf="!isVideoLoaded; else elseIsVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
       How to use
     </button>
+    <ng-template #elseIsVideoLoaded>
+      <div class="muted font-italic" [ngClass]="{'transparent': !isVideoPaused}">Press play to learn about the app</div>
+    </ng-template>
     <div class="main heading">
-      Discover your skills and strengths
+      Check your skills and discover your strengths
     </div>
     <div class="text">
-      The app will help find courses/learning options that match your skills and you can decide what is right for you
+      Find learning options so that you can improve your skills and learn new ones
     </div>
     <div class="features container-fluid">
       <div class="row">
@@ -26,7 +29,7 @@
       </div>
     </div>
     <div class="main heading">
-      It's quick - All in less than 10 minutes!
+      All in less than 10 minutes!
     </div>
   </div>
 </div>

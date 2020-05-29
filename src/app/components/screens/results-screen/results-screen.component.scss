@@ -11,9 +11,7 @@
     color: $color-font-dark;
     font-weight: 500;
     padding-bottom: 20px;
-    @include setStyleTablet {
-      font-size: 130%;
-    }
+    font-size: 110%;
   }
   .download > .button{
     font-size: 150%;
@@ -87,9 +85,9 @@
     padding: 0 10px;
     .heading {
       color: $color-font-dark;
-      font-size: 130%;
+      font-size: 120%;
       margin-bottom: 10px;
-      font-weight: 300;
+      font-weight: 500;
       > img {
         margin-right: 10px;
         height: .7em;

@@ -18,3 +18,9 @@ video::cue {
   background-color: $color-subtitles-background;
   color: $color-subtitles;
 }
+
+.hide-control {
+  @media screen and (max-width: $tablet-threshold) {
+    display: none;
+  }
+}

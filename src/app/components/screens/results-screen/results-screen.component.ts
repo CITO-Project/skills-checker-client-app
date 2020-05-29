@@ -24,7 +24,7 @@ export class ResultsScreenComponent implements OnInit {
     resultsText: string,
     learningPathwayDescription: string[]};
   public readonly HEADER = 'Check-In Take-Off';
-  public readonly SUBTITLE = 'My Learning Pathway';
+  public readonly SUBTITLE = 'My Results';
   public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway';
 
   public courses: Course[];
