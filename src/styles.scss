@@ -10,6 +10,9 @@ body{
   background-color: $color-background;
   padding: 0;
   padding-bottom: $bottom-height;
+  * {
+    outline: 0;
+  }
   @include setStyleTablet {
     font-size: 1.5em;
     padding-bottom: $bottom-height * 1.2;
