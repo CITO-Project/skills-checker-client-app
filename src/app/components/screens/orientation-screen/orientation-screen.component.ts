@@ -24,8 +24,9 @@ export class OrientationScreenComponent implements OnInit {
 
   private readonly TEXT_FONT_FAMILY = 'Raleway';
   private readonly TEXT_FONT_FAMILY_SOURCE = 'https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwPIsWqhPAMif.woff2';
+  private readonly IMAGE_TEXT_HEADER = 'Velkommen til Check In Take Off';
   // tslint:disable-next-line: max-line-length
-  private readonly IMAGE_TEXT = 'Hi! I\'m Frank and I am your guide today. Watch our \'How to Use\' video and I will help you check your skills and find learning options that work for you.';
+  private readonly IMAGE_TEXT = 'Hei! Jeg heter Petra og jeg skal være veilederen din i dag. Se “Hvordan bruke” videoen vår, jeg bistår deg i å finne dine ferdigheter og utdanningsmuligheter som kan passe for deg.';
 
   public currentResource: string;
   public mediaType: string;
@@ -35,17 +36,17 @@ export class OrientationScreenComponent implements OnInit {
 
   public FEATURES = [
     {
-      text: 'Computers',
+      text: 'Datamaskiner',
       icon: this.getPath('computers.svg'),
       color: 'red'
     },
     {
-      text: 'Maths',
+      text: 'Mattematikk',
       icon: this.getPath('maths.svg'),
       color: 'green'
     },
     {
-      text: 'Reading and Writing',
+      text: 'Lesing og skriving',
       icon: this.getPath('reading.svg'),
       color: 'yellow'
     }
@@ -113,9 +114,10 @@ export class OrientationScreenComponent implements OnInit {
     canvas.setColour('#2E3C67');
     await canvas.printImageFromSource(this.commonService.getImagePath(`${this.DEFAULT_IMAGE}`), 0, 0, 375 * multiplier, 211 * multiplier);
     canvas.setX(375 * multiplier / 3);
-    canvas.setY(40 * multiplier);
+    canvas.setY(35 * multiplier);
     canvas.setFont(15 * multiplier, 'bold');
-    canvas.printLine('Welcome to Check In Take Off');
+    this.stringManagerService.splitTextInLines(this.IMAGE_TEXT_HEADER, 30).forEach(
+      (text: string) => canvas.printLine(text));
     canvas.setFont(15 * multiplier, 'normal');
     canvas.addY(20 * multiplier);
     this.stringManagerService.splitTextInLines(this.IMAGE_TEXT, 30).forEach(

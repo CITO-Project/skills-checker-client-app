@@ -3,16 +3,16 @@
 <div id="content">
   <div id="description">
     <button *ngIf="!isVideoLoaded; else elseIsVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
-      How to use
+      Hvordan bruke
     </button>
     <ng-template #elseIsVideoLoaded>
       <div class="muted font-italic" [ngClass]="{'transparent': !isVideoPaused}">Press play to learn about the app</div>
     </ng-template>
     <div class="main heading">
-      Check your skills and discover your strengths
+      Sjekk dine ferdigheter og oppdag styrkene dine
     </div>
     <div class="text">
-      Find learning options so that you can improve your skills and learn new ones
+      Finn utdanningsmuligheter slik at du kan forbedre dine ferdigheter og lære nye.
     </div>
     <div class="features container-fluid">
       <div class="row">
@@ -29,8 +29,8 @@
       </div>
     </div>
     <div class="main heading">
-      All in less than 10 minutes!
+      Alt på under 10 minutter!
     </div>
   </div>
 </div>
-<app-navigate-button text="Get started" (event)="onClick()"></app-navigate-button>
+<app-navigate-button text="Kom i gang" (event)="onClick()"></app-navigate-button>
