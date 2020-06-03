@@ -31,12 +31,13 @@ export class DataLogService {
   }
 
   initializeLog() {
-    let product = null, question_order = null;
+    let product = null;
+    let questionOrder = null;
     if (!!this.log && !!this.log.product) {
       product = this.log.product;
     }
     if (!!this.log && !!this.log.question_order) {
-      question_order = this.log.question_order
+      questionOrder = this.log.question_order;
     }
     this.log = {
       product,
@@ -45,7 +46,7 @@ export class DataLogService {
       questions: [],
       answers: [],
       question_answers: [],
-      question_order,
+      question_order: questionOrder,
       challenging_order: this.questionService.getChallengingOrder()
     };
   }
@@ -120,10 +121,10 @@ export class DataLogService {
         this.log.answers.push(-1);
         questions.push(data.find( (question: Question) => {
           return question.pedagogical_type === orderValue;
-        }))
-      })
+        }));
+      });
       for (let i = 0; i < data.length; i++) {
-        this.log.questions[this.getIndex(scenarioindex, i)] = questions[i]
+        this.log.questions[this.getIndex(scenarioindex, i)] = questions[i];
       }
     }));
   }
@@ -133,14 +134,14 @@ export class DataLogService {
       this.log.questions = [];
     }
     return this.questionService.getQuestionsByCategory(categoryid, interestid, scenarioid).pipe(map( (data: Question[]) => {
-      const _questions = [];
+      const questions = [];
       this.log.question_order.forEach( (orderValue: string) => {
         this.log.answers.push(-1);
-        _questions.push(data.find( (question: Question) => {
+        questions.push(data.find( (question: Question) => {
           return question.pedagogical_type === orderValue;
-        }))
-      })
-      this.log.questions = this.log.questions.concat(_questions);
+        }));
+      });
+      this.log.questions = this.log.questions.concat(questions);
     }));
   }
 
@@ -206,13 +207,13 @@ export class DataLogService {
   //#endregion
 
   //#region QuestionOrder
-  setQuestionOrder(_questionOrder: QuestionOrder[]): void {
-    this.log.question_order = _questionOrder
+  setQuestionOrder(questionOrder: QuestionOrder[]): void {
+    this.log.question_order = questionOrder
       .sort( (a: QuestionOrder, b: QuestionOrder) => {
         return a.order - b.order;
       })
       .map( (value: QuestionOrder) => {
-        return value.name
+        return value.name;
       });
   }
 

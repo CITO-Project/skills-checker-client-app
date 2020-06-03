@@ -24,7 +24,8 @@ export class OrientationScreenComponent implements OnInit {
 
   private readonly TEXT_FONT_FAMILY = 'Raleway';
   private readonly TEXT_FONT_FAMILY_SOURCE = 'https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwPIsWqhPAMif.woff2';
-  private readonly IMAGE_TEXT = 'Hi! I\'m Frank and I am your guide today. Watch our \'How to Use\' video and I will help you check your skills and find learning options that work for you.'
+  // tslint:disable-next-line: max-line-length
+  private readonly IMAGE_TEXT = 'Hi! I\'m Frank and I am your guide today. Watch our \'How to Use\' video and I will help you check your skills and find learning options that work for you.';
 
   public currentResource: string;
   public mediaType: string;
@@ -117,9 +118,8 @@ export class OrientationScreenComponent implements OnInit {
     canvas.printLine('Welcome to Check In Take Off');
     canvas.setFont(15 * multiplier, 'normal');
     canvas.addY(20 * multiplier);
-    this.stringManagerService.splitTextInLines(this.IMAGE_TEXT, 30).forEach( (text: string) => [
-      canvas.printLine(text)
-    ])
+    this.stringManagerService.splitTextInLines(this.IMAGE_TEXT, 30).forEach(
+      (text: string) => canvas.printLine(text));
     return canvas.exportToData();
   }
 }
