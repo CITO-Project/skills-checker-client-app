@@ -44,14 +44,18 @@ export class StringManagerService {
     }
   }
 
-  concatenateText(texts: string[], text: string = ''): string {
-    if (texts.length === 0) {
-      return '';
-    }
-    if (texts.length > 1) {
-      return this.concatenateText(texts.slice(1), text + texts[0] + ', ');
+  concatenateText(texts: string[]): string {
+    if (texts.length > 2) {
+      return `${texts[0]}, ${this.concatenateText(texts.slice(1))}`;
     } else {
-      return `${text.slice(0, -2)} and ${texts[0]}`;
+      switch (texts.length) {
+        case 0:
+          return '';
+        case 1:
+          return texts[0];
+        case 2:
+          return `${texts[0]} and ${texts[1]}`;
+      }
     }
   }
 

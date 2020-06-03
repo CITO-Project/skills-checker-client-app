@@ -11,7 +11,6 @@ import { DataLogService } from 'src/app/services/data/data-log.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { ResultsSaverService } from 'src/app/services/data/results-saver.service';
 import { ResultsVisualizationService } from 'src/app/services/data/results-visualization.service';
-import { ResultsProcessingService } from 'src/app/services/data/results-processing.service';
 
 @Component({
   selector: 'app-results-screen',
@@ -38,8 +37,7 @@ export class ResultsScreenComponent implements OnInit {
     private dataProcessingService: DataProcessingService,
     private googleAnalyticsService: GoogleAnalyticsService,
     private resultsSaverService: ResultsSaverService,
-    private resultsVisualizationService: ResultsVisualizationService,
-    private resultsProcessingService: ResultsProcessingService) { }
+    private resultsVisualizationService: ResultsVisualizationService) { }
 
   ngOnInit() {
     if (

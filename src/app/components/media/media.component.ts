@@ -14,6 +14,7 @@ export class MediaComponent implements OnInit, OnChanges {
   @Input() height: string;
   @Input() resource: string;
   @Input() replay: boolean;
+  @Input() type: string;
 
   @Output() ready = new EventEmitter<VgAPI>();
 
@@ -31,7 +32,11 @@ export class MediaComponent implements OnInit, OnChanges {
     ) { }
 
   ngOnInit() {
-    this.loadResource();
+    if (this.type === 'raw') {
+      this.resourceFile = this.resource;
+    } else {
+      this.loadResource();
+    }
     const el = document.getElementById('media');
     if (!!this.height) {
       el.style.height = this.height;
@@ -46,18 +51,21 @@ export class MediaComponent implements OnInit, OnChanges {
   loadResource() {
     if (this.resource === undefined || !this.resource) {
       this.resourceFile = 'default.mp4';
-    }
-    switch (this.getType()) {
-      case 'video':
-        this.resourceFile = this.commonService.getResourcePath(`videos/${this.resource}`);
-        this.loadSubtitles();
-        if (!!this.vgApi) {
-          (this.vgApi.getDefaultMedia() as VgMedia).loadMedia();
-          (this.vgApi.getDefaultMedia() as VgMedia).play();
-        }
-        break;
-      case 'image':
-        this.resourceFile = this.commonService.getResourcePath(`images/${this.resource}`);
+    } else if (this.type === 'raw') {
+      this.resourceFile = this.resource
+    } else {
+      switch (this.getType()) {
+        case 'video':
+          this.resourceFile = this.commonService.getResourcePath(`videos/${this.resource}`);
+          this.loadSubtitles();
+          if (!!this.vgApi) {
+            (this.vgApi.getDefaultMedia() as VgMedia).loadMedia();
+            (this.vgApi.getDefaultMedia() as VgMedia).play();
+          }
+          break;
+        case 'image':
+          this.resourceFile = this.commonService.getResourcePath(`images/${this.resource}`);
+      }
     }
   }
 
@@ -71,6 +79,9 @@ export class MediaComponent implements OnInit, OnChanges {
   }
 
   getType(): string {
+    if (this.type === 'raw') {
+      return 'image';
+    }
     if (this.supportedImages.includes(this.getExtension())) {
       return 'image';
     } else if (this.supportedVideo.includes(this.getExtension())) {
