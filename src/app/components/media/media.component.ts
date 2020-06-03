@@ -52,7 +52,7 @@ export class MediaComponent implements OnInit, OnChanges {
     if (this.resource === undefined || !this.resource) {
       this.resourceFile = 'default.mp4';
     } else if (this.type === 'raw') {
-      this.resourceFile = this.resource
+      this.resourceFile = this.resource;
     } else {
       switch (this.getType()) {
         case 'video':

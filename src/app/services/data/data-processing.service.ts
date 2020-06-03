@@ -18,7 +18,7 @@ export class DataProcessingService {
     digital_skills: 'computer',
     fluency: 'faster',
     confidence: 'more confidently',
-    independence: 'by yourself'
+    independence: 'without help'
   };
 
   private brushUpThreshold = 3;
@@ -183,8 +183,8 @@ export class DataProcessingService {
     return r;
   }
 
-  getDimensionsLevel(questions: Question[], answers: number[]): string {
-    let r = '';
+  getDimensionsLevel(questions: Question[], answers: number[]): string[] {
+    const r = [];
     const prefix = 'dimension_';
     const dimensions = ['independence', 'confidence', 'fluency'];
     dimensions.forEach( (dimension: string) => {
@@ -193,7 +193,7 @@ export class DataProcessingService {
       const currentQuestions = questions.filter( (question: Question) => question.pedagogical_type.startsWith(dimension));
       currentQuestions.forEach( (question: Question, index: number) => {
         if (this.shouldIncreaseLevel(question.pedagogical_type, currentAnswers[index])) {
-          r = dimension.slice(prefix.length);
+          r.push(dimension.slice(prefix.length));
         }
       });
     });
@@ -208,24 +208,23 @@ export class DataProcessingService {
     const brushUpDimensions: string[] = [];
     const developSkills: string[] = [];
     const developDimensions: string[] = [];
-    Object.entries(skillsResults).forEach( (item: [string, { level: number, priority: string}], index: number, array) => {
-      const level = item[1].level;
-      if (level < this.developThreshold) {
-        this.addToUniqueArray(developSkills, item[0]);
-      } else if (level < this.brushUpThreshold) {
-        this.addToUniqueArray(brushUpSkills, item[0]);
-      }
-      if (array.findIndex( (value) => value[1].level === level) === index) {
+    Object.entries(skillsResults).forEach(
+      (item: [string, { level: number, priority: string}], index: number, array) => {
+        const level = item[1].level - 1;
+        if (item[1].priority === 'develop') {
+          this.addToUniqueArray(developSkills, [item[0]]);
+        } else if (item[1].priority === 'brush_up') {
+          this.addToUniqueArray(brushUpSkills, [item[0]]);
+        }
         const result = this.getDimensionsLevel(
           this.getItemsPerLevel(log.questions, log.question_order.length, level),
           this.getItemsPerLevel(log.answers, log.question_order.length, level)
         );
-        if (level < this.developThreshold) {
-        this.addToUniqueArray(developDimensions, result);
-        } else if (level < this.brushUpThreshold) {
-        this.addToUniqueArray(brushUpDimensions, result);
+        if (item[1].priority === 'develop') {
+          this.addToUniqueArray(developDimensions, result);
+        } else if (item[1].priority === 'brush_up') {
+          this.addToUniqueArray(brushUpDimensions, result);
         }
-      }
     });
     const interest = log.interest.text;
     const r = {
@@ -253,8 +252,8 @@ export class DataProcessingService {
 
   shouldIncreaseLevel(questionType: string, value: number): boolean {
     const prefix = 'dimension_';
-    const increaseIfYes = ['independence_1', 'confidence_1', 'fluency_1', 'fluency_2'];
-    const increaseIfNo = ['confidence_2'];
+    const increaseIfYes = ['independence_1', 'fluency_2'];
+    const increaseIfNo = ['confidence_1', 'confidence_2', 'fluency_1'];
 
     if (questionType.startsWith(prefix)) {
       questionType = questionType.slice(prefix.length);
@@ -268,10 +267,12 @@ export class DataProcessingService {
     return r;
   }
 
-  addToUniqueArray(array: string[], item: string): void {
-    if (!!item && !array.includes(item)) {
-      array.push(this.getVariableText(item));
-    }
+  addToUniqueArray(array: string[], items: string[]): void {
+    items.forEach( (value: string) => {
+      if (!array.includes(this.getVariableText(value))) {
+        array.push(this.getVariableText(value));
+      }
+    });
   }
 
 }
