@@ -9,6 +9,15 @@
     width: 100%;
     max-width: $content-max-width;
   }
+  vg-player {
+    padding-bottom: 50px;
+    vg-controls {
+      background: $color-video-controls-background;
+      > * {
+        color: $color-video-controls;
+      }
+    }
+  }
 }
 
 video::cue {

@@ -109,11 +109,13 @@ export class OrientationScreenComponent implements OnInit {
     const multiplier = 10;
     const canvas = new CanvasManagerService(211 * multiplier, 375 * multiplier);
     await canvas.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
+    canvas.setColour('#2E3C67');
     await canvas.printImageFromSource(this.commonService.getImagePath(`${this.DEFAULT_IMAGE}`), 0, 0, 375 * multiplier, 211 * multiplier);
     canvas.setX(375 * multiplier / 3);
     canvas.setY(40 * multiplier);
-    canvas.setFont(15 * multiplier);
+    canvas.setFont(15 * multiplier, 'bold');
     canvas.printLine('Welcome to Check In Take Off');
+    canvas.setFont(15 * multiplier, 'normal');
     canvas.addY(20 * multiplier);
     this.stringManagerService.splitTextInLines(this.IMAGE_TEXT, 30).forEach( (text: string) => [
       canvas.printLine(text)
