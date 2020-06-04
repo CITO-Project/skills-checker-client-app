@@ -18,6 +18,9 @@
     left: 33%;
     width: 60%;
     font-size: 65%;
+    @include setStyleTablet {
+      font-size: 90%;
+    }
     .heading {
       margin-bottom: 20px;
     }
