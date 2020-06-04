@@ -42,8 +42,32 @@ $default-font: 'Raleway';
   background-image: linear-gradient(135deg, $color 50%, $color-white 199%);
 }
 
+@mixin minWidth($size) {
+  @media screen and (min-width: $size) {
+    @content
+  }
+}
+
+@mixin setStyleSmall {
+  @media screen and (max-width: 576px) {
+    @content
+  }
+}
+
+@mixin setStylePhone {
+  @media screen and (min-width: 576px) {
+    @content
+  }
+}
+
 @mixin setStyleTablet {
   @media screen and (min-width: $tablet-threshold) {
+    @content
+  }
+}
+
+@mixin setStyleLarge {
+  @media screen and (min-width: 992px) {
     @content
   }
 }

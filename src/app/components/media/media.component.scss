@@ -4,10 +4,32 @@
   width: 100vw;
   overflow: hidden;
   background-color: $color-background;
-  img, vg-player {
+  .image, vg-player {
     margin: 0 auto;
     width: 100%;
     max-width: $content-max-width;
+    img {
+      width: 100%;
+    }
+  }
+  .text {
+    position: absolute;
+    top: 15%;
+    left: 33%;
+    width: 60%;
+    font-size: 2.5vw;
+    @include setStylePhone { font-size: 3vw; }
+    @include setStyleTablet { font-size: 98%; }
+    .heading {
+      margin-bottom: 20px;
+    }
+    .content {
+      font-size: 120%;
+      text-align: center;
+    }
+  }
+  .image {
+    position: relative;
   }
   vg-player {
     padding-bottom: 50px;

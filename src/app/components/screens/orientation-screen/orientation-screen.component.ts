@@ -21,12 +21,9 @@ export class OrientationScreenComponent implements OnInit {
 
   private readonly DEFAULT_IMAGE = 'orientation.svg';
   private readonly DEFAULT_VIDEO = 'how-to.mp4';
-
-  private readonly TEXT_FONT_FAMILY = 'Raleway';
-  private readonly TEXT_FONT_FAMILY_SOURCE = 'https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwPIsWqhPAMif.woff2';
-  private readonly IMAGE_TEXT_HEADER = 'Velkommen til Check In Take Off';
-  // tslint:disable-next-line: max-line-length
-  private readonly IMAGE_TEXT = 'Hei! Jeg heter Petra og jeg skal være veilederen din i dag. Se “Hvordan bruke” videoen vår, jeg bistår deg i å finne dine ferdigheter og utdanningsmuligheter som kan passe for deg.';
+  private readonly IMAGE_TEXT = [
+    'Velkommen til Check In Take Off',
+    'Hei! Jeg heter Petra og jeg skal være veilederen din i dag. Se “Hvordan bruke” videoen vår, jeg bistår deg i å finne dine ferdigheter og utdanningsmuligheter som kan passe for deg.'];
 
   public currentResource: string;
   public mediaType: string;
@@ -61,9 +58,7 @@ export class OrientationScreenComponent implements OnInit {
     private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
-    this.mediaType = 'raw';
     this.currentResource = this.DEFAULT_IMAGE;
-    this.addTextToImage().then( (imageData: string) => this.currentResource = imageData);
     this.addReplay = false;
     this.dataLogService.initializeLog();
     this.productService.getProduct().subscribe(
@@ -105,23 +100,5 @@ export class OrientationScreenComponent implements OnInit {
     vgAPI.getDefaultMedia().subscriptions.pause.subscribe(
       () => this.isVideoPaused = true);
   }
-
-
-  async addTextToImage(): Promise<string> {
-    const multiplier = 10;
-    const canvas = new CanvasManagerService(211 * multiplier, 375 * multiplier);
-    await canvas.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
-    canvas.setColour('#2E3C67');
-    await canvas.printImageFromSource(this.commonService.getImagePath(`${this.DEFAULT_IMAGE}`), 0, 0, 375 * multiplier, 211 * multiplier);
-    canvas.setX(375 * multiplier / 3);
-    canvas.setY(35 * multiplier);
-    canvas.setFont(15 * multiplier, 'bold');
-    this.stringManagerService.splitTextInLines(this.IMAGE_TEXT_HEADER, 30).forEach(
-      (text: string) => canvas.printLine(text));
-    canvas.setFont(15 * multiplier, 'normal');
-    canvas.addY(20 * multiplier);
-    this.stringManagerService.splitTextInLines(this.IMAGE_TEXT, 30).forEach(
-      (text: string) => canvas.printLine(text));
-    return canvas.exportToData();
-  }
+  
 }
