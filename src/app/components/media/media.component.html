@@ -1,8 +1,8 @@
 <div id="media" [ngSwitch]=getType() class="d-flex justify-content-center">
 
   <!-- Image -->
-  <div class="image">
-    <img  id="image" *ngSwitchCase="'image'" [(src)]="resourceFile" alt="">
+  <div class="image" *ngSwitchCase="'image'">
+    <img  id="image" [(src)]="resourceFile" alt="">
     <div class="text" *ngIf='!!texts'>
       <div *ngFor='let text of texts, let first = first' [ngClass]="{'heading': first, 'content': !first}">
         {{ text }}
