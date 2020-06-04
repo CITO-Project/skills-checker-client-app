@@ -18,8 +18,8 @@
     left: 33%;
     width: 60%;
     font-size: 2.5vw;
-    @include setStylePhone { font-size: 3vw; }
-    @include setStyleTablet { font-size: 98%; }
+    @include setStylePhone { font-size: 2.7vw; }
+    @include setStyleTablet { font-size: 90%; }
     .heading {
       margin-bottom: 20px;
     }
