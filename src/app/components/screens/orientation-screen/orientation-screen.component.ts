@@ -21,11 +21,9 @@ export class OrientationScreenComponent implements OnInit {
 
   private readonly DEFAULT_IMAGE = 'orientation.svg';
   private readonly DEFAULT_VIDEO = 'how-to.mp4';
-
-  private readonly TEXT_FONT_FAMILY = 'Raleway';
-  private readonly TEXT_FONT_FAMILY_SOURCE = 'https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwPIsWqhPAMif.woff2';
-  // tslint:disable-next-line: max-line-length
-  private readonly IMAGE_TEXT = 'Hi! I\'m Frank and I am your guide today. Watch our \'How to Use\' video and I will help you check your skills and find learning options that work for you.';
+  private readonly IMAGE_TEXT = [
+    'Welcome to Check In Take Off',
+    'Hi! I\'m Frank and I am your guide today. Watch our \'How to Use\' video and I will help you check your skills and find learning options that work for you.'];
 
   public currentResource: string;
   public mediaType: string;
@@ -60,9 +58,7 @@ export class OrientationScreenComponent implements OnInit {
     private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
-    this.mediaType = 'raw';
     this.currentResource = this.DEFAULT_IMAGE;
-    this.addTextToImage().then( (imageData: string) => this.currentResource = imageData);
     this.addReplay = false;
     this.dataLogService.initializeLog();
     this.productService.getProduct().subscribe(
@@ -104,22 +100,5 @@ export class OrientationScreenComponent implements OnInit {
     vgAPI.getDefaultMedia().subscriptions.pause.subscribe(
       () => this.isVideoPaused = true);
   }
-
-
-  async addTextToImage(): Promise<string> {
-    const multiplier = 10;
-    const canvas = new CanvasManagerService(211 * multiplier, 375 * multiplier);
-    await canvas.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
-    canvas.setColour('#2E3C67');
-    await canvas.printImageFromSource(this.commonService.getImagePath(`${this.DEFAULT_IMAGE}`), 0, 0, 375 * multiplier, 211 * multiplier);
-    canvas.setX(375 * multiplier / 3);
-    canvas.setY(40 * multiplier);
-    canvas.setFont(15 * multiplier, 'bold');
-    canvas.printLine('Welcome to Check In Take Off');
-    canvas.setFont(15 * multiplier, 'normal');
-    canvas.addY(20 * multiplier);
-    this.stringManagerService.splitTextInLines(this.IMAGE_TEXT, 30).forEach(
-      (text: string) => canvas.printLine(text));
-    return canvas.exportToData();
-  }
+  
 }

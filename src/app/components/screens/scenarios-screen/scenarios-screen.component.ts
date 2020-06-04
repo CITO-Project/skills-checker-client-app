@@ -59,7 +59,7 @@ export class ScenariosScreenComponent implements OnInit {
           event: 'back'
         },
         {
-          text: 'Skip scenario',
+          text: 'Skip task',
           icon: String.fromCharCode(61524) + String.fromCharCode(61524),
           event: 'skip_scenario',
           special: true

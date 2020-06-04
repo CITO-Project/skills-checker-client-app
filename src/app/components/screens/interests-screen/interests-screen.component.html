@@ -1,7 +1,7 @@
 <app-header [text]='!!category ? category.text : "default"'></app-header>
 <div id="content">
   <div class="heading margins">Pick your goal</div>
-  <div class="description text">Start by selecting one of the {{ !!interests ? interests.length : 0 }} goals to check your skills in the first task</div>
+  <div class="description text">I want to check my skills so that I can...</div>
   <div class="container">
     <div class="row">
       <div *ngFor="let interest of interests" class="interest col-12 box shadows gradient" [ngClass]="interest.colour" (click)="selectInterest(interest)">
