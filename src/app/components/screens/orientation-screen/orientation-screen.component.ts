@@ -19,10 +19,11 @@ import { StringManagerService } from 'src/app/services/etc/string-manager.servic
 })
 export class OrientationScreenComponent implements OnInit {
 
-  private readonly DEFAULT_IMAGE = 'orientation.svg';
-  private readonly DEFAULT_VIDEO = 'how-to.mp4';
+  private readonly DEFAULT_IMAGE = 'orientation-no.svg';
+  private readonly DEFAULT_VIDEO = 'how-to-use-no.mp4';
   private readonly IMAGE_TEXT = [
     'Velkommen til Check In Take Off',
+    // tslint:disable-next-line: max-line-length
     'Hei! Jeg heter Petra og jeg skal være veilederen din i dag. Se “Hvordan bruke” videoen vår, jeg bistår deg i å finne dine ferdigheter og utdanningsmuligheter som kan passe for deg.'];
 
   public currentResource: string;
@@ -54,7 +55,6 @@ export class OrientationScreenComponent implements OnInit {
     private productService: ProductService,
     private questionOrderService: QuestionOrderService,
     private commonService: CommonService,
-    private stringManagerService: StringManagerService,
     private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
@@ -100,5 +100,5 @@ export class OrientationScreenComponent implements OnInit {
     vgAPI.getDefaultMedia().subscriptions.pause.subscribe(
       () => this.isVideoPaused = true);
   }
-  
+
 }
