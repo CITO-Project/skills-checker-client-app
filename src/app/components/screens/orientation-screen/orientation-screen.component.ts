@@ -9,8 +9,6 @@ import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { QuestionOrderService } from 'src/app/services/api-call/question-order.service';
 import { VgAPI } from 'videogular2/compiled/core';
-import { CanvasManagerService } from 'src/app/services/etc/canvas-manager.service';
-import { StringManagerService } from 'src/app/services/etc/string-manager.service';
 
 @Component({
   selector: 'app-orientation-screen',

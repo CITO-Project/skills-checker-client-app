@@ -154,6 +154,7 @@ export class ProgressTrackerService {
       if (!!log.questions && log.questions.length > 0 && !!log.questions[questionIndexInLog]) {
         const questionid = log.questions[questionIndexInLog].id;
         let answersIndex = -1;
+        // tslint:disable-next-line: no-bitwise
         answersIndex = this.getAnswerIndexPerQuestionId(questionid) | -1;
         return {
           scenarioIndex: this.scenario,
@@ -167,7 +168,7 @@ export class ProgressTrackerService {
           isFirstQuestionInScenario: this.question === 0,
           isLastQuestionInScenario: this.question >= this.QUESTIONS_PER_SCENARIO - 1
         } as CustomResponse;
-      } else if (this.scenario === 0 && this.question === -1){
+      } else if (this.scenario === 0 && this.question === -1) {
         this.question = 0;
         return this.getResponse(asObservable);
       } else {

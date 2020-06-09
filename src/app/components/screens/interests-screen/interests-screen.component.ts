@@ -35,7 +35,7 @@ export class InterestsScreenComponent implements OnInit {
     this.colour = 'green';
     this.interestService.getInterests().subscribe( (data: Interest[]) => {
       data.forEach( (interest: Interest) => {
-        interest.colour = this.INTEREST_COLOURS[interest.category%this.INTEREST_COLOURS.length];
+        interest.colour = this.INTEREST_COLOURS[interest.category % this.INTEREST_COLOURS.length];
       })
       this.interests = data;
     });
