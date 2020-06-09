@@ -1,16 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { StringManagerService } from './etc/string-manager.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
-  private apiUrl = 'http://localhost:3000/nala';
+  private readonly USE_CONSOLE_LOG = true;
+  private readonly useAWSServer = true;
+
+  private readonly localhostUrl = 'http://localhost';
+  private readonly AWSUrl = 'http://34.254.132.188/';
+
+  private productName = 'nala';
+  private apiUrl = (this.useAWSServer ? this.AWSUrl + 'api/' : this.localhostUrl + ':3000/') + this.productName;
+  private resourceFolderUrl = this.AWSUrl + 'static/';
   private RESOURCE_PATH = 'assets/';
+  private GATrackID = 'UA-157405394-1';
 
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private httpClient: HttpClient,
+    private stringManagerService: StringManagerService
+    ) { }
 
   // constructor(private httpHeaders: HttpHeaders) {
   //   httpHeaders.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
@@ -19,6 +35,10 @@ export class CommonService {
   // getHttpHeaders(): HttpHeaders {
   //    return this.httpHeaders;
   //  }
+
+  getProductName(): string {
+    return this.productName;
+  }
 
   getApiUrl(): string {
     return this.apiUrl;
@@ -32,25 +52,55 @@ export class CommonService {
     this.router.navigate(['/' + url], { state: extras });
   }
 
-  log(data?: any): void {
-    const currentdate = new Date();
-    const datetime = '[' +
-      this.addZero(currentdate.getDate()) + '/' +
-      this.addZero(currentdate.getMonth() + 1)  + '/' +
-      currentdate.getFullYear() + ' @ ' +
-      this.addZero(currentdate.getHours()) + ':' +
-      this.addZero(currentdate.getMinutes()) + ':' +
-      this.addZero(currentdate.getSeconds()) + '.' +
-      this.addZeroMiliseconds(currentdate.getMilliseconds()) + ']';
-    console.log( datetime + ' >> ', (data !== undefined ? data : 'check') );
+  logging(type: string, ...data) {
+    if (this.USE_CONSOLE_LOG && ['log', 'error', 'warn', 'trace'].includes(type)) {
+      const currentdate = new Date();
+      const datetime = '[' +
+        this.stringManagerService.addZeros('' + currentdate.getDate()) + '/' +
+        this.stringManagerService.addZeros('' + currentdate.getMonth() + 1)  + '/' +
+        currentdate.getFullYear() + ' @ ' +
+        this.stringManagerService.addZeros('' + currentdate.getHours()) + ':' +
+        this.stringManagerService.addZeros('' + currentdate.getMinutes()) + ':' +
+        this.stringManagerService.addZeros('' + currentdate.getSeconds()) + '.' +
+        this.stringManagerService.addZeros('' + currentdate.getMilliseconds(), 3) + ']';
+      console.log(`%c${datetime} >> ${type}`, 'background-color: black; color: white;')
+      let content: any;
+      if (data.length > 0 && data[0].length > 0) {
+        content = data[0];
+      } else {
+        content = 'check';
+      }
+      switch (type) {
+        case 'log':
+          console.log(data);
+          break;
+        case 'error':
+          console.error(content);
+          break;
+        case 'warn':
+          console.warn(content);
+          break;
+        case 'trace':
+          console.trace(content);
+          break;
+      }
+    }
   }
 
-  addZero(value: number): string {
-    return value < 10 ? '0' + value : '' + value;
+  log(...data): void {
+    this.logging('log', ...data);
   }
 
-  addZeroMiliseconds(value: number): string {
-    return value < 10 ? '00' + value : (value < 100 ? '0' + value : '' + value);
+  error(...data): void {
+    this.logging('error', data);
+  }
+
+  warn(...data): void {
+    this.logging('warn', data);
+  }
+
+  trace(...data): void {
+    this.logging('trace', data);
   }
 
   loadLink(link: string) {
@@ -59,12 +109,14 @@ export class CommonService {
 
   getPath(name: string, type: string): string {
     let r = '';
-    const file = name.split('/').pop();
     switch (type) {
       case 'images':
       case 'icons':
+      case 'balloons':
+        r = this.RESOURCE_PATH + type + '/' + name;
+        break;
       case 'resources':
-        r = this.RESOURCE_PATH + type + '/' + file;
+        r = this.resourceFolderUrl + name;
         break;
     }
     return r;
@@ -80,6 +132,18 @@ export class CommonService {
 
   getResourcePath(name: string): string {
     return this.getPath(name, 'resources');
+  }
+
+  getBalloonsPath(name: string): string {
+    return this.getPath(name, 'balloons');
+  }
+
+  getGATrackID(): string {
+    return this.GATrackID;
+  }
+
+  getAPICaller(url: string): Observable<any> {
+    return this.httpClient.get( this.getApiUrl() + url );
   }
 
 }

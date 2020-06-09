@@ -1,24 +1,49 @@
-@import '../../../../_imports.scss';
+@import '../../../../style/_imports.scss';
 
 
 .content {
-  color: $color-font-dark;
-  margin: 30px 20px;
-  font-size: 0.9em;
+  padding: 15px 20px;
   #header {
-    .description {
+    .text {
       padding-top: 10px;
-      font-weight: 200;
-    }
-    .heading {
-      margin-top: 0;
-      font-size: 1.4em;
+      text-align: center;
+      font-size: 90%;
     }
   }
-  hr {
+  hr, app-question {
     width: 100%;
   }
-  app-question {
-    width: 100%;
+}
+
+.modal-dialog {
+  color: $color-font-dark;
+  $primary-color: $color-green;
+  $secondary-color: $color-white;
+  .continue {
+    color: $primary-color;
+    background: $secondary-color;
+  }
+  .cancel {
+    color: $secondary-color;
+    background: $primary-color;
+  }
+  .modal-footer {
+    padding: 10px;
+    padding-bottom: 20px;
+  }
+  .button {
+    margin: 0 10px;
+  }
+  .btn {
+    padding: 0 20px;
+  }
+  .modal-body {
+    font-weight: 200;
+  }
+  .modal-header, .modal-footer {
+    border: 0;
+  }
+  @include setStyleTablet {
+    font-size: 80%;
   }
 }

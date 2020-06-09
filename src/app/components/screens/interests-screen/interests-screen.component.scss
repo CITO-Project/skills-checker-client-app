@@ -1,22 +1,33 @@
-@import '../../../../_imports.scss';
+@import '../../../../style/_imports.scss';
 
 
 .row {
   padding: 10px;
 }
 
+.description.text{
+  text-align: center;
+  padding: 0 20px;
+  @include setStyleTablet {
+    padding: 0 40px;
+  }
+}
+
 .interest {
-  color: $color-font;
   margin: 10px 0;
   overflow: hidden;
   cursor: pointer;
-
   > .tile {
     padding: 0 10px;
     min-height: 100px;
     .text {
+      color: $color-font;
       font-weight: 700;
       padding-right: 100px;
+      @include setStyleTablet {
+        padding: 50px 0;
+        padding-right: 100px;
+      }
     }
     img {
       height: 90px;
@@ -24,6 +35,9 @@
       opacity: 70%;
       position: absolute;
       right: 0;
+      @include setStyleTablet {
+        height: 120px;
+      }
     }
   }
 }

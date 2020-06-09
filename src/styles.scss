@@ -1,10 +1,33 @@
-@import './_imports.scss';
-@import './_fonts.scss';
+@import 'style/_imports.scss';
+@import 'style/_fonts.scss';
+@import '../node_modules/normalize.css/normalize.css';
 
 body{
   font-family: 'Raleway';
   font-style: normal;
   font-weight: lighter;
+  font-size: 1em;
   background-color: $color-background;
-  padding: 0 0 $bottom-height 0;
+  padding: 0;
+  padding-bottom: $bottom-height;
+  * {
+    outline: 0;
+  }
+  @include setStyleTablet {
+    font-size: 1.5em;
+    padding-bottom: $bottom-height * 1.2;
+  }
+}
+// Safari Bootstrap fix
+.row:before, .row:after {
+  display: inline-block;
+}
+
+// Added this here otherwise it doesn't work (media component)
+vg-overlay-play .vg-overlay-play .overlay-play-container.vg-icon-play_arrow {
+  color: black !important;
+  font-size: 150% !important;
+  @include setStyleTablet {
+    font-size: 300% !important;
+  }
 }

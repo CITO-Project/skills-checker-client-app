@@ -1,23 +1,38 @@
-<app-header [text]='!!category ? category.text : "default"' [skip]='!(currentScenario === 0 && currentQuestion === 0)'></app-header>
+<app-header [text]='!!category ? category.text : "default"' (customClick)='clickHeader()'></app-header>
 <app-media *ngIf="!!scenario" [resource]='scenario.resource' replay=true></app-media>
-<div class="content d-flex flex-column align-items-center text-center">
-  <div id="header" *ngIf="!!scenario">
-    <div class="heading">{{ scenario.text }}</div>
-    <div class="description" *ngIf="currentQuestion === 0">{{ scenario.description }}</div>
+<div id="content">
+  <div class="content d-flex flex-column align-items-center text-center">
+    <app-question
+    *ngIf="!!question"
+    [(question)]="question"
+    [(error)]="errorMessage"
+    (answer)="processAnswer($event)"
+    [initialAnswer]="currentAnswer"
+    ></app-question>
   </div>
-  <hr>
-  <app-question
-  *ngIf="!!question"
-  [(question)]="question"
-  [(error)]="errorMessage"
-  (answer)="processAnswer($event)"
-  [initialAnswer]="currentAnswer"
-  ></app-question>
-
 </div>
 <app-navigate-button
-  backText="{{ btnBack }}"
-  forwardText="{{ btnForward }}"
-  (backEvent)="previousQuestion()"
-  (forwardEvent)="saveAnswer()"
+  [buttons] = "buttons"
+  (buttonsEvent)='onButtonsEvent($event)'
   ></app-navigate-button>
+
+<button (click)="resultsModal.show()" class='hidden' id='resultsModal'></button>
+<div mdbModal #resultsModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myresultsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="resultsModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Go to results</h4>
+      </div>
+      <div class="modal-body">
+        If you go to results you won't be able to go back
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn class="button continue" (click)="goToResults()" mdbWavesEffect>Go to results</button>
+        <button type="button" mdbBtn class="button cancel" aria-label="Close" (click)="resultsModal.hide()" mdbWavesEffect>Back to task</button>
+      </div>
+    </div>
+  </div>
+</div>

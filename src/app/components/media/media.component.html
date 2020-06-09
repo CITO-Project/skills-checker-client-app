@@ -1,24 +1,37 @@
-<div id="media" [ngSwitch]=getType()>
+<div id="media" [ngSwitch]=getType() class="d-flex justify-content-center">
 
   <!-- Image -->
-  <div id="image" *ngSwitchCase="'image'">
-    <img [(src)]="resourceFile" alt="{{ resourceFile }}">
+  <div class="image" *ngSwitchCase="'image'">
+    <img  id="image" [(src)]="resourceFile" alt="">
+    <div class="text" *ngIf='!!texts'>
+      <div *ngFor='let text of texts, let first = first' [ngClass]="{'heading': first, 'content': !first}">
+        {{ text }}
+      </div>
+    </div>
   </div>
   <!-- End Image -->
 
   <!-- Video -->
-  <div id="video" *ngSwitchCase="'video'" (mouseenter)="this.playVideo()">
-    <vg-player (onPlayerReady)="onPlayerReady($event)">
-      <vg-controls *ngIf="!!replay" vgFor="singleVideo" [vgAutohide]="true" [vgAutohideTime]=".1">
-        <vg-play-pause></vg-play-pause>
-        <vg-scrub-bar></vg-scrub-bar>
-        <vg-fullscreen></vg-fullscreen>
-      </vg-controls>
-      <video [vgMedia]="media" #media id="singleVideo" preload="auto" autoplay muted>
-        <source [src]="resourceFile" type="video/mp4">
-      </video>
-    </vg-player>
-  </div>
+  <vg-player id="video" *ngSwitchCase="'video'" (onPlayerReady)="onPlayerReady($event)">
+    <vg-overlay-play *ngIf="!!replay" vgFor="singleVideo"></vg-overlay-play>
+    <vg-controls *ngIf="!!replay" vgFor="singleVideo">
+      <vg-play-pause></vg-play-pause>
+      <vg-time-display [vgProperty]="'current'" [vgFormat]="'mm:ss'"></vg-time-display>
+      <vg-scrub-bar>
+        <vg-scrub-bar-current-time  [vgSlider]="true"></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+      </vg-scrub-bar>
+      <vg-time-display [vgProperty]="'total'" [vgFormat]="'mm:ss'"></vg-time-display>
+      <vg-mute class='hide-control'></vg-mute>
+      <vg-volume class='hide-control'></vg-volume>
+      <vg-track-selector class='hide-control'></vg-track-selector>
+      <vg-fullscreen class='hide-control'></vg-fullscreen>
+    </vg-controls>
+    <video [vgMedia]="media" #media id="singleVideo" preload="auto" playsinline autoplay>
+      <source [src]="resourceFile" type="video/mp4">
+      <track *ngIf="!!subtitleFile" kind="subtitles" label="English" [src]="subtitleFile" srclang="en" default>
+    </video>
+  </vg-player>
   <!-- End Video -->
 
 </div>

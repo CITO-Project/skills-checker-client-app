@@ -1,4 +1,4 @@
-@import '../../../../_imports.scss';
+@import '../../../../style/_imports.scss';
 
 
 .row {
@@ -7,19 +7,26 @@
 
 .category {
   padding: 0 7.5px;
-  color: $color-font;
   margin-bottom: 15px;
   .tile {
     position: relative;
-    height: 150px;
     overflow: hidden;
+    height: 150px;
+    cursor: pointer;
+    @include setStyleTablet {
+      height: 250px;
+    }
     .text {
       $separation: 15px;
       padding-top: $separation;
       padding-left: $separation;
-      font-size: 1.05em;
+      color: $color-font;
       letter-spacing: 1px;
       font-weight: 700;
+      font-size: 110%;
+      @include setStyleTablet {
+        font-size: 130%;
+      }
     }
     img {
       position: absolute;
@@ -28,6 +35,9 @@
       height: 100px;
       transform: rotate(-10deg);
       opacity: 70%;
+      @include setStyleTablet {
+        height: 180px;
+      }
     }
   }
 }

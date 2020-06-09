@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 @Component({
   selector: 'app-navigate-button',
@@ -20,7 +21,15 @@ export class NavigateButtonComponent implements OnInit {
   @Input() destination: string;
   @Output() event =  new EventEmitter();
 
-  constructor(private commonService: CommonService) {
+  @Input() buttons: {
+    text: string;
+    icon: string;
+    event: string;
+    special: boolean;
+  }[];
+  @Output() buttonsEvent = new EventEmitter();
+
+  constructor(private commonService: CommonService, private googleAnalyticsService: GoogleAnalyticsService) {
   }
 
   ngOnInit() {
@@ -47,6 +56,7 @@ export class NavigateButtonComponent implements OnInit {
     if (this.backDestination !== undefined) {
       this.commonService.goTo(this.backDestination);
     } else {
+      this.googleAnalyticsService.addCounter('count_corrected_questions_per_scenario');
       this.backEvent.emit();
     }
   }
