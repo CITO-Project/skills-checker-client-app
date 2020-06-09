@@ -17,8 +17,8 @@ import { VgAPI } from 'videogular2/compiled/core';
 })
 export class OrientationScreenComponent implements OnInit {
 
-  private readonly DEFAULT_IMAGE = 'orientation.svg';
-  private readonly DEFAULT_VIDEO = 'how-to.mp4';
+  private readonly DEFAULT_IMAGE = 'orientation-ie.svg';
+  private readonly DEFAULT_VIDEO = 'how-to-use-ie.mp4';
   private readonly IMAGE_TEXT = [
     'Welcome to Check In Take Off',
     // tslint:disable-next-line: max-line-length
