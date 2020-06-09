@@ -9,8 +9,6 @@ import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { QuestionOrderService } from 'src/app/services/api-call/question-order.service';
 import { VgAPI } from 'videogular2/compiled/core';
-import { CanvasManagerService } from 'src/app/services/etc/canvas-manager.service';
-import { StringManagerService } from 'src/app/services/etc/string-manager.service';
 
 @Component({
   selector: 'app-orientation-screen',
@@ -23,6 +21,7 @@ export class OrientationScreenComponent implements OnInit {
   private readonly DEFAULT_VIDEO = 'how-to.mp4';
   private readonly IMAGE_TEXT = [
     'Welcome to Check In Take Off',
+    // tslint:disable-next-line: max-line-length
     'Hi! I\'m Frank and I am your guide today. Watch our \'How to Use\' video and I will help you check your skills and find learning options that work for you.'];
 
   public currentResource: string;
@@ -54,7 +53,6 @@ export class OrientationScreenComponent implements OnInit {
     private productService: ProductService,
     private questionOrderService: QuestionOrderService,
     private commonService: CommonService,
-    private stringManagerService: StringManagerService,
     private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit() {
@@ -100,5 +98,5 @@ export class OrientationScreenComponent implements OnInit {
     vgAPI.getDefaultMedia().subscriptions.pause.subscribe(
       () => this.isVideoPaused = true);
   }
-  
+
 }

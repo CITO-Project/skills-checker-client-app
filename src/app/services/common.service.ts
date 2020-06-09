@@ -63,7 +63,7 @@ export class CommonService {
         this.stringManagerService.addZeros('' + currentdate.getMinutes()) + ':' +
         this.stringManagerService.addZeros('' + currentdate.getSeconds()) + '.' +
         this.stringManagerService.addZeros('' + currentdate.getMilliseconds(), 3) + ']';
-      console.log(`%c${datetime} >> ${type}`, 'background-color: black; color: white;')
+      console.log(`%c${datetime} >> ${type}`, 'background-color: black; color: white;');
       let content: any;
       if (data.length > 0 && data[0].length > 0) {
         content = data[0];
@@ -81,6 +81,7 @@ export class CommonService {
           console.warn(content);
           break;
         case 'trace':
+          // tslint:disable-next-line: no-console
           console.trace(content);
           break;
       }
