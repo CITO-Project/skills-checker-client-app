@@ -23,6 +23,7 @@ export class ResultsSaverService {
   private readonly BALLOONS_TEXT_SEPARATION = 150;
   private readonly BALLONS_LEARNING_PATHWAY_SEPARATION = 100;
   private readonly LINES_SEPARATION = 20;
+  private readonly TEXTS_SEPARATION = 20;
 
   private readonly PADDING = 60;
   private readonly TITLE_PADDING = 50;
@@ -31,7 +32,9 @@ export class ResultsSaverService {
   private readonly SECTION_PADDING = 40;
   private readonly COURSE_PADDING = 40;
   private readonly COURSES_BORDER_RADIUS = 40;
+  private readonly BOTTOM_PADDING = 50;
 
+  private readonly SPLIT_RESULTS_TEXT = 25;
   private readonly SPLIT_LEARNING_PATHWAY_DESCRIPTION = 45;
   private readonly SPLIT_COURSE_DESCRIPTION = 47;
   private readonly MAX_LINES_COURSE_DESCRIPTION = 2;
@@ -61,7 +64,7 @@ export class ResultsSaverService {
     header: string,
     resultsText: string,
     learningPathwayHeader: string,
-    learningPathwayDescription: string,
+    learningPathwayDescription: string[],
     learningPathway: Course[]
     ): Promise<void> {
       this.canvastemp = new CanvasManagerService(
@@ -113,7 +116,7 @@ export class ResultsSaverService {
       // TODO Need to vertical align this text
       this.canvastemp.addY(this.TEMPORARY_TOP_SEPARATION_RESULTS_TEXT);
       this.canvastemp.addX(this.BALLOONS_TEXT_SEPARATION);
-      this.stringManagerService.splitTextInLines(resultsText, 25).forEach( (text: string) => {
+      this.stringManagerService.splitTextInLines(resultsText, this.SPLIT_RESULTS_TEXT).forEach( (text: string) => {
         this.canvastemp.addY(this.LINES_SEPARATION);
         this.printText(text, '');
       });
@@ -125,13 +128,16 @@ export class ResultsSaverService {
       this.canvastemp.addY(this.BALLONS_LEARNING_PATHWAY_SEPARATION);
       this.canvastemp.setTextAlignment('center');
       this.printHeader(learningPathwayHeader, 'bold');
-      this.canvastemp.addY(20);
+      this.canvastemp.addY(this.TEXTS_SEPARATION);
       this.canvastemp.setTextAlignment('center');
-      this.stringManagerService.splitTextInLines(
-        learningPathwayDescription, this.SPLIT_LEARNING_PATHWAY_DESCRIPTION)
-        .forEach( (text: string) => {
-          this.printText(text);
-          this.canvastemp.addY(10);
+      learningPathwayDescription.forEach( (line: string) => {
+        this.stringManagerService.splitTextInLines(
+          line, this.SPLIT_LEARNING_PATHWAY_DESCRIPTION)
+          .forEach( (text: string) => {
+            this.printText(text);
+            this.canvastemp.addY(10);
+        });
+        this.canvastemp.addY(this.TEXTS_SEPARATION);
       });
       //#endregion
 
@@ -149,9 +155,12 @@ export class ResultsSaverService {
       if (developCourses.length > 0) {
         this.printSection('Further develop', developCourses, this.DEVELOP_COLOR);
       }
+      this.canvastemp.addY(this.COURSES_BORDER_RADIUS / 2);
       //#endregion
 
       this.canvastemp.setColour(this.LEARNING_PATHWAY_BACKGROUND_COLOR);
+      this.canvastemp.setX(0);
+      this.canvastemp.drawBox(this.FILE_MAX_WIDTH, this.BOTTOM_PADDING);
 
       this.canvastemp.downloadImage(this.FILE_DOWNLOAD_NAME);
   }
@@ -235,20 +244,22 @@ export class ResultsSaverService {
     return r;
   }
 
-  calculateHeight(resultsText: string, learningPathwayDescription: string, learningPathway: Course[]): number {
+  calculateHeight(resultsText: string, learningPathwayDescription: string[], learningPathway: Course[]): number {
     // TODO add resultsText in case it is longer than the image
     let r = 0;
     r += this.TITLE_PADDING * 2 + this.HEADING_SIZE;
     r += this.IMG_MAX_HEIGHT + this.BALLONS_LEARNING_PATHWAY_SEPARATION;
-    r += this.HEADING_SIZE + 20 +
-      (this.TEXT_SIZE + 10) *
-      this.stringManagerService.splitTextInLines(
-        learningPathwayDescription,
-        this.SPLIT_LEARNING_PATHWAY_DESCRIPTION)
-        .length;
-    r += this.calculateHeightSection(learningPathway.filter( (course: Course) => course.priority === 'brush_up').slice(0, 3));
-    r += this.calculateHeightSection(learningPathway.filter( (course: Course) => course.priority === 'develop').slice(0, 3));
-    r += 50;
+    r += this.HEADING_SIZE + this.TEXTS_SEPARATION;
+    learningPathwayDescription.forEach( (text: string) => {
+      r += (this.TEXT_SIZE + 10) * this.stringManagerService.splitTextInLines(
+        text,
+        this.SPLIT_LEARNING_PATHWAY_DESCRIPTION
+      ).length;
+      r += this.TEXTS_SEPARATION;
+    });
+    r += this.calculateHeightSection(learningPathway.filter( (course: Course) => course.priority === 'brush_up'));
+    r += this.calculateHeightSection(learningPathway.filter( (course: Course) => course.priority === 'develop'));
+    r += this.BOTTOM_PADDING;
     return r;
   }
 
