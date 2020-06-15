@@ -91,7 +91,7 @@ export class ResultsScreenComponent implements OnInit {
         this.HEADER,
         this.texts.resultsText,
         this.LEARNING_PATHWAY_HEADER,
-        this.texts.learningPathwayDescription[0],
+        this.texts.learningPathwayDescription,
         this.courses);
   }
 
