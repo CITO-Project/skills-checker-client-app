@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
 export class StringManagerService {
 
   private readonly DICTIONARY = {
-    my: 'your'
+    my: 'your',
+    me: 'you',
+    I: 'you'
   };
 
   constructor() { }
@@ -64,8 +66,15 @@ export class StringManagerService {
   }
 
   correctText(text: string): string {
-    Object.entries(this.DICTIONARY).forEach( ( value: [ string, string ]) => text = text.replace(value[0], value[1]));
-    return text;
+    const words = text.split(' ');
+    Object.entries(this.DICTIONARY).forEach(
+      ( value: [ string, string ]) => {
+        const index = words.findIndex( (word: string) => word === value[0]);
+        if (index >= 0) {
+          words[index] = value[1];
+        }
+      });
+    return words.join(' ');
   }
 
 }
