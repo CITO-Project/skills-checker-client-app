@@ -1,11 +1,11 @@
 <div id="question" *ngIf="!!question">
 
   <!-- Question text -->
-  <div class="heading" *ngIf="question.pedagogical_type === 'task_question'">Your skills</div>
+  <div class="heading" *ngIf="question.pedagogical_type === 'task_question'">Dine ferdigheter</div>
   <div class="question">
     <div>
       <div class="text">{{ question.question }}</div>
-      <div *ngIf="question.pedagogical_type === 'challenging_skill'" class="muted">(You can tick more than one)</div>
+      <div *ngIf="question.pedagogical_type === 'challenging_skill'" class="muted">(Du kan velge flere enn èn)</div>
     </div>
     </div>
   <!-- End question text -->
@@ -27,7 +27,7 @@
       </div>
 
       <div class="instructions muted">
-        Drag the slider to share your level of knowledge
+        Flytt markøren for å markere ditt kunnskapsnivå
       </div>
     </div>
     <!-- End slider option -->

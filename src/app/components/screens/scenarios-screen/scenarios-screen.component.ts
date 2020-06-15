@@ -24,8 +24,8 @@ export class ScenariosScreenComponent implements OnInit {
   public errorMessage = '';
   public category: Category;
 
-  public btnBack = 'Back';
-  public btnForward = 'Next';
+  public btnBack = 'Tilbake';
+  public btnForward = 'Neste';
   private readonly ERROR_MESSAGE_MULTIPLE = 'Please select one or more of the options below';
   private readonly ERROR_MESSAGE = 'Please select one of the options below';
   private allButtons: {
@@ -59,13 +59,13 @@ export class ScenariosScreenComponent implements OnInit {
           event: 'back'
         },
         {
-          text: 'Skip task',
+          text: 'Hopp over',
           icon: String.fromCharCode(61524) + String.fromCharCode(61524),
           event: 'skip_scenario',
           special: true
         },
         {
-          text: 'Go to results',
+          text: 'Gå til resultater',
           icon: String.fromCharCode(61452),
           event: 'go_results',
           special: true
@@ -123,7 +123,7 @@ export class ScenariosScreenComponent implements OnInit {
     this.errorMessage = '';
 
     this.updateMenu(data);
-    this.btnForward = 'Next';
+    this.btnForward = 'Neste';
     if (data.isLastQuestion) {
       this.btnForward = 'See results';
     }

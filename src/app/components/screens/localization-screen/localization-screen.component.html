@@ -1,18 +1,18 @@
 <app-header text='default'></app-header>
 <div id="content">
   <div id="header">
-    <div class="title">Learning opportunities</div>
-    <div class="description">Please, choose your location to see the learning opportunities near you</div>
+    <div class="title">Læringsmuligheter</div>
+    <div class="description">Velg ditt område for å se læringsmuligheter</div>
     <select class="browser-default custom-select" (change)='setCounty($event.target.value)'>
-      <option selected value='all'>Choose your area</option>
-      <option value='all'>Show all</option>
+      <option selected value='all'>Velg ditt område</option>
+      <option value='all'>Se alt</option>
       <option *ngFor='let county of IRELAND_COUNTIES' value='{{ county.toLowerCase() }}'>{{ county }}</option>
     </select>
     <hr>
   </div>
   <div class="learning-oportunities" *ngIf="getCourses('brush_up').length > 0 || getCourses('develop').length > 0">
     <div class="brush-up" *ngIf="getCourses('brush_up').length > 0">
-      <div class="heading">Brush up</div>
+      <div class="heading">Oppfrisking</div>
       <app-course
         *ngFor="let course of getCourses('brush_up')"
         [course]=course
@@ -21,7 +21,7 @@
       ></app-course>
     </div>
     <div class="develop" *ngIf="getCourses('develop').length > 0">
-      <div class="heading">Further develop</div>
+      <div class="heading">Videreutvikle</div>
       <app-course
         *ngFor="let course of getCourses('develop')"
         [course]=course

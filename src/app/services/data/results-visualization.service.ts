@@ -17,16 +17,17 @@ export class ResultsVisualizationService {
 
   private readonly TEXT_FONT_FAMILY = 'Raleway';
   private readonly TEXT_FONT_FAMILY_SOURCE = 'https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwPIsWqhPAMif.woff2';
+  private readonly SPLIT_BALLOONS_TEXT = 12;
   private readonly BALLOON_LEVELS = 'smb'.split('');
   private readonly BALLON_SKILLS_TEXT = {
     literacy: {
-      text: 'Reading and Writing'
+      text: 'Lesing og skriving'
     },
     numeracy: {
-      text: 'Maths'
+      text: 'Matematikk'
     },
     digital_skills: {
-      text: 'Computers'
+      text: 'Datamaskiner'
     }
   };
   constructor(
@@ -54,7 +55,7 @@ export class ResultsVisualizationService {
     canvastemp.setColour('white');
     this.calculateCoordinates(balloonSize).forEach( (coordinates: {x: number, y: number}, position: number) =>
       this.stringManagerService.splitTextInLines(
-        balloonsOrder[position], 9
+        balloonsOrder[position], this.SPLIT_BALLOONS_TEXT
         ).forEach( (text: string, index: number) => {
           if (index === 0) {
             canvastemp.setX(coordinates.x * multiplier);

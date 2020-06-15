@@ -147,13 +147,13 @@ export class ResultsSaverService {
       //#region Printing 'brush_up' courses
       this.canvastemp.setTextAlignment('left');
       if (brushUpCourses.length > 0) {
-        this.printSection('Brush up', brushUpCourses, this.BRUSH_UP_COLOR);
+        this.printSection('Oppfrisking', brushUpCourses, this.BRUSH_UP_COLOR);
       }
       //#endregion
 
       //#region Printing 'develop' courses
       if (developCourses.length > 0) {
-        this.printSection('Further develop', developCourses, this.DEVELOP_COLOR);
+        this.printSection('Videreutvikle', developCourses, this.DEVELOP_COLOR);
       }
       this.canvastemp.addY(this.COURSES_BORDER_RADIUS / 2);
       //#endregion
