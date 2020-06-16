@@ -13,7 +13,7 @@ export class CommonService {
   private readonly useAWSServer = true;
 
   private readonly localhostUrl = 'http://localhost';
-  private readonly AWSUrl = 'http://34.254.132.188/';
+  private readonly AWSUrl = 'https://skillscheck.citoproject.eu';
 
   private productName = 'nala';
   private apiUrl = (this.useAWSServer ? this.AWSUrl + 'api/' : this.localhostUrl + ':3000/') + this.productName;
