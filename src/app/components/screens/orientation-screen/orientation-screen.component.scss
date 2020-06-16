@@ -50,3 +50,12 @@
     }
   }
 }
+
+.partners {
+  img {
+    max-height: 70px;
+    @include setStyleTablet {
+      max-height: 110px;
+    }
+  }
+}
