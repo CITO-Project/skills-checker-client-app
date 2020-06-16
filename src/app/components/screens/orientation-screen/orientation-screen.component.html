@@ -31,6 +31,10 @@
     <div class="main heading">
       All in less than 10 minutes!
     </div>
+    <hr>
+    <div class="partners d-flex justify-content-around align-items-center">
+      <img *ngFor='let partner of PARTNERS' [src]='partner.image' [alt]='partner.text'>
+    </div>
   </div>
 </div>
 <app-navigate-button text="Get started" (event)="onClick()"></app-navigate-button>
