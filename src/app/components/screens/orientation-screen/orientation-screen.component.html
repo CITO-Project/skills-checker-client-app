@@ -31,6 +31,10 @@
     <div class="main heading">
       Alt på under 10 minutter!
     </div>
+    <hr>
+    <div class="partners d-flex justify-content-around align-items-center">
+      <img *ngFor='let partner of PARTNERS' [src]='partner.image' [alt]='partner.text'>
+    </div>
   </div>
 </div>
 <app-navigate-button text="Kom i gang" (event)="onClick()"></app-navigate-button>

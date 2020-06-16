@@ -33,18 +33,28 @@ export class OrientationScreenComponent implements OnInit {
   public FEATURES = [
     {
       text: 'Datamaskiner',
-      icon: this.getPath('computers.svg'),
+      icon: this.getIconPath('computers.svg'),
       color: 'red'
     },
     {
       text: 'Mattematikk',
-      icon: this.getPath('maths.svg'),
+      icon: this.getIconPath('maths.svg'),
       color: 'green'
     },
     {
       text: 'Lesing og skriving',
-      icon: this.getPath('reading.svg'),
+      icon: this.getIconPath('reading.svg'),
       color: 'yellow'
+    }
+  ];
+  public PARTNERS = [
+    {
+      text: 'CITO',
+      image: this.getImagePath('cito-logo.png')
+    },
+    {
+      text: 'Erasmus',
+      image: this.getImagePath('erasmus-logo.png')
     }
   ];
 
@@ -71,11 +81,15 @@ export class OrientationScreenComponent implements OnInit {
     );
     this.googleAnalyticsService.stopTimer('time_review_results');
     const temp = new Image();
-    temp.src = this.getPath('lock.svg');
+    temp.src = this.getIconPath('lock.svg');
   }
 
-  getPath(name: string): string {
+  getIconPath(name: string): string {
     return this.commonService.getIconPath(name);
+  }
+
+  getImagePath(name: string): string {
+    return this.commonService.getImagePath(name);
   }
 
   onClick(): void {
