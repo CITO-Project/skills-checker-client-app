@@ -26,8 +26,8 @@ export class ScenariosScreenComponent implements OnInit {
 
   public btnBack = 'Tilbake';
   public btnForward = 'Neste';
-  private readonly ERROR_MESSAGE_MULTIPLE = 'Please select one or more of the options below';
-  private readonly ERROR_MESSAGE = 'Please select one of the options below';
+  private readonly ERROR_MESSAGE_MULTIPLE = 'Velg ett eller flere av alternativene nedenfor';
+  private readonly ERROR_MESSAGE = 'Velg et av alternativene nedenfor';
   private allButtons: {
     text: string,
     icon: string,

@@ -23,7 +23,7 @@ export class ResultsScreenComponent implements OnInit {
     resultsText: string,
     learningPathwayDescription: string[]};
   public readonly HEADER = 'Check-In Take-Off';
-  public readonly SUBTITLE = 'Resultater';
+  public readonly SUBTITLE = 'Resultatene mine';
   public readonly LEARNING_PATHWAY_HEADER = 'Min Læringsvei';
 
   public courses: Course[];

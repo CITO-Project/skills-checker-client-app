@@ -1,7 +1,7 @@
 <app-header [text]='!!category ? category.text : "default"'></app-header>
 <div id="content">
-  <div class="heading margins">Velg din interesse</div>
-  <div class="description text">I want to check my skills so that I can...</div>
+  <div class="heading margins">Velg målet ditt</div>
+  <div class="description text">Jeg vil sjekke ferdighetene mine slik at jeg kan...</div>
   <div class="container">
     <div class="row">
       <div *ngFor="let interest of interests" class="interest col-12 box shadows gradient" [ngClass]="interest.colour" (click)="selectInterest(interest)">

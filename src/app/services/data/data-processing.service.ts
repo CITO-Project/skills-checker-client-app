@@ -13,12 +13,12 @@ import { Answer } from '../../models/answer';
 export class DataProcessingService {
 
   private readonly TEXTS = {
-    literacy: 'reading and writing',
-    numeracy: 'maths',
-    digital_skills: 'computer',
-    fluency: 'faster',
-    confidence: 'more confidently',
-    independence: 'without help'
+    literacy: 'lese og skrive',
+    numeracy: 'mattematikk',
+    digital_skills: 'digitale',
+    fluency: 'raskere',
+    confidence: 'med mer selvtillit',
+    independence: 'uten hjelp'
   };
 
   private brushUpThreshold = 3;
@@ -228,19 +228,19 @@ export class DataProcessingService {
     });
     const interest = log.interest.text;
     const r = {
-      resultsText: `You have taken the first step towards achieving your goal of being able to ${
+      resultsText: `Du har tatt det første steget mot målet ditt om å kunne ${
         this.stringManagerService.lowerCaseFirst(this.stringManagerService.correctText(interest))}`,
       learningPathwayDescription: []
     };
     if (brushUpDimensions.length > 0) {
       r.learningPathwayDescription.push(
-        `Take the next step by brushing up on your ${this.stringManagerService.concatenateText(brushUpSkills)} skills, ` +
-        `so that you can do similar tasks ${this.stringManagerService.concatenateText(brushUpDimensions)}`);
+        `Ta neste steg ved å friske opp dine ${this.stringManagerService.concatenateText(brushUpSkills)} ferdigheter, ` +
+        `slik at du kan gjøre lignende oppgaver ${this.stringManagerService.concatenateText(brushUpDimensions)}`);
     }
     if (developDimensions.length > 0) {
       r.learningPathwayDescription.push(
-        `You can also reach your goal by developing ${this.stringManagerService.concatenateText(developSkills)} skills ` +
-        `to do these tasks ${this.stringManagerService.concatenateText(developDimensions)}`);
+        `Du kan også nå målet ditt ved å utvikle dine ${this.stringManagerService.concatenateText(developSkills)} ferdigheter ` +
+        `for å gjøre disse oppgavene ${this.stringManagerService.concatenateText(developDimensions)}`);
     }
     r.learningPathwayDescription.push('Check out the courses below and find one that\'s right for you');
     return r;
