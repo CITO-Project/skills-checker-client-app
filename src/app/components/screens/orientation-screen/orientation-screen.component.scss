@@ -53,9 +53,9 @@
 
 .partners {
   img {
-    max-height: 70px;
+    max-height: 40px;
     @include setStyleTablet {
-      max-height: 110px;
+      max-height: 70px;
     }
   }
 }
