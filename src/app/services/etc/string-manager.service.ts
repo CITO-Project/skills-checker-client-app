@@ -6,9 +6,6 @@ import { Injectable } from '@angular/core';
 export class StringManagerService {
 
   private readonly DICTIONARY = {
-    my: 'your',
-    me: 'you',
-    I: 'you'
   };
 
   constructor() { }
