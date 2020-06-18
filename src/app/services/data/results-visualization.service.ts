@@ -37,7 +37,6 @@ export class ResultsVisualizationService {
     ) { }
 
   async generateGraph(log: Log): Promise<any> {
-    await (new FontFace(this.TEXT_FONT_FAMILY, `url(${this.TEXT_FONT_FAMILY_SOURCE})`)).load();
     const multiplier = 2;
     const fontSize = 8;
 
@@ -50,6 +49,7 @@ export class ResultsVisualizationService {
     const balloonsOrder = this.calculateBalloonsOrder(results, balloonSize);
     const canvastemp = await this.loadBallonTemplate(balloonSize, multiplier);
 
+    canvastemp.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
     canvastemp.setFont(fontSize * multiplier, 'bold', 'Raleway');
     canvastemp.setTextAlignment('center');
     canvastemp.setColour('white');
