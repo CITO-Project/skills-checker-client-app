@@ -8,8 +8,6 @@ import { StringManagerService } from '../etc/string-manager.service';
 import { CanvasManagerService } from '../etc/canvas-manager.service';
 import { Result } from 'src/app/models/result';
 
-declare let FontFace: any;
-
 @Injectable({
   providedIn: 'root'
 })
@@ -49,7 +47,7 @@ export class ResultsVisualizationService {
     const balloonsOrder = this.calculateBalloonsOrder(results, balloonSize);
     const canvastemp = await this.loadBallonTemplate(balloonSize, multiplier);
 
-    canvastemp.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
+    await canvastemp.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
     canvastemp.setFont(fontSize * multiplier, 'bold', 'Raleway');
     canvastemp.setTextAlignment('center');
     canvastemp.setColour('white');
