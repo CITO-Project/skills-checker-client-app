@@ -19,7 +19,7 @@ export class CommonService {
   private apiUrl = (this.useAWSServer ? this.AWSUrl + 'api/' : this.localhostUrl + ':3000/') + this.productName;
   private resourceFolderUrl = this.AWSUrl + 'static/';
   private RESOURCE_PATH = 'assets/';
-  private GATrackID = 'UA-157405394-1';
+  private GATrackID = 'UA-170127374-1';
 
 
   constructor(

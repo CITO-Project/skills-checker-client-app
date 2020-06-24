@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-12 text">
           <div class="heading">{{ course.title }}</div>
-          {{ course.text }}
+          {{ course.description }}
         </div>
       </div>
     </div>
@@ -49,9 +49,18 @@
     </div>
   </div>
 </div>
-<app-navigate-button
-  backText="default"
-  forwardText="More info"
-  backDestination="results"
-  (forwardEvent)="loadLink(course.link)"
-  ></app-navigate-button>
+<div *ngIf="!!course.link; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+  <app-navigate-button
+    backText="default"
+    forwardText="More info"
+    backDestination="results"
+    (forwardEvent)="loadLink(course.link)"
+    ></app-navigate-button>
+</ng-template>
+<ng-template #elseBlock>
+  <app-navigate-button
+    text="default"
+    destination="results"
+    ></app-navigate-button>
+</ng-template>
