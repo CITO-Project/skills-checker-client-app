@@ -22,7 +22,7 @@ export class OrientationScreenComponent implements OnInit {
   private readonly IMAGE_TEXT = [
     'Velkommen til Check In Take Off',
     // tslint:disable-next-line: max-line-length
-    'Hei! Jeg heter Petra og jeg skal være veilederen din i dag. Se “Hvordan bruke” videoen vår, jeg bistår deg i å finne dine ferdigheter og utdanningsmuligheter som kan passe for deg.'];
+    'Hei! Jeg heter Petra, jeg skal hjelpe deg i dag. Trykk på «Hvordan bruke» knappen for å se instruksjonsvideoen. Jeg skal vise deg hvordan du kan kartlegge dine ferdigheter og de utdanningsmuligheter som kan passe for deg.'];
 
   public currentResource: string;
   public mediaType: string;
@@ -32,7 +32,7 @@ export class OrientationScreenComponent implements OnInit {
 
   public FEATURES = [
     {
-      text: 'Datamaskiner',
+      text: 'Data',
       icon: this.getIconPath('computers.svg'),
       color: 'red'
     },
