@@ -57,45 +57,35 @@ export class CourseScreenComponent implements OnInit {
 
   getDayOfTheWeek(day: number): string {
     const days = [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thrusday',
-      'Friday',
-      'Saturday',
-      'Sunday'
+      'Mandag',
+      'Tirsdag',
+      'Onsdag',
+      'Torsdag',
+      'Fredag',
+      'Lørdag',
+      'Søndag'
     ];
     return days[day];
   }
 
   addSufix(day: number): string {
-    const j = day % 10;
-    if (j === 1 && day !== 11) {
-        return day + 'st';
-    }
-    if (j === 2 && day !== 12) {
-        return day + 'nd';
-    }
-    if (j === 3 && day !== 13) {
-        return day + 'rd';
-    }
-    return day + 'th';
+    return day + '';
   }
 
   getMonth(month: number): string {
     const months = [
-      'January',
-      'February',
-      'March',
+      'Januar',
+      'Februar',
+      'Mars',
       'April',
-      'May',
-      'June',
-      'July',
+      'Mai',
+      'Juni',
+      'Juli',
       'August',
       'September',
-      'October',
+      'Oktober',
       'November',
-      'December'
+      'Desember'
     ];
     return months[month];
   }

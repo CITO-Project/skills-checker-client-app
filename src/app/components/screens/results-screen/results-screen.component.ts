@@ -11,6 +11,7 @@ import { DataLogService } from 'src/app/services/data/data-log.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { ResultsSaverService } from 'src/app/services/data/results-saver.service';
 import { ResultsVisualizationService } from 'src/app/services/data/results-visualization.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-results-screen',
@@ -64,7 +65,15 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   loadCourses(results: Result): Observable<Course[]> {
-    return this.coursesService.retrieveCourses(results);
+    return this.coursesService.retrieveCourses(results, 'online').pipe(
+      map( (courses: Course[]) => {
+        return courses.filter( (course: Course, index: number) => {
+          return courses.findIndex( (currentCourse: Course) => {
+            return currentCourse.skill === course.skill;
+          }) === index;
+        });
+      })
+    );
   }
 
   loadLink(link: string): void {
