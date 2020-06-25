@@ -25,7 +25,7 @@ export class ResultsVisualizationService {
       text: 'Matematikk'
     },
     digital_skills: {
-      text: 'Datamaskiner'
+      text: 'Data'
     }
   };
   constructor(
