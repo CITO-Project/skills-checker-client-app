@@ -17,28 +17,27 @@
               <div class="location">
                 <div class="heading">Lokasjon</div>
                 <div class="address text" *ngIf="!!course.address">Adresse: {{ course.address }}</div>
-                <div class="county text" *ngIf="!!course.location">County: {{ course.location[0].toUpperCase() + course.location.slice(1) }}</div>
+                <div class="county text" *ngIf="!!course.location">Besøk oss: {{ course.location[0].toUpperCase() + course.location.slice(1) }}</div>
               </div>
             </div>
           </div>
-          <div class="row" *ngIf="!!course.date_start || !!course.date_finish || !!course.duration || !!course.frequency">
+          <div class="row" *ngIf="!!course.date_start || !!course.date_finish">
             <div class="col-12 extra container">
               <div class="schedule">
                 <div class="heading">Schedule</div>
                 <div class="date_start text" *ngIf="!!course.date_start">Startdato: {{ formatDate(course.date_start) }}</div>
-                <div class="date_finish text" *ngIf="!!course.date_finish">End: {{ formatDate(course.date_finish) }}</div>
-                <div class="duration text" *ngIf="!!course.duration">Duration: {{ course.duration }}</div>
-                <div class="frequency text" *ngIf="!!course.frequency">Frequency: {{ course.frequency }}</div>
+                <div class="date_finish text" *ngIf="!!course.date_finish">Sluttdato: {{ formatDate(course.date_finish) }}</div>
               </div>
             </div>
           </div>
-          <div class="row" *ngIf="!!course.enrolment_start || !!course.enrolment_start || !!course.contact_person || !!course.contact_telephone || !!course.contact_email">
+          <div class="row" *ngIf="!!course.enrolment_start || !!course.enrolment_start || !!course.contact_person || !!course.attention || !!course.contact_telephone || !!course.contact_email">
             <div class="col-12 extra container">
               <div class="enrolment">
                 <div class="heading">Enrolment</div>
-                <div class="enrolment_start text" *ngIf="!!course.enrolment_start">Start: {{ formatDate(course.enrolment_start) }}</div>
+                <div class="enrolment_start text" *ngIf="!!course.enrolment_start">Startdato: {{ formatDate(course.enrolment_start) }}</div>
                 <div class="enrolment_finish text" *ngIf="!!course.enrolment_finish">Sluttdato: {{ formatDate(course.enrolment_finish) }}</div>
                 <div class="contact_person text" *ngIf="!!course.contact_person">Contact: {{ course.contact_person }}</div>
+                <div class="contact_attention text" *ngIf="!!course.contact_attention">Åpningstider: {{ course.contact_attention }}</div>
                 <div class="contact_telephone text" *ngIf="!!course.contact_telephone">Telefon: {{ course.contact_telephone }}</div>
                 <div class="contact_email text" *ngIf="!!course.contact_email">E-post: {{ course.contact_email }}</div>
               </div>

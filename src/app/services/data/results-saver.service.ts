@@ -67,7 +67,8 @@ export class ResultsSaverService {
     learningPathwayDescription: string[],
     learningPathway: Course[]
     ): Promise<void> {
-      this.canvastemp = new CanvasManagerService(
+      this.canvastemp = new CanvasManagerService();
+      this.canvastemp.createCanvas(
         this.calculateHeight(resultsText, learningPathwayDescription, learningPathway),
         this.FILE_MAX_WIDTH);
       if (!this.canvastemp) {
