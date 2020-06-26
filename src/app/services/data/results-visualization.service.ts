@@ -204,7 +204,8 @@ export class ResultsVisualizationService {
     return new Promise( (resolve, reject) => {
       const image = new Image();
       image.onload = () => {
-        const canvastemp = new CanvasManagerService(image.height * multiplier, image.width * multiplier);
+        const canvastemp = new CanvasManagerService();
+        canvastemp.createCanvas(image.height * multiplier, image.width * multiplier);
         canvastemp.printImage(image, 0, 0, image.width * multiplier, image.height * multiplier);
         resolve(canvastemp);
       };
@@ -214,7 +215,8 @@ export class ResultsVisualizationService {
   }
 
   async imageToDataURI(image): Promise<string> {
-    const canvastemp = new CanvasManagerService(image.height, image.width);
+    const canvastemp = new CanvasManagerService();
+    canvastemp.createCanvas(image.height, image.width);
     await canvastemp.printImageFromSource(image, 0, 0, image.width, image.height);
     return await canvastemp.exportToData();
   }

@@ -24,6 +24,9 @@ import { LocalizationScreenComponent } from './components/screens/localization-s
 import { CourseComponent } from './components/course/course.component';
 import { CourseScreenComponent } from './components/screens/course-screen/course-screen.component';
 import { BallonsAndBasketComponent } from './components/graphics/ballons-and-basket/ballons-and-basket.component';
+import { CategoriesScreenComponent } from './components/screens/categories-screen/categories-screen.component';
+import { HowToScreenComponent } from './components/screens/how-to-screen/how-to-screen.component';
+import { ScenarioIntroductionScreenComponent } from './components/screens/scenario-introduction-screen/scenario-introduction-screen.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { BallonsAndBasketComponent } from './components/graphics/ballons-and-bas
     LocalizationScreenComponent,
     CourseComponent,
     CourseScreenComponent,
-    BallonsAndBasketComponent
+    BallonsAndBasketComponent,
+    CategoriesScreenComponent,
+    HowToScreenComponent,
+    ScenarioIntroductionScreenComponent
   ],
   imports: [
     BrowserModule,
