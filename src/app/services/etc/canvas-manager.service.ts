@@ -9,8 +9,8 @@ declare let FontFace: any;
 })
 export class CanvasManagerService {
 
-  private readonly FILE_MAX_WIDTH;
-  private readonly FILE_MAX_HEIGHT;
+  private FILE_MAX_WIDTH;
+  private FILE_MAX_HEIGHT;
 
   private xCoord = 0;
   private yCoord = 0;
@@ -20,7 +20,9 @@ export class CanvasManagerService {
   private canvas: HTMLCanvasElement;
   private canvasContext: CanvasRenderingContext2D;
 
-  constructor(
+  constructor() {}
+  
+  createCanvas(
       maxHeight: number,
       maxWidth: number
     ) {

@@ -32,7 +32,7 @@ export class ResultsScreenComponent implements OnInit {
   public resultsImage: string;
 
   constructor(
-    private commonService: CommonService,
+    public commonService: CommonService,
     private dataLogService: DataLogService,
     private coursesService: CoursesService,
     private dataProcessingService: DataProcessingService,
