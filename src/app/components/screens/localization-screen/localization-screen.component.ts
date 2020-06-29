@@ -25,7 +25,7 @@ export class LocalizationScreenComponent implements OnInit {
     'Limerick',
   ];
 
-  private results: Result;
+  public results: Result;
 
   constructor(
     private courseService: CoursesService,
@@ -40,14 +40,7 @@ export class LocalizationScreenComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (sessionStorage.length > 0) {
-      this.courses = [];
-      for (let i = 0; i < sessionStorage.length; i++) {
-        this.courses.push(JSON.parse(sessionStorage.getItem(sessionStorage.key(i))));
-      }
-    } else {
       this.setCounty('all');
-    }
   }
 
   loadCourses(results: Result, location: string): Observable<Course[]> {
