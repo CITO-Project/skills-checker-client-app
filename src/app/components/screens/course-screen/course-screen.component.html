@@ -53,13 +53,13 @@
   <app-navigate-button
     backText="default"
     forwardText="More info"
-    backDestination="results"
+    (backEvent)="goBack()"
     (forwardEvent)="loadLink(course.link)"
     ></app-navigate-button>
 </ng-template>
 <ng-template #elseBlock>
   <app-navigate-button
     text="default"
-    destination="results"
+    (event)="goBack()"
     ></app-navigate-button>
 </ng-template>

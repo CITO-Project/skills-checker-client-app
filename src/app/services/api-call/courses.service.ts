@@ -42,46 +42,16 @@ export class CoursesService {
     }
     return this.commonService.getAPICaller(url)
       .pipe(map( (data: Course[]) => {
-        this.resetStorage();
         data.map( (course: Course) => {
           course.priority = results[course.skill].priority;
-          this.saveCourse(course);
         });
         return data;
       })
     );
   }
 
-  retrieveCourse(courseid: number): Observable<Course> {
-    const url = `/courses/${courseid}`;
-    return this.commonService.getAPICaller(url)
-      .pipe(map( (data: Course) => {
-        this.saveCourse(data);
-        return data;
-      })
-    );
-  }
-
-  saveCourse(course: Course): void {
-    if (!!course) {
-      sessionStorage.setItem('' + course.id, JSON.stringify(course));
-    }
-  }
-
   loadCourse(courseid: number): Observable<Course> {
-    const course: Course = JSON.parse(sessionStorage.getItem(courseid + ''));
-    if (!!course) {
-      const r = new Observable<Course>( (observer: Observer<Course>) => {
-        observer.next(course);
-        observer.complete();
-      });
-      return r;
-    } else {
-      return this.retrieveCourse(courseid);
-    }
-  }
-
-  resetStorage(): void {
-    sessionStorage.clear();
+    const url = `/courses/${courseid}`;
+    return this.commonService.getAPICaller(url);
   }
 }

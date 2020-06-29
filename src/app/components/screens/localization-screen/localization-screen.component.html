@@ -16,7 +16,9 @@
       <app-course
         *ngFor="let course of getCourses('brush_up')"
         [course]=course
-        [colour]='"green"'
+        colour='green'
+        from='localization'
+        [results]='results'
         class="course"
       ></app-course>
     </div>
@@ -25,7 +27,9 @@
       <app-course
         *ngFor="let course of getCourses('develop')"
         [course]=course
-        [colour]='"blue"'
+        colour='blue'
+        from='localization'
+        [results]='results'
         class="course"
       ></app-course>
     </div>

@@ -6,6 +6,7 @@ import { Course } from 'src/app/models/course';
 import { CoursesService } from 'src/app/services/api-call/courses.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
+import { Result } from 'src/app/models/result';
 
 @Component({
   selector: 'app-course-screen',
@@ -15,12 +16,22 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 export class CourseScreenComponent implements OnInit {
 
   public course: Course;
+  public fromLocation: string;
+  public results: Result;
 
   constructor(
     private route: ActivatedRoute,
     private courseService: CoursesService,
     private commonService: CommonService,
-    private googleAnalyticsService: GoogleAnalyticsService) { }
+    private googleAnalyticsService: GoogleAnalyticsService) {
+      const extras = commonService.getExtras();
+      if (!!extras.state && !!extras.state.from && !!extras.state.results) {
+        this.fromLocation = extras.state.from;
+        this.results = extras.state.results;
+      } else {
+        this.fromLocation = 'results';
+      }
+    }
 
   ngOnInit() {
     this.route.params.subscribe( (params: Params) => {
@@ -88,6 +99,10 @@ export class CourseScreenComponent implements OnInit {
       'Desember'
     ];
     return months[month];
+  }
+
+  goBack(): void {
+    this.commonService.goTo(this.fromLocation, this.results);
   }
 
 }
