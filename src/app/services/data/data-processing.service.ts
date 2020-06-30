@@ -242,7 +242,15 @@ export class DataProcessingService {
         `Du kan også nå målet ditt ved å utvikle dine ${this.stringManagerService.concatenateText(developSkills)} ferdigheter ` +
         `for å gjøre disse oppgavene ${this.stringManagerService.concatenateText(developDimensions)}`);
     }
-    r.learningPathwayDescription.push('Check out the courses below and find one that\'s right for you');
+    if ((brushUpSkills.length + developSkills.length) < 1) {
+      r.learningPathwayDescription.push('Du har vist at du har gode lese-, skrive-, matte- og datakunnskaper.');
+      r.learningPathwayDescription.push('Ta neste steg for å utvikle ferdighetene dine ytterligere.');
+      // tslint:disable-next-line: max-line-length
+      r.learningPathwayDescription.push('Karriereveiledning kan hjelpe deg å finne ut hvilke muligheter du har for å få jobb eller utdanning. Det finnes mange forskjellige karriereveiledningstilbud. Ønsker du å vite mer om karriereveiledning?');
+      r.learningPathwayDescription.push('Finn ditt offentlige karrieresenter ved å klikke på lenken nedenfor.');
+    } else {
+      r.learningPathwayDescription.push('Sjekk ut kursene nedenfor og finn det som passer for deg.');
+    }
     return r;
   }
 
