@@ -248,7 +248,7 @@ export class DataProcessingService {
       // tslint:disable-next-line: max-line-length
       r.learningPathwayDescription.push('Call NALA today on 1800 20 20 65 to chat about your options or check out www.fetchcourses.ie to find a course that is right for you.');
     } else if ((brushUpSkills.length + developSkills.length) === 1) {
-      r.learningPathwayDescription.push('Check out the course below and find if it is the right for you');
+      r.learningPathwayDescription.push('Check out the course below and find if it is right for you');
     } else {
       r.learningPathwayDescription.push('Check out the courses below and find one that\'s right for you.');
     }
