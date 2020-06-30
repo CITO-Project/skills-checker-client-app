@@ -242,7 +242,16 @@ export class DataProcessingService {
         `You can also reach your goal by developing your ${this.stringManagerService.concatenateText(developSkills)} skills ` +
         `to do these tasks ${this.stringManagerService.concatenateText(developDimensions)}.`);
     }
-    r.learningPathwayDescription.push('Check out the courses below and find one that\'s right for you.');
+    if ((brushUpSkills.length + developSkills.length) < 1) {
+      r.learningPathwayDescription.push('You have shown that you have strong reading, writing, maths and computer skills.');
+      r.learningPathwayDescription.push('Take the next step by developing your skills even further.');
+      // tslint:disable-next-line: max-line-length
+      r.learningPathwayDescription.push('Call NALA today on 1800 20 20 65 to chat about your options or check out www.fetchcourses.ie to find a course that is right for you.');
+    } else if ((brushUpSkills.length + developSkills.length) === 1) {
+      r.learningPathwayDescription.push('Check out the course below and find if it is the right for you');
+    } else {
+      r.learningPathwayDescription.push('Check out the courses below and find one that\'s right for you.');
+    }
     return r;
   }
 
