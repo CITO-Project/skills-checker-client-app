@@ -9,9 +9,6 @@ declare let FontFace: any;
 })
 export class CanvasManagerService {
 
-  private FILE_MAX_WIDTH;
-  private FILE_MAX_HEIGHT;
-
   private xCoord = 0;
   private yCoord = 0;
   private FONT_FAMILY = 'sans-serif';
@@ -21,14 +18,14 @@ export class CanvasManagerService {
   private canvasContext: CanvasRenderingContext2D;
 
   constructor() {}
-  
+
   createCanvas(
       maxHeight: number,
       maxWidth: number
     ) {
     this.canvas = document.createElement('canvas');
-    this.canvas.height = this.FILE_MAX_HEIGHT = maxHeight;
-    this.canvas.width = this.FILE_MAX_WIDTH = maxWidth;
+    this.canvas.height = maxHeight;
+    this.canvas.width = maxWidth;
     this.canvasContext = this.canvas.getContext('2d');
     this.canvasContext.textBaseline = 'top';
     this.xCoord = 0;
