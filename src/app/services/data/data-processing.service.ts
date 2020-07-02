@@ -232,15 +232,21 @@ export class DataProcessingService {
         this.stringManagerService.lowerCaseFirst(this.stringManagerService.correctText(interest))}`,
       learningPathwayDescription: []
     };
-    if (brushUpDimensions.length > 0) {
-      r.learningPathwayDescription.push(
-        `Ta neste steg ved å friske opp dine ${this.stringManagerService.concatenateText(brushUpSkills)} ferdigheter, ` +
-        `slik at du kan gjøre lignende oppgaver ${this.stringManagerService.concatenateText(brushUpDimensions)}`);
+    if (brushUpSkills.length > 0) {
+      let text = `Ta neste steg ved å friske opp dine ${this.stringManagerService.concatenateText(brushUpSkills)} ferdigheter`;
+      if (brushUpDimensions.length > 0) {
+        text += `, slik at du kan gjøre lignende oppgaver ${this.stringManagerService.concatenateText(brushUpDimensions)}`;
+      }
+      text += '.';
+      r.learningPathwayDescription.push(text);
     }
-    if (developDimensions.length > 0) {
-      r.learningPathwayDescription.push(
-        `Du kan også nå målet ditt ved å utvikle dine ${this.stringManagerService.concatenateText(developSkills)} ferdigheter ` +
-        `for å gjøre disse oppgavene ${this.stringManagerService.concatenateText(developDimensions)}`);
+    if (developSkills.length > 0) {
+      let text = `Du kan også nå målet ditt ved å utvikle dine ${this.stringManagerService.concatenateText(developSkills)} ferdigheter`;
+      if (developDimensions.length > 0) {
+        text += ` for å gjøre disse oppgavene ${this.stringManagerService.concatenateText(developDimensions)}`;
+      }
+      text += '.';
+      r.learningPathwayDescription.push(text);
     }
     if ((brushUpSkills.length + developSkills.length) < 1) {
       r.learningPathwayDescription.push('Du har vist at du har gode lese-, skrive-, matte- og datakunnskaper.');
