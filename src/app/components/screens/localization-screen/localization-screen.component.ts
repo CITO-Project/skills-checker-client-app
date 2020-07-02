@@ -15,7 +15,7 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 
   styleUrls: ['./localization-screen.component.scss']
 })
-export class LocalizationScreenComponent implements OnInit {
+export class LocalizationScreenComponent {
 
   public courses: Course[] = [];
   public IRELAND_COUNTIES = [
@@ -37,10 +37,6 @@ export class LocalizationScreenComponent implements OnInit {
     } else {
       commonService.goTo('results');
     }
-  }
-
-  ngOnInit() {
-      this.setCounty('all');
   }
 
   loadCourses(results: Result, location: string): Observable<Course[]> {
