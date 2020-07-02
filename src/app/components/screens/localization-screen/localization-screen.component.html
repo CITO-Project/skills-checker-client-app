@@ -4,7 +4,7 @@
     <div class="title">Learning opportunities</div>
     <div class="description">Please, choose your location to see the learning opportunities near you</div>
     <select class="browser-default custom-select" (change)='setCounty($event.target.value)'>
-      <option selected value='all'>Choose your area</option>
+      <option selected>Choose your area</option>
       <option value='all'>Show all</option>
       <option *ngFor='let county of IRELAND_COUNTIES' value='{{ county.toLowerCase() }}'>{{ county }}</option>
     </select>
