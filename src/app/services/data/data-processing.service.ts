@@ -229,7 +229,7 @@ export class DataProcessingService {
     const interest = log.interest.text;
     const r = {
       resultsText: `You have taken the first step towards achieving your goal of being able to ${
-        this.stringManagerService.lowerCaseFirst(this.stringManagerService.correctText(interest))}`,
+        this.stringManagerService.lowerCaseFirst(this.stringManagerService.correctText(interest))}.`,
       learningPathwayDescription: []
     };
     if (brushUpSkills.length > 0) {
@@ -248,7 +248,7 @@ export class DataProcessingService {
       text += '.';
       r.learningPathwayDescription.push(text);
     }
-    r.learningPathwayDescription.push('Check out the courses below and find one that\'s right for you');
+    r.learningPathwayDescription.push('Check out the courses below and find one that\'s right for you.');
     return r;
   }
 
