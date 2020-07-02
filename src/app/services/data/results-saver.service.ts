@@ -232,7 +232,10 @@ export class ResultsSaverService {
       this.printText(this.stringManagerService.ellipsisText(title, this.SPLIT_COURSE_TEXTS), 'bold');
     }
     descriptionSplitted.slice(0, this.MAX_LINES_COURSE_DESCRIPTION).forEach( (text: string) => this.printText(text));
-    if (!!course.link) {
+    if (!!course.contact_telephone) {
+      // tslint:disable-next-line: max-line-length
+      this.printText(this.stringManagerService.ellipsisText(`Telefon: ${course.contact_telephone}`, this.SPLIT_COURSE_TEXTS), 'italic');
+    } else if (!!course.link) {
       this.printText(this.stringManagerService.ellipsisText(link, this.SPLIT_COURSE_TEXTS), 'italic');
     }
     //#endregion
@@ -282,7 +285,7 @@ export class ResultsSaverService {
     if (!!course.title) {
       lines++;
     }
-    if (!!course.link) {
+    if (!!course.contact_telephone || !!course.link) {
       lines++;
     }
     r += this.TEXT_SIZE * (numberLinesCourseDescription + lines);
