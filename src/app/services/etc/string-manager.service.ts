@@ -25,8 +25,8 @@ export class StringManagerService {
         endIndex = text.length;
       }
       r.push(text.slice(0, endIndex).trim());
-      splittedText = text.split('');
       text = text.slice(endIndex);
+      splittedText = text.split('');
     }
     return r;
   }

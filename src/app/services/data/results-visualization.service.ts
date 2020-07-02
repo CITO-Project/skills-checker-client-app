@@ -45,25 +45,25 @@ export class ResultsVisualizationService {
       );
     const balloonSize = this.calculateBalloonsSize(results);
     const balloonsOrder = this.calculateBalloonsOrder(results, balloonSize);
-    const canvastemp = await this.loadBallonTemplate(balloonSize, multiplier);
+    const canvasManager = await this.loadBallonTemplate(balloonSize, multiplier);
 
-    await canvastemp.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
-    canvastemp.setFont(fontSize * multiplier, 'bold', 'Raleway');
-    canvastemp.setTextAlignment('center');
-    canvastemp.setColour('white');
+    await canvasManager.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
+    canvasManager.setFont(fontSize * multiplier, 'bold', 'Raleway');
+    canvasManager.setTextAlignment('center');
+    canvasManager.setColour('white');
     this.calculateCoordinates(balloonSize).forEach( (coordinates: {x: number, y: number}, position: number) =>
       this.stringManagerService.splitTextInLines(
         balloonsOrder[position], this.SPLIT_BALLOONS_TEXT
         ).forEach( (text: string, index: number) => {
           if (index === 0) {
-            canvastemp.setX(coordinates.x * multiplier);
-            canvastemp.setY(coordinates.y * multiplier);
+            canvasManager.setX(coordinates.x * multiplier);
+            canvasManager.setY(coordinates.y * multiplier);
           }
-          canvastemp.printLine(text);
+          canvasManager.printLine(text);
         }
       )
     );
-    return canvastemp.exportToData();
+    return canvasManager.exportToData();
   }
 
   calculateBalloonsSize(results: Result): string {
@@ -205,10 +205,10 @@ export class ResultsVisualizationService {
     return new Promise( (resolve, reject) => {
       const image = new Image();
       image.onload = () => {
-        const canvastemp = new CanvasManagerService();
-        canvastemp.createCanvas(image.height * multiplier, image.width * multiplier);
-        canvastemp.printImage(image, 0, 0, image.width * multiplier, image.height * multiplier);
-        resolve(canvastemp);
+        const canvasManager = new CanvasManagerService();
+        canvasManager.createCanvas(image.height * multiplier, image.width * multiplier);
+        canvasManager.printImage(image, 0, 0, image.width * multiplier, image.height * multiplier);
+        resolve(canvasManager);
       };
       image.onerror = () => reject('ERROR_LOADING_BALLOON_TEMPLATE');
       image.src = this.commonService.getBalloonsPath(`balloons-${size}.svg`);
@@ -216,9 +216,9 @@ export class ResultsVisualizationService {
   }
 
   async imageToDataURI(image): Promise<string> {
-    const canvastemp = new CanvasManagerService();
-    canvastemp.createCanvas(image.height, image.width);
-    await canvastemp.printImageFromSource(image, 0, 0, image.width, image.height);
-    return await canvastemp.exportToData();
+    const canvasManager = new CanvasManagerService();
+    canvasManager.createCanvas(image.height, image.width);
+    await canvasManager.printImageFromSource(image, 0, 0, image.width, image.height);
+    return await canvasManager.exportToData();
   }
 }
