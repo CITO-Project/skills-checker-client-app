@@ -229,7 +229,7 @@ export class DataProcessingService {
     const interest = log.interest.text;
     const r = {
       resultsText: `Du har tatt det første steget mot målet ditt om å kunne ${
-        this.stringManagerService.lowerCaseFirst(this.stringManagerService.correctText(interest))}`,
+        this.stringManagerService.lowerCaseFirst(this.stringManagerService.correctText(interest))}.`,
       learningPathwayDescription: []
     };
     if (brushUpSkills.length > 0) {
