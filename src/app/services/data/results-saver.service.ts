@@ -207,7 +207,7 @@ export class ResultsSaverService {
   }
 
   printCourse(course: Course, courseColor: string = this.BRUSH_UP_COLOR) {
-    const { external_id, title, description, link } = course;
+    const { title, description, link } = course;
     const descriptionSplitted = this.stringManagerService.splitTextInLines(description, this.SPLIT_COURSE_TEXTS);
     if (descriptionSplitted.length > this.MAX_LINES_COURSE_DESCRIPTION) {
       descriptionSplitted[this.MAX_LINES_COURSE_DESCRIPTION - 1] =
@@ -229,7 +229,7 @@ export class ResultsSaverService {
     this.canvasManager.addY(this.COURSE_MARGIN);
     if (!!course.title) {
       // tslint:disable-next-line: max-line-length
-      this.printText(this.stringManagerService.ellipsisText(`${!!external_id ? '#' + external_id + ' - ' : ''}${title}`, this.SPLIT_COURSE_TEXTS), 'bold');
+      this.printText(this.stringManagerService.ellipsisText(title, this.SPLIT_COURSE_TEXTS), 'bold');
     }
     descriptionSplitted.slice(0, this.MAX_LINES_COURSE_DESCRIPTION).forEach( (text: string) => this.printText(text));
     if (!!course.link) {
