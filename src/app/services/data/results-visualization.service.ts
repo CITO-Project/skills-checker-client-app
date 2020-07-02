@@ -44,25 +44,25 @@ export class ResultsVisualizationService {
       );
     const balloonSize = this.calculateBalloonsSize(results);
     const balloonsOrder = this.calculateBalloonsOrder(results, balloonSize);
-    const canvas = await this.loadBallonTemplate(balloonSize, multiplier);
+    const canvasManager = await this.loadBallonTemplate(balloonSize, multiplier);
 
-    await canvas.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
-    canvas.setFont(fontSize * multiplier, 'bold', 'Raleway');
-    canvas.setTextAlignment('center');
-    canvas.setColour('white');
+    await canvasManager.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
+    canvasManager.setFont(fontSize * multiplier, 'bold', 'Raleway');
+    canvasManager.setTextAlignment('center');
+    canvasManager.setColour('white');
     this.calculateCoordinates(balloonSize).forEach( (coordinates: {x: number, y: number}, position: number) =>
       this.stringManagerService.splitTextInLines(
         balloonsOrder[position], 9
         ).forEach( (text: string, index: number) => {
           if (index === 0) {
-            canvas.setX(coordinates.x * multiplier);
-            canvas.setY(coordinates.y * multiplier);
+            canvasManager.setX(coordinates.x * multiplier);
+            canvasManager.setY(coordinates.y * multiplier);
           }
-          canvas.printLine(text);
+          canvasManager.printLine(text);
         }
       )
     );
-    return canvas.exportToData();
+    return canvasManager.exportToData();
   }
 
   calculateBalloonsSize(results: Result): string {
