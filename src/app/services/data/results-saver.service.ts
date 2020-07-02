@@ -207,7 +207,7 @@ export class ResultsSaverService {
   }
 
   printCourse(course: Course, courseColor: string = this.BRUSH_UP_COLOR) {
-    const { external_id, title, description, link } = course;
+    const { title, description, link } = course;
     const descriptionSplitted = this.stringManagerService.splitTextInLines(description, this.SPLIT_COURSE_TEXTS);
     if (descriptionSplitted.length > this.MAX_LINES_COURSE_DESCRIPTION) {
       descriptionSplitted[this.MAX_LINES_COURSE_DESCRIPTION - 1] =
