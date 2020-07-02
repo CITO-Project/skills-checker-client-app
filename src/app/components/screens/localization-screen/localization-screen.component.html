@@ -4,7 +4,7 @@
     <div class="title">Læringsmuligheter</div>
     <div class="description">Velg ditt område for å se læringsmuligheter</div>
     <select class="browser-default custom-select" (change)='setCounty($event.target.value)'>
-      <option selected value='all'>Velg ditt område</option>
+      <option selected>Velg ditt område</option>
       <option value='all'>Se alt</option>
       <option *ngFor='let county of IRELAND_COUNTIES' value='{{ county.toLowerCase() }}'>{{ county }}</option>
     </select>
