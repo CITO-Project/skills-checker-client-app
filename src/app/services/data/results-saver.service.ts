@@ -229,7 +229,7 @@ export class ResultsSaverService {
     this.canvasManager.addY(this.COURSE_MARGIN);
     if (!!course.title) {
       // tslint:disable-next-line: max-line-length
-      this.printText(this.stringManagerService.ellipsisText(`${!!external_id ? '#' + external_id + ' - ' : ''}${title}`, this.SPLIT_COURSE_TEXTS), 'bold');
+      this.printText(this.stringManagerService.ellipsisText(title, this.SPLIT_COURSE_TEXTS), 'bold');
     }
     descriptionSplitted.slice(0, this.MAX_LINES_COURSE_DESCRIPTION).forEach( (text: string) => this.printText(text));
     if (!!course.link) {
