@@ -232,15 +232,21 @@ export class DataProcessingService {
         this.stringManagerService.lowerCaseFirst(this.stringManagerService.correctText(interest))}`,
       learningPathwayDescription: []
     };
-    if (brushUpDimensions.length > 0) {
-      r.learningPathwayDescription.push(
-        `Take the next step by brushing up on your ${this.stringManagerService.concatenateText(brushUpSkills)} skills, ` +
-        `so that you can do similar tasks ${this.stringManagerService.concatenateText(brushUpDimensions)}`);
+    if (brushUpSkills.length > 0) {
+      let text = `Take the next step by brushing up on your ${this.stringManagerService.concatenateText(brushUpSkills)} skills`;
+      if (brushUpDimensions.length > 0) {
+        text += `, so that you can do similar tasks ${this.stringManagerService.concatenateText(brushUpDimensions)}`;
+      }
+      text += '.';
+      r.learningPathwayDescription.push(text);
     }
-    if (developDimensions.length > 0) {
-      r.learningPathwayDescription.push(
-        `You can also reach your goal by developing ${this.stringManagerService.concatenateText(developSkills)} skills ` +
-        `to do these tasks ${this.stringManagerService.concatenateText(developDimensions)}`);
+    if (developSkills.length > 0) {
+      let text = `You can also reach your goal by developing ${this.stringManagerService.concatenateText(developSkills)} skills`;
+      if (developDimensions.length > 0) {
+        text += ` to do these tasks ${this.stringManagerService.concatenateText(developDimensions)}`;
+      }
+      text += '.';
+      r.learningPathwayDescription.push(text);
     }
     r.learningPathwayDescription.push('Check out the courses below and find one that\'s right for you');
     return r;
