@@ -95,13 +95,13 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   saveResults(): void {
-      this.resultsSaverService.generateImage(
-        this.resultsImage,
-        this.HEADER,
-        this.texts.resultsText,
-        this.LEARNING_PATHWAY_HEADER,
-        this.texts.learningPathwayDescription,
-        this.courses);
+    this.resultsSaverService.generateImage(
+      this.resultsImage,
+      this.HEADER,
+      'Well done! ' + this.texts.resultsText,
+      this.LEARNING_PATHWAY_HEADER,
+      this.texts.learningPathwayDescription,
+      this.courses);
   }
 
   getCourses(priority: string): Course[] {

@@ -11,39 +11,40 @@ import { StringManagerService } from '../etc/string-manager.service';
 })
 export class ResultsSaverService {
 
-  private readonly TEMPORARY_TOP_SEPARATION_RESULTS_TEXT = 150;
-
   private readonly FILE_MAX_WIDTH = 1000;
-  private readonly FILE_MAX_HEIGHT = 2500;
   private readonly IMG_MAX_HEIGHT = 460;
 
-  private readonly HEADING_SIZE = 60;
+  private readonly TITLE_SIZE = 60;
   private readonly TEXT_SIZE = 40;
 
-  private readonly BALLOONS_TEXT_SEPARATION = 150;
-  private readonly BALLONS_LEARNING_PATHWAY_SEPARATION = 100;
-  private readonly LINES_SEPARATION = 20;
+  private readonly BALLOONS_TEXT_SEPARATION = 90;
+  private readonly BALLOONS_LEARNING_PATHWAY_SEPARATION = 100;
+  private readonly TITLE_LINES_SEPARATION = 20;
+  private readonly LINES_SEPARATION = 10;
   private readonly TEXTS_SEPARATION = 20;
 
-  private readonly PADDING = 60;
+  private readonly PADDING_BALLOONS = 60;
   private readonly TITLE_PADDING = 50;
+  private readonly RESULTS_TEXT_TOP_PADDING = 150;
   private readonly BACKGROUND_PADDING_SIDES = 80;
   private readonly BACKGROUND_PADDING_TOP = this.TITLE_PADDING + 100;
   private readonly SECTION_PADDING = 40;
-  private readonly COURSE_PADDING = 40;
+  private readonly COURSE_MARGIN = 40;
   private readonly COURSES_BORDER_RADIUS = 40;
   private readonly BOTTOM_PADDING = 50;
 
-  private readonly SPLIT_RESULTS_TEXT = 25;
+  private readonly SPLIT_RESULTS_TEXT = 21;
   private readonly SPLIT_LEARNING_PATHWAY_DESCRIPTION = 45;
-  private readonly SPLIT_COURSE_DESCRIPTION = 47;
+  private readonly SPLIT_COURSE_TEXTS = 40;
+
+  private readonly MAX_LINES_RESULTS_TEXT = 5;
   private readonly MAX_LINES_COURSE_DESCRIPTION = 2;
 
   private readonly FILE_DOWNLOAD_NAME = 'SkillsChecker Results.png';
 
   private readonly BACKGROUND_COLOR = '#fff';
   private readonly GRADIENT_COLOR = '#3FBDA8';
-  private readonly LEARNING_PATHWAY_BACKGROUND_COLOR = '#E0E6EB';
+  private readonly SECTION_BACKGROUND_COLOR = '#E0E6EB';
   private readonly BRUSH_UP_COLOR = '#3FBDA8';
   private readonly DEVELOP_COLOR = '#2E3C67';
 
@@ -52,7 +53,7 @@ export class ResultsSaverService {
   private readonly TEXT_COLOR = '#62717A';
   private readonly TEXT_COLOR_LIGHT = '#F2F3F3';
 
-  private canvastemp: CanvasManagerService;
+  private canvasManager: CanvasManagerService;
 
   constructor(
     private commonService: CommonService,
@@ -67,86 +68,29 @@ export class ResultsSaverService {
     learningPathwayDescription: string[],
     learningPathway: Course[]
     ): Promise<void> {
-      this.canvastemp = new CanvasManagerService();
-      this.canvastemp.createCanvas(
+      this.canvasManager = new CanvasManagerService();
+      this.canvasManager.createCanvas(
         this.calculateHeight(resultsText, learningPathwayDescription, learningPathway),
         this.FILE_MAX_WIDTH);
-      if (!this.canvastemp) {
-        this.commonService.error('results-saver.service.ts [generateImage()] ERROR_CREATING_CANVAS', this.canvastemp);
+      if (!this.canvasManager) {
+        this.commonService.error('results-saver.service.ts [generateImage()] ERROR_CREATING_CANVAS', this.canvasManager);
         return;
       }
-      await this.canvastemp.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
-      let multiplier = 1;
-      this.paintBackground(this.canvastemp.getCanvasContext());
-
-      //#region Printing header
-      this.canvastemp.setColour(this.TEXT_COLOR_LIGHT);
-      this.canvastemp.addY(this.TITLE_PADDING);
-      this.canvastemp.setTextAlignment('center');
-      this.printHeader(header, 'bold', this.FILE_MAX_WIDTH / 2);
-      this.canvastemp.addY(this.TITLE_PADDING);
-      //#endregion
-
-
-      //#region Drawing graph
-      await this.canvastemp.loadResource(this.commonService.getImagePath('background-results.svg'))
-        .then( (backgroundImage: any) => {
-          multiplier = (this.FILE_MAX_WIDTH - this.BACKGROUND_PADDING_SIDES * 2) / backgroundImage.width;
-          this.canvastemp.getCanvasContext().drawImage(
-            backgroundImage,
-            this.BACKGROUND_PADDING_SIDES,
-            this.BACKGROUND_PADDING_TOP,
-            backgroundImage.width * multiplier,
-            backgroundImage.height * multiplier);
-      });
-      await this.canvastemp.loadResource(graphDataURI).then( (balloonsAndBasketImage: any) => {
-        multiplier = this.IMG_MAX_HEIGHT / balloonsAndBasketImage.height;
-        this.canvastemp.setX(balloonsAndBasketImage.width * multiplier);
-        this.canvastemp.getCanvasContext().drawImage(
-          balloonsAndBasketImage,
-          this.PADDING,
-          this.canvastemp.getY(),
-          balloonsAndBasketImage.width * multiplier,
-          balloonsAndBasketImage.height * multiplier);
-      });
-      //#endregion
-
-      //#region Writing resultsText
-      this.canvastemp.setTextAlignment('left');
-      this.canvastemp.setColour(this.TEXT_COLOR);
-      // TODO Need to vertical align this text
-      this.canvastemp.addY(this.TEMPORARY_TOP_SEPARATION_RESULTS_TEXT);
-      this.canvastemp.addX(this.BALLOONS_TEXT_SEPARATION);
-      this.stringManagerService.splitTextInLines(resultsText, this.SPLIT_RESULTS_TEXT).forEach( (text: string) => {
-        this.canvastemp.addY(this.LINES_SEPARATION);
-        this.printText(text, '');
-      });
-      this.canvastemp.setY(this.IMG_MAX_HEIGHT + this.TITLE_PADDING * 2 + this.TEXT_SIZE);
-      //#endregion
-
-      //#region Printing Pathway description
-      this.canvastemp.setX(this.FILE_MAX_WIDTH / 2);
-      this.canvastemp.addY(this.BALLONS_LEARNING_PATHWAY_SEPARATION);
-      this.canvastemp.setTextAlignment('center');
-      this.printHeader(learningPathwayHeader, 'bold');
-      this.canvastemp.addY(this.TEXTS_SEPARATION);
-      this.canvastemp.setTextAlignment('center');
-      learningPathwayDescription.forEach( (line: string) => {
-        this.stringManagerService.splitTextInLines(
-          line, this.SPLIT_LEARNING_PATHWAY_DESCRIPTION)
-          .forEach( (text: string) => {
-            this.printText(text);
-            this.canvastemp.addY(10);
-        });
-        this.canvastemp.addY(this.TEXTS_SEPARATION);
-      });
-      //#endregion
+      await this.canvasManager.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
+      this.paintBackground(this.canvasManager.getCanvasContext(), resultsText);
+      await this.printHeader(header, graphDataURI, resultsText);
+      this.canvasManager.setColour(this.BACKGROUND_COLOR);
+      this.canvasManager.drawBox(this.FILE_MAX_WIDTH, this.BALLOONS_LEARNING_PATHWAY_SEPARATION, 0, 0);
+      this.canvasManager.addY(this.BALLOONS_LEARNING_PATHWAY_SEPARATION);
+      this.canvasManager.drawBox(this.FILE_MAX_WIDTH, this.calculateHeightDescription(learningPathwayDescription), 0, 0);
+      this.canvasManager.setColour(this.TEXT_COLOR);
+      this.printDescription(learningPathwayHeader, learningPathwayDescription);
 
       const brushUpCourses = learningPathway.filter( (course: Course) => course.priority === 'brush_up');
       const developCourses = learningPathway.filter( (course: Course) => course.priority === 'develop');
 
       //#region Printing 'brush_up' courses
-      this.canvastemp.setTextAlignment('left');
+      this.canvasManager.setTextAlignment('left');
       if (brushUpCourses.length > 0) {
         this.printSection('Brush up', brushUpCourses, this.BRUSH_UP_COLOR);
       }
@@ -156,115 +100,214 @@ export class ResultsSaverService {
       if (developCourses.length > 0) {
         this.printSection('Further develop', developCourses, this.DEVELOP_COLOR);
       }
-      this.canvastemp.addY(this.COURSES_BORDER_RADIUS / 2);
       //#endregion
 
-      this.canvastemp.setColour(this.LEARNING_PATHWAY_BACKGROUND_COLOR);
-      this.canvastemp.setX(0);
-      this.canvastemp.drawBox(this.FILE_MAX_WIDTH, this.BOTTOM_PADDING);
+      this.paintBottom(
+        (brushUpCourses.length + developCourses.length) > 0 ?
+        this.SECTION_BACKGROUND_COLOR :
+        this.BACKGROUND_COLOR
+      );
 
-      this.canvastemp.downloadImage(this.FILE_DOWNLOAD_NAME);
+      this.canvasManager.downloadImage(this.FILE_DOWNLOAD_NAME);
   }
 
   printText(text: string, variant: string = '', x?: number, y?: number) {
-    this.canvastemp.setFont(this.TEXT_SIZE, variant);
-    this.canvastemp.printLine(text, x, y);
+    this.canvasManager.setFont(this.TEXT_SIZE, variant);
+    this.canvasManager.printLine(text, x, y);
   }
 
-  printHeader(text: string, variant: string = '', x?: number, y?: number) {
-    this.canvastemp.setFont(this.HEADING_SIZE, variant);
-    this.canvastemp.printLine(text, x, y);
+  printTitle(text: string, variant: string = '', x?: number, y?: number) {
+    this.canvasManager.setFont(this.TITLE_SIZE, variant);
+    this.canvasManager.printLine(text, x, y);
+  }
+
+  async printHeader(header: string, balloonsAndBasketURI: string, resultsText: string): Promise<void> {
+    let multiplier = 1;
+    //#region Printing header
+    this.canvasManager.setColour(this.TEXT_COLOR_LIGHT);
+    this.canvasManager.addY(this.TITLE_PADDING);
+    this.canvasManager.setTextAlignment('center');
+    this.printTitle(header, 'bold', this.FILE_MAX_WIDTH / 2);
+    this.canvasManager.addY(this.TITLE_PADDING);
+    const tempY = this.canvasManager.getY();
+    //#endregion
+
+
+    //#region Drawing graph
+    await this.canvasManager.loadResource(this.commonService.getImagePath('background-results.svg'))
+      .then( (backgroundImage: any) => {
+        multiplier = (this.FILE_MAX_WIDTH - this.BACKGROUND_PADDING_SIDES * 2) / backgroundImage.width;
+        this.canvasManager.getCanvasContext().drawImage(
+          backgroundImage,
+          this.BACKGROUND_PADDING_SIDES,
+          this.BACKGROUND_PADDING_TOP,
+          backgroundImage.width * multiplier,
+          backgroundImage.height * multiplier);
+    });
+    await this.canvasManager.loadResource(balloonsAndBasketURI).then( (balloonsAndBasketImage: any) => {
+      multiplier = this.IMG_MAX_HEIGHT / balloonsAndBasketImage.height;
+      this.canvasManager.setX(balloonsAndBasketImage.width * multiplier);
+      this.canvasManager.getCanvasContext().drawImage(
+        balloonsAndBasketImage,
+        this.PADDING_BALLOONS,
+        this.canvasManager.getY(),
+        balloonsAndBasketImage.width * multiplier,
+        balloonsAndBasketImage.height * multiplier);
+    });
+    //#endregion
+
+    //#region Writing resultsText
+    this.canvasManager.setTextAlignment('left');
+    this.canvasManager.setColour(this.TEXT_COLOR);
+    this.canvasManager.setY(tempY);
+    this.canvasManager.addY(this.RESULTS_TEXT_TOP_PADDING);
+    this.canvasManager.addX(this.BALLOONS_TEXT_SEPARATION);
+    const resultsTextSplitted = this.stringManagerService.splitTextInLines(resultsText, this.SPLIT_RESULTS_TEXT);
+    resultsTextSplitted.forEach( (text: string) => {
+      this.printText(text, '');
+      this.canvasManager.addY(this.TITLE_LINES_SEPARATION);
+    });
+    //#endregion
+  }
+
+  printDescription(title: string, description: string[]): void {
+    this.canvasManager.setX(this.FILE_MAX_WIDTH / 2);
+    this.canvasManager.setTextAlignment('center');
+    this.printTitle(title, 'bold');
+    this.canvasManager.addY(this.TEXTS_SEPARATION);
+    this.canvasManager.setTextAlignment('center');
+    description.forEach( (line: string) => {
+      this.stringManagerService.splitTextInLines(
+        line, this.SPLIT_LEARNING_PATHWAY_DESCRIPTION)
+        .forEach( (text: string) => {
+          this.printText(text);
+          this.canvasManager.addY(this.LINES_SEPARATION);
+      });
+      this.canvasManager.addY(this.TEXTS_SEPARATION);
+    });
   }
 
   printSection(title: string, courses: Course[], sectionColor: string = this.BRUSH_UP_COLOR): void {
     //#region Printing courses background
-    this.canvastemp.setColour(this.LEARNING_PATHWAY_BACKGROUND_COLOR);
-    this.canvastemp.addY(this.LINES_SEPARATION);
-    this.canvastemp.drawBox(this.FILE_MAX_WIDTH, this.calculateHeightSection(courses), 0, 0);
+    this.canvasManager.setColour(this.SECTION_BACKGROUND_COLOR);
+    this.canvasManager.drawBox(this.FILE_MAX_WIDTH, this.calculateHeightSection(courses), 0, 0);
     //#endregion
 
-    this.canvastemp.setX(this.SECTION_PADDING);
-    this.canvastemp.setFont(this.HEADING_SIZE, '', this.TEXT_FONT_FAMILY);
-    this.canvastemp.setTextAlignment('left');
-    this.canvastemp.setColour(this.TEXT_COLOR);
-    this.canvastemp.addY(this.TEXT_SIZE);
-    this.printHeader(title);
+    this.canvasManager.setX(this.SECTION_PADDING);
+    this.canvasManager.setFont(this.TITLE_SIZE, '', this.TEXT_FONT_FAMILY);
+    this.canvasManager.setTextAlignment('left');
+    this.canvasManager.setColour(this.TEXT_COLOR);
+    this.canvasManager.addY(this.TEXT_SIZE);
+    this.printTitle(title);
 
-    courses.forEach( (course: Course) => this.printCourse(course, sectionColor));
+    courses.forEach( (course: Course) => {
+      this.canvasManager.addY(this.COURSE_MARGIN);
+      this.printCourse(course, sectionColor);
+    });
   }
 
   printCourse(course: Course, courseColor: string = this.BRUSH_UP_COLOR) {
-    const { id, title, description, link } = course;
-    const descriptionSplitted = this.stringManagerService.splitTextInLines(description, this.SPLIT_COURSE_DESCRIPTION);
+    const { external_id, title, description, link } = course;
+    const descriptionSplitted = this.stringManagerService.splitTextInLines(description, this.SPLIT_COURSE_TEXTS);
     if (descriptionSplitted.length > this.MAX_LINES_COURSE_DESCRIPTION) {
       descriptionSplitted[this.MAX_LINES_COURSE_DESCRIPTION - 1] =
       descriptionSplitted[this.MAX_LINES_COURSE_DESCRIPTION - 1].slice(0, -3).concat('...');
     }
 
     //#region Drawing course box
-    this.canvastemp.addY(this.TEXT_SIZE);
-    this.canvastemp.setColour(courseColor);
-    this.canvastemp.drawBox(
-      this.FILE_MAX_WIDTH - this.COURSE_PADDING * 2,
+    this.canvasManager.setColour(courseColor);
+    this.canvasManager.drawBox(
+      this.FILE_MAX_WIDTH - this.COURSE_MARGIN * 2,
       this.calculateHeightCourse(course),
       this.COURSES_BORDER_RADIUS
     );
     //#endregion
 
     //#region Printing couse info
-    this.canvastemp.setColour(this.TEXT_COLOR_LIGHT);
-    this.canvastemp.addX(this.COURSE_PADDING);
-    this.canvastemp.addY(this.COURSE_PADDING);
-    this.printText(`#${id} - ${title}`, 'bold');
+    this.canvasManager.setColour(this.TEXT_COLOR_LIGHT);
+    this.canvasManager.addX(this.COURSE_MARGIN);
+    this.canvasManager.addY(this.COURSE_MARGIN);
+    if (!!course.title) {
+      // tslint:disable-next-line: max-line-length
+      this.printText(this.stringManagerService.ellipsisText(`${!!external_id ? '#' + external_id + ' - ' : ''}${title}`, this.SPLIT_COURSE_TEXTS), 'bold');
+    }
     descriptionSplitted.slice(0, this.MAX_LINES_COURSE_DESCRIPTION).forEach( (text: string) => this.printText(text));
-    this.printText(link, 'italic');
+    if (!!course.link) {
+      this.printText(this.stringManagerService.ellipsisText(link, this.SPLIT_COURSE_TEXTS), 'italic');
+    }
     //#endregion
 
-    this.canvastemp.setX(this.COURSE_PADDING);
-    this.canvastemp.addY(this.LINES_SEPARATION);
+    this.canvasManager.setX(this.COURSE_MARGIN);
+    this.canvasManager.addY(this.COURSE_MARGIN);
+  }
+
+  calculateHeightHeader(resultsText: string): number {
+    let r = 0;
+    r += this.TITLE_PADDING * 2 + this.TITLE_SIZE;
+    const resultsTextLines = this.stringManagerService.splitTextInLines(resultsText, this.SPLIT_RESULTS_TEXT).length;
+    if (resultsTextLines > this.MAX_LINES_RESULTS_TEXT) {
+      r += this.RESULTS_TEXT_TOP_PADDING;
+      r += (this.TEXT_SIZE + this.TITLE_LINES_SEPARATION) * resultsTextLines;
+    } else {
+      r += this.IMG_MAX_HEIGHT;
+    }
+    return r;
+  }
+
+  calculateHeightDescription(description: string[]): number {
+    let r = 0;
+    r += this.TITLE_SIZE + this.TEXTS_SEPARATION;
+    description.forEach( (line: string) => {
+      this.stringManagerService.splitTextInLines(
+        line, this.SPLIT_LEARNING_PATHWAY_DESCRIPTION
+      ).forEach( () => {
+        r += this.TEXT_SIZE + this.LINES_SEPARATION;
+      });
+      r += this.TEXTS_SEPARATION;
+    });
+    return r;
   }
 
   calculateHeightCourse(course: Course): number {
     let r = 0;
-    const numberLinesCourseDescription = this.stringManagerService.splitTextInLines(
+    let numberLinesCourseDescription = this.stringManagerService.splitTextInLines(
       course.description,
-      this.SPLIT_COURSE_DESCRIPTION
+      this.SPLIT_COURSE_TEXTS
       ).length;
-    r += this.COURSE_PADDING * 2;
-    r += this.TEXT_SIZE * (
-      ( numberLinesCourseDescription > this.MAX_LINES_COURSE_DESCRIPTION ?
-        this.MAX_LINES_COURSE_DESCRIPTION :
-        numberLinesCourseDescription) + 2);
+    if (numberLinesCourseDescription >= this.MAX_LINES_COURSE_DESCRIPTION) {
+      numberLinesCourseDescription = this.MAX_LINES_COURSE_DESCRIPTION;
+    }
+    r += this.COURSES_BORDER_RADIUS * 2;
+    let lines = 0;
+    if (!!course.title) {
+      lines++;
+    }
+    if (!!course.link) {
+      lines++;
+    }
+    r += this.TEXT_SIZE * (numberLinesCourseDescription + lines);
     return r;
   }
 
   calculateHeightSection(courses: Course[]): number {
     let r = 0;
-    r += this.LINES_SEPARATION + this.HEADING_SIZE + this.TEXT_SIZE;
-    courses.forEach( (course: Course) => r += this.calculateHeightCourse(course) + this.LINES_SEPARATION);
+    r += this.TITLE_SIZE + this.SECTION_PADDING;
+    courses.forEach( (course: Course) => r += this.calculateHeightCourse(course) + this.COURSE_MARGIN);
     return r;
   }
 
   calculateHeight(resultsText: string, learningPathwayDescription: string[], learningPathway: Course[]): number {
-    // TODO add resultsText in case it is longer than the image
     let r = 0;
-    r += this.TITLE_PADDING * 2 + this.HEADING_SIZE;
-    r += this.IMG_MAX_HEIGHT + this.BALLONS_LEARNING_PATHWAY_SEPARATION;
-    r += this.HEADING_SIZE + this.TEXTS_SEPARATION;
-    learningPathwayDescription.forEach( (text: string) => {
-      r += (this.TEXT_SIZE + 10) * this.stringManagerService.splitTextInLines(
-        text,
-        this.SPLIT_LEARNING_PATHWAY_DESCRIPTION
-      ).length;
-      r += this.TEXTS_SEPARATION;
-    });
+    r += this.calculateHeightHeader(resultsText);
+    r += this.BALLOONS_LEARNING_PATHWAY_SEPARATION;
+    r += this.calculateHeightDescription(learningPathwayDescription);
     r += this.calculateHeightSection(learningPathway.filter( (course: Course) => course.priority === 'brush_up'));
     r += this.calculateHeightSection(learningPathway.filter( (course: Course) => course.priority === 'develop'));
     r += this.BOTTOM_PADDING;
     return r;
   }
 
-  paintBackground(canvasContext: CanvasRenderingContext2D) {
+  paintBackground(canvasContext: CanvasRenderingContext2D, resultsText: string) {
     const backgroundGradient = canvasContext.createLinearGradient(
       this.FILE_MAX_WIDTH / 2,
       0,
@@ -273,6 +316,12 @@ export class ResultsSaverService {
     backgroundGradient.addColorStop(0, this.GRADIENT_COLOR);
     backgroundGradient.addColorStop(1, this.BACKGROUND_COLOR);
     canvasContext.fillStyle = backgroundGradient;
-    canvasContext.fillRect(0, 0, this.FILE_MAX_WIDTH, this.FILE_MAX_HEIGHT);
+    canvasContext.fillRect(0, 0, this.FILE_MAX_WIDTH, this.calculateHeightHeader(resultsText));
+  }
+
+  paintBottom(color: string): void {
+    this.canvasManager.setColour(color);
+    this.canvasManager.setX(0);
+    this.canvasManager.drawBox(this.FILE_MAX_WIDTH, this.BOTTOM_PADDING);
   }
 }
