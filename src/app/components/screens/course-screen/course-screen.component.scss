@@ -5,10 +5,34 @@
   word-break: break-word;
 }
 
-.extras {
-  @include setStyleTablet {
-    font-size: 70%;
+.content, .extras {
+  padding: 0 5vw;
+}
+
+@include setStyleTablet {
+  .extras {
+    padding-left: 0;
   }
+}
+
+@include setStyleLarge {
+  .extras {
+    padding: 0;
+  }
+  +  .content {
+      padding-right: 50px;
+    }
+  }
+  
+  .content {
+    .heading {
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+  }
+  
+  .extras {
+    font-size: 80%;
   .extra {
     margin-bottom: 10px;
     > div {
@@ -20,8 +44,8 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
       }
-      > * {
-        padding-left: 10px;
+      > .texts {
+        padding: 7px 10px;
       }
       border: 1px solid $color-course-border;
       background-color: $color-course-background;
@@ -33,10 +57,39 @@
   white-space: pre-line;
 }
 
+.text, .heading {
+  font-size: 100%;
+  @include setStyleTablet {
+    font-size: 80%;
+  }
+}
+
+
 .heading {
   text-align: left;
+  font-weight: 600;
+  @include setStyleTablet {
+    font-size: 100%;
+  }
 }
 
 span {
   display: inline-block;
+}
+
+.title {
+  text-align: center;
+  font-size: 170%;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 40px;
+  @include setStyleTablet {
+    font-size: 150%;
+  }
+}
+
+hr {
+  width: 100%;
+  margin: 0;
+  margin-top: 20px;
 }

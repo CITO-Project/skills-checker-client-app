@@ -1,23 +1,27 @@
 <app-header text='default'></app-header>
 <div class="container" *ngIf="!!course" id='content'>
   <div class="row">
-    <div class="col-12 col-md-8">
+    <div class="col-12 heading title">{{ stringManagerService.normalizeText(course.skill) }}</div>
+    <div class="col-12 col-md-8 content">
       <div class="row">
         <div class="col-12 text">
-          <div class="heading">{{ course.title }}</div>
+          <div class="heading" *ngIf='!!course.title'>{{ course.title }}</div>
           {{ course.description }}
+          <hr class="d-md-inline">
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-4 extras">
       <div class="row">
-        <div class="col-12 extras">
-          <div class="row" *ngIf="!!course.address || !!course.location">
+        <div class="col-12">
+          <div class="row" *ngIf="!!course.address || (!!course.location && course.location !== 'online')">
             <div class="col-12 extra container">
               <div class="location">
                 <div class="heading">Lokasjon</div>
-                <div class="address text" *ngIf="!!course.address">Adresse: {{ course.address }}</div>
-                <div class="county text" *ngIf="!!course.location">Besøk oss: {{ course.location[0].toUpperCase() + course.location.slice(1) }}</div>
+                <div class="texts">
+                  <div class="address text" *ngIf="!!course.address">Adresse: {{ course.address }}</div>
+                  <div class="county text" *ngIf="!!course.location">Besøk oss: {{ course.location[0].toUpperCase() + course.location.slice(1) }}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -25,8 +29,10 @@
             <div class="col-12 extra container">
               <div class="schedule">
                 <div class="heading">Schedule</div>
-                <div class="date_start text" *ngIf="!!course.date_start">Startdato: {{ formatDate(course.date_start) }}</div>
-                <div class="date_finish text" *ngIf="!!course.date_finish">Sluttdato: {{ formatDate(course.date_finish) }}</div>
+                <div class="texts">
+                  <div class="date_start text" *ngIf="!!course.date_start">Startdato: {{ formatDate(course.date_start) }}</div>
+                  <div class="date_finish text" *ngIf="!!course.date_finish">Sluttdato: {{ formatDate(course.date_finish) }}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -34,12 +40,14 @@
             <div class="col-12 extra container">
               <div class="enrolment">
                 <div class="heading">Enrolment</div>
-                <div class="enrolment_start text" *ngIf="!!course.enrolment_start">Startdato: {{ formatDate(course.enrolment_start) }}</div>
-                <div class="enrolment_finish text" *ngIf="!!course.enrolment_finish">Sluttdato: {{ formatDate(course.enrolment_finish) }}</div>
-                <div class="contact_person text" *ngIf="!!course.contact_person">Contact: {{ course.contact_person }}</div>
-                <div class="contact_attention text" *ngIf="!!course.contact_attention">Åpningstider: {{ course.contact_attention }}</div>
-                <div class="contact_telephone text" *ngIf="!!course.contact_telephone">Telefon: {{ course.contact_telephone }}</div>
-                <div class="contact_email text" *ngIf="!!course.contact_email">E-post: {{ course.contact_email }}</div>
+                <div class="texts">
+                  <div class="enrolment_start text" *ngIf="!!course.enrolment_start">Startdato: {{ formatDate(course.enrolment_start) }}</div>
+                  <div class="enrolment_finish text" *ngIf="!!course.enrolment_finish">Sluttdato: {{ formatDate(course.enrolment_finish) }}</div>
+                  <div class="contact_person text" *ngIf="!!course.contact_person">Contact: {{ course.contact_person }}</div>
+                  <div class="contact_attention text" *ngIf="!!course.contact_attention">Åpningstider: {{ course.contact_attention }}</div>
+                  <div class="contact_telephone text" *ngIf="!!course.contact_telephone">Telefon: {{ course.contact_telephone }}</div>
+                  <div class="contact_email text" *ngIf="!!course.contact_email">E-post: {{ course.contact_email }}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -52,7 +60,7 @@
 <ng-template #thenBlock>
   <app-navigate-button
     backText="default"
-    forwardText="More info"
+    forwardText="Mer informasjon"
     (backEvent)="goBack()"
     (forwardEvent)="loadLink(course.link)"
     ></app-navigate-button>

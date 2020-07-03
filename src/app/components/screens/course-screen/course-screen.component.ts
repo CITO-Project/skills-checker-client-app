@@ -7,6 +7,7 @@ import { CoursesService } from 'src/app/services/api-call/courses.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { Result } from 'src/app/models/result';
+import { StringManagerService } from 'src/app/services/etc/string-manager.service';
 
 @Component({
   selector: 'app-course-screen',
@@ -14,6 +15,12 @@ import { Result } from 'src/app/models/result';
   styleUrls: ['./course-screen.component.scss']
 })
 export class CourseScreenComponent implements OnInit {
+
+  private readonly TRANSLATIONS = {
+    literacy: 'Lesing og skriving',
+    numeracy: 'Matematikk',
+    digital_skills: 'Data'
+  }
 
   public course: Course;
   public fromLocation: string;
@@ -23,7 +30,8 @@ export class CourseScreenComponent implements OnInit {
     private route: ActivatedRoute,
     private courseService: CoursesService,
     private commonService: CommonService,
-    private googleAnalyticsService: GoogleAnalyticsService) {
+    private googleAnalyticsService: GoogleAnalyticsService,
+    public stringManagerService: StringManagerService) {
       const extras = commonService.getExtras();
       if (!!extras.state && !!extras.state.from && !!extras.state.results) {
         this.fromLocation = extras.state.from;
@@ -46,6 +54,7 @@ export class CourseScreenComponent implements OnInit {
   loadCourse(courseid: number): void {
     this.courseService.loadCourse(courseid).subscribe( (course: Course) => {
       if (!!course) {
+        course.skill = this.TRANSLATIONS[course.skill];
         this.course = course;
       } else {
         this.commonService.goTo('results');
