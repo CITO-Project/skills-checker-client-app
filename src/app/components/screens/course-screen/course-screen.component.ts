@@ -7,6 +7,7 @@ import { CoursesService } from 'src/app/services/api-call/courses.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { Result } from 'src/app/models/result';
+import { StringManagerService } from 'src/app/services/etc/string-manager.service';
 
 @Component({
   selector: 'app-course-screen',
@@ -23,7 +24,8 @@ export class CourseScreenComponent implements OnInit {
     private route: ActivatedRoute,
     private courseService: CoursesService,
     private commonService: CommonService,
-    private googleAnalyticsService: GoogleAnalyticsService) {
+    private googleAnalyticsService: GoogleAnalyticsService,
+    public stringManagerService: StringManagerService) {
       const extras = commonService.getExtras();
       if (!!extras.state && !!extras.state.from && !!extras.state.results) {
         this.fromLocation = extras.state.from;
