@@ -248,7 +248,14 @@ export class DataProcessingService {
       text += '.';
       r.learningPathwayDescription.push(text);
     }
-    r.learningPathwayDescription.push('Check out the courses below and find one that\'s right for you.');
+    if ((brushUpSkills.length + developSkills.length) < 1) {
+      r.learningPathwayDescription.push('You have shown that you have strong reading, writing, maths and computer skills.');
+      r.learningPathwayDescription.push('Take the next step by developing your skills even further.');
+      // tslint:disable-next-line: max-line-length
+      r.learningPathwayDescription.push('Call the Directorate for Research, Lifelong Learning and Employability  on 2598 2287/78 to ask for more information  or send us an e-mail on: lifelonglearning@gov.mt');
+    } else {
+      r.learningPathwayDescription.push('Check out the courses below and find one that\'s right for you.');
+    }
     return r;
   }
 
