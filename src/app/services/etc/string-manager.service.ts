@@ -84,16 +84,19 @@ export class StringManagerService {
     return words.join(' ');
   }
   normalizeText(text: string): string {
-      const textSplitted = text.split('');
-      textSplitted[0] = textSplitted[0].toUpperCase();
-      textSplitted.forEach( (char: string, index: number) => {
-        if (this.SEPARATORS.includes(char)) {
-          textSplitted[index] = ' ';
-        }
-      });
-      text = textSplitted.join('');
-      return text;
+    if (!text) {
+      return '';
     }
+    const textSplitted = text.split('');
+    textSplitted[0] = textSplitted[0].toUpperCase();
+    textSplitted.forEach( (char: string, index: number) => {
+      if (this.SEPARATORS.includes(char)) {
+        textSplitted[index] = ' ';
+      }
+    });
+    text = textSplitted.join('');
+    return text;
+  }
 
 
 }
