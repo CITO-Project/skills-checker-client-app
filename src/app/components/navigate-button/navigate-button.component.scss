@@ -5,6 +5,7 @@
   box-shadow: 0px 10px 20px black;
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100vw;
   z-index: 301;
   .buttons {
@@ -13,7 +14,7 @@
     padding-top: $padding;
     padding-bottom: $padding;
     button {
-      $lateral-padding: 8%;
+      $lateral-padding: 0.08;
       padding: 0 $lateral-padding;
       @include setStyleTablet {
         padding: 20px $lateral-padding;

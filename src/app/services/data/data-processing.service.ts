@@ -12,15 +12,6 @@ import { Answer } from '../../models/answer';
 })
 export class DataProcessingService {
 
-  private readonly TEXTS = {
-    literacy: 'reading and writing',
-    numeracy: 'maths',
-    digital_skills: 'computer',
-    fluency: 'faster',
-    confidence: 'more confidently',
-    independence: 'without help'
-  };
-
   private brushUpThreshold = 3;
   private developThreshold = 2;
 
@@ -260,7 +251,7 @@ export class DataProcessingService {
   }
 
   getVariableText(variable: string): string {
-    return this.TEXTS[variable];
+    return this.stringManagerService.TEXTS[variable];
   }
 
   shouldIncreaseLevel(questionType: string, value: number): boolean {
