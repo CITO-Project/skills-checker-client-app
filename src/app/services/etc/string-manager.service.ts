@@ -88,6 +88,9 @@ export class StringManagerService {
   }
 
   normalizeText(text: string): string {
+    if (!text) {
+      return '';
+    }
     const textSplitted = text.split('');
     textSplitted[0] = textSplitted[0].toUpperCase();
     textSplitted.forEach( (char: string, index: number) => {

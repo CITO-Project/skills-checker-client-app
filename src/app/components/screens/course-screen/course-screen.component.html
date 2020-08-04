@@ -56,7 +56,7 @@
     </div>
   </div>
 </div>
-<div *ngIf="!!course.link; then thenBlock else elseBlock"></div>
+<div *ngIf="!!course && !!course.link; then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
   <app-navigate-button
     backText="default"
