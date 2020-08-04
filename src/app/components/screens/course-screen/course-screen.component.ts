@@ -49,6 +49,7 @@ export class CourseScreenComponent implements OnInit {
     this.courseService.loadCourse(courseid).subscribe( (course: Course) => {
       if (!!course) {
         this.course = course;
+        this.course.skill = this.stringManagerService.TEXTS[course.skill];
       } else {
         this.commonService.goTo('results');
       }

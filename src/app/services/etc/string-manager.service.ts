@@ -12,6 +12,15 @@ export class StringManagerService {
   };
   private readonly SEPARATORS = ['-', '_'];
 
+  public readonly TEXTS = {
+    literacy: 'reading and writing',
+    numeracy: 'maths',
+    digital_skills: 'computer',
+    fluency: 'faster',
+    confidence: 'more confidently',
+    independence: 'without help'
+  };
+
   constructor() { }
 
   splitTextInLines(text: string, charsPerLine: number): string[] {

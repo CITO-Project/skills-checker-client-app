@@ -12,15 +12,6 @@ import { Answer } from '../../models/answer';
 })
 export class DataProcessingService {
 
-  private readonly TEXTS = {
-    literacy: 'reading and writing',
-    numeracy: 'maths',
-    digital_skills: 'computer',
-    fluency: 'faster',
-    confidence: 'more confidently',
-    independence: 'without help'
-  };
-
   private brushUpThreshold = 3;
   private developThreshold = 2;
 
@@ -243,7 +234,7 @@ export class DataProcessingService {
     if (developSkills.length > 0) {
       let text = `You can also reach your goal by developing your ${this.stringManagerService.concatenateText(developSkills)} skills`;
       if (developDimensions.length > 0) {
-        text +=` to do these tasks ${this.stringManagerService.concatenateText(developDimensions)}`;
+        text += ` to do these tasks ${this.stringManagerService.concatenateText(developDimensions)}`;
       }
       text += '.';
       r.learningPathwayDescription.push(text);
@@ -262,7 +253,7 @@ export class DataProcessingService {
   }
 
   getVariableText(variable: string): string {
-    return this.TEXTS[variable];
+    return this.stringManagerService.TEXTS[variable];
   }
 
   shouldIncreaseLevel(questionType: string, value: number): boolean {
