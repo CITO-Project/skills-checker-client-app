@@ -56,6 +56,7 @@ export class CourseScreenComponent implements OnInit {
       if (!!course) {
         course.skill = this.TRANSLATIONS[course.skill];
         this.course = course;
+        this.course.skill = this.stringManagerService.TEXTS[course.skill];
       } else {
         this.commonService.goTo('results');
       }

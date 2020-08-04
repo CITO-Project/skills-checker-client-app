@@ -9,6 +9,15 @@ export class StringManagerService {
   };
   private readonly SEPARATORS = ['-', '_'];
 
+  readonly TEXTS = {
+    literacy: 'lese og skrive',
+    numeracy: 'mattematikk',
+    digital_skills: 'digitale',
+    fluency: 'raskere',
+    confidence: 'med mer selvtillit',
+    independence: 'uten hjelp'
+  };
+
   constructor() { }
 
   splitTextInLines(text: string, charsPerLine: number): string[] {

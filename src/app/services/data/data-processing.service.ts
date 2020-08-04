@@ -12,15 +12,6 @@ import { Answer } from '../../models/answer';
 })
 export class DataProcessingService {
 
-  private readonly TEXTS = {
-    literacy: 'lese og skrive',
-    numeracy: 'mattematikk',
-    digital_skills: 'digitale',
-    fluency: 'raskere',
-    confidence: 'med mer selvtillit',
-    independence: 'uten hjelp'
-  };
-
   private brushUpThreshold = 3;
   private developThreshold = 2;
 
@@ -261,7 +252,7 @@ export class DataProcessingService {
   }
 
   getVariableText(variable: string): string {
-    return this.TEXTS[variable];
+    return this.stringManagerService.TEXTS[variable];
   }
 
   shouldIncreaseLevel(questionType: string, value: number): boolean {
