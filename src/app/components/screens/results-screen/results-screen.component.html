@@ -54,7 +54,7 @@
           ></app-course>
         </div>
       </div>
-  
+
       <div class="localization" *ngIf="getCourses('brush_up').length > 0 || getCourses('develop').length > 0">
         <div class="heading">Learning opportunities in your area</div>
         <button type="button" mdbBtn class="button special" mdbWavesEffect (click)="chooseArea()">
@@ -64,4 +64,4 @@
     </div>
   </div>
 </div>
-<app-navigate-button text="New goal" (event)="selectNewInterest()"></app-navigate-button>
+<app-navigate-button text="Tell us more" (event)="loadSurvey()"></app-navigate-button>
