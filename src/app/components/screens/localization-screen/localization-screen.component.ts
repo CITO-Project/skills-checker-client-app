@@ -18,11 +18,41 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 export class LocalizationScreenComponent {
 
   public courses: Course[] = [];
-  public IRELAND_COUNTIES = [
+  public REGIONS = [
+    'Carlow',
+    'Cavan',
+    'Clare',
+    'Cork City',
+    'Cork County',
+    'Donegal',
+    'Dublin North',
+    'Dublin North County - Fingal',
+    'Dublin South',
+    'Dublin West County',
+    'Dun Laoghaire - Rathdown',
+    'Galway',
+    'Kerry',
+    'Kildare',
+    'Kilkenny',
+    'Laois',
+    'Leitrim',
+    'Limerick City',
+    'Limerick County',
+    'Longford',
+    'Louth',
+    'Mayo',
+    'Meath',
+    'Monaghan',
+    'Offaly',
     'Online',
-    'Cork',
-    'Dublin',
-    'Limerick',
+    'Roscommon',
+    'Sligo',
+    'Tipperary',
+    'Waterford City',
+    'Waterford County',
+    'Westmeath',
+    'Wexford',
+    'Wicklow'
   ];
 
   public results: Result;
@@ -43,12 +73,12 @@ export class LocalizationScreenComponent {
     return this.courseService.retrieveCourses(results, location);
   }
 
-  setCounty(county: string) {
-    this.updateCourses(county);
+  setRegion(region: string) {
+    this.updateCourses(region);
   }
 
-  updateCourses(county: string = 'all') {
-    const location = county === 'all' ? '' : county;
+  updateCourses(region: string = 'all') {
+    const location = region === 'all' ? '' : region;
     this.googleAnalyticsService.addEvent('selected_location', location);
     this.loadCourses(this.results, location).subscribe( (courses: Course[]) => {
       this.courses = courses;

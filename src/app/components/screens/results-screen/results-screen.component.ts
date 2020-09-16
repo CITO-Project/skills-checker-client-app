@@ -66,7 +66,7 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   loadCourses(results: Result): Observable<Course[]> {
-    return this.coursesService.retrieveCourses(results, 'online').pipe(
+    return this.coursesService.retrieveCourses(results, 'Online').pipe(
       map( (courses: Course[]) => {
         return courses.filter( (course: Course, index: number) => {
           return courses.findIndex( (currentCourse: Course) => {
