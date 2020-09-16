@@ -20,11 +20,18 @@ export class LocalizationScreenComponent {
   public courses: Course[] = [];
   public REGIONS = [
     'Online',
-    'Central',
-    'Gozo',
-    'Northern',
-    'South eastern',
-    'Southern',
+    'Birkirkara',
+    'Blata l-Bajda Adult Learning Centre',
+    'Floriana',
+    'Għajnsielem (Gozo)',
+    'Ħal Far',
+    'Mosta',
+    'Paola',
+    'Qormi',
+    'Qormi Local Council',
+    'Tarxien Adult Learning Centre',
+    'Valletta',
+    'Żebbuġ'
   ];
 
   public results: Result;
