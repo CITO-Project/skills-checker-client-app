@@ -3,10 +3,10 @@
   <div id="header">
     <div class="title">Læringsmuligheter</div>
     <div class="description">Velg ditt område for å se læringsmuligheter</div>
-    <select class="browser-default custom-select" (change)='setCounty($event.target.value)'>
+    <select class="browser-default custom-select" (change)='setRegion($event.target.value)'>
       <option selected>Velg ditt område</option>
       <option value='all'>Se alt</option>
-      <option *ngFor='let county of IRELAND_COUNTIES' value='{{ county.toLowerCase() }}'>{{ county }}</option>
+      <option *ngFor='let region of REGIONS' value='{{ region }}'>{{ region }}</option>
     </select>
     <hr>
   </div>
