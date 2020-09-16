@@ -18,7 +18,7 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 export class LocalizationScreenComponent {
 
   public courses: Course[] = [];
-  public IRELAND_COUNTIES = [
+  public REGIONS = [
     'Online',
     'Central',
     'Gozo',
@@ -45,12 +45,12 @@ export class LocalizationScreenComponent {
     return this.courseService.retrieveCourses(results, location);
   }
 
-  setCounty(county: string) {
-    this.updateCourses(county);
+  setRegion(region: string) {
+    this.updateCourses(region);
   }
 
-  updateCourses(county: string = 'all') {
-    const location = county === 'all' ? '' : county;
+  updateCourses(region: string = 'all') {
+    const location = region === 'all' ? '' : region;
     this.googleAnalyticsService.addEvent('selected_location', location);
     this.loadCourses(this.results, location).subscribe( (courses: Course[]) => {
       this.courses = courses;
