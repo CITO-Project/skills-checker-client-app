@@ -19,6 +19,7 @@ export class LocalizationScreenComponent {
 
   public courses: Course[] = [];
   public REGIONS = [
+    'Online',
     'Carlow',
     'Cavan',
     'Clare',
@@ -44,7 +45,6 @@ export class LocalizationScreenComponent {
     'Meath',
     'Monaghan',
     'Offaly',
-    'Online',
     'Roscommon',
     'Sligo',
     'Tipperary',
