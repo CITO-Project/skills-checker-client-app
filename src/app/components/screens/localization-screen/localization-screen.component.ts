@@ -59,7 +59,7 @@ export class LocalizationScreenComponent {
 
   constructor(
     private courseService: CoursesService,
-    private commonService: CommonService,
+    public commonService: CommonService,
     private googleAnalyticsService: GoogleAnalyticsService) {
     const extras = this.commonService.getExtras();
     if (extras !== undefined && extras.state !== undefined) {

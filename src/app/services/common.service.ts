@@ -14,6 +14,8 @@ export class CommonService {
 
   private readonly localhostUrl = 'http://localhost';
   private readonly AWSUrl = 'https://skillscheck.citoproject.eu/';
+  private readonly SURVEY_LINK = 'https://www.research.net/r/CITOsurveyIreland';
+  private readonly SURVEY_TEXT = 'Take our survey';
 
   private productName = 'nala';
   private apiUrl = (this.useAWSServer ? this.AWSUrl + 'api/' : this.localhostUrl + ':3000/') + this.productName;
@@ -42,6 +44,14 @@ export class CommonService {
 
   getApiUrl(): string {
     return this.apiUrl;
+  }
+
+  getSurveyLink(): string {
+    return this.SURVEY_LINK;
+  }
+
+  getSurveyText(): string {
+    return this.SURVEY_TEXT;
   }
 
   getExtras(): NavigationExtras {
