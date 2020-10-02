@@ -26,8 +26,6 @@ export class ResultsScreenComponent implements OnInit {
   public readonly HEADER = 'Check-In Take-Off';
   public readonly SUBTITLE = 'My Results';
   public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway';
-  public readonly SURVEY_LINK_EN = 'https://www.research.net/r/CITOsurvey-Malta';
-  public readonly SURVEY_LINK_MT = 'https://www.research.net/r/CITOsurveyMalti';
 
   public courses: Course[];
   public results: Result;
@@ -89,11 +87,7 @@ export class ResultsScreenComponent implements OnInit {
   loadSurvey(lang: string): void {
     this.dataLogService.initializeLog();
     this.googleAnalyticsService.stopTimer('time_review_results');
-    let dest = this.SURVEY_LINK_EN
-    if (lang.toLowerCase() === 'mt') {
-      dest = this.SURVEY_LINK_MT
-    }
-    this.commonService.loadLink(dest);
+    this.commonService.loadLink(this.commonService.getSurveyLink(lang));
   }
 
   getPath(name: string): string {

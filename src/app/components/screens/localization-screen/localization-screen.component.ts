@@ -33,6 +33,26 @@ export class LocalizationScreenComponent {
     'Valletta',
     'Żebbuġ'
   ];
+  public readonly buttons: {
+    text: string,
+    event: string,
+    icon?: string,
+    visible?: boolean,
+    special?: boolean
+  }[] = [
+    {
+      text: 'Back to results',
+      event: 'goBack'
+    },
+    {
+      text: this.commonService.getSurveyText('en'),
+      event: 'goSurveyEnglish'
+    },
+    {
+      text: this.commonService.getSurveyText('mt'),
+      event: 'goSurveyMaltese'
+    }
+  ];
 
   public results: Result;
 
@@ -73,6 +93,20 @@ export class LocalizationScreenComponent {
 
   loadLink(link: string) {
     this.commonService.loadLink(link);
+  }
+
+  onButtonsEvent(data: string): void {
+    switch (data) {
+      case 'goBack':
+        this.commonService.goTo('results');
+        break;
+      case 'goSurveyEnglish':
+        this.commonService.loadLink(this.commonService.getSurveyLink('en'));
+        break;
+      case 'goSurveyMaltese':
+        this.commonService.loadLink(this.commonService.getSurveyLink('mt'));
+        break;
+    }
   }
 
 }

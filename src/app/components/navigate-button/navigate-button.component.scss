@@ -19,6 +19,14 @@
       @include setStyleTablet {
         padding: 20px $lateral-padding;
       }
+      &.normal {
+        padding: 10px;
+        margin: 10px;
+        font-size: 90%;
+        @include setStyleTablet {
+          padding: 20px;
+        }
+      }
     }
     .multiple {
       flex: 1 1 0px;

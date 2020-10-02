@@ -65,8 +65,8 @@
   </div>
 </div>
 <app-navigate-button
-  backText='Take our survey'
+  [backText]='commonService.getSurveyText("en")'
   (backEvent)='loadSurvey("en")'
-  forwardText='Ħu l-istħarriġ tagħna'
+  [forwardText]='commonService.getSurveyText("mt")'
   (forwardEvent)='loadSurvey("mt")'
   ></app-navigate-button>

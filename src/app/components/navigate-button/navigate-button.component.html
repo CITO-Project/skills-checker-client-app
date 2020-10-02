@@ -6,11 +6,25 @@
         <button class="button" id="back" type="button" mdbBtn mdbWavesEffect (click)="btnClickBack()">{{ backText }}</button>
         <button class="button" id="forward" type="button" mdbBtn mdbWavesEffect (click)="btnClickForward()">{{ forwardText }}</button>
       </ng-container>
-      <ng-container *ngSwitchCase='!!buttons'>
-        <div class="multiple d-flex flex-column align-items-center align-self-start" *ngFor='let button of buttons; last as isLast' [ngClass]="{'special': button.special, 'borders': !isLast}" (click)='buttonsEvent.emit(button.event)'>
-          <button class="button" type="button" mdbBtn mdbWavesEffect>{{ button.icon }}</button>
-          <p>{{ button.text }}</p>
-        </div>
+      <ng-container *ngSwitchCase='!!buttons' [ngSwitch]='buttonsStyle'>
+        <ng-template ngSwitchCase='normal'>
+          <button
+          *ngFor='let button of buttons'
+          class="button normal"
+          type="button"
+          (click)='buttonsEvent.emit(button.event)'
+          mdbBtn mdbWavesEffect>{{ button.text }}</button>
+        </ng-template>
+        <ng-template ngSwitchDefault>
+          <div
+            class="multiple d-flex flex-column align-items-center align-self-start"
+            *ngFor='let button of buttons; last as isLast'
+            [ngClass]="{'special': button.special, 'borders': !isLast}"
+            (click)='buttonsEvent.emit(button.event)'>
+            <button class="button" type="button" mdbBtn mdbWavesEffect>{{ button.icon }}</button>
+            <p>{{ button.text }}</p>
+          </div>
+        </ng-template>
       </ng-container>
     </ng-container>
   </div>

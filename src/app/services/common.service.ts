@@ -14,6 +14,10 @@ export class CommonService {
 
   private readonly localhostUrl = 'http://localhost';
   private readonly AWSUrl = 'https://skillscheck.citoproject.eu/';
+  private readonly SURVEY_LINK_EN = 'https://www.research.net/r/CITOsurvey-Malta';
+  private readonly SURVEY_TEXT_EN = 'Take our survey';
+  private readonly SURVEY_LINK_MT = 'https://www.research.net/r/CITOsurveyMalti';
+  private readonly SURVEY_TEXT_MT = 'Ħu l-istħarriġ tagħna';
 
   private productName = 'nala-mt';
   private apiUrl = (this.useAWSServer ? this.AWSUrl + 'api/' : this.localhostUrl + ':3000/') + this.productName;
@@ -42,6 +46,20 @@ export class CommonService {
 
   getApiUrl(): string {
     return this.apiUrl;
+  }
+
+  getSurveyLink(lang: string): string {
+    if (lang.toLowerCase() === 'mt') {
+      return this.SURVEY_LINK_MT;
+    }
+    return this.SURVEY_LINK_EN;
+  }
+
+  getSurveyText(lang: string): string {
+    if (lang.toLowerCase() === 'mt') {
+      return this.SURVEY_TEXT_MT;
+    }
+    return this.SURVEY_TEXT_EN;
   }
 
   getExtras(): NavigationExtras {
