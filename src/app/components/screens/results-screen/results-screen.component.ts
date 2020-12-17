@@ -84,10 +84,10 @@ export class ResultsScreenComponent implements OnInit {
     this.commonService.goTo('localization', this.results);
   }
 
-  loadSurvey(): void {
+  selectNewInterest(): void {
     this.dataLogService.initializeLog();
     this.googleAnalyticsService.stopTimer('time_review_results');
-    this.commonService.loadLink(this.commonService.getSurveyLink());
+    this.commonService.goTo('interests');
   }
 
   getPath(name: string): string {

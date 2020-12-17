@@ -36,9 +36,4 @@
   </div>
 </div>
 
-<app-navigate-button
-  backText='Tilbake til resultatene'
-  backDestination='results'
-  [forwardText]='commonService.getSurveyText()'
-  (forwardEvent)='commonService.loadLink(commonService.getSurveyLink())'
-  ></app-navigate-button>
+<app-navigate-button text='Tilbake til resultatene' destination='results'></app-navigate-button>
