@@ -64,9 +64,4 @@
     </div>
   </div>
 </div>
-<app-navigate-button
-  [backText]='commonService.getSurveyText("en")'
-  (backEvent)='loadSurvey("en")'
-  [forwardText]='commonService.getSurveyText("mt")'
-  (forwardEvent)='loadSurvey("mt")'
-  ></app-navigate-button>
+<app-navigate-button text="New goal" (event)="selectNewInterest()"></app-navigate-button>

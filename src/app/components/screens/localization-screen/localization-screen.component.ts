@@ -43,14 +43,6 @@ export class LocalizationScreenComponent {
     {
       text: 'Back to results',
       event: 'goBack'
-    },
-    {
-      text: this.commonService.getSurveyText('en'),
-      event: 'goSurveyEnglish'
-    },
-    {
-      text: this.commonService.getSurveyText('mt'),
-      event: 'goSurveyMaltese'
     }
   ];
 
