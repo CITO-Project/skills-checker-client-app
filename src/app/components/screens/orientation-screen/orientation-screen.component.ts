@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/services/api-call/product.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { QuestionOrderService } from 'src/app/services/api-call/question-order.service';
-import { VgAPI } from 'videogular2/compiled/core';
+import { VgApiService } from '@videogular/ngx-videogular/core';
 
 @Component({
   selector: 'app-orientation-screen',
@@ -106,7 +106,7 @@ export class OrientationScreenComponent implements OnInit {
     }
   }
 
-  mediaLoaded(vgAPI: VgAPI): void {
+  mediaLoaded(vgAPI: VgApiService): void {
     vgAPI.getDefaultMedia().subscriptions.playing.subscribe(
       () => this.isVideoPaused = false);
     vgAPI.getDefaultMedia().subscriptions.pause.subscribe(

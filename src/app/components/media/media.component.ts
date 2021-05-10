@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
-import { VgAPI, VgMedia } from 'videogular2/compiled/core';
+import { VgApiService, VgMediaDirective } from '@videogular/ngx-videogular/core';
 
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
@@ -16,9 +16,9 @@ export class MediaComponent implements OnInit, OnChanges {
   @Input() replay: boolean;
   @Input() texts: string[];
 
-  @Output() ready = new EventEmitter<VgAPI>();
+  @Output() ready = new EventEmitter<VgApiService>();
 
-  private vgApi: VgAPI;
+  private vgApi: VgApiService;
   private videoFinished = false;
 
   public resourceFile: string;
@@ -53,8 +53,8 @@ export class MediaComponent implements OnInit, OnChanges {
           this.resourceFile = this.commonService.getResourcePath(`videos/${this.resource}`);
           this.loadSubtitles();
           if (!!this.vgApi) {
-            (this.vgApi.getDefaultMedia() as VgMedia).loadMedia();
-            (this.vgApi.getDefaultMedia() as VgMedia).play();
+            (this.vgApi.getDefaultMedia() as VgMediaDirective).loadMedia();
+            (this.vgApi.getDefaultMedia() as VgMediaDirective).play();
           }
           break;
         case 'image':
@@ -82,7 +82,7 @@ export class MediaComponent implements OnInit, OnChanges {
     }
   }
 
-  onPlayerReady(vgAPI: VgAPI): void {
+  onPlayerReady(vgAPI: VgApiService): void {
     this.vgApi = vgAPI;
     this.addListenersToVideo();
     this.ready.emit(this.vgApi);
