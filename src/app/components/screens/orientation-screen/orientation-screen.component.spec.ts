@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { OrientationScreenComponent } from './orientation-screen.component';
 
@@ -6,7 +6,7 @@ describe('OrientationScreenComponent', () => {
   let component: OrientationScreenComponent;
   let fixture: ComponentFixture<OrientationScreenComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ OrientationScreenComponent ]
     })
