@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, DoCheck } from '@angular/core';
 
 import { Question } from 'src/app/models/question';
 import { Answer } from 'src/app/models/answer';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-question',
@@ -14,6 +15,8 @@ export class QuestionComponent implements DoCheck {
   @Input() error: string;
   @Input() initialAnswer = -1;
   @Output() answer = new EventEmitter<number>();
+
+  faCheck = faCheck;
 
   public sliderProperties = {
     value: 0,

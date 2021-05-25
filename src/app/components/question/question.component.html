@@ -40,7 +40,7 @@
           <input *ngSwitchCase="'single'" id="{{ answer.order }}" type="radio" name="answer" class="custom-control-input" value="{{ answer.value }}" (change)="retrieveAnswer($event.target.value)">
           <input *ngSwitchCase="'multiple'" id="{{ answer.order }}" type="checkbox" name="answer" class="custom-control-input" value="{{ answer.value }}" (change)="retrieveAnswerMultiple($event.target)">
           <div class="d-flex flex-row justify-content-between answerOptions transition">
-            <label for="{{ answer.order }}" class="checkbox">&#xf00c;</label>
+            <label for="{{ answer.order }}" class="checkbox"><fa-icon [icon]="faCheck"></fa-icon></label>
             <label for="{{ answer.order }}" class="answerText text">{{ answer.text }}</label>
           </div>
         </div>

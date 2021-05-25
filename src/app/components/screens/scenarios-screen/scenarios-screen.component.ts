@@ -9,6 +9,7 @@ import { DataLogService } from 'src/app/services/data/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
 import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
+import { faAngleDoubleRight, faAngleLeft, faAngleRight, faCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-scenarios-screen',
@@ -30,7 +31,7 @@ export class ScenariosScreenComponent implements OnInit {
   private readonly ERROR_MESSAGE = 'Please select one of the options below';
   private allButtons: {
     text: string,
-    icon: string,
+    icon: IconDefinition,
     event: string,
     visible?: boolean,
     special?: boolean
@@ -56,25 +57,26 @@ export class ScenariosScreenComponent implements OnInit {
       this.allButtons = [
         {
           text: this.btnBack,
-          icon: String.fromCharCode(61700),
+          icon: faAngleLeft,
           visible: true,
           event: 'back'
         },
         {
           text: 'Skip task',
-          icon: String.fromCharCode(61524) + String.fromCharCode(61524),
+          icon: faAngleDoubleRight,
           event: 'skip_scenario',
           special: true
         },
         {
           text: 'Go to results',
-          icon: String.fromCharCode(61452),
+          //icon: String.fromCharCode(61452),
+          icon: faCheck,
           event: 'go_results',
           special: true
         },
         {
           text: this.btnForward,
-          icon: String.fromCharCode(61524),
+          icon: faAngleRight,
           visible: true,
           event: 'forward'
         }
