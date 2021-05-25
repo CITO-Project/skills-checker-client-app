@@ -2,6 +2,7 @@
 
 
 .content {
+  position: relative;  
   padding: 15px 20px;
   #header {
     .text {
@@ -13,6 +14,17 @@
   hr, app-question {
     width: 100%;
   }
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  z-index: 301;
+}
+
+.progress-bar {
+  background-color: #40bda8;
 }
 
 .modal-dialog {

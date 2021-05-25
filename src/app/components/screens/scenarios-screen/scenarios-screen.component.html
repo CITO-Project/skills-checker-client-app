@@ -9,7 +9,22 @@
     (answer)="processAnswer($event)"
     [initialAnswer]="currentAnswer"
     ></app-question>
+    
+    <div class="progress">
+      <div
+        class="progress-bar"
+        role="progressbar"
+        [style.width]="progress+'%'" 
+        [attr.aria-valuenow]="progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >{{progress}}% Complete!</div>
+    </div>
   </div>
+
+
+
+  
 </div>
 <app-navigate-button
   [buttons] = "buttons"

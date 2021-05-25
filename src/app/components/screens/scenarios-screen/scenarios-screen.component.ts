@@ -40,6 +40,8 @@ export class ScenariosScreenComponent implements OnInit {
   public currentScenario = -1;
   public currentQuestion = -1;
 
+  public progress = 50;
+
   private isFirstQuestionLoaded = false;
 
   constructor(
@@ -87,6 +89,10 @@ export class ScenariosScreenComponent implements OnInit {
         this.updateData(data);
       }
     });
+  }
+
+  ngAfterViewInit() {
+
   }
 
   nextQuestion(): void {
@@ -174,6 +180,19 @@ export class ScenariosScreenComponent implements OnInit {
       this.currentAnswer = data.answer;
       this.isFirstQuestionLoaded = data.isFirstQuestion;
       this.afterLoadQuestion(data);
+
+      /**
+       * Update local variable that controls progress indicator
+       * 
+       * Rough calculation of progress based on the current scenario and current question
+       * Aim here is to calculate a percentage (between 0 and 100).
+       * There are 4 scenarios so we multiply the current scenario by 25
+       * We then add a value to represent progress through the questions. 
+       * There are a max of 7 questions per scenario so 3 seems like a reasonable number
+       * 
+       * Ideally the weightings used (25 and 3 respectively) should be dynamic and based on the actual number of questions used.
+       */
+      this.progress = ((this.currentScenario) * 25) + (this.currentQuestion * 3);
     } else {
       this.commonService.goTo('interests');
     }
