@@ -12,6 +12,8 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { OrientationScreenComponent } from './components/screens/orientation-screen/orientation-screen.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigateButtonComponent } from './components/navigate-button/navigate-button.component';
@@ -57,7 +59,8 @@ import { ScenarioIntroductionScreenComponent } from './components/screens/scenar
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
