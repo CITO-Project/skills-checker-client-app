@@ -9,6 +9,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { QuestionOrderService } from 'src/app/services/api-call/question-order.service';
 import { VgApiService } from '@videogular/ngx-videogular/core';
+import { faBookOpen, faCalculator, faLaptop } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-orientation-screen',
@@ -16,6 +17,10 @@ import { VgApiService } from '@videogular/ngx-videogular/core';
   styleUrls: ['./orientation-screen.component.scss']
 })
 export class OrientationScreenComponent implements OnInit {
+
+  faLaptop = faLaptop;
+  faCalculator = faCalculator;
+  faBookOpen = faBookOpen;
 
   private readonly DEFAULT_IMAGE = 'orientation-ie.svg';
   private readonly DEFAULT_VIDEO = 'how-to-use-ie.mp4';
