@@ -35,6 +35,7 @@ export class OrientationScreenComponent implements OnInit {
   public isVideoLoaded = false;
   public isVideoPaused = false;
 
+  /*
   public FEATURES = [
     {
       text: 'Computers',
@@ -52,6 +53,7 @@ export class OrientationScreenComponent implements OnInit {
       color: 'yellow'
     }
   ];
+  */
   public PARTNERS = [
     {
       text: 'CITO',
