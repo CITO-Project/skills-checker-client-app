@@ -29,7 +29,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
       if (extras !== undefined && extras.state !== undefined && extras.state.scenarioindex !== undefined) {
         this.scenarioindex = +extras.state.scenarioindex;
       } else {
-        commonService.goTo('how-to');
+        commonService.goTo('scenarios');
       }
   }
 
