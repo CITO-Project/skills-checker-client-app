@@ -12,6 +12,7 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 import { ResultsSaverService } from 'src/app/services/data/results-saver.service';
 import { ResultsVisualizationService } from 'src/app/services/data/results-visualization.service';
 import { map } from 'rxjs/operators';
+import { Interest } from 'src/app/models/interest';
 
 @Component({
   selector: 'app-results-screen',
@@ -27,6 +28,7 @@ export class ResultsScreenComponent implements OnInit {
   public readonly SUBTITLE = 'My Results';
   public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway';
 
+  public interest: Interest;
   public courses: Course[];
   public results: Result;
   public resultsImage: string;
@@ -48,6 +50,7 @@ export class ResultsScreenComponent implements OnInit {
       this.commonService.goTo('');
     }
     const log = this.dataLogService.getAll();
+    this.interest = this.dataLogService.getInterest();
     this.results = this.dataProcessingService.getCoursesLevel(log);
     this.texts = this.dataProcessingService.getResultsText(log, this.results);
     this.resultsVisualizationService.generateGraph(log)
@@ -60,7 +63,7 @@ export class ResultsScreenComponent implements OnInit {
       this.googleAnalyticsService.stopCounter('count_corrected_questions_per_scenario');
       this.googleAnalyticsService.stopCounter('count_plays_per_scenario');
 
-      this.googleAnalyticsService.startTimer('time_review_results', '' + this.dataLogService.getInterest().id);
+      this.googleAnalyticsService.startTimer('time_review_results', '' + this.interest.id);
     });
   }
 
