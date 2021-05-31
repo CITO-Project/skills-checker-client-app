@@ -1,9 +1,8 @@
 @import '../../../../style/_imports.scss';
 
-
 .content {
   position: relative;  
-  padding: 15px 20px;
+  padding: 2vh 6vw;
   #header {
     .text {
       padding-top: 10px;
@@ -16,15 +15,35 @@
   }
 }
 
+@media (min-width: 1200px) {
+  .col-xl-6 {
+    margin-top: 2vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+
+  .progress {
+    width: 96vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+}
+
 .progress {
-  position: absolute;
-  bottom: 0;
   width: 100vw;
+  height: 3vh;
   z-index: 301;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  background-color: #40bda8;
+  border: solid #40bda8;
 }
 
 .progress-bar {
-  background-color: #40bda8;
+  background-color: #F2F3F3;
+  color: #2E3C67;
 }
 
 .modal-dialog {

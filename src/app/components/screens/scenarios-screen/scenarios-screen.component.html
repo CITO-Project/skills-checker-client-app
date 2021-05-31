@@ -1,7 +1,10 @@
 <app-header [text]='!!category ? category.text : "default"' (customClick)='clickHeader()'></app-header>
-<app-media *ngIf="!!scenario" [resource]='scenario.resource' replay=true></app-media>
-<div id="content">
-  <div class="content d-flex flex-column align-items-center text-center">
+
+<div class="row">
+  <div class="col-12 col-xl-6">
+    <app-media *ngIf="!!scenario" [resource]='scenario.resource' replay=true></app-media>
+  </div>
+  <div class="content col-12 col-xl-6">
     <app-question
     *ngIf="!!question"
     [(question)]="question"
@@ -9,29 +12,29 @@
     (answer)="processAnswer($event)"
     [initialAnswer]="currentAnswer"
     ></app-question>
-    
-    <div class="progress">
-      <div
-        class="progress-bar"
-        role="progressbar"
-        [style.width]="progress+'%'" 
-        [attr.aria-valuenow]="progress"
-        aria-valuemin="0"
-        aria-valuemax="100"
-      >{{progress}}% Complete!</div>
-    </div>
   </div>
-
-
-
-  
 </div>
-<app-navigate-button
-  [buttons] = "buttons"
-  (buttonsEvent)='onButtonsEvent($event)'
-  ></app-navigate-button>
+
+<div class="footer">
+  <div class="progress">
+    <div
+      class="progress-bar"
+      role="progressbar"
+      [style.width]="progress+'%'" 
+      [attr.aria-valuenow]="progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >{{progress}}% Complete!</div>
+  </div>
+  <app-navigate-button
+    [buttons] = "buttons"
+    (buttonsEvent)='onButtonsEvent($event)'
+    ></app-navigate-button>
+</div>
+
 
 <button (click)="resultsModal.show()" class='hidden' id='resultsModal'></button>
+
 <div mdbModal #resultsModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myresultsModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
