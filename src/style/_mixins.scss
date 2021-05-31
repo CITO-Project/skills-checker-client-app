@@ -67,7 +67,7 @@ $default-font: 'Raleway';
 }
 
 @mixin setStyleLarge {
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: 1200px) {
     @content
   }
 }
