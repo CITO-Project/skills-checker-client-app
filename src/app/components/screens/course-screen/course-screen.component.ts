@@ -8,6 +8,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { Result } from 'src/app/models/result';
 import { StringManagerService } from 'src/app/services/etc/string-manager.service';
+import { faAt, faCalendarAlt, faMapMarkerAlt, faPhoneAlt, faUser, faLaptop, faCalculator, faBookOpen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-course-screen',
@@ -15,6 +16,13 @@ import { StringManagerService } from 'src/app/services/etc/string-manager.servic
   styleUrls: ['./course-screen.component.scss']
 })
 export class CourseScreenComponent implements OnInit {
+
+  faUser = faUser;
+  faMarker = faMapMarkerAlt;
+  faPhone = faPhoneAlt;
+  faAt = faAt;
+  faCalendar = faCalendarAlt;
+  icon;
 
   public course: Course;
   public fromLocation: string;
@@ -50,6 +58,16 @@ export class CourseScreenComponent implements OnInit {
       if (!!course) {
         this.course = course;
         this.course.skill = this.stringManagerService.TEXTS[course.skill];
+
+        if (this.course.skill === "computer") {
+          this.icon = faLaptop;
+        }
+        else if (this.course.skill === "maths") {
+          this.icon = faCalculator;
+        }
+        else {
+          this.icon = faBookOpen;
+        }
       } else {
         this.commonService.goTo('results');
       }

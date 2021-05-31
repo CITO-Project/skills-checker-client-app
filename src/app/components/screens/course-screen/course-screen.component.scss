@@ -5,6 +5,42 @@
   word-break: break-word;
 }
 
+#skill-container {
+  position: relative;
+}
+
+.title {
+  padding-left: 30vw;
+}
+
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.float {
+  float: left;
+}
+
+.box {
+  text-align: center;
+  width: 25vw;
+}
+
+.border {
+  text-align: center;
+
+  border-style: solid;
+  border-radius: 10%;
+  margin:10px;
+}
+
+.ng-fa-icon {
+  font-size: 3em;  
+}
+
 .content, .extras {
   padding: 0 5vw;
 }
