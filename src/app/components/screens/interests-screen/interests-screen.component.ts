@@ -48,7 +48,7 @@ export class InterestsScreenComponent implements OnInit {
       this.googleAnalyticsService.addEvent('selected_interest', '' + interest.id);
       this.progressTrackerService.initializeTracker().then( () => {
         this.googleAnalyticsService.addEvent('started_test');
-        this.commonService.goTo('scenarios');
+        this.commonService.goTo('scenario-introduction');
       });
     }
   }
