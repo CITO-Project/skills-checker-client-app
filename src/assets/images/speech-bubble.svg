@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="375px" height="211px" viewBox="0 0 375 211" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>img</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-5.88003782%" y1="36.6996805%" x2="102.864795%" y2="62.8637942%" id="linearGradient-1">
+            <stop stop-color="#3FBDA8" offset="0%"></stop>
+            <stop stop-color="#586385" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="-4.18610625%" x2="50%" y2="104.154651%" id="linearGradient-2">
+            <stop stop-color="#3FBDA8" offset="0%"></stop>
+            <stop stop-color="#586385" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-4.7%" y="-6.6%" width="109.4%" height="113.3%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.180392157   0 0 0 0 0.235294118   0 0 0 0 0.403921569  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <filter x="-14.8%" y="-7.9%" width="129.6%" height="115.9%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.180392157   0 0 0 0 0.235294118   0 0 0 0 0.403921569  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path d="M20.5210862,44.1664535 C20.5797092,43.3482806 20.6095263,42.5221116 20.6095263,41.6889594 C20.6095263,41.5707393 20.6024211,41.4553679 20.601,41.3385721 L20.6095263,41.3385721 L20.6095263,31.9151496 C20.6095263,22.9959428 17.1890526,14.8800628 11.5957895,8.80383538 C8.52548503,5.46822264 4.80020198,2.74739878 0.624268421,0.847881021 L0.624268421,44.1664535 L20.5210862,44.1664535 L20.5210862,44.1664535 Z" id="path-5"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="UI---Tests-&amp;-first-versions" transform="translate(-1024.000000, -1367.000000)">
+            <g id="img" transform="translate(1024.000000, 1367.000000)">
+                <polygon id="Base" fill-opacity="0.8" fill="url(#linearGradient-1)" points="0 0 375 0 375 211 0 211"></polygon>
+                <polygon id="Base" fill-opacity="0.8" fill="url(#linearGradient-2)" points="0 0 375 0 375 211 0 211"></polygon>
+                <path d="M126.828357,37.2656698 C126.828357,37.2656698 83.1919395,11.83919 28.900118,131.343645 C28.900118,131.343645 4.73518337,170.246159 46.8494001,187.841284 C52.6337624,190.256799 101.204647,213.979705 148.392865,187.790431 C148.392865,187.790431 180.359078,172.788807 247.538865,179.107288 C247.95747,179.145427 248.376075,179.158141 248.781995,179.145427 C256.215408,179.081861 321.898364,177.073169 325.729236,125.74982 C325.729236,125.74982 332.439604,84.7877607 279.048417,84.5589224 C220.976464,84.3173708 209.78829,84.5589224 175.538776,64.2177385 C175.538776,64.2177385 147.631765,46.4192026 126.828357,37.2656698 Z" id="Shape" fill-opacity="0.2" fill="#F2F3F3" fill-rule="nonzero"></path>
+                <g id="chat" filter="url(#filter-3)" transform="translate(105.000000, 14.000000)">
+                    <rect id="Rectangle-6-Copy" stroke="#F2F3F3" stroke-width="2" fill="#F8F9F9" x="6" y="1" width="247" height="179" rx="10"></rect>
+                    <polygon id="Triangle-Copy" fill="#F2F3F3" transform="translate(3.500000, 89.000000) rotate(-270.000000) translate(-3.500000, -89.000000) " points="3.43385456 92 -4 86 11 86"></polygon>
+                </g>
+
+            </g>
+        </g>
+    </g>
+</svg>
