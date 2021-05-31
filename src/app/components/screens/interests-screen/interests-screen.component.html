@@ -4,7 +4,7 @@
   <div class="description text">I want to check my skills so that I can...</div>
   <div class="container">
     <div class="row">
-      <div *ngFor="let interest of interests" class="interest col-12 box shadows gradient" [ngClass]="interest.colour" (click)="selectInterest(interest)">
+      <div *ngFor="let interest of interests" class="interest col-12 col-xl-6 box shadows gradient" [ngClass]="interest.colour" (click)="selectInterest(interest)">
         <div class="tile d-flex column align-items-center">
           <div class="text">{{ interest.text }}</div>
           <img src="{{ getPath(interest.resource) }}" onerror="this.remove()">
@@ -13,4 +13,6 @@
     </div>
   </div>
 </div>
-<app-navigate-button text="default" destination=""></app-navigate-button>
+<div class="footer">
+  <app-navigate-button text="default" destination=""></app-navigate-button>
+</div>
