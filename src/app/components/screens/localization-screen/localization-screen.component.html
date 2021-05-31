@@ -1,7 +1,16 @@
 <app-header text='default'></app-header>
 <div id="content">
+  <div class="intro">
+      <div class="heading">
+        <img [src]="getPath('arrows.png')" alt="arrows">
+        {{ LEARNING_PATHWAY_HEADER }}
+      </div>
+      <div class="message container text" *ngFor='let text of texts.learningPathwayDescription'>
+        {{ text }}
+      </div>
+    </div>
   <div id="header">
-    <div class="title">Learning opportunities</div>
+    
     <div class="description">Please, choose your location to see the learning opportunities near you</div>
     <select class="browser-default custom-select" (change)='setRegion($event.target.value)'>
       <option selected>Choose your area</option>
@@ -36,6 +45,8 @@
   </div>
 </div>
 
-<app-navigate-button
-  text='Back to results'
-  destination='results'></app-navigate-button>
+<div class="footer">
+  <app-navigate-button
+    text='Back to results'
+    destination='results'></app-navigate-button>
+</div>

@@ -2,87 +2,87 @@
 
 
 <div id="content">
-  <div class="main heading">
-    Check your skills and discover your strengths
-  </div>
-  <div class="main heading">
-    All in less than 10 minutes!
-  </div>
-  <br />
-  <div class="main subheading">
-    This tool will help you to find learning options so that you can improve your skills and learn new ones in the following areas... 
-  </div>
-  <br />
+  <div class="description">
+    <div class="main heading">
+      Check your skills and discover your strengths
+    </div>
+    <div class="main heading">
+      All in less than 10 minutes!
+    </div>
+    <div class="main subheading">
+      This tool will help you to find learning options so that you can improve your skills and learn new ones in the following areas... 
+    </div>
   
-  <!--
-  <div class="features container-fluid">
-    <div class="row">
-      <div class="col" *ngFor="let feature of FEATURES">
-        <div class="row icon d-flex justify-content-center">
-          <div [ngClass]="feature.color" class="box shadow gradient">
-            <img src="{{ feature.icon }}" onerror="this.remove()">
-          </div>
-        </div>
-        <div class="row text d-flex justify-content-center">
-          {{ feature.text }}
-        </div>
-      </div>
-    </div>
-  </div>
-  -->
-  <div class="features container-fluid">
-    <div class="row">
-      <div class="col">
-        <div class="row icon d-flex justify-content-center">
-          <div class="red box shadow gradient">
-            <fa-icon [icon]="faLaptop"></fa-icon>
-          </div>
-        </div>
-        <div class="row text d-flex justify-content-center">
-          Computers
-        </div>
-      </div>
-        <div class="col">
+  
+    <!--
+    <div class="features container-fluid">
+      <div class="row">
+        <div class="col" *ngFor="let feature of FEATURES">
           <div class="row icon d-flex justify-content-center">
-            <div class="green box shadow gradient">
-              <fa-icon [icon]="faCalculator"></fa-icon>
+            <div [ngClass]="feature.color" class="box shadow gradient">
+              <img src="{{ feature.icon }}" onerror="this.remove()">
             </div>
           </div>
           <div class="row text d-flex justify-content-center">
-            Maths
-          </div>
-        </div>
-        <div class="col">
-          <div class="row icon d-flex justify-content-center">
-            <div class="yellow box shadow gradient">
-              <fa-icon [icon]="faBookOpen"></fa-icon>
-            </div>
-          </div>
-          <div class="row text d-flex justify-content-center">
-            Reading and Writing
+            {{ feature.text }}
           </div>
         </div>
       </div>
     </div>
+    -->
+    <div class="features container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="row icon d-flex justify-content-center">
+            <div class="red box shadow gradient">
+              <fa-icon [icon]="faLaptop"></fa-icon>
+            </div>
+          </div>
+          <div class="row text d-flex justify-content-center">
+            Computers
+          </div>
+        </div>
+          <div class="col">
+            <div class="row icon d-flex justify-content-center">
+              <div class="green box shadow gradient">
+                <fa-icon [icon]="faCalculator"></fa-icon>
+              </div>
+            </div>
+            <div class="row text d-flex justify-content-center">
+              Maths
+            </div>
+          </div>
+          <div class="col">
+            <div class="row icon d-flex justify-content-center">
+              <div class="yellow box shadow gradient">
+                <fa-icon [icon]="faBookOpen"></fa-icon>
+              </div>
+            </div>
+            <div class="row text d-flex justify-content-center">
+              Reading and Writing
+            </div>
+          </div>
+        </div>
+      </div>
 
-
-  <br />
-  <div class="main subheading">
-    <b>Watch the Video</b> below and then<br/>click the <b>Get Started</b> button to Check your Skills! 
+    <div class="main subheading">
+      <b>Watch the Video</b> below and then<br/>click the <b>Get Started</b> button to Check your Skills! 
+    </div>
   </div>
-  <br />
   <div id="media-container">
-    <button *ngIf="!isVideoLoaded; else elseIsVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
+    <!--<button *ngIf="!isVideoLoaded; else elseIsVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()"></button>-->
+    <button *ngIf="!isVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
       How to use
     </button>
     <app-media [resource]=currentResource [replay]=addReplay (ready)='mediaLoaded($event)' [texts]=IMAGE_TEXT></app-media>
   </div>
   <div id="description">
     
+    <!--
     <ng-template #elseIsVideoLoaded>
       <div class="muted font-italic" [ngClass]="{'transparent': !isVideoPaused}">Press play to learn about the app</div>
     </ng-template>
-    
+    -->
     
     
     <hr>
@@ -91,4 +91,6 @@
     </div>
   </div>
 </div>
-<app-navigate-button text="Get started" (event)="onClick()"></app-navigate-button>
+<div class="footer">
+  <app-navigate-button text="Get started" (event)="onClick()"></app-navigate-button>
+</div>
