@@ -72,7 +72,7 @@
   <div id="media-container">
     <!--<button *ngIf="!isVideoLoaded; else elseIsVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()"></button>-->
     <button *ngIf="!isVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
-      How to use
+      How to use<br/><fa-icon [icon]="faPlay"></fa-icon>
     </button>
     <app-media [resource]=currentResource [replay]=addReplay (ready)='mediaLoaded($event)' [texts]=IMAGE_TEXT></app-media>
   </div>

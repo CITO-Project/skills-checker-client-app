@@ -5,10 +5,40 @@
   position: relative;
 }
 
+.button {
+  @include setStyleSmall { 
+    border-radius: 20px;
+    font-size: 80%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}
+
+.subheading {
+  @include setStyleSmall {
+    font-size: 80%;
+  }
+}
+
+.text {
+  text-align: center;
+
+  @include setStyleSmall {
+    font-size: 100%;
+  }
+}
+
 #how-to-use {
+
   position: absolute;
   z-index: 1;
+
   bottom: 15%;
+
+  @include setStyleSmall {
+    right: 15%;
+  }
+  
   right: 24%;
 }
 
