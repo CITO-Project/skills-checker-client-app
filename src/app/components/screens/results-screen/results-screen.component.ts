@@ -5,6 +5,7 @@ import { Course } from 'src/app/models/course';
 import { Result } from 'src/app/models/result';
 
 import { DataProcessingService } from 'src/app/services/data/data-processing.service';
+import { StringManagerService} from 'src/app/services/etc/string-manager.service';
 import { CommonService } from 'src/app/services/common.service';
 import { CoursesService } from 'src/app/services/api-call/courses.service';
 import { DataLogService } from 'src/app/services/data/data-log.service';
@@ -38,6 +39,7 @@ export class ResultsScreenComponent implements OnInit {
 
   constructor(
     public commonService: CommonService,
+    private stringManagerService: StringManagerService,
     private dataLogService: DataLogService,
     private coursesService: CoursesService,
     private dataProcessingService: DataProcessingService,
@@ -104,10 +106,18 @@ export class ResultsScreenComponent implements OnInit {
   }
 
   saveResults(): void {
+
+    var scenarios:string[] = new Array(4);
+    for( var i=0; i<this.dataLogService.getScenarioCount(); i++ ){
+      scenarios[i] = this.dataLogService.getScenario(i).text;
+    }
+
     this.resultsSaverService.generateImage(
       this.resultsImage,
       this.HEADER,
+      scenarios,
       'Well done! ' + this.texts.resultsText,
+      this.stringManagerService.correctText(this.interest.text),
       this.LEARNING_PATHWAY_HEADER,
       this.texts.learningPathwayDescription,
       this.courses);
