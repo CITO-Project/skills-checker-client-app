@@ -2,10 +2,10 @@
 <div class="container" *ngIf="!!course" id='content'>
 
   <div id="skill-container">
-    <div class="box shadow gradient" [ngClass]="{'red': course.skill === 'computer', 'green': course.skill === 'maths', 'yellow': course.skill === 'reading and writing'}">
+    <div class="float box shadow gradient icon-box" [ngClass]="{'red': course.skill === 'computer', 'green': course.skill === 'maths', 'yellow': course.skill === 'reading and writing'}">
       <fa-icon [icon]="icon"></fa-icon>
     </div>
-    <div class="title vertical-center">Skill: {{ stringManagerService.normalizeText(course.skill) }}</div>
+    <div class="title float">Skill: {{ stringManagerService.normalizeText(course.skill) }}</div>
   </div>
   <div class="heading">
     <b>Course</b>
@@ -14,18 +14,19 @@
   </div>
   <div id="courseDescription" class="text" [innerHTML]="course.description"></div>
 
-  <div class="text">If this is a Learning Option you are interested in, please use the contact details below to get in touch</div>
+  <div class="text static">If this is a Learning Option you are interested in, please use the contact details below to get in touch.</div>
 
-
-  <div class="row">
-    <div class="col border" *ngIf="!!course.location"><fa-icon [icon]="faMarker"></fa-icon><br/><b>{{ course.location[0].toUpperCase() + course.location.slice(1) }}</b></div>
-    <div class="col border" *ngIf="!!course.contact_person"><fa-icon [icon]="faUser"></fa-icon><br/><b>{{ course.contact_person }}</b></div>
-    <div class="col border" *ngIf="!!course.contact_telephone"><fa-icon [icon]="faPhone"></fa-icon><br/><b>{{ course.contact_telephone }}</b></div>
-    <div class="col border" *ngIf="!!course.contact_email"><fa-icon [icon]="faAt"></fa-icon><br/>{{ course.contact_email }}</div>
+  <div class="course-info">
+    <div class="row">
+      <div class="col border" *ngIf="!!course.location"><fa-icon [icon]="faMarker"></fa-icon><br/><b>{{ course.location[0].toUpperCase() + course.location.slice(1) }}</b></div>
+      <div class="col border" *ngIf="!!course.contact_person"><fa-icon [icon]="faUser"></fa-icon><br/><b>{{ course.contact_person }}</b></div>
+      <div class="col border" *ngIf="!!course.contact_telephone"><fa-icon [icon]="faPhone"></fa-icon><br/><b>{{ course.contact_telephone }}</b></div>
+      <div class="col border" *ngIf="!!course.contact_email"><fa-icon [icon]="faAt"></fa-icon><br/>{{ course.contact_email }}</div>
+    </div>
+    <div class="row">
+      <div class="col" *ngIf="!!course.enrolment_start"><fa-icon [icon]="faCalendar"></fa-icon>Enrolment: {{ formatDate(course.enrolment_start) }}</div>
+    </div>
   </div>
-
-  <div class="col" *ngIf="!!course.enrolment_start"><fa-icon [icon]="faCalendar"></fa-icon>Enrolment: {{ formatDate(course.enrolment_start) }}</div>
-
   <div class="text">If you would like to find out more, or book a course, go to the National Adult Literacy Agency webpage by pressing the <b>More Info</b> button</div>
 </div>
 <div class="footer">

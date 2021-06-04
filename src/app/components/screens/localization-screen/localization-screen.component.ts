@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { Interest } from 'src/app/models/interest';
 import { Course } from 'src/app/models/course';
 import { Result } from 'src/app/models/result';
 
@@ -19,6 +20,7 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 })
 export class LocalizationScreenComponent implements OnInit {
 
+  public interest: Interest;
   public courses: Course[] = [];
   public REGIONS = [
     'Online',
@@ -82,6 +84,7 @@ export class LocalizationScreenComponent implements OnInit {
 
   ngOnInit() {
     const log = this.dataLogService.getAll();
+    this.interest = this.dataLogService.getInterest();
     this.results = this.dataProcessingService.getCoursesLevel(log);
     this.texts = this.dataProcessingService.getResultsText(log, this.results);
 

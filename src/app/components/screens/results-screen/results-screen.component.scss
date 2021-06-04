@@ -35,10 +35,6 @@
   right: 5%;
   top: 15%;
   width: 60%;
-
-  .text {
-    padding-bottom: 1em;
-  }
 }
 
 .message {
@@ -47,6 +43,14 @@
 
 .heading {
   margin-top: 0;
+}
+
+.interest {
+  background-color: #40bda8;
+  color: white;
+  text-align: center;
+  padding: 0.5vh 0;
+  margin: 0.5vh 0;
 }
 
 .text {
@@ -83,6 +87,7 @@
 .download {
       display: block;
       margin: auto;
+      margin-top: 1vh;
       
       font-size: 130%;
       $padding: 20px;
