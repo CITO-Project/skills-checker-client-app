@@ -28,10 +28,13 @@ export class ResultsScreenComponent implements OnInit {
   public readonly SUBTITLE = 'My Results';
   public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway';
 
+  private readonly DEFAULT_IMAGE = 'orientation-ie.svg';
+
   public interest: Interest;
   public courses: Course[];
   public results: Result;
   public resultsImage: string;
+  public currentResource: string;
 
   constructor(
     public commonService: CommonService,
@@ -50,6 +53,9 @@ export class ResultsScreenComponent implements OnInit {
       this.commonService.goTo('');
     }
     const log = this.dataLogService.getAll();
+
+    this.currentResource = this.DEFAULT_IMAGE;
+    
     this.interest = this.dataLogService.getInterest();
     this.results = this.dataProcessingService.getCoursesLevel(log);
     this.texts = this.dataProcessingService.getResultsText(log, this.results);

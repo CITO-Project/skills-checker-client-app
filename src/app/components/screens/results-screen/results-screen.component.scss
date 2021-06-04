@@ -35,14 +35,34 @@
   right: 5%;
   top: 15%;
   width: 60%;
+
+  .text {
+    padding-bottom: 1em;
+  }
+}
+
+.message {
+  padding: 0.5em 0;
 }
 
 .heading {
   margin-top: 0;
 }
 
+.text {
+  font-size: 100%;
+  @include setStyleSmall {
+    font-size: 2.8vw;
+  }
+  /*
+  @include setStyleTablet {
+    font-size: 2.8vw;
+  }
+  */
+}
+
 #result {
-  padding: 0 1vw;
+  padding: 2vh 2vw;
   .row {
     background-repeat: no-repeat;
     background-size: contain;
@@ -53,21 +73,9 @@
       width: 100%;
     }
   }
-  .results {
-    position: relative;
-    $right-padding: 40px;
-    padding-left: 0;
-    padding-right: $right-padding;   
+  .results {   
     .text {
       vertical-align: center;
-      padding-right: 20px;
-      font-size: 100%;
-      @include setStyleSmall {
-        font-size: 2.8vw;
-      }
-      @include setStyleTablet {
-        font-size: 100%;
-      }
     }
   }
 }
@@ -84,7 +92,7 @@
         font-size: 2.8vw;
       }
       @include setStyleTablet {
-        font-size: 100%;
+        font-size: 2.8vw;
       }
     }
 
