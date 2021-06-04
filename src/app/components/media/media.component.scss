@@ -26,6 +26,7 @@
     }
     .content {
       @include setStyleLarge { font-size: 120%; }
+      @include setStyleSmall { font-size: 120%; }
       font-size: 100%;
       text-align: center;
     }
