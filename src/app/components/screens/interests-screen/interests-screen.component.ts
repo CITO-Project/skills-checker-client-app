@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Interest } from 'src/app/models/interest';
+import { Category } from 'src/app/models/category';
 
 import { InterestService } from 'src/app/services/api-call/interest.service';
+import { CategoryService } from 'src/app/services/api-call/category.service';
 import { DataLogService } from 'src/app/services/data/data-log.service';
 import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
@@ -16,6 +18,7 @@ import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.s
 })
 export class InterestsScreenComponent implements OnInit {
 
+  public categories: Category[];
   public interests: Interest[];
   public colour: string;
 
@@ -23,6 +26,7 @@ export class InterestsScreenComponent implements OnInit {
 
   constructor(
     private interestService: InterestService,
+    private categoryService: CategoryService,
     private dataLogService: DataLogService,
     private commonService: CommonService,
     private googleAnalyticsService: GoogleAnalyticsService,
@@ -38,6 +42,10 @@ export class InterestsScreenComponent implements OnInit {
         interest.colour = this.INTEREST_COLOURS[interest.category % this.INTEREST_COLOURS.length];
       })
       this.interests = data;
+    });
+
+    this.categoryService.getCategories().subscribe( (data: Category[]) => {
+      this.categories = data;
     });
   }
 
@@ -57,4 +65,18 @@ export class InterestsScreenComponent implements OnInit {
     return this.commonService.getIconPath(name);
   }
 
+  getCategory(id: number): string {
+
+    var response = '';
+
+    let result: Category[] = this.categories.filter(category => {
+      return category.id === id;
+    })
+
+    if( result.length > 0 ) {
+      response = result[0].text;
+    }
+
+    return response;
+  }
 }
