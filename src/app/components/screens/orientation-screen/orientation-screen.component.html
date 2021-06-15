@@ -2,15 +2,21 @@
 
 
 <div id="content">
-  <div class="description">
+  <div id="readspeaker_button1" class="rs_skip rsbtn rs_preserve">
+    <a rel="nofollow" class="rsbtn_play" accesskey="L" title="Listen to this page using ReadSpeaker webReader" href="//app-eu.readspeaker.com/cgi-bin/rsent?customerid=3&amp;lang=en_uk&amp;voice=Alice&amp;readid=description&amp;url=https%3A%2F%2Fskillscheck.citoproject.eu%2Fupdates%2F">
+        <span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span>Listen</span></span></span>
+        <span class="rsbtn_right rsimg rsplay rspart"></span>
+    </a>
+</div>
+  <div class="description" id="description">
     <div class="main heading margins">
-      Check your skills and discover your strengths
+      Check your skills and discover your strengths!
     </div>
     <div class="main heading">
       All in less than 10 minutes!
     </div>
     <div class="main subheading">
-      This tool will help you to find learning options so that you can improve your skills and learn new ones in the following areas... 
+      Check-In Take-Off is a free and confidential tool for you to check your skills and find ways to help you improve your skills in: 
     </div>
   
   
@@ -75,7 +81,7 @@
   <div id="media-container">
     <!--<button *ngIf="!isVideoLoaded; else elseIsVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()"></button>-->
     <button *ngIf="!isVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
-      How to use<br/><fa-icon [icon]="faPlay"></fa-icon>
+      Watch the video<br/><fa-icon [icon]="faPlay"></fa-icon>
     </button>
     <app-media [resource]=currentResource [replay]=addReplay (ready)='mediaLoaded($event)' [texts]=IMAGE_TEXT></app-media>
   </div>

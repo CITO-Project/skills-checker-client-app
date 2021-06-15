@@ -26,9 +26,9 @@ export class OrientationScreenComponent implements OnInit {
   private readonly DEFAULT_IMAGE = 'orientation-ie.svg';
   private readonly DEFAULT_VIDEO = 'how-to-use-ie.mp4';
   public readonly IMAGE_TEXT = [
-    'Welcome to Check In Take Off',
+    //'Welcome to Check In Take Off',
     // tslint:disable-next-line: max-line-length
-    'Hi! I\'m Frank and I am your guide today. Watch our \'How to Use\' video and I will help you check your skills and find learning options that work for you.'];
+    'Hi! I\'m Frank and I am your guide today. Watch our \'How to Use\' video - click the button below'];
 
   public currentResource: string;
   public mediaType: string;
