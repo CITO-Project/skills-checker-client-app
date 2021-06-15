@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ScenariosScreenComponent } from 'src/app/components/screens/scenarios-screen/scenarios-screen.component';
 
 import { Course } from '../../models/course';
 
@@ -11,14 +12,14 @@ import { StringManagerService } from '../etc/string-manager.service';
 })
 export class ResultsSaverService {
 
-  private readonly FILE_MAX_WIDTH = 1000;
+  private readonly FILE_MAX_WIDTH = 2000;
   private readonly IMG_MAX_HEIGHT = 460;
 
   private readonly TITLE_SIZE = 60;
   private readonly TEXT_SIZE = 40;
 
-  private readonly BALLOONS_TEXT_SEPARATION = 90;
-  private readonly BALLOONS_LEARNING_PATHWAY_SEPARATION = 100;
+  private readonly BALLOONS_TEXT_SEPARATION = 150;
+  private readonly BALLOONS_LEARNING_PATHWAY_SEPARATION = 200;
   private readonly TITLE_LINES_SEPARATION = 20;
   private readonly LINES_SEPARATION = 10;
   private readonly TEXTS_SEPARATION = 20;
@@ -33,9 +34,9 @@ export class ResultsSaverService {
   private readonly COURSES_BORDER_RADIUS = 40;
   private readonly BOTTOM_PADDING = 50;
 
-  private readonly SPLIT_RESULTS_TEXT = 21;
+  private readonly SPLIT_RESULTS_TEXT = 50;
   private readonly SPLIT_LEARNING_PATHWAY_DESCRIPTION = 45;
-  private readonly SPLIT_COURSE_TEXTS = 40;
+  private readonly SPLIT_COURSE_TEXTS = 100;
 
   private readonly MAX_LINES_RESULTS_TEXT = 5;
   private readonly MAX_LINES_COURSE_DESCRIPTION = 2;
@@ -63,7 +64,9 @@ export class ResultsSaverService {
   async generateImage(
     graphDataURI: string,
     header: string,
+    scenarios: string[],
     resultsText: string,
+    interest: string,
     learningPathwayHeader: string,
     learningPathwayDescription: string[],
     learningPathway: Course[]
@@ -78,7 +81,7 @@ export class ResultsSaverService {
       }
       await this.canvasManager.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
       this.paintBackground(this.canvasManager.getCanvasContext(), resultsText);
-      await this.printHeader(header, graphDataURI, resultsText);
+      await this.printHeader(header, graphDataURI, resultsText, interest, scenarios);
       this.canvasManager.setColour(this.BACKGROUND_COLOR);
       this.canvasManager.drawBox(this.FILE_MAX_WIDTH, this.BALLOONS_LEARNING_PATHWAY_SEPARATION, 0, 0);
       this.canvasManager.addY(this.BALLOONS_LEARNING_PATHWAY_SEPARATION);
@@ -121,7 +124,7 @@ export class ResultsSaverService {
     this.canvasManager.printLine(text, x, y);
   }
 
-  async printHeader(header: string, balloonsAndBasketURI: string, resultsText: string): Promise<void> {
+  async printHeader(header: string, balloonsAndBasketURI: string, resultsText: string, interest: string, scenarios: string[]): Promise<void> {
     let multiplier = 1;
     //#region Printing header
     this.canvasManager.setColour(this.TEXT_COLOR_LIGHT);
@@ -137,6 +140,7 @@ export class ResultsSaverService {
     await this.canvasManager.loadResource(this.commonService.getImagePath('background-results.svg'))
       .then( (backgroundImage: any) => {
         multiplier = (this.FILE_MAX_WIDTH - this.BACKGROUND_PADDING_SIDES * 2) / backgroundImage.width;
+        multiplier = multiplier*2;
         this.canvasManager.getCanvasContext().drawImage(
           backgroundImage,
           this.BACKGROUND_PADDING_SIDES,
@@ -146,6 +150,7 @@ export class ResultsSaverService {
     });
     await this.canvasManager.loadResource(balloonsAndBasketURI).then( (balloonsAndBasketImage: any) => {
       multiplier = this.IMG_MAX_HEIGHT / balloonsAndBasketImage.height;
+      multiplier = multiplier*2;
       this.canvasManager.setX(balloonsAndBasketImage.width * multiplier);
       this.canvasManager.getCanvasContext().drawImage(
         balloonsAndBasketImage,
@@ -167,11 +172,34 @@ export class ResultsSaverService {
       this.printText(text, '');
       this.canvasManager.addY(this.TITLE_LINES_SEPARATION);
     });
+    
+    this.printText('');
+
+    this.printText(interest, 'bold');
+
+    this.printText('');
+
+    this.printText('Your skill check asked you about these four tasks:');
+
+    this.printText('');
+
+    scenarios.forEach( (scen: string) => {
+      this.printText(scen);
+    });
+
+    
+    this.printText('');
+    this.printText('');
+    this.printText('');
+    this.printText('');
+    this.printText('');
+    this.printText('');
+
     //#endregion
   }
 
   printDescription(title: string, description: string[]): void {
-    this.canvasManager.setX(this.FILE_MAX_WIDTH / 2);
+    this.canvasManager.setX(this.FILE_MAX_WIDTH - (this.FILE_MAX_WIDTH/4));
     this.canvasManager.setTextAlignment('center');
     this.printTitle(title, 'bold');
     this.canvasManager.addY(this.TEXTS_SEPARATION);
@@ -232,11 +260,16 @@ export class ResultsSaverService {
       this.printText(this.stringManagerService.ellipsisText(title, this.SPLIT_COURSE_TEXTS), 'bold');
     }
     descriptionSplitted.slice(0, this.MAX_LINES_COURSE_DESCRIPTION).forEach( (text: string) => this.printText(text));
+
+    // add some space between course description and contact information
+    this.printText('');
+
     if (!!course.contact_telephone) {
       // tslint:disable-next-line: max-line-length
-      this.printText(this.stringManagerService.ellipsisText(`Phone number: ${course.contact_telephone}`, this.SPLIT_COURSE_TEXTS), 'italic');
-    } else if (!!course.link) {
-      this.printText(this.stringManagerService.ellipsisText(link, this.SPLIT_COURSE_TEXTS), 'italic');
+      this.printText(this.stringManagerService.ellipsisText(`Phone: ${course.contact_telephone}`, this.SPLIT_COURSE_TEXTS), 'italic');
+    }
+    if (!!course.link) {
+      this.printText(this.stringManagerService.ellipsisText(`Web: ${link}`, this.SPLIT_COURSE_TEXTS), 'italic');
     }
     //#endregion
 
@@ -281,11 +314,14 @@ export class ResultsSaverService {
       numberLinesCourseDescription = this.MAX_LINES_COURSE_DESCRIPTION;
     }
     r += this.COURSES_BORDER_RADIUS * 2;
-    let lines = 0;
+    let lines = 1;
     if (!!course.title) {
       lines++;
     }
-    if (!!course.contact_telephone || !!course.link) {
+    if (!!course.contact_telephone) {
+      lines++;
+    }
+    if (!!course.link) {
       lines++;
     }
     r += this.TEXT_SIZE * (numberLinesCourseDescription + lines);
@@ -300,7 +336,7 @@ export class ResultsSaverService {
   }
 
   calculateHeight(resultsText: string, learningPathwayDescription: string[], learningPathway: Course[]): number {
-    let r = 0;
+    let r = 15; // I've added in a few extra lines above so need to account for that at the bottom
     r += this.calculateHeightHeader(resultsText);
     r += this.BALLOONS_LEARNING_PATHWAY_SEPARATION;
     r += this.calculateHeightDescription(learningPathwayDescription);

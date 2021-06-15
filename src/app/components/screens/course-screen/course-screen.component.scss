@@ -6,11 +6,24 @@
 }
 
 #skill-container {
+  height: 10vh;
+  max-height: 150px;
   position: relative;
+  color:#2E3C67;
 }
 
 .title {
-  padding-left: 30vw;
+  font-size: 170%;
+  font-weight: 400;
+  line-height: 10vh;
+  margin-left: 2vw;
+  @include setStyleTablet {
+    font-size: 150%;
+  }
+}
+
+.heading {
+  padding: 2vh 0;
 }
 
 .vertical-center {
@@ -24,17 +37,35 @@
   float: left;
 }
 
-.box {
+.icon-box {
   text-align: center;
-  width: 25vw;
+  width: 10vh;
+  max-width: 150px;
+  max-height: inherit;
+  min-width: 100px;
+  line-height: 10vh;
+  height: inherit;
 }
 
 .border {
   text-align: center;
+  color: #2E3C67;
 
   border-style: solid;
   border-radius: 10%;
   margin:10px;
+}
+
+.course-info {
+  padding: 2vh 0;
+}
+
+.static {
+  padding-top: 2vh; 
+}
+
+.col {
+  background-color: white;
 }
 
 .ng-fa-icon {
@@ -110,17 +141,6 @@
 
 span {
   display: inline-block;
-}
-
-.title {
-  text-align: center;
-  font-size: 170%;
-  font-weight: 400;
-  margin: 0;
-  margin-bottom: 40px;
-  @include setStyleTablet {
-    font-size: 150%;
-  }
 }
 
 hr {

@@ -24,8 +24,8 @@
 
   .progress {
     width: 96vw;
-    padding-left: 2vw;
-    padding-right: 2vw;
+  //  padding-left: 2vw;ng 
+  //  padding-right: 2vw;
   }
 }
 
@@ -37,13 +37,17 @@
   font-size: 1rem;
   font-weight: 500;
 
-  background-color: #40bda8;
+  background-color: #F2F3F3;
   border: solid #40bda8;
 }
 
 .progress-bar {
-  background-color: #F2F3F3;
-  color: #2E3C67;
+  background-color: #40bda8;
+  color: white;
+}
+
+.progress-bar-label {
+  padding-left: 10px;
 }
 
 .modal-dialog {

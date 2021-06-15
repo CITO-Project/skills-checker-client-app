@@ -24,7 +24,8 @@
       [attr.aria-valuenow]="progress"
       aria-valuemin="0"
       aria-valuemax="100"
-    >{{progress}}% Complete!</div>
+    ><span *ngIf="progress==15 || progress>15">{{progress}}% Complete!</span></div>
+    <span class="progress-bar-label" *ngIf="progress < 15">{{progress}}% Complete!</span>
   </div>
   <app-navigate-button
     [buttons] = "buttons"

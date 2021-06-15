@@ -5,6 +5,7 @@
         <img [src]="getPath('arrows.png')" alt="arrows">
         {{ LEARNING_PATHWAY_HEADER }}
       </div>
+      <div class="text interest"><b>{{interest.text}}</b></div>
       <div class="message container text" *ngFor='let text of texts.learningPathwayDescription'>
         {{ text }}
       </div>

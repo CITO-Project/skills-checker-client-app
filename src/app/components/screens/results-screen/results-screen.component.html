@@ -3,14 +3,15 @@
   <div id="content">
     <!--<div class="subtitle">{{ SUBTITLE }}</div>-->
     <div id="acknowledgement">
-      <img class="avatar-msg" src="/assets/images/orientation.svg" alt=""/>
+      <app-media [resource]=currentResource></app-media>
+      <!--<img class="avatar-msg" src="/static/images/orientation.svg" alt=""/>-->
       <div class="avatar-msg-text">
         <div class="text">
-          <b>Well Done!</b> Skill check complete! You have taken the first step towards achieving your goal to:
+          <b>Well Done!</b> 
+          <br/>
+          Skill check complete! You have taken the first step towards achieving your goal to:
         </div>
-        <br/>
-        <div class="text"><b>{{interest.text}}</b></div>
-        <br />
+        <div class="text interest"><b>{{interest.text}}</b></div>
         <div class="text">
           Click the <b>Download Skill Summary</b> button for a full summary of your skill check journey
         </div>
@@ -28,9 +29,10 @@
               <!--<b>Well done! </b>{{ texts.resultsText }}-->
               <div class="message container text" *ngFor='let text of texts.learningPathwayDescription'>
                 {{ text }}
-                <br/>
-                Check out your <b>Learning Pathway</b> below and find a course that's right for you.
               </div>
+              <div class="message container text" *ngIf="getCourses('brush_up').length > 0 || getCourses('develop').length > 0" >
+                Check out your <b>Learning Pathway</b> below and find a course that's right for you.
+            </div>
             </div>
           </div>
         </div>
@@ -41,8 +43,8 @@
       </div>
     </div>
     
-    <div class="holder"></div>
-    <div id="pathway">
+    <!--<div class="holder"></div>-->
+    <div id="pathway" *ngIf="getCourses('brush_up').length > 0 || getCourses('develop').length > 0">
       <div class="intro">
         <div class="heading">
           <img [src]="getPath('arrows.png')" alt="arrows">

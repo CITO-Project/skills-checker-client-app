@@ -3,7 +3,7 @@
 
 <div id="content">
   <div class="description">
-    <div class="main heading">
+    <div class="main heading margins">
       Check your skills and discover your strengths
     </div>
     <div class="main heading">
@@ -34,7 +34,8 @@
       <div class="row">
         <div class="col">
           <div class="row icon d-flex justify-content-center">
-            <div class="red box shadow gradient">
+            <!-- <div class="red box shadow gradient"> -->
+              <div class="box">
               <fa-icon [icon]="faLaptop"></fa-icon>
             </div>
           </div>
@@ -44,7 +45,8 @@
         </div>
           <div class="col">
             <div class="row icon d-flex justify-content-center">
-              <div class="green box shadow gradient">
+              <!-- <div class="green box shadow gradient"> -->
+              <div class="box">
                 <fa-icon [icon]="faCalculator"></fa-icon>
               </div>
             </div>
@@ -54,7 +56,8 @@
           </div>
           <div class="col">
             <div class="row icon d-flex justify-content-center">
-              <div class="yellow box shadow gradient">
+              <!-- <div class="yellow box shadow gradient"> -->
+              <div class="box">
                 <fa-icon [icon]="faBookOpen"></fa-icon>
               </div>
             </div>
@@ -72,7 +75,7 @@
   <div id="media-container">
     <!--<button *ngIf="!isVideoLoaded; else elseIsVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()"></button>-->
     <button *ngIf="!isVideoLoaded" class="button special" id="how-to-use" type="button" mdbBtn mdbWavesEffect (click)="loadVideo()">
-      How to use
+      How to use<br/><fa-icon [icon]="faPlay"></fa-icon>
     </button>
     <app-media [resource]=currentResource [replay]=addReplay (ready)='mediaLoaded($event)' [texts]=IMAGE_TEXT></app-media>
   </div>

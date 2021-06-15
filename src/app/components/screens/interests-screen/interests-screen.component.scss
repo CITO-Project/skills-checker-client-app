@@ -5,6 +5,10 @@
   padding: 10px;
 }
 
+.bold {
+  font-weight: 700;
+}
+
 .description.text{
   text-align: center;
   padding: 0 20px;
@@ -22,11 +26,12 @@
     min-height: 100px;
     .text {
       color: $color-font;
-      font-weight: 700;
+//      font-weight: 700;
+      font-size: 1.2em;
       padding-right: 100px;
       @include setStyleTablet {
         padding: 50px 0;
-        padding-right: 100px;
+        padding-right: 110px;
       }
     }
     img {

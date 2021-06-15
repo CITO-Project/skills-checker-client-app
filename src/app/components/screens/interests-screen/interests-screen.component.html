@@ -6,7 +6,10 @@
     <div class="row">
       <div *ngFor="let interest of interests" class="interest col-12 col-xl-6 box shadows gradient" [ngClass]="interest.colour" (click)="selectInterest(interest)">
         <div class="tile d-flex column align-items-center">
-          <div class="text">{{ interest.text }}</div>
+          <div class="text">
+            <div class="bold">{{ getCategory(interest.category) }}</div>
+            {{ interest.text }}
+          </div>
           <img src="{{ getPath(interest.resource) }}" onerror="this.remove()">
         </div>
       </div>
