@@ -63,7 +63,7 @@ export class OrientationScreenComponent implements OnInit {
       text: 'Erasmus',
       image: this.getImagePath('erasmus-logo.png')
     }
-  ]
+  ];
 
   constructor(
     private dataLogService: DataLogService,

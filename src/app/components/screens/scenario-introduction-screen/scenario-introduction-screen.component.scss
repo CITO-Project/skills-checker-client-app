@@ -1,12 +1,35 @@
 @import '../../../../style/_imports.scss';
 
-#content {
-  padding: 0 20px;
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  .text {
-    text-align: center;
-    font-size: 120%;
+// #content {
+//   padding: 0 20px;
+//   position: absolute;
+//   top: 50%;
+//   transform: translate(0, -50%);
+//   .text {
+//     text-align: center;
+//   }
+// }
+
+.features {
+  margin-top: 10px;
+  .box {
+    padding: 10px 20px;
+    font-size: 50px;
+    min-width: 150px;
+    .text {
+      padding-top: 10px;
+      font-size: 20px;
+      font-weight: 400;
+      max-width: 700px;
+    }
   }
+}
+.description {
+  padding-top: 10px;
+}
+.text {
+  text-align: center;
+}
+.ballons {
+  padding: 20px 0;
 }
