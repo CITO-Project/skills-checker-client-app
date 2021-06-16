@@ -47,7 +47,7 @@ export class ScenarioIntroductionScreenComponent {
             'You will now have complete 4 Skill Check scenarios based on this goal'
           ];
         } else {
-          this.imageTexts = [`Well Done! Scenario ${this.scenarioIndex} Complete! Click Continue to go to the Next Scenario`];
+          this.imageTexts = ['Well Done!',`Scenario ${this.scenarioIndex} Complete!`,'Click Continue to go to the Next Scenario'];
           this.btnForward = 'Continue SkillCheck';
           this.btnBack = 'Previous Scenario';
         }
