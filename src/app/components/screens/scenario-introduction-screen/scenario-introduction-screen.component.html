@@ -12,7 +12,7 @@
 
     <div class="text">
       <div *ngIf="this.scenarioIndex <= 0; else elseBlock">
-        <div class="description">The scenarios will check your Skills related to:</div>
+        <div class="heading">The scenarios will check your Skills related to:</div>
         <div class="features container-fluid">
           <div class="row">
             <div class="col">
@@ -48,11 +48,11 @@
             </div>
           </div>
           <br/>
-          <div>Each scenario will take about <b>2 minutes</b>.</div>
+          <div class="heading">Each scenario will take about <b>2 minutes</b>.</div>
           <br/>
-          <div>You will watch the video and answer the questions beneath the video. </div>
+          <div class="heading">You will watch the video and answer the questions beneath the video. </div>
           <br/>
-          <div>Click <b>Let's Go</b> to begin!</div>
+          <div class="heading">Click <b>Let's Go</b> to begin!</div>
       </div>
       <ng-template #elseBlock>
         <img class="ballons" src="../../../../assets/balloons/balloons-bbb.svg" alt="">
