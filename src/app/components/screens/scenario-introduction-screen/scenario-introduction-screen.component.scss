@@ -65,3 +65,33 @@
 .ballons {
   padding: 20px 0;
 }
+
+@media (min-width: 1200px) {
+
+  .progress {
+    width: 96vw;
+  //  padding-left: 2vw;ng 
+  //  padding-right: 2vw;
+  }
+}
+
+.progress {
+  width: 100vw;
+  height: 3vh;
+  z-index: 301;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  background-color: #F2F3F3;
+  border: solid #40bda8;
+}
+
+.progress-bar {
+  background-color: #40bda8;
+  color: white;
+}
+
+.progress-bar-label {
+  padding-left: 10px;
+}

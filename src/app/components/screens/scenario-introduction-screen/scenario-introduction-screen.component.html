@@ -62,6 +62,17 @@
   </div>
 </div>
 <div class="footer">
+  <div class="progress" *ngIf="this.scenarioIndex > 0">
+    <div
+      class="progress-bar"
+      role="progressbar"
+      [style.width]="progress+'%'" 
+      [attr.aria-valuenow]="progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    ><span *ngIf="progress==15 || progress>15">{{progress}}% Complete!</span></div>
+    <span class="progress-bar-label" *ngIf="progress < 15">{{progress}}% Complete!</span>
+  </div>
   <app-navigate-button
   backText="{{ btnBack }}"
   forwardText="{{ btnForward }}"

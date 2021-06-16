@@ -7,6 +7,9 @@ import { Category } from 'src/app/models/category';
 import { Interest } from 'src/app/models/interest';
 import { faBookOpen, faCalculator, faLaptop } from '@fortawesome/free-solid-svg-icons';
 
+import { Question } from 'src/app/models/question';
+import { CustomResponse } from 'src/app/models/custom-response';
+
 @Component({
   selector: 'app-scenario-introduction-screen',
   templateUrl: './scenario-introduction-screen.component.html',
@@ -25,6 +28,11 @@ export class ScenarioIntroductionScreenComponent {
   public scenarioText: string;
   public category: Category;
   public scenarioIndex = 0;
+
+  public question: Question;
+  public currentScenario = -1;
+  public currentQuestion = -1;
+  public progress = 50;
 
   public btnBack = 'Change interest';
   public btnForward = 'Let\'s Go!';
@@ -56,10 +64,24 @@ export class ScenarioIntroductionScreenComponent {
       }
   }
 
-  // ngOnInit() {
-  //   this.category = this.dataLogService.getCategory();
-  //   this.loadScenario(this.scenarioindex);
-  // }
+  ngOnInit() {
+
+//      this.currentScenario = this.progressTrackerService.getCurrentScenario();
+//      this.currentQuestion = this.progressTrackerService.getCurrentQuestion();
+
+      /**
+       * Update local variable that controls progress indicator
+       *
+       * Rough calculation of progress based on the current scenario and current question
+       * Aim here is to calculate a percentage (between 0 and 100).
+       * There are 4 scenarios so we multiply the current scenario by 25
+       * We then add a value to represent progress through the questions.
+       * There are a max of 7 questions per scenario so 3 seems like a reasonable number
+       *
+       * Ideally the weightings used (25 and 3 respectively) should be dynamic and based on the actual number of questions used.
+       */
+      this.progress = ((this.scenarioIndex) * 25) /*+ (this.currentQuestion * 3)*/;
+  }
 
   // loadScenario(scenarioindex: number): void {
   //   this.scenario = this.dataLogService.getScenario(scenarioindex);
