@@ -34,7 +34,7 @@ export class ScenarioIntroductionScreenComponent {
   public currentQuestion = -1;
   public progress = 50;
 
-  public btnBack = 'Change interest';
+  public btnBack = 'Change Goal';
   public btnForward = 'Let\'s Go!';
   public readonly assistantAsset = 'orientation-ie.svg';
   public imageTexts = [];
@@ -52,12 +52,12 @@ export class ScenarioIntroductionScreenComponent {
           this.imageTexts = [
             'Great! You have set a goal of improving your skills to:',
             this.interest.text,
-            'You will now have complete 4 Skill Check scenarios based on this goal'
+            'You will now have complete 4 tasks based on this goal'
           ];
         } else {
-          this.imageTexts = ['Well Done!',`Scenario ${this.scenarioIndex} Complete!`,'Click Continue to go to the Next Scenario'];
-          this.btnForward = 'Continue SkillCheck';
-          this.btnBack = 'Previous Scenario';
+          this.imageTexts = ['Well Done!',`Task ${this.scenarioIndex} Complete!`,'Click Continue to go to the next task'];
+          this.btnForward = 'Continue';
+          this.btnBack = 'Previous Task';
         }
       } else {
         commonService.goTo('interests');
