@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { DataLogService } from 'src/app/services/data/data-log.service';
 import { Scenario } from 'src/app/models/scenario';
@@ -85,7 +85,7 @@ export class ScenarioIntroductionScreenComponent {
       if (!!this.navigationExtras.loadingNext) {
         this.progressTrackerService.previous();
       }
-      this.commonService.goTo('scenarios');
+      this.commonService.goTo('scenarios', { loadingPrevious: true });
     }
     // if (--this.scenarioindex > -1) {
     //   this.loadScenario(this.scenarioindex);

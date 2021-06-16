@@ -60,6 +60,10 @@ export class ProgressTrackerService {
     }
   }
 
+  current(): Observable<CustomResponse> {
+    return this.getResponse(true) as Observable<CustomResponse>;
+  }
+
   next(answerValue?: number): Observable<CustomResponse> {
     this.question++;
     if (this.shouldSkipScenario(answerValue === undefined ? -1 : answerValue)) {
