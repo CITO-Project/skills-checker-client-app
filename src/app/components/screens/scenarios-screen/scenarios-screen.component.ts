@@ -37,6 +37,7 @@ export class ScenariosScreenComponent implements OnInit {
     special?: boolean
   }[];
   public buttons;
+  private extras;
 
   public currentScenario = -1;
   public currentQuestion = -1;
@@ -54,6 +55,7 @@ export class ScenariosScreenComponent implements OnInit {
       if (!dataLogService.getInterest()) {
         commonService.goTo('interests');
       }
+      this.extras = commonService.getExtras();
       this.allButtons = [
         {
           text: this.btnBack,
@@ -84,17 +86,19 @@ export class ScenariosScreenComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.progressTrackerService.next().subscribe((data: CustomResponse) => {
+    let obs;
+    if (!!this.extras.state && !!this.extras.state.loadingPrevious) {
+      obs = this.progressTrackerService.current();
+    } else {
+      obs = this.progressTrackerService.next();
+    }
+    obs.subscribe((data: CustomResponse) => {
       if (!data || data.question === undefined || data.scenario === undefined) {
         this.commonService.goTo('interests');
       } else {
         this.updateData(data);
       }
     });
-  }
-
-  ngAfterViewInit() {
-
   }
 
   nextQuestion(): void {
