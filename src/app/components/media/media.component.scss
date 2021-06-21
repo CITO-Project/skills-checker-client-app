@@ -22,7 +22,7 @@
     @include setStyleTablet { font-size: 98%; }
     
     .heading {
-      margin-bottom: 20px;
+      margin-bottom: 2vh;
     }
     .content {
       @include setStyleLarge { font-size: 120%; }
