@@ -41,7 +41,7 @@ export class ProgressTrackerService {
     await this.loadQuestions(this.NUMBER_OF_SCENARIOS);
     this.scenario = 0;
     this.question = -1;
-    this.commonService.goTo('scenario-introduction', { scenarioindex: 0, loadingNext: true });
+    this.commonService.goTo('scenario-introduction', { scenarioindex: 0, loadingNext: false });
   }
 
   loadQuestions(numberOfScenarios: number): Promise<void[]> {
@@ -60,7 +60,20 @@ export class ProgressTrackerService {
     }
   }
 
+  setQuestionIndex(index: number | 'end' | 'start' = 0): void {
+    if (index === 'start') {
+      this.question = 0;
+    } else if (index === 'end') {
+      this.question = this.getLastAnsweredQuestionIndex();
+    } else {
+      this.question = index;
+    }
+  }
+
   current(): Observable<CustomResponse> {
+    if (this.question < 0) {
+      this.question = 0;
+    }
     return this.getResponse(true) as Observable<CustomResponse>;
   }
 
@@ -78,14 +91,17 @@ export class ProgressTrackerService {
 
   previous(): Observable<CustomResponse> {
     if (this.question <= 0 && this.scenario <= 0) {
-      this.commonService.goTo('scenario-introduction', { scenarioindex: 0, loadingNext: false });
+      this.commonService.goTo(this.PREVIOUS_SCREEN);
     }
     this.question--;
+    if (this.question < 0) {
+      this.scenario--;
+      this.commonService.goTo('scenario-introduction', { scenarioindex: this.scenario, loadingNext: false });
+    }
     const { answers, question_order } = this.dataLogService.getAll();
     let questionIndex = this.getQuestionIndexInLog(this.question, this.scenario);
     while (answers[questionIndex] < 0) {
       if (this.question < 0) {
-        this.scenario--;
         this.question = question_order.length - 1;
         this.commonService.goTo('scenario-introduction', { scenarioindex: this.scenario, loadingNext: false });
       }
@@ -211,5 +227,13 @@ export class ProgressTrackerService {
       'answered_questions_per_interest',
       '' + interest.id,
       total);
+  }
+
+  getLastAnsweredQuestionIndex(): number {
+    let r = 0;
+    const { answers, question_order } = this.dataLogService.getAll();
+    const currentAnswers = answers.slice(this.scenario * question_order.length, (this.scenario + 1) * question_order.length);
+    r = currentAnswers.indexOf(-1) - 1;
+    return r < -1 ? -1 : r;
   }
 }

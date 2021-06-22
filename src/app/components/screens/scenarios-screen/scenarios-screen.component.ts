@@ -86,13 +86,7 @@ export class ScenariosScreenComponent implements OnInit {
     }
 
   ngOnInit() {
-    let obs;
-    if (!!this.extras.state && !!this.extras.state.loadingPrevious) {
-      obs = this.progressTrackerService.current();
-    } else {
-      obs = this.progressTrackerService.next();
-    }
-    obs.subscribe((data: CustomResponse) => {
+    this.progressTrackerService.current().subscribe((data: CustomResponse) => {
       if (!data || data.question === undefined || data.scenario === undefined) {
         this.commonService.goTo('interests');
       } else {

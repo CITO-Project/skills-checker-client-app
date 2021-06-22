@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { DataLogService } from 'src/app/services/data/data-log.service';
 import { Scenario } from 'src/app/models/scenario';
@@ -15,7 +15,7 @@ import { CustomResponse } from 'src/app/models/custom-response';
   templateUrl: './scenario-introduction-screen.component.html',
   styleUrls: ['./scenario-introduction-screen.component.scss']
 })
-export class ScenarioIntroductionScreenComponent {
+export class ScenarioIntroductionScreenComponent implements OnInit {
 
   faLaptop = faLaptop;
   faCalculator = faCalculator;
@@ -65,10 +65,6 @@ export class ScenarioIntroductionScreenComponent {
   }
 
   ngOnInit() {
-
-//      this.currentScenario = this.progressTrackerService.getCurrentScenario();
-//      this.currentQuestion = this.progressTrackerService.getCurrentQuestion();
-
       /**
        * Update local variable that controls progress indicator
        *
@@ -83,40 +79,23 @@ export class ScenarioIntroductionScreenComponent {
       this.progress = ((this.scenarioIndex) * 25) /*+ (this.currentQuestion * 3)*/;
   }
 
-  // loadScenario(scenarioindex: number): void {
-  //   this.scenario = this.dataLogService.getScenario(scenarioindex);
-  //   this.dataLogService.loadQuestionsByCategory(
-  //     scenarioindex,
-  //     this.dataLogService.getCategory().id,
-  //     this.scenario.interest
-  //   ).subscribe();
-  //   if (scenarioindex > 0) {
-  //     this.previousScenarioText = this.dataLogService.getScenario(scenarioindex - 1).text;
-  //   } else {
-  //     this.previousScenarioText = '';
-  //     this.btnBack = 'default';
-  //   }
-  //   this.scenarioText = this.scenario.text;
-  // }
-
   previousScenario(): void {
     this.scenarioIndex++;
     if (this.navigationExtras.scenarioindex <= 0) {
       this.commonService.goTo('interests');
     } else {
       if (!!this.navigationExtras.loadingNext) {
-        this.progressTrackerService.previous();
+        this.progressTrackerService.setQuestionIndex('end');
+        this.progressTrackerService.current();
       }
-      this.commonService.goTo('scenarios', { loadingPrevious: true });
+      this.commonService.goTo('scenarios');
     }
-    // if (--this.scenarioindex > -1) {
-    //   this.loadScenario(this.scenarioindex);
-    // }
   }
 
   startScenario(): void {
     if (!this.navigationExtras.loadingNext) {
-      this.progressTrackerService.next();
+      this.progressTrackerService.setQuestionIndex('start');
+      this.progressTrackerService.current();
     }
     this.commonService.goTo('scenarios');
   }
