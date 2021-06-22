@@ -48,34 +48,13 @@ export class ScenarioIntroductionScreenComponent {
           ];
         } else {
           this.imageTexts = [`Well Done! Scenario ${this.scenarioIndex} Complete! Click Continue to go to the Next Scenario`];
-          this.btnForward = 'Continue SkillCheck';
-          this.btnBack = 'Previous Scenario';
+          this.btnForward = 'Next scenario';
+          this.btnBack = 'Go Back';
         }
       } else {
         commonService.goTo('interests');
       }
   }
-
-  // ngOnInit() {
-  //   this.category = this.dataLogService.getCategory();
-  //   this.loadScenario(this.scenarioindex);
-  // }
-
-  // loadScenario(scenarioindex: number): void {
-  //   this.scenario = this.dataLogService.getScenario(scenarioindex);
-  //   this.dataLogService.loadQuestionsByCategory(
-  //     scenarioindex,
-  //     this.dataLogService.getCategory().id,
-  //     this.scenario.interest
-  //   ).subscribe();
-  //   if (scenarioindex > 0) {
-  //     this.previousScenarioText = this.dataLogService.getScenario(scenarioindex - 1).text;
-  //   } else {
-  //     this.previousScenarioText = '';
-  //     this.btnBack = 'default';
-  //   }
-  //   this.scenarioText = this.scenario.text;
-  // }
 
   previousScenario(): void {
     this.scenarioIndex++;
@@ -83,18 +62,17 @@ export class ScenarioIntroductionScreenComponent {
       this.commonService.goTo('interests');
     } else {
       if (!!this.navigationExtras.loadingNext) {
-        this.progressTrackerService.previous();
+        this.progressTrackerService.setQuestionIndex('end');
+        this.progressTrackerService.current();
       }
-      this.commonService.goTo('scenarios', { loadingPrevious: true });
+      this.commonService.goTo('scenarios');
     }
-    // if (--this.scenarioindex > -1) {
-    //   this.loadScenario(this.scenarioindex);
-    // }
   }
 
   startScenario(): void {
     if (!this.navigationExtras.loadingNext) {
-      this.progressTrackerService.next();
+      this.progressTrackerService.setQuestionIndex('start');
+      this.progressTrackerService.current();
     }
     this.commonService.goTo('scenarios');
   }
