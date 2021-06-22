@@ -18,13 +18,17 @@
 
   <div class="course-info">
     <div class="row">
-      <div class="col border" *ngIf="!!course.location"><fa-icon [icon]="faMarker"></fa-icon><br/><b>{{ course.location[0].toUpperCase() + course.location.slice(1) }}</b></div>
-      <div class="col border" *ngIf="!!course.contact_person"><fa-icon [icon]="faUser"></fa-icon><br/><b>{{ course.contact_person }}</b></div>
-      <div class="col border" *ngIf="!!course.contact_telephone"><fa-icon [icon]="faPhone"></fa-icon><br/><b>{{ course.contact_telephone }}</b></div>
-      <div class="col border" *ngIf="!!course.contact_email"><fa-icon [icon]="faAt"></fa-icon><br/>{{ course.contact_email }}</div>
+      <div class="col border center" *ngIf="!!course.location"><fa-icon [icon]="faMarker"></fa-icon><br/><b>{{ course.location[0].toUpperCase() + course.location.slice(1) }}</b></div>
+      <div class="col border center" *ngIf="!!course.contact_person"><fa-icon [icon]="faUser"></fa-icon><br/><b>{{ course.contact_person }}</b></div>
+      <div class="col border center" *ngIf="!!course.contact_telephone"><fa-icon [icon]="faPhone"></fa-icon><br/><b>{{ course.contact_telephone }}</b></div>
+      <div class="col border center" *ngIf="!!course.contact_email"><fa-icon [icon]="faAt"></fa-icon><br/>{{ course.contact_email }}</div>
     </div>
     <div class="row">
-      <div class="col" *ngIf="!!course.enrolment_start"><fa-icon [icon]="faCalendar"></fa-icon>Enrolment: {{ formatDate(course.enrolment_start) }}</div>
+      <div class="col border" *ngIf="course.enrolment_start || course.enrolment_finish">
+        <fa-icon [icon]="faCalendar"></fa-icon>
+        <span *ngIf="course.enrolment_start"><b>Enrolment Starts: {{ formatDate(course.enrolment_start) }}</b></span>
+        <span *ngIf="course.enrolment_finish"><b>Enrolment Ends: {{ formatDate(course.enrolment_finish) }}</b></span>
+      </div>
     </div>
   </div>
   <div class="text">If you would like to find out more, or book a course, go to the National Adult Literacy Agency webpage by pressing the <b>More Info</b> button</div>

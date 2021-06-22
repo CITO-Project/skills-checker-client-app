@@ -48,12 +48,21 @@
 }
 
 .border {
-  text-align: center;
+  //text-align: center;
   color: #2E3C67;
 
   border-style: solid;
-  border-radius: 10%;
+  border-radius: 25px;
   margin:10px;
+}
+
+fa-icon {
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.center {
+  text-align: center;
 }
 
 .course-info {
