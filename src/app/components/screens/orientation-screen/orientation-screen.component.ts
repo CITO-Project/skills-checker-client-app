@@ -28,7 +28,8 @@ export class OrientationScreenComponent implements OnInit {
   public readonly IMAGE_TEXT = [
     //'Welcome to Check In Take Off',
     // tslint:disable-next-line: max-line-length
-    'Hi! I\'m Frank and I am your guide today. Watch our \'How to Use\' video - click the button below'];
+    'Hi! I\'m Frank and I am your guide today.',
+    'Watch our \'How to Use\' video', '- click the button below'];
 
   public currentResource: string;
   public mediaType: string;

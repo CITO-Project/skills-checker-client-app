@@ -12,7 +12,7 @@
 
     <div class="text">
       <div *ngIf="this.scenarioIndex <= 0; else elseBlock">
-        <div class="description">The scenarios will check your Skills related to:</div>
+        <div class="heading">The tasks will check your Skills related to:</div>
         <div class="features container-fluid">
           <div class="row">
             <div class="col">
@@ -48,20 +48,31 @@
             </div>
           </div>
           <br/>
-          <div>Each scenario will take about <b>2 minutes</b>.</div>
+          <div class="heading">Each task will take about <b>2 minutes</b>.</div>
           <br/>
-          <div>You will watch the video and answer the questions beneath the video. </div>
+          <div class="heading">You will watch a video and answer the questions beneath the video. </div>
           <br/>
-          <div>Click <b>Let's Go</b> to begin!</div>
+          <div class="heading">Click <b>Let's Go</b> to begin!</div>
       </div>
       <ng-template #elseBlock>
         <img class="ballons" src="../../../../assets/balloons/balloons-bbb.svg" alt="">
         <br>
-        Click <b>Continue SkillCheck</b> to go to <b>Scenario {{ scenarioIndex + 1 }}</b>
+        <div class="heading">Click <b>Continue</b> to go to <b>Task {{ scenarioIndex + 1 }}</b></div>
       </ng-template>
   </div>
 </div>
 <div class="footer">
+  <div class="progress" *ngIf="this.scenarioIndex > 0">
+    <div
+      class="progress-bar"
+      role="progressbar"
+      [style.width]="progress+'%'" 
+      [attr.aria-valuenow]="progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    ><span *ngIf="progress==15 || progress>15">{{progress}}% Complete!</span></div>
+    <span class="progress-bar-label" *ngIf="progress < 15">{{progress}}% Complete!</span>
+  </div>
   <app-navigate-button
   backText="{{ btnBack }}"
   forwardText="{{ btnForward }}"
