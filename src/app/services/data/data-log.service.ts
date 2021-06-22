@@ -47,8 +47,17 @@ export class DataLogService {
       answers: [],
       question_answers: [],
       question_order: questionOrder,
-      challenging_order: this.questionService.getChallengingOrder()
+      challenging_order: this.questionService.getChallengingOrder(),
+      location: null
     };
+  }
+
+  getLocation(): string {
+    return this.log.location;
+  }
+
+  setLocation(location: string): void {
+    this.log.location = location;
   }
 
   //#region Product

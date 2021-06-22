@@ -15,4 +15,5 @@ export interface Log {
   answers?: number[];
   question_order: string[];
   challenging_order: string[];
+  location: string;
 }

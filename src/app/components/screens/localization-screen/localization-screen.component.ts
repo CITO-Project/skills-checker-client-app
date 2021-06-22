@@ -20,6 +20,7 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
 })
 export class LocalizationScreenComponent implements OnInit {
 
+  private location: string;
   public interest: Interest;
   public courses: Course[] = [];
   public REGIONS = [
@@ -88,7 +89,16 @@ export class LocalizationScreenComponent implements OnInit {
     this.results = this.dataProcessingService.getCoursesLevel(log);
     this.texts = this.dataProcessingService.getResultsText(log, this.results);
 
-    this.setRegion( 'Online' );
+    this.location = this.dataLogService.getLocation();
+    
+    if( this.location == null ) {
+      this.location = 'Online';
+    }
+    else {
+      
+    }
+
+    this.setRegion( this.location );
   }
 
   loadCourses(results: Result, location: string): Observable<Course[]> {
@@ -101,6 +111,7 @@ export class LocalizationScreenComponent implements OnInit {
 
   updateCourses(region: string = 'all') {
     const location = region === 'all' ? '' : region;
+    this.dataLogService.setLocation( location );
     this.googleAnalyticsService.addEvent('selected_location', location);
     this.loadCourses(this.results, location).subscribe( (courses: Course[]) => {
       this.courses = courses;
