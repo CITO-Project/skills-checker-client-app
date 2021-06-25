@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiHost: 'https://skillscheck.citoproject.eu',
+  apiPort: '',
+  apiPath: '/api/',
+  product: 'nala'
+
+  //Local dev environment
+  //apiHost: 'localhost:3000',
+  //apiPort: '3000',
+  //apiPath: ''
 };
 
 /*

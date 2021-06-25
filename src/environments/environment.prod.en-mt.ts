@@ -3,5 +3,5 @@ export const environment = {
   apiHost: 'https://skillscheck.citoproject.eu',
   apiPort: '',
   apiPath: '/api/',
-  product: 'nala'
+  product: 'nala-mt'
 };

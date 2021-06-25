@@ -3,6 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { StringManagerService } from './etc/string-manager.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +11,17 @@ import { StringManagerService } from './etc/string-manager.service';
 export class CommonService {
 
   private readonly USE_CONSOLE_LOG = true;
-  private readonly useAWSServer = true;
+  //private readonly useAWSServer = true;
 
   private readonly localhostUrl = 'http://localhost';
-  private readonly AWSUrl = 'https://skillscheck.citoproject.eu/';
+  //private readonly AWSUrl = 'https://skillscheck.citoproject.eu/';
   private readonly SURVEY_LINK = 'https://www.research.net/r/CITOsurveyIreland';
   private readonly SURVEY_TEXT = 'Take our survey';
 
-  private productName = 'nala';
-  private apiUrl = (this.useAWSServer ? this.AWSUrl + 'api/' : this.localhostUrl + ':3000/') + this.productName;
-  private resourceFolderUrl = this.AWSUrl + 'static/';
+  //private productName = 'nala';
+  //private apiUrl = (this.useAWSServer ? this.AWSUrl + 'api/' : this.localhostUrl + ':3000/') + this.productName;
+  private apiUrl = environment.apiHost + environment.apiPort + environment.apiPath + environment.product;
+  private resourceFolderUrl = environment.apiHost + '/static/';
   private RESOURCE_PATH = 'assets/';
   private GATrackID = 'UA-170127374-1';
 
@@ -39,7 +41,7 @@ export class CommonService {
   //  }
 
   getProductName(): string {
-    return this.productName;
+    return environment.product;
   }
 
   getApiUrl(): string {
