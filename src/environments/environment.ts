@@ -4,9 +4,11 @@
 
 export const environment = {
   production: false,
-  apiHost: 'https://skillscheck.citoproject.eu',
-  apiPort: '',
-  apiPath: '/api/',
+  api: {
+    host: 'https://skillscheck.citoproject.eu',
+    port: '',
+    path: '/api/',
+  },
   product: 'nala'
 
   //Local dev environment

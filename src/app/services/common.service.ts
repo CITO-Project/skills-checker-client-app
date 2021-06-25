@@ -20,8 +20,8 @@ export class CommonService {
 
   //private productName = 'nala';
   //private apiUrl = (this.useAWSServer ? this.AWSUrl + 'api/' : this.localhostUrl + ':3000/') + this.productName;
-  private apiUrl = environment.apiHost + environment.apiPort + environment.apiPath + environment.product;
-  private resourceFolderUrl = environment.apiHost + '/static/';
+  private apiUrl = environment.api.host + environment.api.port + environment.api.path + environment.product;
+  private resourceFolderUrl = environment.api.host + '/static/';
   private RESOURCE_PATH = 'assets/';
   private GATrackID = 'UA-170127374-1';
 
