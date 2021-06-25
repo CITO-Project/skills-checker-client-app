@@ -10,6 +10,8 @@ import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.service';
 
+declare let ReadSpeaker: any ;
+declare let rspkr: any ;
 
 @Component({
   selector: 'app-interests-screen',
@@ -47,6 +49,22 @@ export class InterestsScreenComponent implements OnInit {
     this.categoryService.getCategories().subscribe( (data: Category[]) => {
       this.categories = data;
     });
+
+    // initialise ReadSpeaker
+    ReadSpeaker.init();
+
+    // stop play if it is already playing text from previous screen
+    ReadSpeaker.q(
+      function() {
+        if (rspkr.ui.getActivePlayer()) {
+          rspkr.ui.getActivePlayer().close();
+        }
+      });
+  }
+
+  ngAfterViewChecked() {
+    // attach ReadSpeaker click event to buttons that have been dynamically added to page
+    ReadSpeaker.q(function() {rspkr.ui.addClickEvents();});
   }
 
   selectInterest(interest: Interest): void {

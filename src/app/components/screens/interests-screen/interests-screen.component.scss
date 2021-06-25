@@ -31,7 +31,7 @@
       padding-right: 100px;
       @include setStyleTablet {
         padding: 50px 0;
-        padding-right: 110px;
+        padding-right: 160px;
       }
     }
     img {
@@ -41,7 +41,7 @@
       position: absolute;
       right: 0;
       @include setStyleTablet {
-        height: 120px;
+        height: 160px;
       }
     }
   }

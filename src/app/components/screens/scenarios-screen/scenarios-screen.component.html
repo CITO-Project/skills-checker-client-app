@@ -4,7 +4,7 @@
   <div class="col-12 col-xl-6">
     <app-media *ngIf="!!scenario" [resource]='scenario.resource' replay=true></app-media>
   </div>
-  <div class="content col-12 col-xl-6">
+  <div class="content col-12 col-xl-6" id="question">
     <app-question
     *ngIf="!!question"
     [(question)]="question"
@@ -13,6 +13,13 @@
     [initialAnswer]="currentAnswer"
     ></app-question>
   </div>
+</div>
+
+<div id="readspeaker_button_1" class="rs_skip rsbtn rs_preserve">
+  <a rel="nofollow" class="rsbtn_play" accesskey="L" title="'Listen to this page using ReadSpeaker webReader" [attr.href]="'//app-eu.readspeaker.com/cgi-bin/rsent?customerid=3&amp;lang=en_uk&amp;voice=Alice&amp;readid=question&amp;url=https%3A%2F%2Fskillscheck.citoproject.eu%2Fupdates%2F'">
+      <span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span>Listen</span></span></span>
+      <span class="rsbtn_right rsimg rsplay rspart"></span>
+  </a>
 </div>
 
 <div class="footer">
