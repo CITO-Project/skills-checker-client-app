@@ -1,17 +1,30 @@
 <app-header text='default'></app-header>
 <div id="content">
-  <div class="heading margins">Pick your goal</div>
-  <div class="description text">I want to check my skills so that I can...</div>
+  <div id="readspeaker_button1" class="rs_skip rsbtn rs_preserve">
+    <a rel="nofollow" class="rsbtn_play" accesskey="L" title="'Listen to this page using ReadSpeaker webReader" href="//app-eu.readspeaker.com/cgi-bin/rsent?customerid=3&amp;lang=en_uk&amp;voice=Alice&amp;readid=content&amp;url=https%3A%2F%2Fskillscheck.citoproject.eu%2Fupdates%2F">
+        <span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span>Listen</span></span></span>
+        <span class="rsbtn_right rsimg rsplay rspart"></span>
+    </a>
+</div>
+  <div class="heading margins" i18n="">Pick your goal</div>
+  <div class="description text" i18n="">I want to check my skills so that I can...</div>
   <div class="container">
     <div class="row">
       <div *ngFor="let interest of interests" class="interest col-12 col-xl-6 box shadows gradient" [ngClass]="interest.colour" (click)="selectInterest(interest)">
         <div class="tile d-flex column align-items-center">
-          <div class="text">
+          <div class="text" [attr.id]="'goal'+ interest.id">
             <div class="bold">{{ getCategory(interest.category) }}</div>
             {{ interest.text }}
           </div>
           <img src="{{ getPath(interest.resource) }}" onerror="this.remove()">
+          
         </div>
+        <div [attr.id]="'readspeaker_button_goal'+interest.id" class="rs_skip rsbtn rs_preserve">
+            <a rel="nofollow" class="rsbtn_play" accesskey="L" title="'Listen to this page using ReadSpeaker webReader" [attr.href]="'//app-eu.readspeaker.com/cgi-bin/rsent?customerid=3&amp;lang=en_uk&amp;voice=Alice&amp;readid=goal' + interest.id + '&amp;url=https%3A%2F%2Fskillscheck.citoproject.eu%2Fupdates%2F'">
+                <span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span>Listen</span></span></span>
+                <span class="rsbtn_right rsimg rsplay rspart"></span>
+            </a>
+          </div>
       </div>
     </div>
   </div>

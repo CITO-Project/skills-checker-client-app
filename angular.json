@@ -13,6 +13,19 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "en-mt": {
+            "translation": "src/locale/messages.en-mt.xlf",
+            "baseHref": "/en-mt/"
+          },
+          "no": {
+            "translation": "src/locale/messages.no.xlf",
+            "baseHref": "/no/"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -22,6 +35,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "localize": false,
             "aot": true,
             "assets": [
               "src/CITO-favicon.png",
@@ -39,6 +53,24 @@
             ]
           },
           "configurations": {
+            "no": {
+              "localize": ["no"],
+              "fileReplacements": [
+                {
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.no.ts"
+                }
+              ]
+            },
+            "en-mt": {
+              "localize": ["en-mt"],
+              "fileReplacements": [
+                {
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.en-mt.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -73,6 +105,12 @@
             "browserTarget": "skills-checker:build"
           },
           "configurations": {
+            "no": {
+              "browserTarget": "skills-checker:build:no"
+            },
+            "en-mt": {
+              "browserTarget": "skills-checker:build:en-mt"
+            },
             "production": {
               "browserTarget": "skills-checker:build:production"
             }

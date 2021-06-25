@@ -1,11 +1,11 @@
 <div id="question" *ngIf="!!question">
 
   <!-- Question text -->
-  <div class="heading" *ngIf="question.pedagogical_type === 'task_question'">Your skills</div>
+  <div class="heading" *ngIf="question.pedagogical_type === 'task_question'" i18n>Your skills</div>
   <div class="question">
     <div>
       <div class="text">{{ question.question }}</div>
-      <div *ngIf="question.pedagogical_type === 'challenging_skill'" class="muted">(You can tick more than one)</div>
+      <div *ngIf="question.pedagogical_type === 'challenging_skill'" class="muted">(<span i18n>You can tick more than on</span>e)</div>
     </div>
     </div>
   <!-- End question text -->
@@ -26,7 +26,7 @@
         <ng5-slider [value]='sliderProperties.value' [options]='sliderProperties.options' (valueChange)='retrieveAnswer($event)'></ng5-slider>
       </div>
 
-      <div class="instructions muted">
+      <div class="instructions muted" i18n>
         Drag the slider to share your level of knowledge
       </div>
     </div>

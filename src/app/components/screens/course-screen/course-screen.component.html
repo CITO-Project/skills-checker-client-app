@@ -5,16 +5,16 @@
     <div class="float box shadow gradient icon-box" [ngClass]="{'red': course.skill === 'computer', 'green': course.skill === 'maths', 'yellow': course.skill === 'reading and writing'}">
       <fa-icon [icon]="icon"></fa-icon>
     </div>
-    <div class="title float">Skill: {{ stringManagerService.normalizeText(course.skill) }}</div>
+    <div class="title float"><span i18n="">Skill</span>: {{ stringManagerService.normalizeText(course.skill) }}</div>
   </div>
   <div class="heading">
-    <b>Course</b>
+    <b i18n="">Course</b>
     <br/>
     {{ course.title }}
   </div>
   <div id="courseDescription" class="text" [innerHTML]="course.description"></div>
 
-  <div class="text static">If this is a Learning Option you are interested in, please use the contact details below to get in touch.</div>
+  <div class="text static" i18n="">If this is a Learning Option you are interested in, please use the contact details below to get in touch.</div>
 
   <div class="course-info">
     <div class="row">
@@ -26,12 +26,12 @@
     <div class="row">
       <div class="col border" *ngIf="course.enrolment_start || course.enrolment_finish">
         <fa-icon [icon]="faCalendar"></fa-icon>
-        <span *ngIf="course.enrolment_start"><b>Enrolment Starts: {{ formatDate(course.enrolment_start) }}</b></span>
-        <span *ngIf="course.enrolment_finish"><b>Enrolment Ends: {{ formatDate(course.enrolment_finish) }}</b></span>
+        <span *ngIf="course.enrolment_start"><b><span i18n="">Enrolment Starts</span>: {{ formatDate(course.enrolment_start) }}</b></span>
+        <span *ngIf="course.enrolment_finish"><b><span i18n="">Enrolment Ends</span>: {{ formatDate(course.enrolment_finish) }}</b></span>
       </div>
     </div>
   </div>
-  <div class="text">If you would like to find out more, or book a course, go to the National Adult Literacy Agency webpage by pressing the <b>More Info</b> button</div>
+  <div class="text" i18n="">If you would like to find out more, or book a course, go to the National Adult Literacy Agency webpage by pressing the <b>More Info</b> button</div>
 </div>
 <div class="footer">
 <div *ngIf="!!course && !!course.link; then thenBlock else elseBlock"></div>

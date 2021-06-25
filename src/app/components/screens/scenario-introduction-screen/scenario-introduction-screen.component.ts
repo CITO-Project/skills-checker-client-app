@@ -10,6 +10,9 @@ import { faBookOpen, faCalculator, faLaptop } from '@fortawesome/free-solid-svg-
 import { Question } from 'src/app/models/question';
 import { CustomResponse } from 'src/app/models/custom-response';
 
+declare let ReadSpeaker: any ;
+declare let rspkr: any ;
+
 @Component({
   selector: 'app-scenario-introduction-screen',
   templateUrl: './scenario-introduction-screen.component.html',
@@ -34,8 +37,8 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
   public currentQuestion = -1;
   public progress = 50;
 
-  public btnBack = 'Change Goal';
-  public btnForward = 'Let\'s Go!';
+  public btnBack = $localize`Change Goal`;
+  public btnForward = $localize`Let\'s Go!`;
   public readonly assistantAsset = 'orientation-ie.svg';
   public imageTexts = [];
 
@@ -50,14 +53,14 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
         this.interest = dataLogService.getInterest();
         if (this.scenarioIndex <= 0) {
           this.imageTexts = [
-            'Great! You have set a goal of improving your skills to:',
+            $localize`Great! You have set a goal of improving your skills to:`,
             this.interest.text,
-            'You will now have complete 4 tasks based on this goal'
+            $localize`You will now have to complete 4 tasks based on this goal`
           ];
         } else {
           this.imageTexts = ['Well Done!',`Task ${this.scenarioIndex} Complete!`,'Click Continue to go to the next task'];
-          this.btnForward = 'Continue';
-          this.btnBack = 'Previous Task';
+          this.btnForward = $localize`Continue`;
+          this.btnBack = $localize`Previous Task`;
         }
       } else {
         commonService.goTo('interests');
@@ -77,6 +80,23 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
        * Ideally the weightings used (25 and 3 respectively) should be dynamic and based on the actual number of questions used.
        */
       this.progress = ((this.scenarioIndex) * 25) /*+ (this.currentQuestion * 3)*/;
+
+
+      // initialise ReadSpeaker
+      ReadSpeaker.init();
+
+      // stop play if it is already playing text from previous screen
+      ReadSpeaker.q(
+        function() {
+          if (rspkr.ui.getActivePlayer()) {
+            rspkr.ui.getActivePlayer().close();
+          }
+        });
+  }
+
+  ngAfterViewChecked() {
+    // attach ReadSpeaker click event to buttons that have been dynamically added to page
+    ReadSpeaker.q(function() {rspkr.ui.addClickEvents();});
   }
 
   previousScenario(): void {

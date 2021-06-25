@@ -11,6 +11,9 @@ import { QuestionOrderService } from 'src/app/services/api-call/question-order.s
 import { VgApiService } from '@videogular/ngx-videogular/core';
 import { faBookOpen, faCalculator, faLaptop, faPlay } from '@fortawesome/free-solid-svg-icons';
 
+declare let ReadSpeaker: any ;
+declare let rspkr: any ;
+
 @Component({
   selector: 'app-orientation-screen',
   templateUrl: './orientation-screen.component.html',
@@ -28,8 +31,8 @@ export class OrientationScreenComponent implements OnInit {
   public readonly IMAGE_TEXT = [
     //'Welcome to Check In Take Off',
     // tslint:disable-next-line: max-line-length
-    'Hi! I\'m Frank and I am your guide today.',
-    'Watch our \'How to Use\' video', '- click the button below'];
+    $localize`Hi! I\'m Frank and I am your guide today.`,
+    $localize`Watch our \'How to Use\' video', '- click the button below`];
 
   public currentResource: string;
   public mediaType: string;
@@ -91,6 +94,11 @@ export class OrientationScreenComponent implements OnInit {
     this.googleAnalyticsService.stopTimer('time_review_results');
     const temp = new Image();
     temp.src = this.getIconPath('lock.svg');
+  }
+
+  ngAfterContentInit() {
+    ReadSpeaker.init();
+    ReadSpeaker.q(function() {rspkr.ui.addClickEvents();});
   }
 
   getIconPath(name: string): string {

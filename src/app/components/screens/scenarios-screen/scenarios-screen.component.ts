@@ -11,6 +11,9 @@ import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.s
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { faAngleDoubleRight, faAngleLeft, faAngleRight, faCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
+declare let ReadSpeaker: any ;
+declare let rspkr: any ;
+
 @Component({
   selector: 'app-scenarios-screen',
   templateUrl: './scenarios-screen.component.html',
@@ -25,10 +28,10 @@ export class ScenariosScreenComponent implements OnInit {
   public errorMessage = '';
   public category: Category;
 
-  public btnBack = 'Back';
-  public btnForward = 'Next';
-  private readonly ERROR_MESSAGE_MULTIPLE = 'Please select one or more of the options below';
-  private readonly ERROR_MESSAGE = 'Please select one of the options below';
+  public btnBack = $localize`:@@navigation-back:Back`;
+  public btnForward = $localize`:@@navigation-next:Next`;
+  private readonly ERROR_MESSAGE_MULTIPLE = $localize`Please select one or more of the options below`;
+  private readonly ERROR_MESSAGE = $localize`Please select one of the options below`;
   private allButtons: {
     text: string,
     icon: IconDefinition,
@@ -64,13 +67,13 @@ export class ScenariosScreenComponent implements OnInit {
           event: 'back'
         },
         {
-          text: 'Skip task',
+          text: $localize`:@@navigation-skip:Skip task`,
           icon: faAngleDoubleRight,
           event: 'skip_scenario',
           special: true
         },
         {
-          text: 'Go to results',
+          text: $localize`:@@navigation-go-to-results:Go to results`,
           // icon: String.fromCharCode(61452),
           icon: faCheck,
           event: 'go_results',
@@ -93,6 +96,25 @@ export class ScenariosScreenComponent implements OnInit {
         this.updateData(data);
       }
     });
+
+     // initialise ReadSpeaker
+     ReadSpeaker.init();
+  }
+
+  ngAfterContentInit() {
+    // stop play if it is already playing text from previous screen
+    ReadSpeaker.q(
+      function() {
+        if (rspkr.ui.getActivePlayer()) {
+          rspkr.ui.getActivePlayer().close();
+        }
+      });
+  }
+
+  ngAfterViewChecked() {
+    
+    // attach ReadSpeaker click event to buttons that have been dynamically added to page
+    ReadSpeaker.q(function() {rspkr.ui.addClickEvents();});
   }
 
   nextQuestion(): void {

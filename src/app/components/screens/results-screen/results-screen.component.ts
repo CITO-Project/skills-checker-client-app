@@ -25,9 +25,9 @@ export class ResultsScreenComponent implements OnInit {
   public texts: {
     resultsText: string,
     learningPathwayDescription: string[]};
-  public readonly HEADER = 'Check-In Take-Off';
-  public readonly SUBTITLE = 'My Results';
-  public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway';
+  public readonly HEADER = $localize`:@@appName:Check-In Take-Off`;
+  public readonly SUBTITLE = $localize`My Results`;
+  public readonly LEARNING_PATHWAY_HEADER = $localize`My Learning Pathway`;
 
   private readonly DEFAULT_IMAGE = 'orientation-ie.svg';
 
@@ -116,7 +116,7 @@ export class ResultsScreenComponent implements OnInit {
       this.resultsImage,
       this.HEADER,
       scenarios,
-      'Well done! ' + this.texts.resultsText,
+      $localize`:@@wellDone:Well done!` + ' ' + this.texts.resultsText,
       this.stringManagerService.correctText(this.interest.text),
       this.LEARNING_PATHWAY_HEADER,
       this.texts.learningPathwayDescription,

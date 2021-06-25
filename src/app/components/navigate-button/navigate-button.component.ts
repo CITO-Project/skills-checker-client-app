@@ -34,13 +34,13 @@ export class NavigateButtonComponent implements OnInit {
 
   ngOnInit() {
     if (this.text === 'default') {
-      this.text = '<< Back';
+      this.text = '<< ' + $localize`:@@navigation-back:Back`;
     }
     if (this.backText === 'default') {
-      this.backText = '<< Back';
+      this.backText = '<< ' + $localize`:@@navigation-back:Back`;
     }
     if (this.forwardText === 'default') {
-      this.forwardText = 'Next >>';
+      this.forwardText = $localize`:@@navigation-next:Next`+' >>';
     }
   }
 

@@ -12,17 +12,17 @@
     </div>
   <div id="header">
     
-    <div class="description">Please, choose your location to see the learning opportunities near you</div>
+    <div class="description" i18n="">Please, choose your location to see the learning opportunities near you</div>
     <select class="browser-default custom-select" (change)='setRegion($event.target.value)'>
-      <option selected>Choose your area</option>
-      <option value='all'>Show all</option>
+      <option selected i18n="">Choose your area</option>
+      <option value='all' i18n="">Show all</option>
       <option *ngFor='let region of REGIONS' value='{{ region }}'>{{ region }}</option>
     </select>
     <hr>
   </div>
   <div class="learning-oportunities" *ngIf="getCourses('brush_up').length > 0 || getCourses('develop').length > 0">
     <div class="brush-up" *ngIf="getCourses('brush_up').length > 0">
-      <div class="heading">Brush up</div>
+      <div class="heading" i18n="brush-up">Brush up</div>
       <app-course
         *ngFor="let course of getCourses('brush_up')"
         [course]=course
@@ -33,7 +33,7 @@
       ></app-course>
     </div>
     <div class="develop" *ngIf="getCourses('develop').length > 0">
-      <div class="heading">Further develop</div>
+      <div class="heading" i18n="further-develop">Further develop</div>
       <app-course
         *ngFor="let course of getCourses('develop')"
         [course]=course
