@@ -3,7 +3,7 @@
   <!-- Image -->
   <div class="image" *ngSwitchCase="'image'">
     <img  id="image" [(src)]="resourceFile" alt="">
-    <div class="text" *ngIf='!!texts'>
+    <div id="media-text" class="text" *ngIf='!!texts'>
       <!--<div *ngFor='let text of texts, let first = first' [ngClass]="{'heading': first, 'content': !first}">-->
       <div *ngFor='let text of texts, let first = first' class="heading">
         {{ text }}
