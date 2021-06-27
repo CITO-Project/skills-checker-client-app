@@ -30,9 +30,17 @@
           <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2299659043344775884" datatype="html">
-        <source>Watch our &apos;How to Use&apos; video&apos;, &apos;- click the button below</source>
+      <trans-unit id="6046622641570837015" datatype="html">
+        <source>Watch our &apos;How to Use&apos; video,</source>
         <target>Se videoen ved å klikke på "Hvordan bruke"</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7023527424275074998" datatype="html">
+        <source>- click the button below</source>
+        <target></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">35,36</context>
@@ -146,6 +154,14 @@
         </context-group>
       </trans-unit>
 
+
+      <trans-unit id="ff9b7d39c0dd5cff3ebb1ac2b7607e815e236328" datatype="html">
+        <source>Each task will take about <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>2 minutes<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="977c20ba3e4db26993c06fdcf01b4976ce069d69" datatype="html">
         <source>You will watch a video and answer the questions beneath the video.</source>
         <context-group purpose="location">
@@ -391,6 +407,19 @@
       <trans-unit id="6802427077366147871" datatype="html">
         <source> My Learning Pathway </source>
         <target> My Learning Pathway </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="b9212a5362e6143e924b21f09de1978bdc867b09" datatype="html">
+        <source>If this is a Learning Option you are interested in, please use the contact details below to get in touch.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="316849f8dc85257c6e508e861b9b0450ad878263" datatype="html">
+        <source>If you would like to find out more, or book a course, go to the National Adult Literacy Agency webpage by pressing the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>More Info<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
         </context-group>
