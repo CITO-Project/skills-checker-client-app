@@ -9,6 +9,12 @@ export const environment = {
     port: '',
     path: '/api/',
   },
+  readspeaker: {
+    enabled: true,
+    id: 3,
+    lang: 'en_uk',
+    voice: 'Alice'
+  },
   product: 'nala'
 
   //Local dev environment

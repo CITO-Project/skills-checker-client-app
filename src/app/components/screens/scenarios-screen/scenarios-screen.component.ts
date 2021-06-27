@@ -11,6 +11,10 @@ import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.s
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { faAngleDoubleRight, faAngleLeft, faAngleRight, faCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
+import { HttpParams } from '@angular/common/http';
+
+import { environment } from 'src/environments/environment';
+
 declare let ReadSpeaker: any ;
 declare let rspkr: any ;
 
@@ -21,6 +25,8 @@ declare let rspkr: any ;
 })
 export class ScenariosScreenComponent implements OnInit {
 
+  env = environment;
+  
   public scenario: Scenario;
   public question: Question;
   public currentAnswer = -1;
@@ -273,6 +279,20 @@ export class ScenariosScreenComponent implements OnInit {
 
   goToResults(): void {
     this.commonService.goTo('results');
+  }
+
+  getReadSpeakerURL(readid: string): string {
+
+    const baseURL = '//app-eu.readspeaker.com/cgi-bin/rsent';
+
+    const params = new HttpParams()
+                          .set( 'customerid', environment.readspeaker.id.toString() )
+                          .set( 'lang', environment.readspeaker.lang )
+                          .set( 'voice', environment.readspeaker.voice )
+                          .set( 'readid', readid)
+                          .set( 'url', encodeURIComponent('https://skillscheck.citoproject.eu/updates/'));
+
+    return `${baseURL}?${params.toString()}`;
   }
 
 }

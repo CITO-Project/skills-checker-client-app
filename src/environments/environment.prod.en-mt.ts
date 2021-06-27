@@ -5,5 +5,8 @@ export const environment = {
     port: '',
     path: '/api/',
   },
+  readspeaker: {
+    enabled: false,
+  },
   product: 'nala-mt'
 };

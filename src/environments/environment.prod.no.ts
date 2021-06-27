@@ -5,5 +5,11 @@ export const environment = {
     port: '',
     path: '/api/',
   },
+  readspeaker: {
+    enabled: false,
+    id: 3,
+    lang: 'en_uk',
+    voice: 'Alice'
+  },
   product: 'nala-no'
 };

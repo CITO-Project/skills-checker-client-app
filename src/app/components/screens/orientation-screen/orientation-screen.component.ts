@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 
 import { Product } from 'src/app/models/product';
 import { QuestionOrder } from 'src/app/models/question-order';
@@ -11,6 +12,8 @@ import { QuestionOrderService } from 'src/app/services/api-call/question-order.s
 import { VgApiService } from '@videogular/ngx-videogular/core';
 import { faBookOpen, faCalculator, faLaptop, faPlay } from '@fortawesome/free-solid-svg-icons';
 
+import { environment } from 'src/environments/environment';
+
 declare let ReadSpeaker: any ;
 declare let rspkr: any ;
 
@@ -21,6 +24,8 @@ declare let rspkr: any ;
 })
 export class OrientationScreenComponent implements OnInit {
 
+  env = environment;
+  
   faLaptop = faLaptop;
   faCalculator = faCalculator;
   faBookOpen = faBookOpen;
@@ -31,8 +36,9 @@ export class OrientationScreenComponent implements OnInit {
   public readonly IMAGE_TEXT = [
     //'Welcome to Check In Take Off',
     // tslint:disable-next-line: max-line-length
-    $localize`Hi! I\'m Frank and I am your guide today.`,
-    $localize`Watch our \'How to Use\' video', '- click the button below`];
+    $localize`Hi! I'm Frank and I am your guide today.`,
+    $localize`Watch our 'How to Use' video`, 
+    $localize`- click the button below`];
 
   public currentResource: string;
   public mediaType: string;
@@ -128,6 +134,20 @@ export class OrientationScreenComponent implements OnInit {
       () => this.isVideoPaused = false);
     vgAPI.getDefaultMedia().subscriptions.pause.subscribe(
       () => this.isVideoPaused = true);
+  }
+
+  getReadSpeakerURL(readid: string): string {
+
+    const baseURL = '//app-eu.readspeaker.com/cgi-bin/rsent';
+
+    const params = new HttpParams()
+                          .set( 'customerid', environment.readspeaker.id.toString() )
+                          .set( 'lang', environment.readspeaker.lang )
+                          .set( 'voice', environment.readspeaker.voice )
+                          .set( 'readid', readid)
+                          .set( 'url', encodeURIComponent('https://skillscheck.citoproject.eu/updates/') );
+
+    return `${baseURL}?${params.toString()}`;
   }
 
 }

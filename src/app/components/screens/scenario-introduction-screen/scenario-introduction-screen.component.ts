@@ -10,6 +10,10 @@ import { faBookOpen, faCalculator, faLaptop } from '@fortawesome/free-solid-svg-
 import { Question } from 'src/app/models/question';
 import { CustomResponse } from 'src/app/models/custom-response';
 
+import { HttpParams } from '@angular/common/http';
+
+import { environment } from 'src/environments/environment';
+
 declare let ReadSpeaker: any ;
 declare let rspkr: any ;
 
@@ -20,6 +24,8 @@ declare let rspkr: any ;
 })
 export class ScenarioIntroductionScreenComponent implements OnInit {
 
+  env = environment;
+  
   faLaptop = faLaptop;
   faCalculator = faCalculator;
   faBookOpen = faBookOpen;
@@ -118,6 +124,20 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
       this.progressTrackerService.current();
     }
     this.commonService.goTo('scenarios');
+  }
+
+  getReadSpeakerURL(readid: string): string {
+
+    const baseURL = '//app-eu.readspeaker.com/cgi-bin/rsent';
+
+    const params = new HttpParams()
+                          .set( 'customerid', environment.readspeaker.id.toString() )
+                          .set( 'lang', environment.readspeaker.lang )
+                          .set( 'voice', environment.readspeaker.voice )
+                          .set( 'readid', readid)
+                          .set( 'url', encodeURIComponent('https://skillscheck.citoproject.eu/updates/'));
+
+    return `${baseURL}?${params.toString()}`;
   }
 
 }

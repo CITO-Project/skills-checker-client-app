@@ -10,6 +10,10 @@ import { CommonService } from 'src/app/services/common.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { ProgressTrackerService } from 'src/app/services/data/progress-tracker.service';
 
+import { HttpParams } from '@angular/common/http';
+
+import { environment } from 'src/environments/environment';
+
 declare let ReadSpeaker: any ;
 declare let rspkr: any ;
 
@@ -20,6 +24,8 @@ declare let rspkr: any ;
 })
 export class InterestsScreenComponent implements OnInit {
 
+  env = environment;
+  
   public categories: Category[];
   public interests: Interest[];
   public colour: string;
@@ -96,5 +102,19 @@ export class InterestsScreenComponent implements OnInit {
     }
 
     return response;
+  }
+
+  getReadSpeakerURL(readid: string): string {
+
+    const baseURL = '//app-eu.readspeaker.com/cgi-bin/rsent';
+
+    const params = new HttpParams()
+                          .set( 'customerid', environment.readspeaker.id.toString() )
+                          .set( 'lang', environment.readspeaker.lang )
+                          .set( 'voice', environment.readspeaker.voice )
+                          .set( 'readid', readid)
+                          .set( 'url', encodeURIComponent('https://skillscheck.citoproject.eu/updates/'));
+
+    return `${baseURL}?${params.toString()}`;
   }
 }
