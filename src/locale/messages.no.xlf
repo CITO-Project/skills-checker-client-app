@@ -215,7 +215,7 @@
         <note priority="1" from="description">further-develop</note>
       </trans-unit>
       <trans-unit id="e28d23f98925a10e90c40570e0eae8027895a68e" datatype="html">
-        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Watch the Video<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> below and then<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Get Started<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button to Check your Skills! </source>
+        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Watch the Video<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> below and then<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Get Started<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button to check your skills! </source>
         <target><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Se videoen<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> nedenfor og<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>klikk deretter på <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Kom i gang<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>-tasten for å sjekke ferdighetene dine! </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
