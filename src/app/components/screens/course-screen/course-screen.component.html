@@ -1,4 +1,12 @@
 <app-header text='default'></app-header>
+
+<div id="readspeaker_button_1" class="rs_skip rsbtn rs_preserve" *ngIf="env.readspeaker.enabled">
+  <a rel="nofollow" class="rsbtn_play" accesskey="L" title="'Listen to this page using ReadSpeaker webReader" [attr.href]="getReadSpeakerURL('content')">
+      <span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span>Listen</span></span></span>
+      <span class="rsbtn_right rsimg rsplay rspart"></span>
+  </a>
+</div>
+
 <div class="container" *ngIf="!!course" id='content'>
 
   <div id="skill-container">

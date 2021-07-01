@@ -11,6 +11,13 @@ import { CommonService } from 'src/app/services/common.service';
 import { DataLogService } from 'src/app/services/data/data-log.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
+import { HttpParams } from '@angular/common/http';
+
+import { environment } from 'src/environments/environment';
+
+declare let ReadSpeaker: any ;
+declare let rspkr: any ;
+
 @Component({
   selector: 'app-localization-screen',
 
@@ -19,6 +26,8 @@ import { GoogleAnalyticsService } from 'src/app/services/google-analytics.servic
   styleUrls: ['./localization-screen.component.scss']
 })
 export class LocalizationScreenComponent implements OnInit {
+
+  env = environment;
 
   private location: string;
   public interest: Interest;
@@ -99,6 +108,22 @@ export class LocalizationScreenComponent implements OnInit {
     }
 
     this.setRegion( this.location );
+
+    // initialise ReadSpeaker
+    ReadSpeaker.init();
+
+    // stop play if it is already playing text from previous screen
+    ReadSpeaker.q(
+      function() {
+        if (rspkr.ui.getActivePlayer()) {
+          rspkr.ui.getActivePlayer().close();
+        }
+      });
+  }
+
+  ngAfterViewChecked() {
+    // attach ReadSpeaker click event to buttons that have been dynamically added to page
+    ReadSpeaker.q(function() {rspkr.ui.addClickEvents();});
   }
 
   loadCourses(results: Result, location: string): Observable<Course[]> {
@@ -131,6 +156,20 @@ export class LocalizationScreenComponent implements OnInit {
 
   getPath(name: string): string {
     return this.commonService.getImagePath(name);
+  }
+
+  getReadSpeakerURL(readid: string): string {
+
+    const baseURL = '//app-eu.readspeaker.com/cgi-bin/rsent';
+
+    const params = new HttpParams()
+                          .set( 'customerid', environment.readspeaker.id.toString() )
+                          .set( 'lang', environment.readspeaker.lang )
+                          .set( 'voice', environment.readspeaker.voice )
+                          .set( 'readid', readid)
+                          .set( 'url', encodeURIComponent('https://skillscheck.citoproject.eu/updates/'));
+
+    return `${baseURL}?${params.toString()}`;
   }
 
 }
