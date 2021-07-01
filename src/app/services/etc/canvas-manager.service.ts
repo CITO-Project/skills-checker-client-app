@@ -1,5 +1,5 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-
 import { saveAs } from 'file-saver';
 
 declare let FontFace: any;
@@ -11,6 +11,7 @@ export class CanvasManagerService {
 
   private xCoord = 0;
   private yCoord = 0;
+  private xCoordRunning = -1;
   private FONT_FAMILY = 'sans-serif';
   private FONT_SIZE = 10;
 
@@ -66,9 +67,68 @@ export class CanvasManagerService {
     this.canvasContext.drawImage(image, x, y, width, height);
   }
 
+  print(text: string, x: number = this.xCoordRunning, y: number = this.yCoord) {
+
+    if( x == -1 ) {
+      x = this.xCoord;
+    }
+
+    let textWidth = this.canvasContext.measureText( text ).width;
+
+    // Split string into individual tokens (words)
+    let tokens = text.split( ' ' );
+
+    console.log ( tokens.length );
+    console.log( typeof( tokens ) );
+
+    tokens.forEach( function (word, index) {
+      
+      word = word + ' ';
+
+      let wordWidth = this.canvasContext.measureText( word ).width;
+
+      if( (this.canvas.width - x ) > wordWidth ) {
+
+        // Enough space to print word
+        // Save cursor position for next call 
+        this.xCoordRunning = x + wordWidth;
+      }
+      else {
+        // No space left for word, go the next line
+        this.yCoord += this.FONT_SIZE;
+        y += this.FONT_SIZE;
+
+        // reset cursor back to start
+        x = this.xCoord;
+
+        // Save cursor position for next call 
+        this.xCoordRunning = x + wordWidth;
+      }
+
+      this.canvasContext.fillText( word, x, y);
+
+      x += wordWidth;
+
+    }.bind(this));
+
+    // // Check if there is enough space on the page to print the entire text
+    // if( (this.canvas.width - this.yCoord ) < textWidth ) {
+    //   // Text is too long, go the next line
+    //   this.yCoord += this.FONT_SIZE;
+    // }
+
+    // this.canvasContext.fillText(text, x, y);
+
+    // this.xCoord += textWidth;
+  } 
+
   printLine(text: string, x: number = this.xCoord, y: number = this.yCoord) {
     this.canvasContext.fillText(text, x, y);
     this.yCoord += this.FONT_SIZE;
+
+    
+    this.xCoordRunning = -1;
+
   }
 
   drawBox(width: number, height, borderRadius: number = 0, x: number = this.xCoord, y: number = this.yCoord): void {

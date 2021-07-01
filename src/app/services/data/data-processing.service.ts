@@ -219,7 +219,7 @@ export class DataProcessingService {
     });
     const interest = log.interest.text;
     const r = {
-      resultsText: `You have taken the first step towards achieving your goal of being able to ${
+      resultsText: `You have taken the first step towards achieving your goal to: ${
         this.stringManagerService.lowerCaseFirst(this.stringManagerService.correctText(interest))}.`,
       learningPathwayDescription: []
     };

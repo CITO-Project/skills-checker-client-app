@@ -14,6 +14,9 @@ import { ResultsSaverService } from 'src/app/services/data/results-saver.service
 import { ResultsVisualizationService } from 'src/app/services/data/results-visualization.service';
 import { map } from 'rxjs/operators';
 import { Interest } from 'src/app/models/interest';
+import { ChallengingScenario } from 'src/app/models/scenario-result';
+import { Answer } from 'src/app/models/answer';
+
 
 @Component({
   selector: 'app-results-screen',
@@ -107,20 +110,104 @@ export class ResultsScreenComponent implements OnInit {
 
   saveResults(): void {
 
-    var scenarios:string[] = new Array(4);
+    var scenarios:ChallengingScenario[] = new Array();
     for( var i=0; i<this.dataLogService.getScenarioCount(); i++ ){
-      scenarios[i] = this.dataLogService.getScenario(i).text;
+
+      // EASY               == 3
+      // A LITTLE DIFFICULT == 2
+      // DIFFICULT          == 1
+      // VERY DIFFICULT     == 0
+      let scenario_difficulty = this.dataLogService.getAnswer(i, 0);
+
+      let difficulty_str = (scenario_difficulty==0) ? 'very difficult' 
+                            : (scenario_difficulty==1) ? 'difficult' 
+                            : (scenario_difficulty==2) ? 'a little difficult' : 'easy';
+
+      // If user selected value other than EASY (less that 3)
+      if( scenario_difficulty != -1 && scenario_difficulty  < 3 ) {
+
+        const scenario: ChallengingScenario = {
+          name: this.dataLogService.getScenario(i).text,
+          level: difficulty_str,
+          aspect: new Array(),
+          fluency: -1,
+          confidence: -1,
+          independence: -1
+        }
+
+          // 0 == None
+          // 1 == reading and writing
+          // 2 == Maths
+          // 3 == Reading and Writing + Maths
+          // 4 == Computers
+          // 5 == Reading and Writing + Computers
+          // 6 == Maths + Computers
+          // 7 == Reading and Writing + Maths + Computers
+          let aspect = this.dataLogService.getAnswer(i, 1);
+
+          if( aspect == 1 ) {
+            scenario.aspect.push( this.toObj( 'reading and writing', this.dataLogService.getQuestion(i, 1).answers[0] ) );
+          }
+          else if( aspect == 2) {
+            scenario.aspect.push( this.toObj( 'maths', this.dataLogService.getQuestion(i, 1).answers[1] ) );
+          }
+          else if( aspect == 4 ) {
+            scenario.aspect.push( this.toObj( 'computers', this.dataLogService.getQuestion(i, 1).answers[2] ) );
+          }
+          else if( aspect == 3 ) {
+            scenario.aspect.push( this.toObj( 'reading and writing', this.dataLogService.getQuestion(i, 1).answers[0] ) );
+            scenario.aspect.push( this.toObj( 'maths', this.dataLogService.getQuestion(i, 1).answers[1] ) );
+          }
+          else if( aspect == 5 ) {
+            scenario.aspect.push( this.toObj( 'reading and writing', this.dataLogService.getQuestion(i, 1).answers[0] ) );
+            scenario.aspect.push( this.toObj( 'computers', this.dataLogService.getQuestion(i, 1).answers[2] ) );
+          }
+          else if( aspect == 6 ) {
+            scenario.aspect.push( this.toObj( 'maths', this.dataLogService.getQuestion(i, 1).answers[1] ) );
+            scenario.aspect.push( this.toObj( 'computers', this.dataLogService.getQuestion(i, 1).answers[2] ) );
+          }
+          else if( aspect == 7 ) {
+            scenario.aspect.push( this.toObj( 'reading and writing', this.dataLogService.getQuestion(i, 1).answers[0] ) );
+            scenario.aspect.push( this.toObj( 'maths', this.dataLogService.getQuestion(i, 1).answers[1] ) );
+            scenario.aspect.push( this.toObj( 'computers', this.dataLogService.getQuestion(i, 1).answers[2] ) );
+          }
+
+          // independence
+          scenario.independence = this.dataLogService.getAnswer(i, 2);
+
+          // confidence
+          let conf_1 = this.dataLogService.getAnswer(i, 3);
+          let conf_2 = this.dataLogService.getAnswer(i, 4);
+
+          scenario.confidence = conf_1;
+
+          // fluency
+          let fluency_1 = this.dataLogService.getAnswer(i, 5);
+          let fluency_2 = this.dataLogService.getAnswer(i, 6);
+
+          scenario.fluency = fluency_1;
+          
+          scenarios.push( scenario );
+        }
     }
 
     this.resultsSaverService.generateImage(
       this.resultsImage,
       this.HEADER,
       scenarios,
-      $localize`:@@wellDone:Well done!` + ' ' + this.texts.resultsText,
+      $localize`:@@wellDone:Well done for completing your skills check! You have taken the first step towards achieving your goal to be:`,
       this.stringManagerService.correctText(this.interest.text),
       this.LEARNING_PATHWAY_HEADER,
       this.texts.learningPathwayDescription,
       this.courses);
+  }
+
+  toObj(skill: string, answer: Answer): any {
+
+    let obj = { name: answer.text,
+                skill: skill };
+
+    return obj;
   }
 
   getCourses(priority: string): Course[] {

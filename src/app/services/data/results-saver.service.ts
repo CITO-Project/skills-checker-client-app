@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ScenariosScreenComponent } from 'src/app/components/screens/scenarios-screen/scenarios-screen.component';
+import { ChallengingScenario } from 'src/app/models/scenario-result';
 
 import { Course } from '../../models/course';
 
@@ -19,7 +20,7 @@ export class ResultsSaverService {
   private readonly TEXT_SIZE = 40;
 
   private readonly BALLOONS_TEXT_SEPARATION = 150;
-  private readonly BALLOONS_LEARNING_PATHWAY_SEPARATION = 200;
+  private readonly BALLOONS_LEARNING_PATHWAY_SEPARATION = 100;
   private readonly TITLE_LINES_SEPARATION = 20;
   private readonly LINES_SEPARATION = 10;
   private readonly TEXTS_SEPARATION = 20;
@@ -64,7 +65,7 @@ export class ResultsSaverService {
   async generateImage(
     graphDataURI: string,
     header: string,
-    scenarios: string[],
+    scenarios: ChallengingScenario[],
     resultsText: string,
     interest: string,
     learningPathwayHeader: string,
@@ -73,7 +74,7 @@ export class ResultsSaverService {
     ): Promise<void> {
       this.canvasManager = new CanvasManagerService();
       this.canvasManager.createCanvas(
-        this.calculateHeight(resultsText, learningPathwayDescription, learningPathway),
+        this.calculateHeight(resultsText, learningPathwayDescription, learningPathway, scenarios.length),
         this.FILE_MAX_WIDTH);
       if (!this.canvasManager) {
         this.commonService.error('results-saver.service.ts [generateImage()] ERROR_CREATING_CANVAS', this.canvasManager);
@@ -114,9 +115,23 @@ export class ResultsSaverService {
       this.canvasManager.downloadImage(this.FILE_DOWNLOAD_NAME);
   }
 
-  printText(text: string, variant: string = '', x?: number, y?: number) {
+  printTextLine(text: string, variant: string = '', x?: number, y?: number) {
     this.canvasManager.setFont(this.TEXT_SIZE, variant);
     this.canvasManager.printLine(text, x, y);
+  }
+
+  printText(text: string, variant: string = '') {
+    this.canvasManager.setFont(this.TEXT_SIZE, variant);
+    this.canvasManager.print(text);
+  }
+
+  printTextLineSplit(text: string, variant: string = '', x?: number, y?: number) {
+
+    const resultsTextSplitted = this.stringManagerService.splitTextInLines(text, this.SPLIT_RESULTS_TEXT);
+    resultsTextSplitted.forEach( (text: string) => {
+      this.printTextLine(text, variant);
+    });
+
   }
 
   printTitle(text: string, variant: string = '', x?: number, y?: number) {
@@ -124,7 +139,7 @@ export class ResultsSaverService {
     this.canvasManager.printLine(text, x, y);
   }
 
-  async printHeader(header: string, balloonsAndBasketURI: string, resultsText: string, interest: string, scenarios: string[]): Promise<void> {
+  async printHeader(header: string, balloonsAndBasketURI: string, resultsText: string, interest: string, scenarios: ChallengingScenario[]): Promise<void> {
     let multiplier = 1;
     //#region Printing header
     this.canvasManager.setColour(this.TEXT_COLOR_LIGHT);
@@ -169,46 +184,159 @@ export class ResultsSaverService {
     this.canvasManager.addX(this.BALLOONS_TEXT_SEPARATION);
     const resultsTextSplitted = this.stringManagerService.splitTextInLines(resultsText, this.SPLIT_RESULTS_TEXT);
     resultsTextSplitted.forEach( (text: string) => {
-      this.printText(text, '');
+      this.printTextLine(text, '');
       this.canvasManager.addY(this.TITLE_LINES_SEPARATION);
     });
     
-    this.printText('');
+    this.printTextLine('');
 
-    this.printText(interest, 'bold');
+    this.printTextLineSplit(interest, 'bold');
 
-    this.printText('');
+    this.printTextLine('');
 
-    this.printText('Your skill check asked you about these four tasks:');
+    this.printTextLineSplit('By developing your skills you can take the next step to achieving your goal. The ballons will give you an idea of your skill level in reading and writing, maths and computers. The bigger the ballow, the stronger your skill in this area is!');
 
-    this.printText('');
+    this.canvasManager.setX( this.BACKGROUND_PADDING_SIDES );
+    this.canvasManager.setY( 1150 );
 
-    scenarios.forEach( (scen: string) => {
-      this.printText(scen);
+
+    let scenario_count_str = ''
+    let task_str = 'tasks';
+
+    if( scenarios.length == 4) {
+      scenario_count_str = 'four';
+    }
+    else if( scenarios.length == 4) {
+      scenario_count_str = 'three';
+    }
+    else if( scenarios.length == 4) {
+      scenario_count_str = 'two';
+    }
+    else {
+      scenario_count_str = 'one';
+      task_str = 'task';
+    }
+
+    this.printText('You looked at ' + scenario_count_str + ' everyday ' + task_str + '. You found aspects of the following ' +task_str+ ' challening:');
+
+    this.printTextLine('');
+    this.printTextLine('');
+
+    scenarios.forEach( (scen: ChallengingScenario) => {
+      this.printTextLine(scen.name, 'bold');
+
+      // add a little spacing below the scenario title
+      this.canvasManager.addY(this.TITLE_LINES_SEPARATION);
+
+      this.printText( 'You identified that you found' );
+
+      let task_str = '';
+
+      scen.aspect.forEach( ({name}, index, arr ) => {
+        
+        if( index > 0 ) {
+          if( index != (arr.length - 1)) {
+            task_str = task_str + ', ';
+          }
+          else {
+            task_str = task_str + ' and ';
+          }
+        }
+
+        task_str = task_str + name.toLowerCase();
+      })
+      
+      this.printText( task_str + ' ' + scen.level, 'bold' );
+      this.printText( '.' );
+      
+      if( scen.level === 'a little difficult' || scen.level === 'difficult') {
+        this.printText( 'Take the next step to achieve your goal by brushing up on your' );
+      }
+      else {
+        this.printText( 'You can reach your goal by developing your' );
+      }
+
+      let skills_str = '';
+      
+      scen.aspect.forEach( ({skill}, index, arr) => {
+        
+        if( index > 0 ) {
+          if( index != (arr.length - 1)) {
+            skills_str = skills_str + ', ';
+          }
+          else {
+            skills_str = skills_str + ' and ';
+          }
+        }
+
+        skills_str = skills_str + skill;
+
+        //this.printText( skill, 'bold' );
+      })
+
+      skills_str = skills_str + ' skills'
+
+      this.printText( skills_str, 'bold' );
+
+      console.log( 'scen.independence: ' + scen.independence );
+
+      if(scen.independence == 0) {
+
+        // User answered 'yes' [0] to question about needing help to do this task
+        let todo_str = 'to do this task';
+
+        if( scen.aspect.length > 1 ) {
+          todo_str = 'to do these tasks'
+        }
+
+        this.printText( todo_str );
+        this.printText( 'without help.', 'bold' );
+      }
+      else if( scen.fluency == 1 || scen.confidence == 1 ) {
+        this.printText( ', so that you can do similar tasks' );
+
+        let dimension_str = ''
+        
+        if( scen.fluency == 1 ) {
+          dimension_str = dimension_str + 'faster';
+        }
+
+        if( scen.fluency == 1 && scen.confidence == 1 ) {
+          dimension_str = dimension_str + ' and ';
+        }
+
+        if( scen.confidence == 1 ) {
+          dimension_str = dimension_str +'more confidently';
+        }
+
+        this.printText( dimension_str, 'bold' );
+      }
+
+      this.printTextLine( '' );
+      this.printTextLine( '' );
     });
 
-    
-    this.printText('');
-    this.printText('');
-    this.printText('');
-    this.printText('');
-    this.printText('');
-    this.printText('');
+    let str = 'Take the next step to achieve your goal! Check out the courses below and find one that\'s right for you.';
+
+    this.printText( str );
+
+    this.printTextLine('');
+    this.printTextLine('');
 
     //#endregion
   }
 
   printDescription(title: string, description: string[]): void {
-    this.canvasManager.setX(this.FILE_MAX_WIDTH - (this.FILE_MAX_WIDTH/4));
+    this.canvasManager.setX(this.FILE_MAX_WIDTH - (this.FILE_MAX_WIDTH/2));
     this.canvasManager.setTextAlignment('center');
     this.printTitle(title, 'bold');
     this.canvasManager.addY(this.TEXTS_SEPARATION);
     this.canvasManager.setTextAlignment('center');
     description.forEach( (line: string) => {
       this.stringManagerService.splitTextInLines(
-        line, this.SPLIT_LEARNING_PATHWAY_DESCRIPTION)
+        line, 60)
         .forEach( (text: string) => {
-          this.printText(text);
+          this.printTextLine(text);
           this.canvasManager.addY(this.LINES_SEPARATION);
       });
       this.canvasManager.addY(this.TEXTS_SEPARATION);
@@ -257,19 +385,19 @@ export class ResultsSaverService {
     this.canvasManager.addY(this.COURSE_MARGIN);
     if (!!course.title) {
       // tslint:disable-next-line: max-line-length
-      this.printText(this.stringManagerService.ellipsisText(title, this.SPLIT_COURSE_TEXTS), 'bold');
+      this.printTextLine(this.stringManagerService.ellipsisText(title, this.SPLIT_COURSE_TEXTS), 'bold');
     }
-    descriptionSplitted.slice(0, this.MAX_LINES_COURSE_DESCRIPTION).forEach( (text: string) => this.printText(text));
+    descriptionSplitted.slice(0, this.MAX_LINES_COURSE_DESCRIPTION).forEach( (text: string) => this.printTextLine(text));
 
     // add some space between course description and contact information
-    this.printText('');
+    this.printTextLine('');
 
     if (!!course.contact_telephone) {
       // tslint:disable-next-line: max-line-length
-      this.printText(this.stringManagerService.ellipsisText(`Phone: ${course.contact_telephone}`, this.SPLIT_COURSE_TEXTS), 'italic');
+      this.printTextLine(this.stringManagerService.ellipsisText(`Phone: ${course.contact_telephone}`, this.SPLIT_COURSE_TEXTS), 'italic');
     }
     if (!!course.link) {
-      this.printText(this.stringManagerService.ellipsisText(`Web: ${link}`, this.SPLIT_COURSE_TEXTS), 'italic');
+      this.printTextLine(this.stringManagerService.ellipsisText(`Web: ${link}`, this.SPLIT_COURSE_TEXTS), 'italic');
     }
     //#endregion
 
@@ -335,10 +463,20 @@ export class ResultsSaverService {
     return r;
   }
 
-  calculateHeight(resultsText: string, learningPathwayDescription: string[], learningPathway: Course[]): number {
+  calculateHeightScenario( scenarioCount: number ) : number {
+    let r = 0;
+
+    r += scenarioCount * 100;
+
+    return r;
+  }
+
+  calculateHeight(resultsText: string, learningPathwayDescription: string[], learningPathway: Course[], scenarioCount: number): number {
     let r = 15; // I've added in a few extra lines above so need to account for that at the bottom
     r += this.calculateHeightHeader(resultsText);
     r += this.BALLOONS_LEARNING_PATHWAY_SEPARATION;
+    r += 1000; // more space for bigger balloon graphic
+    r += this.calculateHeightScenario( scenarioCount );
     r += this.calculateHeightDescription(learningPathwayDescription);
     r += this.calculateHeightSection(learningPathway.filter( (course: Course) => course.priority === 'brush_up'));
     r += this.calculateHeightSection(learningPathway.filter( (course: Course) => course.priority === 'develop'));
