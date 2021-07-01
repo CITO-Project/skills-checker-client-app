@@ -47,8 +47,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="b64d14d1b771079b317356ac39fa357cf1292d95" datatype="html">
-        <source> Check your skills and discover your strengths! </source>
-        <target> Sjekk dine ferdigheter og oppdag styrkene dine </target>
+        <source> Check in and take off with the CITO Skills Checker! </source>
+        <target> Check in and take off med CITO ferdighetskartleggeren </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">41,57</context>
@@ -64,7 +64,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="de73c30ed7d5fb826f47bed609ab6f1d4aefd9d7" datatype="html">
-        <source> CITO Skills Checker is a free and confidential tool for you to check your skills and find ways to help you improve your skills in: </source>
+        <source> Check your skills with this free and confidential tool and find ways to help improve your skills in: </source>
         <target> Check-In Take-Off er et gratis og konfidensielt verktøy hvor du kan finne dine styrker og måter å forbedre ferdighetene dine på: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
