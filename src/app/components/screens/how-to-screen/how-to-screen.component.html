@@ -1,20 +1,20 @@
 <app-header [text]='!!category ? category.text : "default"'></app-header>
 <app-media resource='how-to.png'></app-media>
 <div id="description">
-  <div class="heading">
+  <div class="heading" i18n="">
     How to use
   </div>
-  <div class="text">
+  <div class="text" i18n="">
     Learn how to use the SkillsChecker App to set your interests and to improve your skills watching the video above.
   </div>
   <div class="d-flex justify-content-around">
     <button class="button special" id="go" type="button" [(disabled)]='!scenariosReady' mdbBtn mdbWavesEffect (click)="btnClick()">
       <div *ngIf="scenariosReady; then ready else notReady"></div>
-      <ng-template #ready>Go</ng-template>
-      <ng-template #notReady><i class="fas fa-spinner fa-spin"></i> Loading ...</ng-template>
+      <ng-template #ready i18n="">Go</ng-template>
+      <ng-template #notReady i18n=""><i class="fas fa-spinner fa-spin"></i> Loading ...</ng-template>
     </button>
   </div>
-  <div class="feedback muted">
+  <div class="feedback muted" i18n="">
     You have selected:
     <div class="interest">
       {{ selectedInterest }}
