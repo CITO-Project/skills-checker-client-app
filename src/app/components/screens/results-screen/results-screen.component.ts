@@ -17,6 +17,12 @@ import { Interest } from 'src/app/models/interest';
 import { ChallengingScenario } from 'src/app/models/scenario-result';
 import { Answer } from 'src/app/models/answer';
 
+import { HttpParams } from '@angular/common/http';
+
+import { environment } from 'src/environments/environment';
+
+declare let ReadSpeaker: any ;
+declare let rspkr: any ;
 
 @Component({
   selector: 'app-results-screen',
@@ -24,6 +30,8 @@ import { Answer } from 'src/app/models/answer';
   styleUrls: ['./results-screen.component.scss']
 })
 export class ResultsScreenComponent implements OnInit {
+
+  env = environment;
 
   public texts: {
     resultsText: string,
@@ -76,6 +84,19 @@ export class ResultsScreenComponent implements OnInit {
 
       this.googleAnalyticsService.startTimer('time_review_results', '' + this.interest.id);
     });
+
+    // initialise ReadSpeaker
+    ReadSpeaker.init();
+  }
+
+  ngAfterContentInit() {
+    // stop play if it is already playing text from previous screen
+    ReadSpeaker.q(
+      function() {
+        if (rspkr.ui.getActivePlayer()) {
+          rspkr.ui.getActivePlayer().close();
+        }
+      });
   }
 
   loadCourses(results: Result): Observable<Course[]> {
@@ -215,6 +236,20 @@ export class ResultsScreenComponent implements OnInit {
       return [];
     }
     return this.courses.filter( course => course.priority === priority);
+  }
+
+  getReadSpeakerURL(readid: string): string {
+
+    const baseURL = '//app-eu.readspeaker.com/cgi-bin/rsent';
+
+    const params = new HttpParams()
+                          .set( 'customerid', environment.readspeaker.id.toString() )
+                          .set( 'lang', environment.readspeaker.lang )
+                          .set( 'voice', environment.readspeaker.voice )
+                          .set( 'readid', readid)
+                          .set( 'url', encodeURIComponent('https://skillscheck.citoproject.eu/updates/'));
+
+    return `${baseURL}?${params.toString()}`;
   }
 
 }

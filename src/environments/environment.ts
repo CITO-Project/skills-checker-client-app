@@ -11,7 +11,7 @@ export const environment = {
   },
   readspeaker: {
     enabled: true,
-    id: 3,
+    id: 12420,
     lang: 'en_uk',
     voice: 'Alice'
   },
