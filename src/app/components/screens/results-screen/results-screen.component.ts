@@ -87,9 +87,7 @@ export class ResultsScreenComponent implements OnInit {
 
     // initialise ReadSpeaker
     ReadSpeaker.init();
-  }
 
-  ngAfterContentInit() {
     // stop play if it is already playing text from previous screen
     ReadSpeaker.q(
       function() {
@@ -97,6 +95,11 @@ export class ResultsScreenComponent implements OnInit {
           rspkr.ui.getActivePlayer().close();
         }
       });
+  }
+
+  ngAfterViewChecked() {
+    // attach ReadSpeaker click event to buttons that have been dynamically added to page
+    ReadSpeaker.q(function() {rspkr.ui.addClickEvents();});
   }
 
   loadCourses(results: Result): Observable<Course[]> {
