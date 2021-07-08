@@ -52,7 +52,8 @@ export class ResultsSaverService {
 
   private readonly TEXT_FONT_FAMILY = 'Raleway';
   private readonly TEXT_FONT_FAMILY_SOURCE = 'https://fonts.gstatic.com/s/raleway/v14/1Ptug8zYS_SKggPNyCMIT5lu.woff2';
-  private readonly TEXT_COLOR = '#62717A';
+  //private readonly TEXT_COLOR = '#62717A';
+  private readonly TEXT_COLOR = '#2E3C67';
   private readonly TEXT_COLOR_LIGHT = '#F2F3F3';
 
   private canvasManager: CanvasManagerService;
@@ -139,6 +140,24 @@ export class ResultsSaverService {
     this.canvasManager.printLine(text, x, y);
   }
 
+
+  printTitleCentre(text: string, variant: string = '', x?: number, y?: number) {
+    
+    let alignment = this.canvasManager.getTextAlignment();
+
+    // Move the X position to the centre of the document
+    this.canvasManager.setX(this.FILE_MAX_WIDTH - (this.FILE_MAX_WIDTH/2));
+    this.canvasManager.setTextAlignment('center');
+
+    this.printTitle( text, variant, x, y );
+
+    // Move the X position back to the default value
+    this.canvasManager.setX( this.BACKGROUND_PADDING_SIDES );
+
+    // Set the Text Alignment back to the original setting
+    this.canvasManager.setTextAlignment( alignment );
+  }
+
   async printHeader(header: string, balloonsAndBasketURI: string, resultsText: string, interest: string, scenarios: ChallengingScenario[]): Promise<void> {
     let multiplier = 1;
     //#region Printing header
@@ -181,12 +200,15 @@ export class ResultsSaverService {
     this.canvasManager.setColour(this.TEXT_COLOR);
     this.canvasManager.setY(tempY);
     this.canvasManager.addY(this.RESULTS_TEXT_TOP_PADDING);
+    this.canvasManager.addY( 150 ); // some extra vertical space to better centre text with balloon graphic
     this.canvasManager.addX(this.BALLOONS_TEXT_SEPARATION);
     const resultsTextSplitted = this.stringManagerService.splitTextInLines(resultsText, this.SPLIT_RESULTS_TEXT);
     resultsTextSplitted.forEach( (text: string) => {
-      this.printTextLine(text, '');
+      this.printTextLine(text, 'bold');
       this.canvasManager.addY(this.TITLE_LINES_SEPARATION);
     });
+
+    this.printTextLineSplit('You\'re on your way to achieving yoru goal to:');
     
     this.printTextLine('');
 
@@ -194,7 +216,7 @@ export class ResultsSaverService {
 
     this.printTextLine('');
 
-    this.printTextLineSplit('By developing your skills you can take the next step to achieving your goal. The ballons will give you an idea of your skill level in reading and writing, maths and computers. The bigger the ballow, the stronger your skill in this area is!');
+    this.printTextLineSplit('The balloons will give you an idea of your skill level. The bigger the balloon, the stronger your skill in this area is!');
 
     this.canvasManager.setX( this.BACKGROUND_PADDING_SIDES );
     this.canvasManager.setY( 1150 );
@@ -217,7 +239,10 @@ export class ResultsSaverService {
       task_str = 'task';
     }
 
-    this.printText('You looked at ' + scenario_count_str + ' everyday ' + task_str + '. You found aspects of the following ' +task_str+ ' challening:');
+    this.printTitleCentre( 'My Skills Summary', 'bold' );
+    this.canvasManager.addY(this.TITLE_LINES_SEPARATION);
+
+    this.printText('You looked at ' + scenario_count_str + ' everyday ' + task_str + '. You found aspects of the following ' +task_str+ ' challenging:');
 
     this.printTextLine('');
     this.printTextLine('');
@@ -309,6 +334,8 @@ export class ResultsSaverService {
           dimension_str = dimension_str +'more confidently';
         }
 
+        dimension_str = dimension_str + '.';
+
         this.printText( dimension_str, 'bold' );
       }
 
@@ -316,7 +343,7 @@ export class ResultsSaverService {
       this.printTextLine( '' );
     });
 
-    let str = 'Take the next step to achieve your goal! Check out the courses below and find one that\'s right for you.';
+    let str = 'Check out the courses below and find one that\'s right for you.';
 
     this.printText( str );
 
@@ -331,16 +358,16 @@ export class ResultsSaverService {
     this.canvasManager.setTextAlignment('center');
     this.printTitle(title, 'bold');
     this.canvasManager.addY(this.TEXTS_SEPARATION);
-    this.canvasManager.setTextAlignment('center');
-    description.forEach( (line: string) => {
-      this.stringManagerService.splitTextInLines(
-        line, 60)
-        .forEach( (text: string) => {
-          this.printTextLine(text);
-          this.canvasManager.addY(this.LINES_SEPARATION);
-      });
-      this.canvasManager.addY(this.TEXTS_SEPARATION);
-    });
+    // this.canvasManager.setTextAlignment('center');
+    // description.forEach( (line: string) => {
+    //   this.stringManagerService.splitTextInLines(
+    //     line, 60)
+    //     .forEach( (text: string) => {
+    //       this.printTextLine(text);
+    //       this.canvasManager.addY(this.LINES_SEPARATION);
+    //   });
+    //   this.canvasManager.addY(this.TEXTS_SEPARATION);
+    // });
   }
 
   printSection(title: string, courses: Course[], sectionColor: string = this.BRUSH_UP_COLOR): void {
@@ -387,7 +414,7 @@ export class ResultsSaverService {
       // tslint:disable-next-line: max-line-length
       this.printTextLine(this.stringManagerService.ellipsisText(title, this.SPLIT_COURSE_TEXTS), 'bold');
     }
-    descriptionSplitted.slice(0, this.MAX_LINES_COURSE_DESCRIPTION).forEach( (text: string) => this.printTextLine(text));
+    //descriptionSplitted.slice(0, this.MAX_LINES_COURSE_DESCRIPTION).forEach( (text: string) => this.printTextLine(text));
 
     // add some space between course description and contact information
     this.printTextLine('');
@@ -434,15 +461,15 @@ export class ResultsSaverService {
 
   calculateHeightCourse(course: Course): number {
     let r = 0;
-    let numberLinesCourseDescription = this.stringManagerService.splitTextInLines(
-      course.description,
-      this.SPLIT_COURSE_TEXTS
-      ).length;
-    if (numberLinesCourseDescription >= this.MAX_LINES_COURSE_DESCRIPTION) {
-      numberLinesCourseDescription = this.MAX_LINES_COURSE_DESCRIPTION;
-    }
-    r += this.COURSES_BORDER_RADIUS * 2;
-    let lines = 1;
+    // let numberLinesCourseDescription = this.stringManagerService.splitTextInLines(
+    //   course.description,
+    //   this.SPLIT_COURSE_TEXTS
+    //   ).length;
+    // if (numberLinesCourseDescription >= this.MAX_LINES_COURSE_DESCRIPTION) {
+    //   numberLinesCourseDescription = this.MAX_LINES_COURSE_DESCRIPTION;
+    // }
+    // r += this.COURSES_BORDER_RADIUS * 2;
+    let lines = 3;
     if (!!course.title) {
       lines++;
     }
@@ -452,7 +479,8 @@ export class ResultsSaverService {
     if (!!course.link) {
       lines++;
     }
-    r += this.TEXT_SIZE * (numberLinesCourseDescription + lines);
+    //r += this.TEXT_SIZE * (numberLinesCourseDescription + lines);
+    r += this.TEXT_SIZE * lines;
     return r;
   }
 

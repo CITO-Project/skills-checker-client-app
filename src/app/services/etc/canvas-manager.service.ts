@@ -87,7 +87,7 @@ export class CanvasManagerService {
 
       let wordWidth = this.canvasContext.measureText( word ).width;
 
-      if( (this.canvas.width - x ) > wordWidth ) {
+      if( ((this.canvas.width-20) - x ) > wordWidth ) {
 
         // Enough space to print word
         // Save cursor position for next call 
@@ -164,6 +164,10 @@ export class CanvasManagerService {
 
   setTextAlignment(alignment: 'start' | 'left' | 'center' | 'right' | 'end'): void {
     this.canvasContext.textAlign = alignment;
+  }
+
+  getTextAlignment(): any {
+    return this.canvasContext.textAlign;
   }
 
   exportToData(): string {

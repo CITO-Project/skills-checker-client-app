@@ -219,7 +219,7 @@ export class ResultsScreenComponent implements OnInit {
       this.resultsImage,
       this.HEADER,
       scenarios,
-      $localize`:@@wellDone:Well done for completing your skills check! You have taken the first step towards achieving your goal to be:`,
+      $localize`:@@wellDone:Well done! Skills Check complete!`,
       this.stringManagerService.correctText(this.interest.text),
       this.LEARNING_PATHWAY_HEADER,
       this.texts.learningPathwayDescription,
