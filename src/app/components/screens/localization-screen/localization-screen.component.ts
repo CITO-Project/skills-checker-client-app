@@ -32,49 +32,14 @@ export class LocalizationScreenComponent implements OnInit {
   private location: string;
   public interest: Interest;
   public courses: Course[] = [];
-  public REGIONS = [
-    'Online',
-    'Carlow',
-    'Cavan',
-    'Clare',
-    'Cork City',
-    'Cork County',
-    'Donegal',
-    'Dublin North',
-    'Dublin North County - Fingal',
-    'Dublin South',
-    'Dublin West County',
-    'Dun Laoghaire - Rathdown',
-    'Galway',
-    'Kerry',
-    'Kildare',
-    'Kilkenny',
-    'Laois',
-    'Leitrim',
-    'Limerick City',
-    'Limerick County',
-    'Longford',
-    'Louth',
-    'Mayo',
-    'Meath',
-    'Monaghan',
-    'Offaly',
-    'Roscommon',
-    'Sligo',
-    'Tipperary',
-    'Waterford City',
-    'Waterford County',
-    'Westmeath',
-    'Wexford',
-    'Wicklow'
-  ];
+  public REGIONS = environment.regions;
 
   public texts: {
     resultsText: string,
     learningPathwayDescription: string[]
   };
 
-  public readonly LEARNING_PATHWAY_HEADER = 'My Learning Pathway';
+  public readonly LEARNING_PATHWAY_HEADER = $localize`My Learning Pathway`;
 
   public results: Result;
 

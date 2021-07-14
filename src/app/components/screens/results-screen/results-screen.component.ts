@@ -40,7 +40,7 @@ export class ResultsScreenComponent implements OnInit {
   public readonly SUBTITLE = $localize`My Results`;
   public readonly LEARNING_PATHWAY_HEADER = $localize`My Learning Pathway`;
 
-  private readonly DEFAULT_IMAGE = 'orientation-ie.svg';
+  private readonly DEFAULT_IMAGE = 'orientation-' + environment.locale + '.svg';
 
   public interest: Interest;
   public courses: Course[];

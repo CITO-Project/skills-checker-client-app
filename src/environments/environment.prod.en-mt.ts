@@ -1,7 +1,8 @@
 export const environment = {
   production: true,
   api: {
-    host: 'https://skillscheck.citoproject.eu',
+    //host: 'https://skillscheck.citoproject.eu',
+    host: 'https://34.254.132.188',
     port: '',
     path: '/api/',
   },
@@ -11,5 +12,21 @@ export const environment = {
     lang: 'en_uk',
     voice: 'Alice'
   },
-  product: 'nala-mt'
+  product: 'nala-mt',
+  locale: 'mt',
+  regions: [
+    'Online',
+    'Birkirkara',
+    'Blata l-Bajda Adult Learning Centre',
+    'Floriana',
+    'Għajnsielem (Gozo)',
+    'Ħal Far',
+    'Mosta',
+    'Paola',
+    'Qormi',
+    'Qormi Local Council',
+    'Tarxien Adult Learning Centre',
+    'Valletta',
+    'Żebbuġ'
+  ]
 };

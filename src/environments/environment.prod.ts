@@ -1,7 +1,8 @@
 export const environment = {
   production: true,
   api: {
-    host: 'https://skillscheck.citoproject.eu',
+//  host: 'https://skillscheck.citoproject.eu',
+    host: 'https://34.254.132.188',
     port: '',
     path: '/api/'
   },
@@ -11,5 +12,6 @@ export const environment = {
     lang: 'en_uk',
     voice: 'Alice'
   },
-  product: 'nala'
+  product: 'nala',
+  locale: 'ie'
 };

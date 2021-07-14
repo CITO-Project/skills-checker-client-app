@@ -31,8 +31,8 @@ export class OrientationScreenComponent implements OnInit {
   faBookOpen = faBookOpen;
   faPlay = faPlay;
 
-  private readonly DEFAULT_IMAGE = 'orientation-ie.svg';
-  private readonly DEFAULT_VIDEO = 'how-to-use-ie.mp4';
+  private readonly DEFAULT_IMAGE = 'orientation-' + environment.locale + '.svg';
+  private readonly DEFAULT_VIDEO = 'how-to-use-' + environment.locale + '.mp4';
   public readonly IMAGE_TEXT = [
     //'Welcome to Check In Take Off',
     // tslint:disable-next-line: max-line-length

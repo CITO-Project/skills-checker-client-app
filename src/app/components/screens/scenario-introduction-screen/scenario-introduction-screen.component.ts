@@ -45,7 +45,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
 
   public btnBack = $localize`Change Goal`;
   public btnForward = $localize`Let\'s Go!`;
-  public readonly assistantAsset = 'orientation-ie.svg';
+  public readonly assistantAsset = 'orientation-' + environment.locale + '.svg';
   public imageTexts = [];
 
   constructor(
@@ -64,7 +64,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
             $localize`You will now have to complete 4 tasks based on this goal`
           ];
         } else {
-          this.imageTexts = ['Well Done!',`Task ${this.scenarioIndex} Complete!`,'Click Continue to go to the next task'];
+          this.imageTexts = [$localize`Well Done!`,$localize`Task ${this.scenarioIndex}:@@SCENARIOINDEX: Complete!`,$localize`Click Continue to go to the next task`];
           this.btnForward = $localize`Continue`;
           this.btnBack = $localize`Previous Task`;
         }

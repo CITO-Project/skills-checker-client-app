@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   api: {
-    host: 'https://skillscheck.citoproject.eu',
+    //host: 'https://skillscheck.citoproject.eu',
+    host: 'https://34.254.132.188',
     port: '',
     path: '/api/',
   },
@@ -15,7 +16,44 @@ export const environment = {
     lang: 'en_uk',
     voice: 'Alice'
   },
-  product: 'nala'
+  product: 'nala',
+  locale: 'ie',
+  regions: [
+    'Online',
+    'Carlow',
+    'Cavan',
+    'Clare',
+    'Cork City',
+    'Cork County',
+    'Donegal',
+    'Dublin North',
+    'Dublin North County - Fingal',
+    'Dublin South',
+    'Dublin West County',
+    'Dun Laoghaire - Rathdown',
+    'Galway',
+    'Kerry',
+    'Kildare',
+    'Kilkenny',
+    'Laois',
+    'Leitrim',
+    'Limerick City',
+    'Limerick County',
+    'Longford',
+    'Louth',
+    'Mayo',
+    'Meath',
+    'Monaghan',
+    'Offaly',
+    'Roscommon',
+    'Sligo',
+    'Tipperary',
+    'Waterford City',
+    'Waterford County',
+    'Westmeath',
+    'Wexford',
+    'Wicklow'
+  ]
 
   //Local dev environment
   //apiHost: 'localhost:3000',
