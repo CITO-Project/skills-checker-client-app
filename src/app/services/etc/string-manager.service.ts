@@ -13,12 +13,12 @@ export class StringManagerService {
   private readonly SEPARATORS = ['-', '_'];
 
   public readonly TEXTS = {
-    literacy: 'reading and writing',
-    numeracy: 'maths',
-    digital_skills: 'computer',
-    fluency: 'faster',
-    confidence: 'more confidently',
-    independence: 'without help'
+    literacy: $localize`:@@skill-reading-and-writing:reading and writing`,
+    numeracy: $localize`:@@skill-maths:maths`,
+    digital_skills: $localize`:@@skill-computers:computer`,
+    fluency: $localize`:@@dimension-fluency:faster`,
+    confidence: $localize`:@@dimension-confidence:more confidently`,
+    independence: $localize`:@@dimension-independence:without help`
   };
 
   constructor() { }

@@ -217,14 +217,15 @@ export class DataProcessingService {
           this.addToUniqueArray(brushUpDimensions, result);
         }
     });
-    const interest = log.interest.text;
+    const interest = log.interest.text; 
+
     const r = {
-      resultsText: `You have taken the first step towards achieving your goal to: ${
+      resultsText: $localize`You have taken the first step towards achieving your goal to: ${
         this.stringManagerService.lowerCaseFirst(this.stringManagerService.correctText(interest))}.`,
       learningPathwayDescription: []
     };
     if (brushUpSkills.length > 0) {
-      let text = `Take the next step by brushing up on your ${this.stringManagerService.concatenateText(brushUpSkills)} skills`;
+      let text = $localize`Take the next step by brushing up on your ${this.stringManagerService.concatenateText(brushUpSkills)}:@@SKILL: skills`;
       if (brushUpDimensions.length > 0) {
         text += `, so that you can do similar tasks ${this.stringManagerService.concatenateText(brushUpDimensions)}`;
       }
@@ -232,7 +233,7 @@ export class DataProcessingService {
       r.learningPathwayDescription.push(text);
     }
     if (developSkills.length > 0) {
-      let text = `You can also reach your goal by developing your ${this.stringManagerService.concatenateText(developSkills)} skills`;
+      let text = $localize`You can also reach your goal by developing your ${this.stringManagerService.concatenateText(developSkills)}:@@SKILL: skills`;
       if (developDimensions.length > 0) {
         text += ` to do these tasks ${this.stringManagerService.concatenateText(developDimensions)}`;
       }
@@ -240,10 +241,10 @@ export class DataProcessingService {
       r.learningPathwayDescription.push(text);
     }
     if ((brushUpSkills.length + developSkills.length) < 1) {
-      r.learningPathwayDescription.push('You have shown that you have strong reading, writing, maths and computer skills.');
-      r.learningPathwayDescription.push('Take the next step by developing your skills even further.');
+      r.learningPathwayDescription.push( $localize`You have shown that you have strong reading, writing, maths and computer skills.`);
+      r.learningPathwayDescription.push( $localize`Take the next step by developing your skills even further.` );
       // tslint:disable-next-line: max-line-length
-      r.learningPathwayDescription.push('Call NALA today on 1800 20 20 65 to chat about your options or check out www.fetchcourses.ie to find a course that is right for you.');
+      r.learningPathwayDescription.push( $localize`Call NALA today on 1800 20 20 65 to chat about your options or check out www.fetchcourses.ie to find a course that is right for you.` );
     }/* else if ((brushUpSkills.length + developSkills.length) === 1) {
       r.learningPathwayDescription.push('Check out the course below and find if it is right for you');
     } else {
