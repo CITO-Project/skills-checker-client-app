@@ -106,7 +106,7 @@ export class InterestsScreenComponent implements OnInit {
 
   getReadSpeakerURL(readid: string): string {
 
-    const baseURL = '//app-eu.readspeaker.com/cgi-bin/rsent';
+    const baseURL = environment.readspeaker.baseurl;
 
     const params = new HttpParams()
                           .set( 'customerid', environment.readspeaker.id.toString() )

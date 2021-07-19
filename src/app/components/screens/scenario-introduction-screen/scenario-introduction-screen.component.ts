@@ -64,7 +64,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
             $localize`You will now have to complete 4 tasks based on this goal`
           ];
         } else {
-          this.imageTexts = [$localize`Well Done!`,$localize`Task ${this.scenarioIndex}:@@SCENARIOINDEX: Complete!`,$localize`Click Continue to go to the next task`];
+          this.imageTexts = [$localize`Well Done!`,$localize`Task ${this.scenarioIndex} Complete!`,$localize`Click Continue to go to the next task`];
           this.btnForward = $localize`Continue`;
           this.btnBack = $localize`Previous Task`;
         }
@@ -128,7 +128,7 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
 
   getReadSpeakerURL(readid: string): string {
 
-    const baseURL = '//app-eu.readspeaker.com/cgi-bin/rsent';
+    const baseURL = environment.readspeaker.baseurl;
 
     const params = new HttpParams()
                           .set( 'customerid', environment.readspeaker.id.toString() )
