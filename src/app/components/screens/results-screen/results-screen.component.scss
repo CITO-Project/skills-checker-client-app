@@ -21,6 +21,14 @@
   }
 }
 
+.button {
+  min-width: 300px;
+
+  @include setStyleSmall {
+    min-width: 185px; 
+  }
+}
+
 
 #acknowledgement {
   position: relative;
@@ -32,7 +40,7 @@
 
 .avatar-msg-text {
   position: absolute;
-  right: 5%;
+  right: 7%;
   top: 15%;
   width: 60%;
 }
@@ -43,6 +51,10 @@
 
 .heading {
   margin-top: 0;
+
+  img {
+    height: 30px;
+  }
 }
 
 .interest {
@@ -50,7 +62,7 @@
   color: white;
   text-align: center;
   padding: 0.5vh 0;
-  margin: 0.5vh 0;
+  margin: 1.5vh 0;
 }
 
 .text {
@@ -160,4 +172,8 @@
       }
     }
   }
+}
+
+.rsbtn {
+  position: absolute;
 }
