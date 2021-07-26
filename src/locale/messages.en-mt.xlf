@@ -4,9 +4,11 @@
     <body>
       <trans-unit id="appName" datatype="html">
         <source>CITO Skills Checker</source>
+        
       </trans-unit>
       <trans-unit id="3ccabfc3dc288eaa2355ba43298c739f85951ec3" datatype="html">
         <source>Get started</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.html</context>
           <context context-type="linenumber">86,92</context>
@@ -14,28 +16,88 @@
       </trans-unit>
       <trans-unit id="8743af5cd072e1af03d39d2faebe7c8bbdc18427" datatype="html">
         <source> Watch the video</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.html</context>
           <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4418836753130849412" datatype="html">
-        <source>Hi! I&apos;m Frank and I am your guide today.</source>
-        <target>Hi! I&apos;m Maria and I am your guide today.</target>
+
+      <trans-unit id="readSpeakerListen" datatype="html">
+        <source>Listen</source>
+        
+      </trans-unit>
+
+      <trans-unit id="readSpeakerDescription" datatype="html">
+        <source>Listen to this page using ReadSpeaker webReader</source>
+        
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
-          <context context-type="linenumber">34,35</context>
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+          <context context-type="linenumber">46,57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/interests-screen/interests-screen.component.ts</context>
+          <context context-type="linenumber">84,105</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">131,137</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.html</context>
+          <context context-type="linenumber">102,112</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
+          <context context-type="linenumber">48,56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
+          <context context-type="linenumber">157,168</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2299659043344775884" datatype="html">
-        <source>Watch our &apos;How to Use&apos; video&apos;, &apos;- click the button below</source>
+
+      <trans-unit id="6016339560858257925" datatype="html">
+        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Watch the Video<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> below and then<x id="LINE_BREAK" ctype="x-br" equiv-text="&lt;br/&gt;"/>click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Get Started<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button to check your skills! </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">35,36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="b64d14d1b771079b317356ac39fa357cf1292d95" datatype="html">
-        <source> Check your skills and discover your strengths! </source>
+      <trans-unit id="4418836753130849412" datatype="html">
+        <source>Hi! I&apos;m Frank and I am your guide today.</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6046622641570837015" datatype="html">
+        <source> Watch our 'How to Use' video </source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="7023527424275074998" datatype="html">
+        <source> - click the button below </source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="appTagline" datatype="html">
+        <source> Check in and take off with the CITO Skills Checker! </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">41,57</context>
@@ -44,13 +106,15 @@
       </trans-unit>
       <trans-unit id="57f3f097a7349c546f1ec96ea821038e6472c175" datatype="html">
         <source> All in less than 10 minutes! </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">78,86</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="de73c30ed7d5fb826f47bed609ab6f1d4aefd9d7" datatype="html">
-        <source> CITO Skills Checker is a free and confidential tool for you to check your skills and find ways to help you improve your skills in: </source>
+      <trans-unit id="appDescription" datatype="html">
+        <source> Check your skills with this free and confidential tool and find ways to help improve your skills in: </source>
+        <target>Check your skills with this free tool and find ways to help improve your skills in:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">109,128</context>
@@ -58,7 +122,8 @@
         <note priority="1" from="description">app description</note>
       </trans-unit>
       <trans-unit id="skill-computers" datatype="html">
-        <source> Computers </source>
+        <source>Computers</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">134</context>
@@ -66,7 +131,8 @@
         <note priority="1" from="description">skill-computers</note>
       </trans-unit>
       <trans-unit id="skill-maths" datatype="html">
-        <source> Maths </source>
+        <source>Maths</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">134</context>
@@ -74,18 +140,125 @@
         <note priority="1" from="description">skill-maths</note>
       </trans-unit>
       <trans-unit id="skill-reading-and-writing" datatype="html">
-        <source> Reading and Writing </source>
+        <source>Reading and Writing</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">134</context>
         </context-group>
         <note priority="1" from="description">skill-reading-and-writing</note>
       </trans-unit>
+
+      <!-- For some reason using $localize`:@@ID:text` syntax crashed at runtime so taking the lazy way out and just duplicating text-->
+      <trans-unit id="5212522194847915416" datatype="html">
+        <source>Reading and Writing</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-reading-and-writing</note>
+      </trans-unit>
+      <trans-unit id="8618868666624269972" datatype="html">
+        <source>Computers</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-computers</note>
+      </trans-unit>
+      <trans-unit id="2857402599430378598" datatype="html">
+        <source>Maths</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-maths</note>
+      </trans-unit>
+
+      <trans-unit id="dimension-fluency" datatype="html">
+        <source> faster </source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/etc/string-manager.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dimension-confidence" datatype="html">
+        <source> more confidently </source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/etc/string-manager.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dimension-independence" datatype="html">
+        <source> without help </source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/etc/string-manager.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="level-easy" datatype="html">
+        <source>easy</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="level-little-difficult" datatype="html">
+        <source>a little difficult</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="level-difficult" datatype="html">
+        <source>difficult</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="level-very-difficult" datatype="html">
+        <source>very difficult</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="318177528270062143" datatype="html">
+        <source>Improve your skills so you can take the next step towards achieving your goal by:</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="1054994957783462732" datatype="html">
+        <source>Brushing up on your <x id="PH" equiv-text="this.stringManagerService.concatenateText(brushUpSkills)"/> skills</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      
+      <trans-unit id="3655391894824599864" datatype="html">
+        <source> Developing your <x id='PH' equiv-text='this.stringManagerService.concatenateText(developSkills)'/> skills </source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
+        </context-group>
+      </trans-unit>
+      
       <trans-unit id="wellDone" datatype="html">
         <source>Well done!</source>
+        
       </trans-unit>
       <trans-unit id="navigation-back" datatype="html">
         <source>Back</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/navigate-button/navigate-button.component.ts</context>
           <context context-type="linenumber">37,38</context>
@@ -97,6 +270,7 @@
       </trans-unit>
       <trans-unit id="navigation-next" datatype="html">
         <source>Next</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/navigate-button/navigate-button.component.ts</context>
           <context context-type="linenumber">43</context>
@@ -104,18 +278,21 @@
       </trans-unit>
       <trans-unit id="navigation-go-to-results" datatype="html">
         <source>Go to results</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="navigation-skip" datatype="html">
         <source>Skip task</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="af19a8e1a93c3825fb8b7628be144ea978ff873c" datatype="html">
         <source>Pick your goal</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/interests-screen/interests-screen.component.ts</context>
           <context context-type="linenumber">37,44</context>
@@ -123,29 +300,91 @@
       </trans-unit>
       <trans-unit id="fa5b9faacb092443b8d3766c66d29db930770afb" datatype="html">
         <source>I want to check my skills so that I can...</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/interests-screen/interests-screen.component.ts</context>
           <context context-type="linenumber">60,71</context>
         </context-group>
       </trans-unit>
 
-      <trans-unit id="977c20ba3e4db26993c06fdcf01b4976ce069d69" datatype="html">
-        <source>You will watch a video and answer the questions beneath the video.</source>
+
+      <trans-unit id="ff9b7d39c0dd5cff3ebb1ac2b7607e815e236328" datatype="html">
+        <source>Each task will take about <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>2 minutes<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5400300335528873684" datatype="html">
+        <source>Watch each video, think about the task, and answer some questions.</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
       <trans-unit id="4c2b42371afac6a70701b04aa83c8f0537481e99" datatype="html">
-        <source>The tasks will check your Skills related to:</source>
+        <source>The tasks will check your skills in these areas:</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5585351378029958723" datatype="html">
+        <source>Well Done!</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="3579655605445002381" datatype="html">
+        <source>Task <x id='PH' equiv-text='this.scenarioIndex'/> Complete!</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
       
+      <trans-unit id="4943851949900940301" datatype="html">
+        <source>Click <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Continue<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> to go to <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Task <x id='INTERPOLATION' equiv-text='{{ scenarioIndex + 1 }}'/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></source>
+          
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      
+
+
+      <trans-unit id="1576982241362990507" datatype="html">
+        <source>Click Continue to go to the next task</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+
+      
+
+      <trans-unit id="7269247711475319570" datatype="html">
+        <source>Back to results</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">52,73</context>
+        </context-group>
+      </trans-unit>
+      
       <trans-unit id="c8e2b43e13a25018687259605aeb215d3da7fc07" datatype="html">
         <source>Please, choose your location to see the learning opportunities near you</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
           <context context-type="linenumber">52,73</context>
@@ -153,6 +392,7 @@
       </trans-unit>
       <trans-unit id="fcbf30e46fa03e56b30842e359245b39a9295dd8" datatype="html">
         <source>Choose your area</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
           <context context-type="linenumber">86,90</context>
@@ -160,36 +400,64 @@
       </trans-unit>
       <trans-unit id="4eb84de23219c85432e38fb4fbdeb6c0f103ff8b" datatype="html">
         <source>Show all</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
           <context context-type="linenumber">112,116</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="b3854491aa3693a9e72ca3ba3f6ce58738c01d6b" datatype="html">
-        <source>Brush up</source>
+      <trans-unit id="brushUp" datatype="html">
+        <source>c</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
           <context context-type="linenumber">137</context>
         </context-group>
         <note priority="1" from="description">brush-up</note>
       </trans-unit>
-      <trans-unit id="f16a956dd8efdbf55ef35151066a335e8c8dc94d" datatype="html">
+      <trans-unit id="furtherDevelop" datatype="html">
         <source>Further develop</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
           <context context-type="linenumber">137</context>
         </context-group>
         <note priority="1" from="description">further-develop</note>
       </trans-unit>
+      <trans-unit id="4097683025088220832" datatype="html">
+        <source>Web: <x id='PH' equiv-text='link'/></source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7219323521390233539" datatype="html">
+        <source>Phone: <x id='PH' equiv-text='course.contact_telephone'/></source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="e28d23f98925a10e90c40570e0eae8027895a68e" datatype="html">
-        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Watch the Video<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> below and then<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Get Started<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button to Check your Skills! </source>
+        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Watch the Video<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> below and then<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Get Started<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button to check your skills! </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="4936645848891830149" datatype="html">
+        <source>My Results</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.html</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="53770317b4087d64adfcc7f54f48fa866b431906" datatype="html">
         <source>My Learning Pathway</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.html</context>
           <context context-type="linenumber">53,61</context>
@@ -197,6 +465,7 @@
       </trans-unit>
       <trans-unit id="eb1a69dc30dc8a5c52fce95daf1af3a3162e214e" datatype="html">
         <source>Download My Skill Summary</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.html</context>
           <context context-type="linenumber">73,83</context>
@@ -204,6 +473,7 @@
       </trans-unit>
       <trans-unit id="1abc96c2def732599b9c48b359ba40ce0529946f" datatype="html">
         <source>Check out your <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Learning Pathway<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> and find a course that&apos;s right for you:</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.html</context>
           <context context-type="linenumber">96,46</context>
@@ -211,6 +481,7 @@
       </trans-unit>
       <trans-unit id="24800f1a845751f341e8a779738bfef6d6719b38" datatype="html">
         <source>Well Done! Skills check complete!</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
           <context context-type="linenumber">41,47</context>
@@ -218,46 +489,56 @@
       </trans-unit>
       <trans-unit id="e4d0331fd401fb7ebedf3196c44a3cd4e2e04d77" datatype="html">
         <source>You&apos;re on your way to achieving your goal to:</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
           <context context-type="linenumber">62,66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="44feaac724527a381d07365837cb53d32484f26d" datatype="html">
+      <trans-unit id="balloonDescription" datatype="html">
         <source> The balloons will give you an idea of your skill level. The bigger the balloon the stronger your skill in that area is! </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
           <context context-type="linenumber">78,94</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="eb483b1c022a3b6738459a5aad1a5dcb432a3f4f" datatype="html">
-        <source>What&apos;s next?</source>
+
+      <trans-unit id="3333771690595335412" datatype="html">
+        <source>What's next?</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
-          <context context-type="linenumber">111,119</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4936645848891830149" datatype="html">
-        <source>My Results</source>
+      <trans-unit id="2097334910632897957" datatype="html">
+        <source>New Goal</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6802427077366147871" datatype="html">
         <source>My Learning Pathway</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a96fffed3f962d61cc726e56a2a6df8e0afa556e" datatype="html">
         <source> Click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Download My Skill Summary<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button for a full summary of your CITO Skills Checker journey: </source>
+        <target> Click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Download My Skill Summary<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button to see your options: </target>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
           <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
+
+
       <trans-unit id="7825378388996300944" datatype="html">
         <source>Change Goal</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
           <context context-type="linenumber">40,41</context>
@@ -265,6 +546,7 @@
       </trans-unit>
       <trans-unit id="8773382622661528773" datatype="html">
         <source>Let&apos;s Go!</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
           <context context-type="linenumber">41,42</context>
@@ -272,12 +554,14 @@
       </trans-unit>
       <trans-unit id="113a82a3a9d53f8c9bc865085b8229bb559b7910" datatype="html">
         <source>Click <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Let's Go<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> to begin!</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4547009599037871229" datatype="html">
         <source>Great! You have set a goal of improving your skills to:</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
           <context context-type="linenumber">56,57</context>
@@ -285,6 +569,7 @@
       </trans-unit>
       <trans-unit id="1151598256828436069" datatype="html">
         <source>You will now have to complete 4 tasks based on this goal</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
           <context context-type="linenumber">58,59</context>
@@ -292,6 +577,7 @@
       </trans-unit>
       <trans-unit id="6962699013778688473" datatype="html">
         <source>Continue</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
           <context context-type="linenumber">62,63</context>
@@ -299,67 +585,332 @@
       </trans-unit>
       <trans-unit id="7230233700717619134" datatype="html">
         <source>Previous Task</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
           <context context-type="linenumber">63,64</context>
         </context-group>
       </trans-unit>
-            <trans-unit id="1007403134559915727" datatype="html">
+
+      <trans-unit id="progressBarLabel" datatype="html">
+        <source><x id='INTERPOLATION' equiv-text='{{ progress }}'/>% Complete!</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.html</context>
+          <context context-type="linenumber">89,86</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.html</context>
+          <context context-type="linenumber">96,87</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.html</context>
+          <context context-type="linenumber">46,35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
+          <context context-type="linenumber">191</context>
+        </context-group>
+      </trans-unit>
+
+      
+      <trans-unit id="8052359303609067109" datatype="html">
+        <source>If you go to results you won't be able to go back</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="8897338744218125887" datatype="html">
+        <source>Back to task</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="1007403134559915727" datatype="html">
         <source>You can tick more than on</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-screen/scenario-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5778798780751366170" datatype="html">
         <source>Your skills</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
         </context-group>
       </trans-unit>
       <trans-unit id="8598757320917702229" datatype="html">
         <source> Drag the slider to share your level of knowledge </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-screen/scenario-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3575696212595967398" datatype="html">
         <source> Please select one or more of the options below </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-screen/scenario-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1760041404900452052" datatype="html">
         <source> Please select one of the options below </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-screen/scenario-screen.component.ts</context>
         </context-group>
       </trans-unit>
+
       <trans-unit id="4dd41737dd07136d8ab35e6c5622f688a55230f8" datatype="html">
         <source> Skill </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b7a285515e41f0c8038d8b8e65b5199cb9928681" datatype="html">
         <source> Course </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ca0a2a06d8566133de0db9c382f8d585d4c27740" datatype="html">
         <source> Enrolment Starts </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c97c5b96c7ed0ddfe44c88150aa7caf6fe9572d2" datatype="html">
         <source> Enrolment Ends </source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6802427077366147871" datatype="html">
         <source> My Learning Pathway </source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="b9212a5362e6143e924b21f09de1978bdc867b09" datatype="html">
+        <source>If this is a Learning Option you are interested in, please use the contact details below to get in touch.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="316849f8dc85257c6e508e861b9b0450ad878263" datatype="html">
+        <source>If you would like to find out more, or book a course, go to the National Adult Literacy Agency webpage by pressing the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>More Info<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="4978412576633513725" datatype="html">
+        <source>You're on your way to achieving your goal to:</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2366961165420741501" datatype="html">
+        <source>Check out the courses below and find one that&#39;s right for you!</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="6269992297457029737" datatype="html">
+        <source>one</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2697298659250494160" datatype="html">
+        <source>two</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7717461822426550310" datatype="html">
+        <source>three</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3450347237775897623" datatype="html">
+        <source>four</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2725165291759197538" datatype="html">
+        <source>My Skills Summary</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3810806004010265561" datatype="html">
+        <source>The balloons will give you an idea of your skill level. The bigger the balloon, the stronger your skill in this area is!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3942806569287492116" datatype="html">
+        <source>Take the next step by developing your skills even further.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5341942142451752716" datatype="html">
+        <source>You identified that you found</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3051919120993673498" datatype="html">
+        <source><x id='PH' equiv-text='task_str'/> <x id='PH_1' equiv-text='scen.level'/></source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      
+      <trans-unit id="doTheseTasks" datatype="html">
+        <source>to do these tasks</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="399564499627241152" datatype="html">
+        <source>to do this task</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6302427059213710892" datatype="html">
+        <source>to do similar tasks</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6383895914223923037" datatype="html">
+        <source>You can reach your goal by developing your</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4343346293920144942" datatype="html">
+        <source>with more confidence</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6087170285949181351" datatype="html">
+        <source>faster</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4335393173567054239" datatype="html">
+        <source>without help.</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="doSimilarTasks" datatype="html">
+        <source>so that you can do similar tasks</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3929281485914893910" datatype="html">
+        <source>and</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1930770692386173711" datatype="html">
+        <source>skills</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6660968258366310745" datatype="html">
+        <source>everyday task</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3947455418373179147" datatype="html">
+        <source>everyday tasks</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5835599036611110546" datatype="html">
+        <source>You looked at <x id='PH' equiv-text='scenario_count_str'/> <x id='PH_1' equiv-text='task_str'/></source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3372389991046668102" datatype="html">
+        <source>You found aspects of the following <x id='PH' equiv-text='task_str'/> challenging:</source>
+        <target>You found some things from the following <x id='PH' equiv-text='task_str'/> challenging:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5960096873104755868" datatype="html">
+        <source>More info</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="8266713584543975784" datatype="html">
+        <source>Please use the contact details below to get in touch and start learning today!</source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5765084260695627805" datatype="html">
+        <source>If you would like to find out more, click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>More info<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button below.</source>
+        
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
         </context-group>
