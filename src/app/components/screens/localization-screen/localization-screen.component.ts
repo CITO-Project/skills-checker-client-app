@@ -132,7 +132,7 @@ export class LocalizationScreenComponent implements OnInit {
                           .set( 'lang', environment.readspeaker.lang )
                           .set( 'voice', environment.readspeaker.voice )
                           .set( 'readid', readid)
-                          .set( 'url', encodeURIComponent('https://skillscheck.citoproject.eu/updates/'));
+                          .set( 'url', encodeURIComponent(environment.api.host + '/updates/'));
 
     return `${baseURL}?${params.toString()}`;
   }
