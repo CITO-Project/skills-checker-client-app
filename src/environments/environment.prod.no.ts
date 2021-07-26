@@ -2,6 +2,7 @@ export const environment = {
   production: false,
   api: {
 //    host: 'https://skillscheck.citoproject.eu',
+//    host: 'https://skillschecker.no',
     host: 'https://34.254.132.188',
     port: '',
     path: '/api/',
@@ -9,8 +10,8 @@ export const environment = {
   readspeaker: {
     enabled: true,
     id: 12420,
-    lang: 'en_uk',
-    voice: 'Alice',
+    lang: 'no_nb',
+    voice: 'Lykke',
     baseurl: '//app-eu.readspeaker.com/cgi-bin/rsent'
   },
   product: 'nala-no',
