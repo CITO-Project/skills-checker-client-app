@@ -71,7 +71,7 @@
       </trans-unit>
       <trans-unit id="4418836753130849412" datatype="html">
         <source>Hi! I&apos;m Frank and I am your guide today.</source>
-        
+        <target>Hi! I&apos;m Maria and I am your guide today.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">34,35</context>
@@ -407,7 +407,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="brushUp" datatype="html">
-        <source>c</source>
+        <source>Brush up</source>
         
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
