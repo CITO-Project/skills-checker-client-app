@@ -143,9 +143,9 @@ export class ResultsScreenComponent implements OnInit {
       // VERY DIFFICULT     == 0
       let scenario_difficulty = this.dataLogService.getAnswer(i, 0);
 
-      let difficulty_str = (scenario_difficulty==0) ? 'very difficult' 
-                            : (scenario_difficulty==1) ? 'difficult' 
-                            : (scenario_difficulty==2) ? 'a little difficult' : 'easy';
+      let difficulty_str = (scenario_difficulty==0) ? $localize`:@@level-very-difficult:very difficult` 
+                            : (scenario_difficulty==1) ? $localize`:@@level-difficult:difficult` 
+                            : (scenario_difficulty==2) ? $localize`:@@level-little-difficult:a little difficult` : $localize`:@@level-easy:easy`;
 
       // If user selected value other than EASY (less that 3)
       if( scenario_difficulty != -1 && scenario_difficulty  < 3 ) {
@@ -170,30 +170,30 @@ export class ResultsScreenComponent implements OnInit {
           let aspect = this.dataLogService.getAnswer(i, 1);
 
           if( aspect == 1 ) {
-            scenario.aspect.push( this.toObj( 'reading and writing', this.dataLogService.getQuestion(i, 1).answers[0] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
           }
           else if( aspect == 2) {
-            scenario.aspect.push( this.toObj( 'maths', this.dataLogService.getQuestion(i, 1).answers[1] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-maths:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
           }
           else if( aspect == 4 ) {
-            scenario.aspect.push( this.toObj( 'computers', this.dataLogService.getQuestion(i, 1).answers[2] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-computers:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
           }
           else if( aspect == 3 ) {
-            scenario.aspect.push( this.toObj( 'reading and writing', this.dataLogService.getQuestion(i, 1).answers[0] ) );
-            scenario.aspect.push( this.toObj( 'maths', this.dataLogService.getQuestion(i, 1).answers[1] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-maths:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
           }
           else if( aspect == 5 ) {
-            scenario.aspect.push( this.toObj( 'reading and writing', this.dataLogService.getQuestion(i, 1).answers[0] ) );
-            scenario.aspect.push( this.toObj( 'computers', this.dataLogService.getQuestion(i, 1).answers[2] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-computers:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
           }
           else if( aspect == 6 ) {
-            scenario.aspect.push( this.toObj( 'maths', this.dataLogService.getQuestion(i, 1).answers[1] ) );
-            scenario.aspect.push( this.toObj( 'computers', this.dataLogService.getQuestion(i, 1).answers[2] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-maths:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-computers:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
           }
           else if( aspect == 7 ) {
-            scenario.aspect.push( this.toObj( 'reading and writing', this.dataLogService.getQuestion(i, 1).answers[0] ) );
-            scenario.aspect.push( this.toObj( 'maths', this.dataLogService.getQuestion(i, 1).answers[1] ) );
-            scenario.aspect.push( this.toObj( 'computers', this.dataLogService.getQuestion(i, 1).answers[2] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-maths:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-computers:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
           }
 
           // independence
@@ -243,14 +243,14 @@ export class ResultsScreenComponent implements OnInit {
 
   getReadSpeakerURL(readid: string): string {
 
-    const baseURL = '//app-eu.readspeaker.com/cgi-bin/rsent';
+    const baseURL = environment.readspeaker.baseurl;
 
     const params = new HttpParams()
                           .set( 'customerid', environment.readspeaker.id.toString() )
                           .set( 'lang', environment.readspeaker.lang )
                           .set( 'voice', environment.readspeaker.voice )
                           .set( 'readid', readid)
-                          .set( 'url', encodeURIComponent('https://skillscheck.citoproject.eu/updates/'));
+                          .set( 'url', encodeURIComponent(environment.api.host + '/updates/'));
 
     return `${baseURL}?${params.toString()}`;
   }

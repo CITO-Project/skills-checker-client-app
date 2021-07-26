@@ -66,7 +66,7 @@ export class StringManagerService {
         case 1:
           return texts[0];
         case 2:
-          return `${texts[0]} and ${texts[1]}`;
+          return texts[0] + ' ' + $localize`and` + ' ' + texts[1];
       }
     }
   }

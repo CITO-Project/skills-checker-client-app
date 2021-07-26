@@ -1,7 +1,7 @@
 <app-header text='default'></app-header>
 
 <div id="readspeaker_button_1" class="rs_skip rsbtn rs_preserve" *ngIf="env.readspeaker.enabled">
-  <a rel="nofollow" class="rsbtn_play" accesskey="L" i18n-title="@@readSpeakerDescription" title="'Listen to this page using ReadSpeaker webReader" [attr.href]="getReadSpeakerURL('content')">
+  <a rel="nofollow" class="rsbtn_play" accesskey="L" i18n-title="@@readSpeakerDescription" title="Listen to this page using ReadSpeaker webReader" [attr.href]="getReadSpeakerURL('content')">
       <span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span i18n="@@readSpeakerListen">Listen</span></span></span>
       <span class="rsbtn_right rsimg rsplay rspart"></span>
   </a>
@@ -30,7 +30,7 @@
   </div>
   <div class="learning-oportunities" *ngIf="getCourses('brush_up').length > 0 || getCourses('develop').length > 0">
     <div class="brush-up" *ngIf="getCourses('brush_up').length > 0">
-      <div class="heading" i18n="brush-up">Brush up</div>
+      <div class="heading" i18n="@@brushUp">Brush up</div>
       <app-course
         *ngFor="let course of getCourses('brush_up')"
         [course]=course
@@ -41,7 +41,7 @@
       ></app-course>
     </div>
     <div class="develop" *ngIf="getCourses('develop').length > 0">
-      <div class="heading" i18n="further-develop">Further develop</div>
+      <div class="heading" i18n="@@furtherDevelop">Further develop</div>
       <app-course
         *ngFor="let course of getCourses('develop')"
         [course]=course
@@ -56,6 +56,7 @@
 
 <div class="footer">
   <app-navigate-button
+    i18n-text
     text='Back to results'
     destination='results'></app-navigate-button>
 </div>

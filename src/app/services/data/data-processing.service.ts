@@ -225,17 +225,17 @@ export class DataProcessingService {
       learningPathwayDescription: []
     };
     if (brushUpSkills.length > 0) {
-      let text = $localize`Take the next step by brushing up on your ${this.stringManagerService.concatenateText(brushUpSkills)}:@@SKILL: skills`;
+      let text = $localize`Brushing up on your ${this.stringManagerService.concatenateText(brushUpSkills)} skills`;
       if (brushUpDimensions.length > 0) {
-        text += `, so that you can do similar tasks ${this.stringManagerService.concatenateText(brushUpDimensions)}`;
+        text += ', ' + $localize`:@@doSimilarTasks:so that you can do similar tasks ${this.stringManagerService.concatenateText(brushUpDimensions)}`;
       }
       text += '.';
       r.learningPathwayDescription.push(text);
     }
     if (developSkills.length > 0) {
-      let text = $localize`You can also reach your goal by developing your ${this.stringManagerService.concatenateText(developSkills)}:@@SKILL: skills`;
+      let text = $localize`Developing your ${this.stringManagerService.concatenateText(developSkills)} skills`;
       if (developDimensions.length > 0) {
-        text += ` to do these tasks ${this.stringManagerService.concatenateText(developDimensions)}`;
+        text += ' ' + $localize`:@@doTheseTasks: to do these tasks ${this.stringManagerService.concatenateText(developDimensions)}`;
       }
       text += '.';
       r.learningPathwayDescription.push(text);

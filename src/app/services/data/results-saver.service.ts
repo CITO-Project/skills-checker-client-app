@@ -97,13 +97,13 @@ export class ResultsSaverService {
       //#region Printing 'brush_up' courses
       this.canvasManager.setTextAlignment('left');
       if (brushUpCourses.length > 0) {
-        this.printSection('Brush up', brushUpCourses, this.BRUSH_UP_COLOR);
+        this.printSection($localize`:@@brushUp:Brush up`, brushUpCourses, this.BRUSH_UP_COLOR);
       }
       //#endregion
 
       //#region Printing 'develop' courses
       if (developCourses.length > 0) {
-        this.printSection('Further develop', developCourses, this.DEVELOP_COLOR);
+        this.printSection($localize`:@@furtherDevelop:Further develop`, developCourses, this.DEVELOP_COLOR);
       }
       //#endregion
 
@@ -208,7 +208,7 @@ export class ResultsSaverService {
       this.canvasManager.addY(this.TITLE_LINES_SEPARATION);
     });
 
-    this.printTextLineSplit('You\'re on your way to achieving yoru goal to:');
+    this.printTextLineSplit($localize`You\'re on your way to achieving your goal to:`);
     
     this.printTextLine('');
 
@@ -216,33 +216,33 @@ export class ResultsSaverService {
 
     this.printTextLine('');
 
-    this.printTextLineSplit('The balloons will give you an idea of your skill level. The bigger the balloon, the stronger your skill in this area is!');
+    this.printTextLineSplit($localize`:@@balloonDescription:The balloons will give you an idea of your skill level. The bigger the balloon, the stronger your skill in this area is!`);
 
     this.canvasManager.setX( this.BACKGROUND_PADDING_SIDES );
     this.canvasManager.setY( 1150 );
 
 
     let scenario_count_str = ''
-    let task_str = 'tasks';
+    let task_str = $localize`everyday tasks`;
 
     if( scenarios.length == 4) {
-      scenario_count_str = 'four';
+      scenario_count_str = $localize`four`;
     }
     else if( scenarios.length == 4) {
-      scenario_count_str = 'three';
+      scenario_count_str = $localize`three`;
     }
     else if( scenarios.length == 4) {
-      scenario_count_str = 'two';
+      scenario_count_str = $localize`two`;
     }
     else {
-      scenario_count_str = 'one';
-      task_str = 'task';
+      scenario_count_str = $localize`one`;
+      task_str = $localize`everyday task`;
     }
 
-    this.printTitleCentre( 'My Skills Summary', 'bold' );
+    this.printTitleCentre( $localize`My Skills Summary`, 'bold' );
     this.canvasManager.addY(this.TITLE_LINES_SEPARATION);
 
-    this.printText('You looked at ' + scenario_count_str + ' everyday ' + task_str + '. You found aspects of the following ' +task_str+ ' challenging:');
+    this.printText( $localize`You looked at ${scenario_count_str} ${task_str}.` + ' ' + $localize`You found aspects of the following ${task_str} challenging:`);
 
     this.printTextLine('');
     this.printTextLine('');
@@ -253,7 +253,7 @@ export class ResultsSaverService {
       // add a little spacing below the scenario title
       this.canvasManager.addY(this.TITLE_LINES_SEPARATION);
 
-      this.printText( 'You identified that you found' );
+      this.printText( $localize`You identified that you found` );
 
       let task_str = '';
 
@@ -264,21 +264,24 @@ export class ResultsSaverService {
             task_str = task_str + ', ';
           }
           else {
-            task_str = task_str + ' and ';
+            task_str = task_str + ' ' + $localize`and` + ' ';
           }
         }
 
         task_str = task_str + name.toLowerCase();
       })
       
-      this.printText( task_str + ' ' + scen.level, 'bold' );
+      this.printText( $localize`${task_str} ${scen.level}`, 'bold' );
       this.printText( '.' );
+
+
+
       
       if( scen.level === 'a little difficult' || scen.level === 'difficult') {
-        this.printText( 'Take the next step to achieve your goal by brushing up on your' );
+        this.printText( $localize`Take the next step to achieve your goal by brushing up on your` );
       }
       else {
-        this.printText( 'You can reach your goal by developing your' );
+        this.printText( $localize`You can reach your goal by developing your` );
       }
 
       let skills_str = '';
@@ -290,7 +293,7 @@ export class ResultsSaverService {
             skills_str = skills_str + ', ';
           }
           else {
-            skills_str = skills_str + ' and ';
+            skills_str = skills_str + ' ' + $localize`and` + ' ';
           }
         }
 
@@ -299,39 +302,41 @@ export class ResultsSaverService {
         //this.printText( skill, 'bold' );
       })
 
-      skills_str = skills_str + ' skills'
+      skills_str = skills_str + ' ' + $localize`skills`
 
-      this.printText( skills_str, 'bold' );
+
+
+      this.printText( skills_str.toLowerCase(), 'bold' );
 
       console.log( 'scen.independence: ' + scen.independence );
 
       if(scen.independence == 0) {
 
         // User answered 'yes' [0] to question about needing help to do this task
-        let todo_str = 'to do this task';
+        let todo_str = $localize`:@@doTheseTasks:to do this task`;
 
         if( scen.aspect.length > 1 ) {
-          todo_str = 'to do these tasks'
+          todo_str = $localize`:@@doTheseTasks:to do these tasks`;
         }
 
         this.printText( todo_str );
-        this.printText( 'without help.', 'bold' );
+        this.printText( $localize`without help.`, 'bold' );
       }
       else if( scen.fluency == 1 || scen.confidence == 1 ) {
-        this.printText( ', so that you can do similar tasks' );
+        this.printText( ', ' + $localize`:@@doSimilarTasks:so that you can do similar tasks` );
 
         let dimension_str = ''
         
         if( scen.fluency == 1 ) {
-          dimension_str = dimension_str + 'faster';
+          dimension_str = dimension_str + $localize`faster`;
         }
 
         if( scen.fluency == 1 && scen.confidence == 1 ) {
-          dimension_str = dimension_str + ' and ';
+          dimension_str = dimension_str + ' ' + $localize`and` + ' ';
         }
 
         if( scen.confidence == 1 ) {
-          dimension_str = dimension_str +'more confidently';
+          dimension_str = dimension_str +$localize`with more confidence`;
         }
 
         dimension_str = dimension_str + '.';
@@ -343,7 +348,7 @@ export class ResultsSaverService {
       this.printTextLine( '' );
     });
 
-    let str = 'Check out the courses below and find one that\'s right for you.';
+    let str = $localize`Check out the courses below and find one that\'s right for you.`;
 
     this.printText( str );
 
@@ -421,10 +426,10 @@ export class ResultsSaverService {
 
     if (!!course.contact_telephone) {
       // tslint:disable-next-line: max-line-length
-      this.printTextLine(this.stringManagerService.ellipsisText(`Phone: ${course.contact_telephone}`, this.SPLIT_COURSE_TEXTS), 'italic');
+      this.printTextLine(this.stringManagerService.ellipsisText($localize`Phone: ${course.contact_telephone}`, this.SPLIT_COURSE_TEXTS), 'italic');
     }
     if (!!course.link) {
-      this.printTextLine(this.stringManagerService.ellipsisText(`Web: ${link}`, this.SPLIT_COURSE_TEXTS), 'italic');
+      this.printTextLine(this.stringManagerService.ellipsisText($localize`Web: ${link}`, this.SPLIT_COURSE_TEXTS), 'italic');
     }
     //#endregion
 
