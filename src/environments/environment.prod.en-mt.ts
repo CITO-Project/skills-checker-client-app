@@ -2,16 +2,22 @@ export const environment = {
   production: true,
   api: {
     //host: 'https://skillscheck.citoproject.eu',
-    host: 'https://34.254.132.188',
+    //host: 'https://34.254.132.188',
+    host: 'https://www.skillschecker.mt',
     port: '',
     path: '/api/',
   },
   readspeaker: {
-    enabled: false,
+    enabled: true,
     id: 12420,
     lang: 'en_uk',
-    voice: 'Alice',
+    voice: 'Hugh',
     baseurl: '//app-eu.readspeaker.com/cgi-bin/rsent'
+  },
+  analytics: {
+    google: {
+      id: 'UA-170127374-1'
+    }
   },
   product: 'nala-mt',
   locale: 'mt',

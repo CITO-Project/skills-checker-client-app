@@ -23,8 +23,8 @@ export class CommonService {
   private apiUrl = environment.api.host + environment.api.port + environment.api.path + environment.product;
   private resourceFolderUrl = environment.api.host + '/static/';
   private RESOURCE_PATH = 'assets/';
-  private GATrackID = 'UA-170127374-1';
-
+  //private GATrackID = 'UA-170127374-1';
+  private GATrackID = environment.analytics.google.id;
 
   constructor(
     private router: Router,

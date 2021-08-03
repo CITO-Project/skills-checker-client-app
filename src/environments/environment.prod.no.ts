@@ -3,7 +3,8 @@ export const environment = {
   api: {
 //    host: 'https://skillscheck.citoproject.eu',
 //    host: 'https://skillschecker.no',
-    host: 'https://34.254.132.188',
+      host: 'https://skillschecker.ie',
+//    host: 'https://34.254.132.188',
     port: '',
     path: '/api/',
   },
@@ -13,6 +14,11 @@ export const environment = {
     lang: 'no_nb',
     voice: 'Lykke',
     baseurl: '//app-eu.readspeaker.com/cgi-bin/rsent'
+  },
+  analytics: {
+    google: {
+      id: 'UA-170127374-1'
+    }
   },
   product: 'nala-no',
   locale: 'no',
