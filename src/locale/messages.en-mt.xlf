@@ -251,6 +251,15 @@
           <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
         </context-group>
       </trans-unit>
+
+      <trans-unit id="easyPathMsgThree" datatype="html">
+        <source>Call NALA today on 1800 20 20 65 to chat about your options or check out www.fetchcourses.ie to find a course that is right for you.</source>
+        <target>Kindly check out https://mfhea.mt/list-of-licensed-providers-and-accredited-programmes/ and https://education.gov.mt/en/education/pages/higher-education.aspx for further learning opportunities that may be applicable to you.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
+          <context context-type="linenumber">247</context>
+        </context-group>
+      </trans-unit>
       
       <trans-unit id="wellDone" datatype="html">
         <source>Well done!</source>
@@ -325,7 +334,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="4c2b42371afac6a70701b04aa83c8f0537481e99" datatype="html">
-        <source>The tasks will check your skills in these areas:</source>
+        <source>The tasks will check your skills in:</source>
         
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
@@ -560,7 +569,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="4547009599037871229" datatype="html">
-        <source>Great! You have set a goal of improving your skills to:</source>
+        <source>Great! You want to improve your skills so that you can:</source>
         
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
@@ -568,7 +577,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="1151598256828436069" datatype="html">
-        <source>You will now have to complete 4 tasks based on this goal</source>
+        <source>You will now watch four short videos showing everyday tasks.</source>
         
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
@@ -791,28 +800,37 @@
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
       </trans-unit>
-      
-      <trans-unit id="doTheseTasks" datatype="html">
-        <source>to do these tasks</source>
-        
+
+       <trans-unit id="doTheseTasks" datatype="html">
+        <source>to do these tasks <x id='PH' equiv-text='this.stringManagerService.concatenateText(developDimensions)'/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
       </trans-unit>
 
-      <trans-unit id="399564499627241152" datatype="html">
+      <trans-unit id="doTheseTasksSimple" datatype="html">
+        <source>to do these tasks</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>    
+
+      <trans-unit id="doThisTaskSimple" datatype="html">
         <source>to do this task</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="6302427059213710892" datatype="html">
-        <source>to do similar tasks</source>
-        
+      </trans-unit>   
+
+      <trans-unit id="doThisTask" datatype="html">
+        <source>to do this task <x id='PH' equiv-text='this.stringManagerService.concatenateText(developDimensions)'/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
       </trans-unit>
+
+
+     
       <trans-unit id="6383895914223923037" datatype="html">
         <source>You can reach your goal by developing your</source>
         
@@ -841,13 +859,22 @@
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="doSimilarTasks" datatype="html">
+      <trans-unit id="doSimilarTasksSimple" datatype="html">
         <source>so that you can do similar tasks</source>
         
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
       </trans-unit>
+
+      <trans-unit id="doSimilarTasks" datatype="html">
+        <source>to do similar tasks <x id='PH' equiv-text='this.stringManagerService.concatenateText(brushUpDimensions)'/></source>
+        
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
       <trans-unit id="3929281485914893910" datatype="html">
         <source>and</source>
         

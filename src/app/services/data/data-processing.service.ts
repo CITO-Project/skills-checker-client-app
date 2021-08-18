@@ -241,10 +241,10 @@ export class DataProcessingService {
       r.learningPathwayDescription.push(text);
     }
     if ((brushUpSkills.length + developSkills.length) < 1) {
-      r.learningPathwayDescription.push( $localize`You have shown that you have strong reading, writing, maths and computer skills.`);
-      r.learningPathwayDescription.push( $localize`Take the next step by developing your skills even further.` );
+      r.learningPathwayDescription.push( $localize`:@@easyPathMsgOne:You have shown that you have strong reading, writing, maths and computer skills.`);
+      r.learningPathwayDescription.push( $localize`:@@easyPathMsgTwo:Take the next step by developing your skills even further.` );
       // tslint:disable-next-line: max-line-length
-      r.learningPathwayDescription.push( $localize`Call NALA today on 1800 20 20 65 to chat about your options or check out www.fetchcourses.ie to find a course that is right for you.` );
+      r.learningPathwayDescription.push( $localize`:@@easyPathMsgThree:Call NALA today on 1800 20 20 65 to chat about your options or check out www.fetchcourses.ie to find a course that is right for you.` );
     }/* else if ((brushUpSkills.length + developSkills.length) === 1) {
       r.learningPathwayDescription.push('Check out the course below and find if it is right for you');
     } else {

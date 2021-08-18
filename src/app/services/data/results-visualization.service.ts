@@ -18,13 +18,13 @@ export class ResultsVisualizationService {
   private readonly BALLOON_LEVELS = 'smb'.split('');
   private readonly BALLON_SKILLS_TEXT = {
     literacy: {
-      text: 'Reading and Writing'
+      text: $localize`Reading and Writing`
     },
     numeracy: {
-      text: 'Maths'
+      text: $localize`Maths`
     },
     digital_skills: {
-      text: 'Computers'
+      text: $localize`Computers`
     }
   };
   constructor(
@@ -44,6 +44,7 @@ export class ResultsVisualizationService {
       );
     const balloonSize = this.calculateBalloonsSize(results);
     const balloonsOrder = this.calculateBalloonsOrder(results, balloonSize);
+
     const canvasManager = await this.loadBallonTemplate(balloonSize, multiplier);
 
     await canvasManager.loadFont(this.TEXT_FONT_FAMILY, this.TEXT_FONT_FAMILY_SOURCE);
@@ -52,7 +53,7 @@ export class ResultsVisualizationService {
     canvasManager.setColour('white');
     this.calculateCoordinates(balloonSize).forEach( (coordinates: {x: number, y: number}, position: number) =>
       this.stringManagerService.splitTextInLines(
-        balloonsOrder[position], 9
+        balloonsOrder[position], 12
         ).forEach( (text: string, index: number) => {
           if (index === 0) {
             canvasManager.setX(coordinates.x * multiplier);
@@ -62,6 +63,7 @@ export class ResultsVisualizationService {
         }
       )
     );
+
     return canvasManager.exportToData();
   }
 
@@ -124,12 +126,14 @@ export class ResultsVisualizationService {
       .sort( (a: any, b: any) => {
         return b.level - a.level;
       });
+
     data.slice(1, 2).concat(data[0]).concat(data.slice(-1)).forEach( (value: any) => {
       r.push(this.BALLON_SKILLS_TEXT[value.skill].text);
     });
     return r;
   }
 
+  // this function will get very confused if there is any white space aroud the strings
   calculateCoordinates(size: string): {x: number, y: number}[] {
     const r = [];
     const thirdLetter = size[2];
@@ -164,7 +168,8 @@ export class ResultsVisualizationService {
         }
         break;
       case 'mm':
-        r[0] = {x: 34, y: 88};
+//        r[0] = {x: 34, y: 88};
+        r[0] = {x: 30, y: 88};
         r[1] = {x: 86, y: 31};
         switch (thirdLetter) {
           case 'm':

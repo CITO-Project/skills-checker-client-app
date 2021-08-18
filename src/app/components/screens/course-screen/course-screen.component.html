@@ -1,7 +1,7 @@
 <app-header text='default'></app-header>
 
 <div id="readspeaker_button_1" class="rs_skip rsbtn rs_preserve" *ngIf="env.readspeaker.enabled">
-  <a rel="nofollow" class="rsbtn_play" accesskey="L" i18n-title="@@readSpeakerDescription" title="'Listen to this page using ReadSpeaker webReader" [attr.href]="getReadSpeakerURL('content')">
+  <a rel="nofollow" class="rsbtn_play" accesskey="L" i18n-title="@@readSpeakerDescription" title="Listen to this page using ReadSpeaker webReader" [attr.href]="getReadSpeakerURL('content')">
       <span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span i18n="@@readSpeakerListen">Listen</span></span></span>
       <span class="rsbtn_right rsimg rsplay rspart"></span>
   </a>
@@ -22,7 +22,7 @@
   </div>
   <div id="courseDescription" class="text" [innerHTML]="course.description"></div>
 
-  <div class="text static" i18n="">If this is a Learning Option you are interested in, please use the contact details below to get in touch.</div>
+  <div class="text static" i18n="">Please use the contact details below to get in touch and start learning today!</div>
 
   <div class="course-info">
     <div class="row">
@@ -39,7 +39,7 @@
       </div>
     </div>
   </div>
-  <div class="text" i18n="">If you would like to find out more, or book a course, go to the National Adult Literacy Agency webpage by pressing the <b>More Info</b> button</div>
+  <div class="text" i18n="">If you would like to find out more, click the <b>More info</b> button below.</div>
 </div>
 <div class="footer">
 <div *ngIf="!!course && !!course.link; then thenBlock else elseBlock"></div>

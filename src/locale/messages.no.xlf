@@ -251,6 +251,31 @@
           <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
         </context-group>
       </trans-unit>
+
+      <trans-unit id="easyPathMsgOne" datatype="html">
+        <source>You have shown that you have strong reading, writing, maths and computer skills.</source>
+        <target>Du har vist at du har gode lese-, skrive-, matte- og datakunnskaper.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
+          <context context-type="linenumber">244,245</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="easyPathMsgTwo" datatype="html">
+        <source>Take the next step by developing your skills even further.</source>
+        <target>Ta neste steg for å utvikle ferdighetene dine ytterligere.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
+          <context context-type="linenumber">245</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="easyPathMsgThree" datatype="html">
+        <source>Call NALA today on 1800 20 20 65 to chat about your options or check out www.fetchcourses.ie to find a course that is right for you.</source>
+        <target>Karriereveiledning kan hjelpe deg å finne ut hvilke muligheter du har for å få jobb eller utdanning. Det finnes mange forskjellige karriereveiledningstilbud. Ønsker du å vite mer om karriereveiledning?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
+          <context context-type="linenumber">247</context>
+        </context-group>
+      </trans-unit>
       
       <trans-unit id="wellDone" datatype="html">
         <source>Well done!</source>
@@ -324,8 +349,8 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4c2b42371afac6a70701b04aa83c8f0537481e99" datatype="html">
-        <source>The tasks will check your skills in these areas:</source>
+      <trans-unit id="4511821012390778558" datatype="html">
+        <source>The tasks will check your skills in:</source>
         <target>Oppgavene vil kontrollere følgende ferdighetesområder:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
@@ -342,14 +367,34 @@
         </context-group>
       </trans-unit>
 
-      <trans-unit id="3579655605445002381" datatype="html">
-        <source>Task <x id='PH' equiv-text='this.scenarioIndex'/> Complete!</source>
+      <trans-unit id="146830415799947949" datatype="html">
+        <source>You have completed Task <x id='PH' equiv-text='this.scenarioIndex'/>!</source>
         <target>Du har fullført oppgave <x id='PH' equiv-text='this.scenarioIndex'/>!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
+
+      <trans-unit id="7746079074597948384" datatype="html">
+        <source>There is <x id='PH' equiv-text='remainingCount'/> more to go!</source>
+        <target>Det er <x id='PH' equiv-text='remainingCount'/> oppgave igjen!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5592817412235299584" datatype="html">
+        <source>There are <x id='PH' equiv-text='remainingCount'/> more to go!</source>
+        <target>Det er <x id='PH' equiv-text='remainingCount'/> oppgaver igjen!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+
+
       
       <trans-unit id="4943851949900940301" datatype="html">
         <source>Click <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Continue<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> to go to <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Task <x id='INTERPOLATION' equiv-text='{{ scenarioIndex + 1 }}'/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></source>
@@ -558,16 +603,16 @@
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4547009599037871229" datatype="html">
-        <source>Great! You have set a goal of improving your skills to:</source>
+      <trans-unit id="9163094770908081775" datatype="html">
+        <source>Great! You want to improve your skills so that you can:</source>
         <target>Flott! Du vil forbedre ferdighetene dine slik at du kan:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
           <context context-type="linenumber">56,57</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1151598256828436069" datatype="html">
-        <source>You will now have to complete 4 tasks based on this goal</source>
+      <trans-unit id="8400257256938487791" datatype="html">
+        <source>You will now watch four short videos showing everyday tasks.</source>
         <target>Du vil nå se fire korte videoer som viser hverdagsoppgaver.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
@@ -792,6 +837,15 @@
       </trans-unit>
       
       <trans-unit id="doTheseTasks" datatype="html">
+        <source>to do these tasks <x id='PH' equiv-text='this.stringManagerService.concatenateText(developDimensions)'/></source>
+        <target>slik at din gjennomføre dette <x id='PH' equiv-text='this.stringManagerService.concatenateText(developDimensions)'/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="doTheseTasksSimple" datatype="html">
         <source>to do these tasks</source>
         <target>slik at din gjennomføre dette</target>
         <context-group purpose="location">
@@ -799,13 +853,13 @@
         </context-group>
       </trans-unit>
 
-      <trans-unit id="399564499627241152" datatype="html">
+      <trans-unit id="doThisTaskSimple" datatype="html">
         <source>to do this task</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6302427059213710892" datatype="html">
+      <trans-unit id="doSimilarTasksSimple" datatype="html">
         <source>to do similar tasks</source>
         <target>gjennomføre oppgavene</target>
         <context-group purpose="location">
@@ -841,8 +895,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="doSimilarTasks" datatype="html">
-        <source>so that you can do similar tasks</source>
-        <target>slik at du kan gjøre lignende oppgaver</target>
+        <source>so that you can do similar tasks <x id='PH' equiv-text='this.stringManagerService.concatenateText(brushUpDimensions)'/></source>
+        <target>slik at du kan gjøre lignende oppgaver <x id='PH' equiv-text='this.stringManagerService.concatenateText(brushUpDimensions)'/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
