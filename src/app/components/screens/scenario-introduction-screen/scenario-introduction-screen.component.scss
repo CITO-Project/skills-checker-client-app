@@ -10,12 +10,21 @@
 //   }
 // }
 
-.text {
-  text-align: center;
-  padding: 0px 20px;
-  @include setStyleTablet {
-    padding: 10px 20px;
-  }
+#content {
+  max-width: 100%;
+}
+
+// .text {
+//   font-weight: 500px;
+//   text-align: center;
+//   padding: 0px 20px;
+//   @include setStyleTablet {
+//     padding: 10px 20px;
+//   }
+// }
+
+.spaced {
+  padding-top: 1em;
 }
 
 .features.container-fluid {
@@ -61,6 +70,7 @@
 }
 .text {
   text-align: center;
+  font-weight: 500;
 }
 .ballons {
   padding: 20px 0;
@@ -78,9 +88,13 @@
 .progress {
   width: 100vw;
   height: 3vh;
+  line-height: 3vh;
   z-index: 301;
 
-  font-size: 1rem;
+  @include setStyleTablet {
+    font-size: 1rem;
+  }
+
   font-weight: 500;
 
   background-color: #F2F3F3;

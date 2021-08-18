@@ -59,12 +59,22 @@ export class ScenarioIntroductionScreenComponent implements OnInit {
         this.interest = dataLogService.getInterest();
         if (this.scenarioIndex <= 0) {
           this.imageTexts = [
-            $localize`Great! You have set a goal of improving your skills to:`,
+            $localize`Great! You want to improve your skills so that you can:`,
             this.interest.text,
-            $localize`You will now have to complete 4 tasks based on this goal`
+            $localize`You will now watch four short videos showing everyday tasks.`
           ];
         } else {
-          this.imageTexts = [$localize`Well Done!`,$localize`Task ${this.scenarioIndex} Complete!`,$localize`Click Continue to go to the next task`];
+
+          const scenarioCount = this.dataLogService.getScenarioCount();
+          const remainingCount = scenarioCount - this.scenarioIndex;
+          const remainingStrSingular = $localize`There is ${remainingCount} more to go!`;
+          let imageText = $localize`There are ${remainingCount} more to go!`;
+
+          if( remainingCount == 1 ) {
+            imageText = remainingStrSingular;
+          }
+
+          this.imageTexts = [$localize`Well Done!`,$localize`You have completed Task ${this.scenarioIndex}!`,imageText];
           this.btnForward = $localize`Continue`;
           this.btnBack = $localize`Previous Task`;
         }
