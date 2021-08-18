@@ -15,7 +15,9 @@
 }
 
 .heading {
-  font-size: 175%;
+  @include setStyleSmall {
+  //  font-size: 165%;
+  }
 }
 
 .subheading {
@@ -36,11 +38,13 @@
 
   position: absolute;
   z-index: 1;
+  min-width: 250px;
 
   bottom: 15%;
 
   @include setStyleSmall {
     right: 15%;
+    min-width: 160px
   }
   
   right: 20%;
