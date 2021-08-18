@@ -15,7 +15,7 @@ export class StringManagerService {
   public readonly TEXTS = {
     literacy: $localize`:@@skill-reading-and-writing:reading and writing`,
     numeracy: $localize`:@@skill-maths:maths`,
-    digital_skills: $localize`:@@skill-computers:computer`,
+    digital_skills: $localize`:@@skill-computers:computers`,
     fluency: $localize`:@@dimension-fluency:faster`,
     confidence: $localize`:@@dimension-confidence:more confidently`,
     independence: $localize`:@@dimension-independence:without help`
@@ -37,6 +37,11 @@ export class StringManagerService {
       } else {
         endIndex = text.length;
       }
+
+      if( endIndex === 0 ) {
+        endIndex++;
+      }
+
       r.push(text.slice(0, endIndex).trim());
       text = text.slice(endIndex);
       splittedText = text.split('');
