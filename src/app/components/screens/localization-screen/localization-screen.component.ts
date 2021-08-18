@@ -12,6 +12,7 @@ import { DataLogService } from 'src/app/services/data/data-log.service';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 
 import { HttpParams } from '@angular/common/http';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from 'src/environments/environment';
 
@@ -43,12 +44,15 @@ export class LocalizationScreenComponent implements OnInit {
 
   public results: Result;
 
+  locationForm: FormGroup;
+
   constructor(
     private courseService: CoursesService,
     public commonService: CommonService,
     private dataLogService: DataLogService,
     private dataProcessingService: DataProcessingService,
-    private googleAnalyticsService: GoogleAnalyticsService) {
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private fb: FormBuilder ) {
     const extras = this.commonService.getExtras();
     if (extras !== undefined && extras.state !== undefined) {
       this.results = extras.state as Result;
@@ -69,8 +73,11 @@ export class LocalizationScreenComponent implements OnInit {
       this.location = 'Online';
     }
     else {
-      
     }
+
+    this.locationForm = this.fb.group({
+      locationControl: [this.location]
+    });
 
     this.setRegion( this.location );
 

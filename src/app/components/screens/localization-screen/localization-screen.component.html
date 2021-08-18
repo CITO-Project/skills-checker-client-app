@@ -14,18 +14,22 @@
         {{ LEARNING_PATHWAY_HEADER }}
       </div>
       <div class="text interest"><b>{{interest.text}}</b></div>
+      <!--
       <div class="message container text" *ngFor='let text of texts.learningPathwayDescription'>
         {{ text }}
       </div>
+      -->
     </div>
   <div id="header">
     
     <div class="description" i18n="">Please, choose your location to see the learning opportunities near you</div>
-    <select class="browser-default custom-select" (change)='setRegion($event.target.value)'>
-      <option selected i18n="">Choose your area</option>
-      <option value='all' i18n="">Show all</option>
-      <option *ngFor='let region of REGIONS' value='{{ region }}'>{{ region }}</option>
-    </select>
+    <form [formGroup]="locationForm">
+      <select class="browser-default custom-select" (change)='setRegion($event.target.value)' formControlName="locationControl">
+        <option selected i18n="">Choose your area</option>
+        <option value='all' i18n="">Show all</option>
+        <option *ngFor='let region of REGIONS' value='{{ region }}'>{{ region }}</option>
+      </select>
+    </form>
     <hr>
   </div>
   <div class="learning-oportunities" *ngIf="getCourses('brush_up').length > 0 || getCourses('develop').length > 0">

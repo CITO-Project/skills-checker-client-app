@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { Ng5SliderModule } from 'ng5-slider';
@@ -55,6 +55,7 @@ import { ScenarioIntroductionScreenComponent } from './components/screens/scenar
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     Ng5SliderModule,
     VgCoreModule,
     VgControlsModule,
