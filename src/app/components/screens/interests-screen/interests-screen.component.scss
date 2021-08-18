@@ -17,21 +17,51 @@
   }
 }
 
+#content{
+  @include setStyleLarge {
+    max-width: 1600px;
+  }
+}
+
+.col-xl-6 {
+  @include setStyleLarge {
+    max-width: 47%;
+  }
+}
+
 .interest {
   margin: 10px 0;
+
+  @include setStyleLarge {
+    margin: 10px 10px;
+  }
+
   overflow: hidden;
   cursor: pointer;
   > .tile {
     padding: 0 10px;
     min-height: 100px;
+
+    @include setStyleSmall {
+      //min-height: 80px;
+    }
+    
     .text {
       color: $color-font;
 //      font-weight: 700;
       font-size: 1.2em;
       padding-right: 100px;
+      @include setStyleSmall {
+        font-size: 0.7em;
+      }
       @include setStyleTablet {
         padding: 50px 0;
         padding-right: 160px;
+      }
+      @include setStyleLarge {
+        padding: 20px 0;
+        padding-right: 160px;
+        font-size: 1em;
       }
     }
     img {
@@ -42,6 +72,7 @@
       right: 0;
       @include setStyleTablet {
         height: 160px;
+        width: 160px;
       }
     }
   }
