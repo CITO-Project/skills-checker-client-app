@@ -1,0 +1,16 @@
+<app-header text='default'></app-header>
+<div id="content">
+  <div id="readspeaker_button1" class="rs_skip rsbtn rs_preserve" *ngIf="env.readspeaker.enabled">
+    <a rel="nofollow" class="rsbtn_play" accesskey="L" i18n-title="@@readSpeakerDescription" title="Listen to this page using ReadSpeaker webReader" [href]="getReadSpeakerURL('content')">
+        <span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span i18n="@@readSpeakerListen">Listen</span></span></span>
+        <span class="rsbtn_right rsimg rsplay rspart"></span>
+    </a>
+</div>
+  <div class="heading" i18n="">Cookie Policy</div>
+  <div class="container">
+
+</div>
+</div>
+<div class="footer">
+  <app-navigate-button text="default" destination=""></app-navigate-button>
+</div>

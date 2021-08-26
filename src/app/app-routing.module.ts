@@ -8,12 +8,18 @@ import { ScenariosScreenComponent } from './components/screens/scenarios-screen/
 import { ResultsScreenComponent } from './components/screens/results-screen/results-screen.component';
 import { LocalizationScreenComponent } from './components/screens/localization-screen/localization-screen.component';
 import { CourseScreenComponent } from './components/screens/course-screen/course-screen.component';
+import { CookiePolicyComponent } from './components/screens/cookie-policy/cookie-policy.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: OrientationScreenComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'cookie-policy',
+    component: CookiePolicyComponent,
     pathMatch: 'full'
   },
   {

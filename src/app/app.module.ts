@@ -14,6 +14,10 @@ import { AppComponent } from './app.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
+
+import {CookieModule} from 'ngx-cookie';
+
 import { OrientationScreenComponent } from './components/screens/orientation-screen/orientation-screen.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigateButtonComponent } from './components/navigate-button/navigate-button.component';
@@ -29,6 +33,30 @@ import { BallonsAndBasketComponent } from './components/graphics/ballons-and-bas
 import { CategoriesScreenComponent } from './components/screens/categories-screen/categories-screen.component';
 import { HowToScreenComponent } from './components/screens/how-to-screen/how-to-screen.component';
 import { ScenarioIntroductionScreenComponent } from './components/screens/scenario-introduction-screen/scenario-introduction-screen.component';
+import { CookiePolicyComponent } from './components/screens/cookie-policy/cookie-policy.component';
+
+import { environment } from 'src/environments/environment';
+
+const cookieConfig:NgcCookieConsentConfig = {
+  cookie: {
+    domain: environment.domain, // or 'your.domain.com' 
+    expiryDays: 180
+  },
+  palette: {
+    popup: {
+      background: '#1d8a8a'
+    },
+    button: {
+      background: '#62ffaa'
+    }
+  },
+  theme: 'classic',
+  type: 'opt-in',
+  revokable: true,
+  content: {
+    "href": "cookie-policy"
+  }
+};
 
 @NgModule({
   declarations: [
@@ -47,7 +75,8 @@ import { ScenarioIntroductionScreenComponent } from './components/screens/scenar
     BallonsAndBasketComponent,
     CategoriesScreenComponent,
     HowToScreenComponent,
-    ScenarioIntroductionScreenComponent
+    ScenarioIntroductionScreenComponent,
+    CookiePolicyComponent
   ],
   imports: [
     BrowserModule,
@@ -61,9 +90,12 @@ import { ScenarioIntroductionScreenComponent } from './components/screens/scenar
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgcCookieConsentModule.forRoot(cookieConfig),
+    CookieModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

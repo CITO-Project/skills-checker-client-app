@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { CookieService, CookieOptions } from 'ngx-cookie';
+import { environment } from 'src/environments/environment';
 
 import { CommonService } from './common.service';
 
@@ -67,10 +69,17 @@ export class GoogleAnalyticsService {
 
   constructor(
     private router: Router,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private cookieService: CookieService
     ) { }
 
-  initializeGA(): void {
+  initializeGA( tracking_consent: boolean ): void {
+
+    if( tracking_consent == false ) {
+      console.log( "Consent is: " + tracking_consent + ". Disabling Google Analytics" );
+      this.disableTracking();
+    }
+
     if (!!this.GOOGLE_ANALYTICS_ENABLED) {
       this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -99,6 +108,29 @@ export class GoogleAnalyticsService {
       count_plays_per_scenario: {}
     };
   }
+
+  enableTracking(): void {
+      window['ga-disable-' + this.commonService.getGATrackID() ] = false;
+
+      this.initializeGA( true );
+  }
+
+  disableTracking(): void {
+    window['ga-disable-' + this.commonService.getGATrackID() ] = true;
+    
+    
+    // remove any existing cookies relating to google analytics
+    let regex = /-/gi; 
+    let gatCookieID = '_gat_gtag_' + this.commonService.getGATrackID().replace(regex,'_')
+
+    console.log( this.cookieService.getAll() );
+
+    this.cookieService.remove( '_ga', {domain: environment.domain} );
+    this.cookieService.remove( '_gid', {domain: environment.domain} );
+    this.cookieService.remove( gatCookieID, {domain: environment.domain} );
+
+    console.log( this.cookieService.getAll() );
+}
 
   eventEmitter(
     eventName: string,

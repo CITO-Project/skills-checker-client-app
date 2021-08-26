@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import {NgcCookieConsentService, NgcStatusChangeEvent} from 'ngx-cookieconsent';
+import { Subscription }   from 'rxjs/Subscription';
+
 import { GoogleAnalyticsService } from './services/google-analytics.service';
 import { ProgressTrackerService } from './services/data/progress-tracker.service';
 import { DataLogService } from './services/data/data-log.service';
@@ -16,11 +19,15 @@ export class AppComponent implements OnInit {
 
   title = 'skills-checker';
 
+  private statusChangeSubscription: Subscription;
+
   constructor(
+    private ccService: NgcCookieConsentService,
     private googleAnalyticsService: GoogleAnalyticsService,
     progressTrackerService: ProgressTrackerService,
     dataLogService: DataLogService) {
-      googleAnalyticsService.initializeGA();
+
+      googleAnalyticsService.initializeGA( this.ccService.hasConsented() );
 
       window.addEventListener('beforeunload', () => {
         googleAnalyticsService.stopTimer('time_use_app');
@@ -39,7 +46,50 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
+      (event: NgcStatusChangeEvent) => {
+        // you can use this.ccService.getConfig() to do stuff...
+
+        if(event.status === "allow" ) {
+          this.googleAnalyticsService.enableTracking();
+        }
+        if(event.status === "deny" ) {
+          this.googleAnalyticsService.disableTracking();
+        }
+      });
+
+    // let cc = window as any;
+
+    // cc.cookieconsent.initialise(
+    //   {
+    //     "type": "opt-in",
+    //     "theme": "classic",
+    //     content: {
+    //       href: './cookie-policy'
+    //     },
+    //     palette:{
+    //      popup: {background: "#1d8a8a"},
+    //      button: {background: "#62ffaa"},
+    //     },
+    //     revokable:true,
+    //     onStatusChange: function(status) {
+    //       console.log( status );
+    //      console.log(this.hasConsented() ?
+    //       'enable cookies' : 'disable cookies');
+    //     }, 
+    //     law: {
+    //      regionalLaw: false,
+    //     },
+    //     location: true,
+    //    }
+    // )
+
     this.googleAnalyticsService.restartTimer('time_use_app');
     this.googleAnalyticsService.addEvent('started_app');
+  }
+
+  ngOnDestroy() {
+    this.statusChangeSubscription.unsubscribe();
   }
 }
