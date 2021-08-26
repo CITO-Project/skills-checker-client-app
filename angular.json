@@ -18,11 +18,11 @@
         "locales": {
           "en-mt": {
             "translation": "src/locale/messages.en-mt.xlf",
-            "baseHref": "/en-mt/"
+            "baseHref": ""
           },
           "no": {
             "translation": "src/locale/messages.no.xlf",
-            "baseHref": "/no/"
+            "baseHref": ""
           }
         }
       },
@@ -46,10 +46,12 @@
               "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
               "node_modules/animate.css/animate.css",
               "node_modules/@videogular/ngx-videogular/fonts/videogular.css",
+              "node_modules/cookieconsent/build/cookieconsent.min.css",
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/hammerjs/hammer.min.js"
+              "node_modules/hammerjs/hammer.min.js",
+              "node_modules/cookieconsent/build/cookieconsent.min.js"
             ]
           },
           "configurations": {
