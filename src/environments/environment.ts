@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  domain: 'localhost',
   api: {
     //host: 'https://skillscheck.citoproject.eu',
     //host: 'https://34.254.132.188',
@@ -22,6 +23,9 @@ export const environment = {
     google: {
       id: 'UA-170127374-1'
     }
+  },
+  download: {
+    level: true
   },
   product: 'nala',
   locale: 'ie',

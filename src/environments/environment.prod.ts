@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  domain: 'skillschecker.ie',
   api: {
 //  host: 'https://skillscheck.citoproject.eu',
 //  host: 'https://34.254.132.188',
@@ -18,6 +19,9 @@ export const environment = {
     google: {
       id: 'UA-170127374-1'
     }
+  },
+  download: {
+    level: false
   },
   product: 'nala',
   locale: 'ie',

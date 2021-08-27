@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ScenariosScreenComponent } from 'src/app/components/screens/scenarios-screen/scenarios-screen.component';
 import { ChallengingScenario } from 'src/app/models/scenario-result';
+import { environment } from 'src/environments/environment';
 
 import { Course } from '../../models/course';
 
@@ -89,29 +90,32 @@ export class ResultsSaverService {
       this.canvasManager.addY(this.BALLOONS_LEARNING_PATHWAY_SEPARATION);
       this.canvasManager.drawBox(this.FILE_MAX_WIDTH, this.calculateHeightDescription(learningPathwayDescription), 0, 0);
       this.canvasManager.setColour(this.TEXT_COLOR);
-      this.printDescription(learningPathwayHeader, learningPathwayDescription);
 
-      const brushUpCourses = learningPathway.filter( (course: Course) => course.priority === 'brush_up');
-      const developCourses = learningPathway.filter( (course: Course) => course.priority === 'develop');
+      if( learningPathway.length > 0 ) {
+        this.printDescription(learningPathwayHeader, learningPathwayDescription);
 
-      //#region Printing 'brush_up' courses
-      this.canvasManager.setTextAlignment('left');
-      if (brushUpCourses.length > 0) {
-        this.printSection($localize`:@@brushUp:Brush up`, brushUpCourses, this.BRUSH_UP_COLOR);
+        const brushUpCourses = learningPathway.filter( (course: Course) => course.priority === 'brush_up');
+        const developCourses = learningPathway.filter( (course: Course) => course.priority === 'develop');
+
+        //#region Printing 'brush_up' courses
+        this.canvasManager.setTextAlignment('left');
+        if (brushUpCourses.length > 0) {
+          this.printSection($localize`:@@brushUp:Brush up`, brushUpCourses, this.BRUSH_UP_COLOR);
+        }
+        //#endregion
+
+        //#region Printing 'develop' courses
+        if (developCourses.length > 0) {
+          this.printSection($localize`:@@furtherDevelop:Further develop`, developCourses, this.DEVELOP_COLOR);
+        }
+        //#endregion
+
+        this.paintBottom(
+          (brushUpCourses.length + developCourses.length) > 0 ?
+          this.SECTION_BACKGROUND_COLOR :
+          this.BACKGROUND_COLOR
+        );
       }
-      //#endregion
-
-      //#region Printing 'develop' courses
-      if (developCourses.length > 0) {
-        this.printSection($localize`:@@furtherDevelop:Further develop`, developCourses, this.DEVELOP_COLOR);
-      }
-      //#endregion
-
-      this.paintBottom(
-        (brushUpCourses.length + developCourses.length) > 0 ?
-        this.SECTION_BACKGROUND_COLOR :
-        this.BACKGROUND_COLOR
-      );
 
       this.canvasManager.downloadImage(this.FILE_DOWNLOAD_NAME);
   }
@@ -228,21 +232,30 @@ export class ResultsSaverService {
     if( scenarios.length == 4) {
       scenario_count_str = $localize`four`;
     }
-    else if( scenarios.length == 4) {
+    else if( scenarios.length == 3) {
       scenario_count_str = $localize`three`;
     }
-    else if( scenarios.length == 4) {
+    else if( scenarios.length == 2) {
       scenario_count_str = $localize`two`;
     }
-    else {
+    else if( scenarios.length == 1) {
       scenario_count_str = $localize`one`;
       task_str = $localize`everyday task`;
+    }
+    else {
+      scenario_count_str = $localize`a number of`;
     }
 
     this.printTitleCentre( $localize`My Skills Summary`, 'bold' );
     this.canvasManager.addY(this.TITLE_LINES_SEPARATION);
 
-    this.printText( $localize`You looked at ${scenario_count_str} ${task_str}.` + ' ' + $localize`You found aspects of the following ${task_str} challenging:`);
+    let summaryStr = $localize`You looked at ${scenario_count_str} ${task_str}.`;
+
+    if( scenarios.length > 0 ) {
+      summaryStr += ' ' + $localize`You found aspects of the following ${task_str} challenging:`
+    }
+
+    this.printText( summaryStr );
 
     this.printTextLine('');
     this.printTextLine('');
@@ -313,17 +326,17 @@ export class ResultsSaverService {
       if(scen.independence == 0) {
 
         // User answered 'yes' [0] to question about needing help to do this task
-        let todo_str = $localize`:@@doTheseTasks:to do this task`;
+        let todo_str = $localize`:@@doThisTaskSimple:to do this task`;
 
         if( scen.aspect.length > 1 ) {
-          todo_str = $localize`:@@doTheseTasks:to do these tasks`;
+          todo_str = $localize`:@@doTheseTasksSimple:to do these tasks`;
         }
 
         this.printText( todo_str );
         this.printText( $localize`without help.`, 'bold' );
       }
       else if( scen.fluency == 1 || scen.confidence == 1 ) {
-        this.printText( ', ' + $localize`:@@doSimilarTasks:so that you can do similar tasks` );
+        this.printText( ', ' + $localize`:@@doSimilarTasksSimple:so that you can do similar tasks` );
 
         let dimension_str = ''
         
@@ -348,9 +361,20 @@ export class ResultsSaverService {
       this.printTextLine( '' );
     });
 
-    let str = $localize`Check out the courses below and find one that\'s right for you.`;
+    if( scenarios.length > 0 ) {
+      let str = $localize`Check out the courses below and find one that\'s right for you.`;
 
-    this.printText( str );
+      this.printText( str );
+    }
+    else {
+      this.printText( $localize`:@@easyPathMsgOne:You have shown that you have strong reading, writing, maths and computer skills.` );
+      this.printTextLine('');
+      this.printTextLine('');
+      this.printText( $localize`:@@easyPathMsgTwo:Take the next step by developing your skills further.` );
+      this.printTextLine('');
+      this.printTextLine('');
+      this.printText( $localize`:@@easyPathMsgThree:Call NALA today on 1800 20 20 65 to chat about your options or check out www.fetchcourses.ie to find a course that is right for you.` );
+    }
 
     this.printTextLine('');
     this.printTextLine('');
@@ -424,6 +448,9 @@ export class ResultsSaverService {
     // add some space between course description and contact information
     this.printTextLine('');
 
+    if(environment.download.level && !!course.level) {
+      this.printTextLine($localize`Course Level: ${course.level}`);
+    }
     if (!!course.contact_telephone) {
       // tslint:disable-next-line: max-line-length
       this.printTextLine(this.stringManagerService.ellipsisText($localize`Phone: ${course.contact_telephone}`, this.SPLIT_COURSE_TEXTS), 'italic');
@@ -482,6 +509,9 @@ export class ResultsSaverService {
       lines++;
     }
     if (!!course.link) {
+      lines++;
+    }
+    if( environment.download.level ) {
       lines++;
     }
     //r += this.TEXT_SIZE * (numberLinesCourseDescription + lines);

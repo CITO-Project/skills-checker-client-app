@@ -32,9 +32,13 @@
 .progress {
   width: 100vw;
   height: 3vh;
+  line-height: 3vh;
   z-index: 301;
 
-  font-size: 1rem;
+  @include setStyleTablet {
+    font-size: 1rem;
+  }
+
   font-weight: 500;
 
   background-color: #F2F3F3;

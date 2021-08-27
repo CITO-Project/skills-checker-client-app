@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  domain: 'skillschecker.mt',
   api: {
     //host: 'https://skillscheck.citoproject.eu',
     //host: 'https://34.254.132.188',
@@ -19,9 +20,17 @@ export const environment = {
       id: 'UA-170127374-1'
     }
   },
+  download: {
+    level: true
+  },
   product: 'nala-mt',
   locale: 'mt',
   regions: [
+    'Online',
+    'Malta',
+    'Gozo'
+  ],
+  regions_orig: [
     'Online',
     'Birkirkara',
     'Blata l-Bajda Adult Learning Centre',

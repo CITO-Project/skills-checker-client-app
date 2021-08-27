@@ -114,6 +114,13 @@
   letter-spacing: 1px;
 }
 
+
+@media screen and (min-width: 1920px) {
+  .heading {
+    font-size: 28px;
+  }
+}
+
 .subheading {
   color: $color-font-dark;
   font-weight: 500;
@@ -155,4 +162,8 @@
 
 b {
   font-weight: 800;
+}
+
+.cc-window.cc-banner {
+  padding: 1.6em 1.8em
 }

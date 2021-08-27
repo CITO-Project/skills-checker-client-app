@@ -1,9 +1,9 @@
 export const environment = {
   production: false,
+  domain: 'skillschecker.no',
   api: {
 //    host: 'https://skillscheck.citoproject.eu',
-//    host: 'https://skillschecker.no',
-      host: 'https://skillschecker.ie',
+    host: 'https://skillschecker.no',
 //    host: 'https://34.254.132.188',
     port: '',
     path: '/api/',
@@ -19,6 +19,9 @@ export const environment = {
     google: {
       id: 'UA-170127374-1'
     }
+  },
+  download: {
+    level: false
   },
   product: 'nala-no',
   locale: 'no',

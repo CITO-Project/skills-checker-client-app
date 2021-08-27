@@ -1,7 +1,7 @@
 <app-header [text]='HEADER'></app-header>
 
 <div id="readspeaker_button_1" class="rs_skip rsbtn rs_preserve" *ngIf="env.readspeaker.enabled">
-  <a rel="nofollow" class="rsbtn_play" accesskey="L" i18n-title="@@readSpeakerDescription" title="'Listen to this page using ReadSpeaker webReader" [attr.href]="getReadSpeakerURL('content')">
+  <a rel="nofollow" class="rsbtn_play" accesskey="L" i18n-title="@@readSpeakerDescription" title="Listen to this page using ReadSpeaker webReader" [attr.href]="getReadSpeakerURL('content')">
       <span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span i18n="@@readSpeakerListen">Listen</span></span></span>
       <span class="rsbtn_right rsimg rsplay rspart"></span>
   </a>
@@ -17,29 +17,33 @@
         <div class="text">
           <b i18n="">Well Done! Skills check complete!</b> 
           <br/>
-          <span  i18n="">You're on your way to achieving your goal to:</span>
+          <div class="text" i18n="">You're on your way to achieving your goal to:</div>
         </div>
         <div class="text interest"><b>{{interest.text}}</b></div>
-        <div class="text" i18n="">
+        <div class="text" i18n="@@balloonDescription">
           The balloons will give you an idea of your skill level. The bigger the balloon the stronger your skill in that area is!
         </div>
       </div>
     </div>
     <div id="result">
-      <div class="heading">
+      
+      <div class="row" [style.background-image]="'url(' + commonService.getImagePath('background-results.svg')+ ')'">
+        
+        <div class="col-7 results">
+          <div class="heading">
         <img [src]="getPath('arrows.png')" alt="arrows">
         <span  i18n="">What's next?</span>
       </div>
-      <div class="row" [style.background-image]="'url(' + commonService.getImagePath('background-results.svg')+ ')'">
-        
-        <div class="col results">
-          <div *ngIf='!!texts.resultsText' class="text d-flex flex-row h-100">
+          <!--<div *ngIf='!!texts.resultsText' class="text d-flex flex-row h-100">-->
+            <div *ngIf='!!texts.resultsText' class="text h-100">
             <div class="align-self-center">
               <!--<b>Well done! </b>{{ texts.resultsText }}-->
-              <div class="message container text" *ngFor='let text of texts.learningPathwayDescription'>
+              <div class="message container text" i18n="">Improve your skills so you can take the next step towards achieving your goal by:</div>
+              <ul>
+              <li class="message container text" *ngFor='let text of texts.learningPathwayDescription'>
                 {{ text }}
-              </div>
-              
+              </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -119,5 +123,5 @@
   </div>
 </div>
 <div class="footer">
-  <app-navigate-button text="New goal" (event)="selectNewInterest()"></app-navigate-button>
+  <app-navigate-button i18n-text text="New goal" (event)="selectNewInterest()"></app-navigate-button>
 </div>
