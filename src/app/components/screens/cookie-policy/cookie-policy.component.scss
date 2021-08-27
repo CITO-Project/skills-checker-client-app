@@ -1,1 +1,28 @@
 @import '../../../../style/_imports.scss';
+
+.heading {
+    margin-bottom: 1rem;
+}
+
+.nobullet {
+    list-style-type: none;
+    padding-left: 0; /* Remove padding */
+    margin-left: 0; /* Remove margins */
+}
+
+.preformatted {
+    white-space: pre;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+table, th, td {
+    border: solid;
+}
+
+body {
+    font-weight: 400;
+}

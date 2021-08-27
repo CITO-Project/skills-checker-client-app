@@ -54,7 +54,11 @@ const cookieConfig:NgcCookieConsentConfig = {
   type: 'opt-in',
   revokable: true,
   content: {
-    "href": "cookie-policy"
+    "message": $localize`This website uses cookies to improve your experience. By clicking “Allow”, you agree to the storing of cookies on your device to enhance site navigation and analyse site usage.`,
+    "href": "cookie-policy",
+    "link": $localize`Learn More`,
+    "allow": $localize`Allow cookies`,
+    "deny": $localize`Decline`
   }
 };
 

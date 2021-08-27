@@ -969,6 +969,271 @@
         </context-group>
       </trans-unit>
 
+      <trans-unit id="" datatype="html">
+        <source></source>
+        <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="9134113812759884182" datatype="html">
+        <source>This website uses cookies to improve your experience. By clicking “Allow”, you agree to the storing of cookies on your device to enhance site navigation and analyse site usage.</source>
+        <target>Dette nettstedet bruker informasjonskapsler for å forbedre opplevelsen din. Ved å klikke «Tillat» godtar du lagring av informasjonskapsler på enheten din for å forbedre navigering på siden og analysere nettstedbruk.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="7002955679222677443" datatype="html">
+        <source>Learn More</source>
+        <target>Lær mer»</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="8116175184239166510" datatype="html">
+        <source>Decline</source>
+        <target>Avslå</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="612956177103379657" datatype="html">
+        <source>Allow cookies</source>
+        <target>Tillat</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="2455425732127164474" datatype="html">
+        <source>Skills Checker Cookie Policy</source>
+        <target>Skills Checker informasjonskapsler</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="2141043957790981882" datatype="html">
+        <source>Check-In, Take-Off (CITO) is an Erasmus+ project. Erasmus+ projects are funded by the European Commission. Erasmus+ fund organisations across Europe to work and learn together to improve education and training in their individual countries. The CITO project team is comprised of organisations from three countries, Malta, Ireland and Norway; the Directorate for Research, Lifelong Learning and Employability (Malta), the National Adult Literacy Agency (Ireland), Education and Training Boards Ireland (Ireland), Waterford Institute of Technology (Ireland) and Fønix (Norway).</source>
+        <target>Check-in, Take-Off (CITO) er et Erasmus+ -prosjekt. Erasmus+ -prosjekter er finansiert av EU-kommisjonen. Erasmus+ finansierer organisasjoner over hele Europa for å jobbe og lære sammen for å forbedre utdanning og opplæring i sine individuelle land. CITO - prosjektteamet består av organisasjoner fra tre land, Malta, Irland og Norge; the Directorate for Research, Lifelong Learning and Employability Malta), the National Adult Literacy Agency (Irland), Education and Training Boards Ireland (Irland), Waterford Institute of Technology (Irland) og Fønix (Norge).</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="565276666235155596" datatype="html">
+        <source>The CITO project team respect the rights of users of the Skills Checker. The Skills Checker is currently hosted at the following domains:</source>
+        <target>CITO -prosjektteamet respekterer rettighetene til brukere av Skills Checker. The Skills Checker er for tiden å finne på følgende domener:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="4791405492497706049" datatype="html">
+        <source>We are committed to protecting your privacy in line with the Data Protection Acts 1988 and 2003 and General Data Protection Regulation (GDPR) 2018 at all times. We will not collect any personal data ( information) about you on this site without your permission or otherwise. This is in line with the Data Protection Acts 1988 and 2003 and General Data Protection Regulation (GDPR) 2018.</source>
+        <target>Vi er forpliktet til å beskytte personvernet ditt i tråd med databeskyttelsesloven 1988 og 2003 og General Data Protection Regulation (GDPR) 2018 til enhver tid. Vi vil ikke samle inn personopplysninger (informasjon) om deg på dette nettstedet uten din tillatelse eller på annen måte. Dette er i tråd med databeskyttelsesloven 1988 og 2003 og General Data Protection Regulation (GDPR) 2018.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="" datatype="html">
+        <source>You do not have to provide us with any personal data to use our site.</source>
+        <target>Du trenger ikke å gi oss noen personlige data for å bruke nettstedet vårt.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="1167636642668438411" datatype="html">
+        <source>Technical data we collect</source>
+        <target>Tekniske data vi samler inn</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="8436155816157175532" datatype="html">
+        <source>By simply visiting our site, you do not disclose (share), nor do we collect, personal data about you. The information collected about your visit is limited to technical data like:</source>
+        <target>Ved å bare besøke nettstedet vårt, avslører du ikke (deler), og vi samler heller ikke inn personopplysninger om deg. Informasjonen som samles inn om besøket ditt er begrenset til tekniske data som:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="699673127978725507" datatype="html">
+        <source>the Internet address (or IP address) of the device you used to access our site;</source>
+        <target>Internett -adressen (eller IP -adressen) til enheten du brukte for å få tilgang til
+nettstedet vårt;</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="6514875505533369895" datatype="html">
+        <source>whether you reached our site using a search engine or if you clicked a link on
+another website; and</source>
+        <target>om du nådde nettstedet vårt med en søkemotor eller om du klikket på en lenke på et
+annet nettsted; og</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5886836116348556567" datatype="html">
+        <source>the type of web browser you used and the type of device you used to access the
+Internet.</source>
+        <target>hvilken type nettleser du brukte og typen enhet du brukte for å få tilgang til
+Internett.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="6989170443695223218" datatype="html">
+        <source>How we use technical information</source>
+        <target>Hvordan vi bruker teknisk informasjon</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="3735604859430966484" datatype="html">
+        <source>We use technical data for administrative and statistical purposes as well as to help us
+improve our site. This technical data does not provide us with the personal data of visitors
+to our site.</source>
+        <target>Vi bruker tekniske data til administrative og statistiske formål, så vel som for å hjelpe oss
+med å forbedre nettstedet vårt. Disse tekniske dataene gir oss ikke personopplysninger om
+besøkende på nettstedet vårt.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="COOKIES" datatype="html">
+        <source>Cookies</source>
+        <target>Informasjonskapsler</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="3691873349554725963" datatype="html">
+        <source>Cookies we use</source>
+        <target>Informasjonskapsler vi bruker</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="4716125996894409130" datatype="html">
+        <source>A cookie is a small piece of data (text file) that a website – when visited by a user – asks your browser to store on your device in order to remember information about you, such as your language preference or login information. Those cookies are set by us and called first-party cookies. More specifically, we use cookies and other tracking technologies for the following purposes:</source>
+        <target>En informasjonskapsel er en liten bit data (tekstfil) som et nettsted - når det besøkes av en bruker - ber nettleseren din om å lagre på enheten din for å huske informasjon om deg, for eksempel språkinnstillinger eller påloggingsinformasjon. Disse informasjonskapslene er satt av oss og kalles førsteparts informasjonskapsler. Mer spesifikt bruker vi informasjonskapsler og annen sporingsteknologi for følgende formål:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="4142964108166840199" datatype="html">
+        <source>Strictly Necessary Cookies</source>
+        <target>Strengt nødvendige informasjonskapsler</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5205185485145559516" datatype="html">
+        <source>These cookies are necessary for the Skills Checker to function and cannot be switched off in our systems. They are usually only set in response to actions made by you, such as setting your privacy preferences. You can set your browser to block or alert you about these cookies, but if you do so some parts of the site will not work. These cookies do not store any personally identifiable information.</source>
+        <target>Disse informasjonskapslene er nødvendige for at The Skills Checker skal fungere og kan ikke slås av i systemene våre. De er vanligvis bare angitt som svar på handlinger utført av deg, for eksempel å angi dine personvernpreferanser. Du kan angi at nettleseren din skal blokkere eller varsle deg om disse informasjonskapslene, men hvis du gjør det, vil noen deler av nettstedet ikke fungere. Disse informasjonskapslene lagrer ikke personlig identifiserbar informasjon.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="7373212436902992135" datatype="html">
+        <source>Performance Cookies</source>
+        <target>Ytelseskapsler</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="2516697874652006294" datatype="html">
+        <source>These cookies allow us to count visits and traffic sources (how you ended up on the Skills Checker) so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site. All information these cookies collect is aggregated and therefore anonymous. If you do not allow these cookies we will not know when you have visited our site, and will not be able to monitor its performance.</source>
+        <target>Disse informasjonskapslene lar oss telle besøk og trafikkilder (hvordan du havnet på The Skills Checker) slik at vi kan måle og forbedre ytelsen til nettstedet vårt. De hjelper oss med å vite hvilke sider som er mest og minst populære og se hvordan besøkende beveger seg rundt på nettstedet. All informasjon disse informasjonskapslene samler inn er samlet og derfor anonym. Hvis du ikke tillater disse informasjonskapslene, vet vi ikke når du har besøkt nettstedet vårt, og vi kan ikke overvåke ytelsen til det.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="COOKIESUBGROUP" datatype="html">
+        <source>Cookie Subgroup</source>
+        <target>Undergruppe for informasjonskapsler</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="SESSION" datatype="html">
+        <source>Session</source>
+        <target>Økt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="FIRSTPARTY" datatype="html">
+        <source>First party</source>
+        <target>Førsteparts kapsler</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="LIFESPAN" datatype="html">
+        <source>Lifespan</source>
+        <target>Levetid</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="COOKIESUSED" datatype="html">
+        <source>Cookies used</source>
+        <target>Informasjonskapsler som brukes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="1DAY" datatype="html">
+        <source>1 day</source>
+        <target>1 dag</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="730DAYS" datatype="html">
+        <source>730 days</source>
+        <target>730 dager</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="AFEWSECONDS" datatype="html">
+        <source>a few seconds</source>
+        <target>noen få sekunder</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>
