@@ -1,4 +1,4 @@
-<app-header [text]='HEADER'></app-header>
+<app-header text='default'></app-header>
 
 <div id="readspeaker_button_1" class="rs_skip rsbtn rs_preserve" *ngIf="env.readspeaker.enabled">
   <a rel="nofollow" class="rsbtn_play" accesskey="L" i18n-title="@@readSpeakerDescription" title="Listen to this page using ReadSpeaker webReader" [attr.href]="getReadSpeakerURL('content')">
