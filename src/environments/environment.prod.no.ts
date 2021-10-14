@@ -17,7 +17,7 @@ export const environment = {
   },
   analytics: {
     google: {
-      id: 'UA-170127374-1'
+      id: 'UA-170127374-3'
     }
   },
   download: {
