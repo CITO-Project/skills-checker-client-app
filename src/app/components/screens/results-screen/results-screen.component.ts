@@ -36,7 +36,7 @@ export class ResultsScreenComponent implements OnInit {
   public texts: {
     resultsText: string,
     learningPathwayDescription: string[]};
-  public readonly HEADER = $localize`:@@appName:Check-In Take-Off`;
+  public readonly HEADER = $localize`My Learning Pathway`;
   public readonly SUBTITLE = $localize`My Results`;
   public readonly LEARNING_PATHWAY_HEADER = $localize`My Learning Pathway`;
 
