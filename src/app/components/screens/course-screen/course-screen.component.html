@@ -34,8 +34,8 @@
     <div class="row">
       <div class="col border" *ngIf="course.enrolment_start || course.enrolment_finish">
         <fa-icon [icon]="faCalendar"></fa-icon>
-        <span *ngIf="course.enrolment_start"><b><span i18n="">Enrolment Starts</span>: {{ formatDate(course.enrolment_start) }}</b></span>
-        <span *ngIf="course.enrolment_finish"><b><span i18n="">Enrolment Ends</span>: {{ formatDate(course.enrolment_finish) }}</b></span>
+        <span *ngIf="course.enrolment_start"><b><span i18n="">Enrolment Starts</span>: {{ course.enrolment_start | date:'fullDate' }}</b></span>
+        <span *ngIf="course.enrolment_finish"><b><span i18n="">Enrolment Ends</span>: {{ course.enrolment_finish | date:'fullDate' }}</b></span>
       </div>
     </div>
   </div>

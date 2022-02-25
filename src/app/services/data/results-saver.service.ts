@@ -43,7 +43,7 @@ export class ResultsSaverService {
   private readonly MAX_LINES_RESULTS_TEXT = 5;
   private readonly MAX_LINES_COURSE_DESCRIPTION = 2;
 
-  private readonly FILE_DOWNLOAD_NAME = 'SkillsChecker Results.png';
+  private readonly FILE_DOWNLOAD_NAME = $localize`:@@filename:SkillsChecker Results.png`;
 
   private readonly BACKGROUND_COLOR = '#fff';
   private readonly GRADIENT_COLOR = '#3FBDA8';
@@ -260,41 +260,70 @@ export class ResultsSaverService {
     this.printTextLine('');
     this.printTextLine('');
 
+    //console.log( 'Scenarios: ', scenarios );
+    
     scenarios.forEach( (scen: ChallengingScenario) => {
       this.printTextLine(scen.name, 'bold');
 
       // add a little spacing below the scenario title
       this.canvasManager.addY(this.TITLE_LINES_SEPARATION);
 
-      this.printText( $localize`You identified that you found` );
+      this.printText( $localize`You identified that you found ` );
 
       let task_str = '';
 
-      scen.aspect.forEach( ({name}, index, arr ) => {
+      // scen.aspect.forEach( ({name}, index, arr ) => {
         
+      //   if( index > 0 ) {
+      //     if( index != (arr.length - 1)) {
+      //       task_str = task_str + ', ';
+      //     }
+      //     else {
+      //       //task_str = task_str + ' ' + $localize`:@@and_punctuation:and` + ' ';
+      //       task_str = task_str + $localize`:@@and_punctuation:and` + ' ';
+      //     }
+      //   }
+
+      //   task_str = task_str + name.toLowerCase();
+      // })
+
+      // console.log( "Task String: '" + task_str + "'" );
+
+      // var localisedText = $localize`${task_str} ${scen.level}`;
+      
+      // this.printText( localisedText + '.', 'bold' );
+      //this.printText( '.' );
+
+      scen.aspect.forEach( ({name}, index, arr ) => {
+
         if( index > 0 ) {
+
+          var join_str = '';
+
           if( index != (arr.length - 1)) {
-            task_str = task_str + ', ';
+            join_str = $localize`:@@task_action_quotation_end:` + ', ' + $localize`:@@task_action_quotation_start:`;
           }
           else {
-            task_str = task_str + ' ' + $localize`and` + ' ';
+            //task_str = task_str + ' ' + $localize`:@@and_punctuation:and` + ' ';
+            //join_str = $localize`:@@and_punctuation:and`;
+            join_str = $localize`:@@task_action_quotation_end:` + ' ' + $localize`and` + ' ' + $localize`:@@task_action_quotation_start:`
           }
+
+          this.printText( join_str );
         }
 
-        task_str = task_str + name.toLowerCase();
+        this.printText( name.toLowerCase(), 'bold' );
       })
-      
-      this.printText( $localize`${task_str} ${scen.level}`, 'bold' );
-      this.printText( '.' );
 
+      this.printText( $localize`:@@task_action_quotation_end:`);
 
+      this.printText( ' ' + scen.level + '. ', 'bold' );
 
-      
       if( scen.level === 'a little difficult' || scen.level === 'difficult') {
-        this.printText( $localize`Take the next step to achieve your goal by brushing up on your` );
+        this.printText( $localize`Take the next step to achieve your goal by brushing up on your ` );
       }
       else {
-        this.printText( $localize`You can reach your goal by developing your` );
+        this.printText( $localize`You can reach your goal by developing your ` );
       }
 
       let skills_str = '';
@@ -315,28 +344,36 @@ export class ResultsSaverService {
         //this.printText( skill, 'bold' );
       })
 
-      skills_str = skills_str + ' ' + $localize`skills`
+      var localisedWord = $localize`skills`
 
+      if( localisedWord.length > 0 ) {
+        console.log( 'localisedWord is \'' + localisedWord + '\'' );
+        skills_str = skills_str + ' ' + localisedWord;
+      }
+      else {
+        console.log( 'localisedWord is empty' );
+        console.log( '\'' + skills_str + '\'' );
+      }
 
 
       this.printText( skills_str.toLowerCase(), 'bold' );
 
-      console.log( 'scen.independence: ' + scen.independence );
+      //console.log( 'scen.independence: ' + scen.independence );
 
       if(scen.independence == 0) {
 
         // User answered 'yes' [0] to question about needing help to do this task
-        let todo_str = $localize`:@@doThisTaskSimple:to do this task`;
+        let todo_str = $localize`:@@doThisTaskSimple: to do this task `;
 
         if( scen.aspect.length > 1 ) {
-          todo_str = $localize`:@@doTheseTasksSimple:to do these tasks`;
+          todo_str = $localize`:@@doTheseTasksSimple: to do these tasks `;
         }
 
         this.printText( todo_str );
         this.printText( $localize`without help.`, 'bold' );
       }
       else if( scen.fluency == 1 || scen.confidence == 1 ) {
-        this.printText( ', ' + $localize`:@@doSimilarTasksSimple:so that you can do similar tasks` );
+        this.printText( ', ' + $localize`:@@doSimilarTasksSimple:so that you can do similar tasks ` );
 
         let dimension_str = ''
         
@@ -364,7 +401,7 @@ export class ResultsSaverService {
     if( scenarios.length > 0 ) {
       let str = $localize`Check out the courses below and find one that\'s right for you.`;
 
-      this.printText( str );
+      this.printTextLine( str );
     }
     else {
       this.printText( $localize`:@@easyPathMsgOne:You have shown that you have strong reading, writing, maths and computer skills.` );

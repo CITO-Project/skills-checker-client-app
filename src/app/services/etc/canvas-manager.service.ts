@@ -76,14 +76,11 @@ export class CanvasManagerService {
     let textWidth = this.canvasContext.measureText( text ).width;
 
     // Split string into individual tokens (words)
-    let tokens = text.split( ' ' );
-
-    console.log ( tokens.length );
-    console.log( typeof( tokens ) );
+    let tokens = text.split( /(\s+)/ );
 
     tokens.forEach( function (word, index) {
-      
-      word = word + ' ';
+
+      //word = word + ' ';
 
       let wordWidth = this.canvasContext.measureText( word ).width;
 

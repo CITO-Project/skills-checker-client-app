@@ -170,30 +170,30 @@ export class ResultsScreenComponent implements OnInit {
           let aspect = this.dataLogService.getAnswer(i, 1);
 
           if( aspect == 1 ) {
-            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing-2:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
           }
           else if( aspect == 2) {
-            scenario.aspect.push( this.toObj( $localize`:@@skill-maths:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-maths-2:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
           }
           else if( aspect == 4 ) {
-            scenario.aspect.push( this.toObj( $localize`:@@skill-computers:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-computers-2:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
           }
           else if( aspect == 3 ) {
-            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
-            scenario.aspect.push( this.toObj( $localize`:@@skill-maths:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing-2:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-maths-2:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
           }
           else if( aspect == 5 ) {
-            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
-            scenario.aspect.push( this.toObj( $localize`:@@skill-computers:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing-2:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-computers-2:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
           }
           else if( aspect == 6 ) {
-            scenario.aspect.push( this.toObj( $localize`:@@skill-maths:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
-            scenario.aspect.push( this.toObj( $localize`:@@skill-computers:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-maths-2:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-computers-2:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
           }
           else if( aspect == 7 ) {
-            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
-            scenario.aspect.push( this.toObj( $localize`:@@skill-maths:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
-            scenario.aspect.push( this.toObj( $localize`:@@skill-computers:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-reading-and-writing-2:reading and writing`, this.dataLogService.getQuestion(i, 1).answers[0] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-maths-2:maths`, this.dataLogService.getQuestion(i, 1).answers[1] ) );
+            scenario.aspect.push( this.toObj( $localize`:@@skill-computers-2:computers`, this.dataLogService.getQuestion(i, 1).answers[2] ) );
           }
 
           // independence

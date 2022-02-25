@@ -18,13 +18,13 @@ export class ResultsVisualizationService {
   private readonly BALLOON_LEVELS = 'smb'.split('');
   private readonly BALLON_SKILLS_TEXT = {
     literacy: {
-      text: $localize`Reading and Writing`
+      text: $localize`:@@skill-reading-and-writing-simple:Reading and Writing`
     },
     numeracy: {
-      text: $localize`Maths`
+      text: $localize`:@@skill-maths-simple:Maths`
     },
     digital_skills: {
-      text: $localize`Computers`
+      text: $localize`:@@skill-computers-simple:Computers`
     }
   };
   constructor(

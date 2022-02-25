@@ -303,8 +303,8 @@
           <context context-type="linenumber">63,64</context>
         </context-group>
       </trans-unit>
-            <trans-unit id="1007403134559915727" datatype="html">
-        <source>You can tick more than on</source>
+            <trans-unit id="3014470037743611911" datatype="html">
+        <source>You can tick more than one</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-screen/scenario-screen.component.ts</context>
         </context-group>
@@ -361,6 +361,24 @@
         <source> My Learning Pathway </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5866254605255506989" datatype="html">
+        <source>English</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/media/media.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7618870723010461457" datatype="html">
+        <source>en</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/media/media.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filename" datatype="html">
+        <source>SkillsChecker Results.png</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
       </trans-unit>
     </body>

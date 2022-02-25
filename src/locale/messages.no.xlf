@@ -141,7 +141,7 @@
       </trans-unit>
       <trans-unit id="skill-reading-and-writing" datatype="html">
         <source>Reading and Writing</source>
-        <target>Lesing of Skriving</target>
+        <target>Lesing og Skriving</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
           <context context-type="linenumber">134</context>
@@ -150,15 +150,15 @@
       </trans-unit>
 
       <!-- For some reason using $localize`:@@ID:text` syntax crashed at runtime so taking the lazy way out and just duplicating text-->
-      <trans-unit id="5212522194847915416" datatype="html">
+      <trans-unit id="skill-reading-and-writing-simple" datatype="html">
         <source>Reading and Writing</source>
-        <target>Lesing of Skriving</target>
+        <target>Lesing og Skriving</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
         </context-group>
         <note priority="1" from="description">skill-reading-and-writing</note>
       </trans-unit>
-      <trans-unit id="8618868666624269972" datatype="html">
+      <trans-unit id="skill-computers-simple" datatype="html">
         <source>Computers</source>
         <target>Data</target>
         <context-group purpose="location">
@@ -166,13 +166,39 @@
         </context-group>
         <note priority="1" from="description">skill-computers</note>
       </trans-unit>
-      <trans-unit id="2857402599430378598" datatype="html">
+      <trans-unit id="skill-maths-simple" datatype="html">
         <source>Maths</source>
         <target>Mattematikk</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
         </context-group>
         <note priority="1" from="description">skill-maths</note>
+      </trans-unit>
+
+      <!-- Variation of skill names to provide better support for inclusion of Maltese grammar-->
+      <trans-unit id="skill-reading-and-writing-2" datatype="html">
+        <source>reading and writing</source>
+        <target>lesing og skriving</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-reading-and-writing-2</note>
+      </trans-unit>
+      <trans-unit id="skill-computers-2" datatype="html">
+        <source>computers</source>
+        <target>data</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-computers-2</note>
+      </trans-unit>
+      <trans-unit id="skill-maths-2" datatype="html">
+        <source>maths</source>
+        <target>mattematikk</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-maths-2</note>
       </trans-unit>
 
       <trans-unit id="dimension-fluency" datatype="html">
@@ -674,8 +700,8 @@
         </context-group>
       </trans-unit>
 
-      <trans-unit id="1007403134559915727" datatype="html">
-        <source>You can tick more than on</source>
+      <trans-unit id="3014470037743611911" datatype="html">
+        <source>You can tick more than one</source>
         <target>Du kan velge flere enn èn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/scenario-screen/scenario-screen.component.ts</context>
@@ -759,6 +785,21 @@
         </context-group>
       </trans-unit>
 
+      <trans-unit id="task_action_quotation_start" datatype="html">
+        <source></source>
+        <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="task_action_quotation_end" datatype="html">
+        <source></source>
+        <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
       <trans-unit id="4978412576633513725" datatype="html">
         <source>You're on your way to achieving your goal to:</source>
         <target>Du er på vei til å nå målet ditt innen:</target>
@@ -821,9 +862,9 @@
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5341942142451752716" datatype="html">
-        <source>You identified that you found</source>
-        <target>Du fant ut at det var</target>
+      <trans-unit id="5480870085982825284" datatype="html">
+        <source>You identified that you found </source>
+        <target>Du fant ut at det var </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
@@ -846,29 +887,30 @@
 
 
       <trans-unit id="doTheseTasksSimple" datatype="html">
-        <source>to do these tasks</source>
-        <target>slik at din gjennomføre dette</target>
+        <source> to do these tasks </source>
+        <target> slik at din gjennomføre dette </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
       </trans-unit>
 
       <trans-unit id="doThisTaskSimple" datatype="html">
-        <source>to do this task</source>
+        <source> to do this task </source>
+        <target> slik at din gjennomføre dette </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
       </trans-unit>
       <trans-unit id="doSimilarTasksSimple" datatype="html">
         <source>to do similar tasks</source>
-        <target>gjennomføre oppgavene</target>
+        <target>gjennomføre oppgavene </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6383895914223923037" datatype="html">
-        <source>You can reach your goal by developing your</source>
-        <target>Du kan nå dine mål, ved å utvikle dine ferdigheter innen</target>
+      <trans-unit id="1785722488475679212" datatype="html">
+        <source>You can reach your goal by developing your </source>
+        <target>Du kan nå dine mål, ved å utvikle dine ferdigheter innen </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
         </context-group>
@@ -902,6 +944,13 @@
         </context-group>
       </trans-unit>
       <trans-unit id="3929281485914893910" datatype="html">
+        <source>and</source>
+        <target>og</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="and_punctuation" datatype="html">
         <source>and</source>
         <target>og</target>
         <context-group purpose="location">
@@ -969,9 +1018,9 @@
         </context-group>
       </trans-unit>
 
-      <trans-unit id="" datatype="html">
-        <source></source>
-        <target></target>
+      <trans-unit id="8031435937841016824" datatype="html">
+        <source>Cookie Policy</source>
+        <target>informasjonskapsler</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
         </context-group>
@@ -1233,7 +1282,27 @@ besøkende på nettstedet vårt.</target>
           <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
         </context-group>
       </trans-unit>
-
+      <trans-unit id="5866254605255506989" datatype="html">
+        <source>English</source>
+        <target>norsk</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/media/media.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7618870723010461457" datatype="html">
+        <source>en</source>
+        <target>no</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/media/media.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filename" datatype="html">
+        <source>SkillsChecker Results.png</source>
+        <target>SkillsChecker Results.png</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -37,6 +37,12 @@ export class CourseScreenComponent implements OnInit {
   public fromLocation: string;
   public results: Result;
 
+  private readonly TEXTS = {
+    literacy: $localize`:@@skill-reading-and-writing-simple-2:Reading and Writing`,
+    numeracy: $localize`:@@skill-maths-simple:Maths`,
+    digital_skills: $localize`:@@skill-computers-simple:Computers`
+  };
+
   constructor(
     private route: ActivatedRoute,
     private courseService: CoursesService,
@@ -82,7 +88,7 @@ export class CourseScreenComponent implements OnInit {
     this.courseService.loadCourse(courseid).subscribe( (course: Course) => {
       if (!!course) {
         this.course = course;
-        this.course.skill = this.stringManagerService.TEXTS[course.skill];
+        this.course.skill = this.TEXTS[course.skill];
 
         if (this.course.skill === "computer") {
           this.icon = faLaptop;

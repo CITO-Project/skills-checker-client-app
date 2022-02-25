@@ -30,7 +30,7 @@
     </vg-controls>
     <video [vgMedia]="media" #media id="singleVideo" preload="auto" playsinline autoplay>
       <source [src]="resourceFile" type="video/mp4">
-      <track *ngIf="!!subtitleFile" kind="subtitles" label="English" [src]="subtitleFile" srclang="en">
+      <track *ngIf="!!subtitleFile" kind="subtitles" i18n-label label="English" [src]="subtitleFile" i18n-srclang srclang="en">
     </video>
   </vg-player>
   <!-- End Video -->
