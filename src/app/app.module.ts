@@ -58,7 +58,8 @@ const cookieConfig:NgcCookieConsentConfig = {
     "href": "cookie-policy",
     "link": $localize`Learn More`,
     "allow": $localize`Allow cookies`,
-    "deny": $localize`Decline`
+    "deny": $localize`Decline`,
+    "policy": $localize`Cookie Policy`
   }
 };
 
