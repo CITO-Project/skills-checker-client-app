@@ -1,0 +1,1314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="appName" datatype="html">
+        <source>CITO Skills Checker</source>
+        <target>CITO Skills Checker</target>
+      </trans-unit>
+      <trans-unit id="3ccabfc3dc288eaa2355ba43298c739f85951ec3" datatype="html">
+        <source>Get started</source>
+        <target>Ibda</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.html</context>
+          <context context-type="linenumber">86,92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8743af5cd072e1af03d39d2faebe7c8bbdc18427" datatype="html">
+        <source> Watch the video</source>
+        <target>Ara l-vidjo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="readSpeakerListen" datatype="html">
+        <source>Listen</source>
+        <target>Isma'</target>
+      </trans-unit>
+
+      <trans-unit id="readSpeakerDescription" datatype="html">
+        <source>Listen to this page using ReadSpeaker webReader</source>
+        <target>Isma' din il-paġna billi tuża ReadSpeaker webReader</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+          <context context-type="linenumber">46,57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/interests-screen/interests-screen.component.ts</context>
+          <context context-type="linenumber">84,105</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">131,137</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.html</context>
+          <context context-type="linenumber">102,112</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
+          <context context-type="linenumber">48,56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
+          <context context-type="linenumber">157,168</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="6016339560858257925" datatype="html">
+        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Watch the Video<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> below and then<x id="LINE_BREAK" ctype="x-br" equiv-text="&lt;br/&gt;"/>click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Get Started<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button to check your skills! </source>
+        <target><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Ara l-vidjo<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> hawn taħt u mbagħad<x id="LINE_BREAK" ctype="x-br" equiv-text="&lt;br/&gt;"/>agħfas il-buttuna <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Ibda<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> biex tivverifika l-ħiliet tiegħek! </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4418836753130849412" datatype="html">
+        <source>Hi! I&apos;m Frank and I am your guide today.</source>
+        <target>Ħelow! Jien Maria u llum se nkun il-gwida tiegħek.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6046622641570837015" datatype="html">
+        <source> Watch our 'How to Use' video </source>
+        <target> Ara l-vidjo "Kif Tużah" </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="7023527424275074998" datatype="html">
+        <source> - click the button below </source>
+        <target> - agħfas il-buttuna ta' hawn taħt </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="appTagline" datatype="html">
+        <source> Check in and take off with the CITO Skills Checker! </source>
+        <target> Idħol u ibda l-vjaġġ tiegħek biex tiċċekkja l-ħiliet tiegħek bis-CITO Skills Checker </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">41,57</context>
+        </context-group>
+        <note priority="1" from="description">app tagline</note>
+      </trans-unit>
+      <trans-unit id="57f3f097a7349c546f1ec96ea821038e6472c175" datatype="html">
+        <source> All in less than 10 minutes! </source>
+        <target> Kollox f'inqas minn 10 minuti! </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">78,86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="appDescription" datatype="html">
+        <source> Check your skills with this free and confidential tool and find ways to help improve your skills in: </source>
+        <target> Ivverifika l-ħiliet tiegħek b'din l-għodda mingħajr ħlas u sib mezzi kif ittejjeb il-ħiliet tiegħek: </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">109,128</context>
+        </context-group>
+        <note priority="1" from="description">app description</note>
+      </trans-unit>
+      <trans-unit id="skill-computers" datatype="html">
+        <source>Computers</source>
+        <target>fil-Kompjuters</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+        <note priority="1" from="description">skill-computers</note>
+      </trans-unit>
+      <trans-unit id="skill-maths" datatype="html">
+        <source>Maths</source>
+        <target>fil-Matematika</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+        <note priority="1" from="description">skill-maths</note>
+      </trans-unit>
+      <trans-unit id="skill-reading-and-writing" datatype="html">
+        <source>Reading and Writing</source>
+        <target>fil-Qari u l-kitba</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+        <note priority="1" from="description">skill-reading-and-writing</note>
+      </trans-unit>
+
+      <!-- For some reason using $localize`:@@ID:text` syntax crashed at runtime so taking the lazy way out and just duplicating text-->
+      <trans-unit id="skill-reading-and-writing-simple" datatype="html">
+        <source>Reading and Writing</source>
+        <target>Qari u Kitba</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-reading-and-writing</note>
+      </trans-unit>
+      <trans-unit id="skill-computers-simple" datatype="html">
+        <source>Computers</source>
+        <target>Kompjuters</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-computers</note>
+      </trans-unit>
+      <trans-unit id="skill-maths-simple" datatype="html">
+        <source>Maths</source>
+        <target>Matematika</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-maths</note>
+      </trans-unit>
+
+      <trans-unit id="skill-reading-and-writing-simple-2" datatype="html">
+        <source>Reading and Writing</source>
+        <target>Qari u Kitba</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-reading-and-writing</note>
+      </trans-unit>
+
+      <!-- Variation of skill names to provide better support for inclusion of Maltese grammar-->
+      <trans-unit id="skill-reading-and-writing-2" datatype="html">
+        <source>reading and writing</source>
+        <target>tal-qari u l-kitba</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-reading-and-writing-2</note>
+      </trans-unit>
+      <trans-unit id="skill-computers-2" datatype="html">
+        <source>computers</source>
+        <target>tal-kompjuters</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-computers-2</note>
+      </trans-unit>
+      <trans-unit id="skill-maths-2" datatype="html">
+        <source>maths</source>
+        <target>tal-matematika</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/data/results-visualization.service.ts</context>
+        </context-group>
+        <note priority="1" from="description">skill-maths-2</note>
+      </trans-unit>
+
+      <trans-unit id="dimension-fluency" datatype="html">
+        <source> faster </source>
+        <target> aktar malajr </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/etc/string-manager.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dimension-confidence" datatype="html">
+        <source> more confidently </source>
+        <target>b'aktar kunfidenza</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/etc/string-manager.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dimension-independence" datatype="html">
+        <source> without help </source>
+        <target>mingħajr għajnuna</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/services/etc/string-manager.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="level-easy" datatype="html">
+        <source>easy</source>
+        <target>Faċli</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="level-little-difficult" datatype="html">
+        <source>a little difficult</source>
+        <target>kemxejn diffiċli</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="level-difficult" datatype="html">
+        <source>difficult</source>
+        <target>diffiċli</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="level-very-difficult" datatype="html">
+        <source>very difficult</source>
+        <target>diffiċli ħafna</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="318177528270062143" datatype="html">
+        <source>Improve your skills so you can take the next step towards achieving your goal by:</source>
+        <target>Tejjeb il-ħiliet tiegħek ħalli tkun tista' tieħu l-pass li jmiss biex tikseb il-mira tiegħek billi:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="1054994957783462732" datatype="html">
+        <source>Brushing up on your <x id="PH" equiv-text="this.stringManagerService.concatenateText(brushUpSkills)"/> skills</source>
+        <target>Tirrevedi l-ħiliet <x id="PH" equiv-text="this.stringManagerService.concatenateText(brushUpSkills)"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      
+      <trans-unit id="3655391894824599864" datatype="html">
+        <source> Developing your <x id='PH' equiv-text='this.stringManagerService.concatenateText(developSkills)'/> skills </source>
+        <target> Tiżviluppa l-ħiliet <x id='PH' equiv-text='this.stringManagerService.concatenateText(developSkills)'/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="easyPathMsgOne" datatype="html">
+        <source>You have shown that you have strong reading, writing, maths and computer skills.</source>
+        <target>You have shown that you have strong reading, writing, maths and computer skills.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
+          <context context-type="linenumber">244,245</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="easyPathMsgTwo" datatype="html">
+        <source>Take the next step by developing your skills even further.</source>
+        <target>Take the next step by developing your skills even further.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
+          <context context-type="linenumber">245</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="easyPathMsgThree" datatype="html">
+        <source>Call NALA today on 1800 20 20 65 to chat about your options or check out www.fetchcourses.ie to find a course that is right for you.</source>
+        <target>Kindly check out https://mfhea.mt/list-of-licensed-providers-and-accredited-programmes/ and https://education.gov.mt/en/education/pages/higher-education.aspx for further learning opportunities that may be applicable to you.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/data-processing.service.ts</context>
+          <context context-type="linenumber">247</context>
+        </context-group>
+      </trans-unit>
+      
+      <trans-unit id="wellDone" datatype="html">
+        <source>Well done!</source>
+        <target>Prosit!</target>
+      </trans-unit>
+      <trans-unit id="navigation-back" datatype="html">
+        <source>Back</source>
+        <target>Lura</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigate-button/navigate-button.component.ts</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigate-button/navigate-button.component.ts</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="navigation-next" datatype="html">
+        <source>Next</source>
+        <target>'Il quddiem</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigate-button/navigate-button.component.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="navigation-go-to-results" datatype="html">
+        <source>Go to results</source>
+        <target>Mur għar-Riżultati</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="navigation-skip" datatype="html">
+        <source>Skip task</source>
+        <target>Aqbeż il-kompitu</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="af19a8e1a93c3825fb8b7628be144ea978ff873c" datatype="html">
+        <source>Pick your goal</source>
+        <target>Agħżel il-mira tiegħek</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/interests-screen/interests-screen.component.ts</context>
+          <context context-type="linenumber">37,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fa5b9faacb092443b8d3766c66d29db930770afb" datatype="html">
+        <source>I want to check my skills so that I can...</source>
+        <target>Irrid nivverifika l-ħiliet tiegħi biex nilħaq...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/interests-screen/interests-screen.component.ts</context>
+          <context context-type="linenumber">60,71</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="ff9b7d39c0dd5cff3ebb1ac2b7607e815e236328" datatype="html">
+        <source>Each task will take about <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>2 minutes<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</source>
+        <target>Kull sitwazzjoni tieħu madwar <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>2 minuti<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5400300335528873684" datatype="html">
+        <source>Watch each video, think about the task, and answer some questions.</source>
+        <target>Ara kull vidjo, aħseb dwar is-sitwazzjoni, u rrispondi xi ftit mistoqsijiet.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4511821012390778558" datatype="html">
+        <source>The tasks will check your skills in:</source>
+        <target>Is-sitwazzjonijiet se jivverifikaw il-Ħiliet tiegħek fil-:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5585351378029958723" datatype="html">
+        <source>Well Done!</source>
+        <target>Prosit!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="146830415799947949" datatype="html">
+        <source>You have completed Task <x id='PH' equiv-text='this.scenarioIndex'/>!</source>
+        <target>Lestejt il-Kompitu <x id='PH' equiv-text='this.scenarioIndex'/>!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="7746079074597948384" datatype="html">
+        <source>There is <x id='PH' equiv-text='remainingCount'/> more to go!</source>
+        <target>Għandek <x id='PH' equiv-text='remainingCount'/> ieħor biex tlesti!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5592817412235299584" datatype="html">
+        <source>There are <x id='PH' equiv-text='remainingCount'/> more to go!</source>
+        <target>Fadallek <x id='PH' equiv-text='remainingCount'/> oħra xi tlesti!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+
+
+      
+      <trans-unit id="4943851949900940301" datatype="html">
+        <source>Click <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Continue<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> to go to <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Task <x id='INTERPOLATION' equiv-text='{{ scenarioIndex + 1 }}'/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></source>
+          <target>Ikklikkja fuq <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Kompli<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> biex tmur għall-Kompitu <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id='INTERPOLATION' equiv-text='{{ scenarioIndex + 1 }}'/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      
+
+
+      <trans-unit id="1576982241362990507" datatype="html">
+        <source>Click Continue to go to the next task</source>
+        <target>Ikklikkja fuq Kompli biex tmur għas-sitwazzjoni li jmiss</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.ts</context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+
+      
+
+      <trans-unit id="7269247711475319570" datatype="html">
+        <source>Back to results</source>
+        <target>Lura għar-riżultati</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">52,73</context>
+        </context-group>
+      </trans-unit>
+      
+      <trans-unit id="c8e2b43e13a25018687259605aeb215d3da7fc07" datatype="html">
+        <source>Please, choose your location to see the learning opportunities near you</source>
+        <target>Jekk jogħġbok agħżel il-lokalità tiegħek biex tara l-opportunitajiet ta' tagħlim qrib tiegħek</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">52,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fcbf30e46fa03e56b30842e359245b39a9295dd8" datatype="html">
+        <source>Choose your area</source>
+        <target>Agħżel iż-żona tiegħek</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">86,90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4eb84de23219c85432e38fb4fbdeb6c0f103ff8b" datatype="html">
+        <source>Show all</source>
+        <target>Uri kollox</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">112,116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="brushUp" datatype="html">
+        <source>Brush up</source>
+        <target>Irrevedi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+        <note priority="1" from="description">brush-up</note>
+      </trans-unit>
+      <trans-unit id="furtherDevelop" datatype="html">
+        <source>Further develop</source>
+        <target>Żviluppa</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+        <note priority="1" from="description">further-develop</note>
+      </trans-unit>
+      <trans-unit id="4097683025088220832" datatype="html">
+        <source>Web: <x id='PH' equiv-text='link'/></source>
+        <target>Web: <x id='PH' equiv-text='link'/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7219323521390233539" datatype="html">
+        <source>Phone: <x id='PH' equiv-text='course.contact_telephone'/></source>
+        <target>Telefown: <x id='PH' equiv-text='course.contact_telephone'/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/localization-screen/localization-screen.component.ts</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e28d23f98925a10e90c40570e0eae8027895a68e" datatype="html">
+        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Watch the Video<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> below and then<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Get Started<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button to check your skills! </source>
+        <target><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Ara l-vidjo<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> hawn taħt u mbagħad<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>ikklikkja l-buttuna <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Ibda <x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> biex tivverifika l-ħiliet tiegħek! </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/orientation-screen/orientation-screen.component.ts</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4936645848891830149" datatype="html">
+        <source>My Results</source>
+        <target>My Results</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="53770317b4087d64adfcc7f54f48fa866b431906" datatype="html">
+        <source>My Learning Pathway</source>
+        <target>Il-Perkors ta' Tagħlim Tiegħi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.html</context>
+          <context context-type="linenumber">53,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eb1a69dc30dc8a5c52fce95daf1af3a3162e214e" datatype="html">
+        <source>Download My Skill Summary</source>
+        <target>Niżżel is-Sommarju tal-Ħiliet Tiegħi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.html</context>
+          <context context-type="linenumber">73,83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1abc96c2def732599b9c48b359ba40ce0529946f" datatype="html">
+        <source>Check out your <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Learning Pathway<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> and find a course that&apos;s right for you:</source>
+        <target>Skopri l-Perkors ta' Tagħlim tiegħek u sib kors li hu tajjeb għalik:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.html</context>
+          <context context-type="linenumber">96,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="24800f1a845751f341e8a779738bfef6d6719b38" datatype="html">
+        <source>Well Done! Skills check complete!</source>
+        <target>Prosit! Lestejt!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+          <context context-type="linenumber">41,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e4d0331fd401fb7ebedf3196c44a3cd4e2e04d77" datatype="html">
+        <source>You&apos;re on your way to achieving your goal to:</source>
+        <target>Qiegħed fit-triq li tikseb il-mira tiegħek biex:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+          <context context-type="linenumber">62,66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="balloonDescription" datatype="html">
+        <source> The balloons will give you an idea of your skill level. The bigger the balloon the stronger your skill in that area is! </source>
+        <target> Il-bżieżaq se jtuk idea dwar il-livell tal-ħiliet tiegħek. Aktar kemm tkun kbira l-bużżieqa, aktar il-ħila tiegħek f'dak il-qasam tkun b'saħħitha! </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+          <context context-type="linenumber">78,94</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="3333771690595335412" datatype="html">
+        <source>What's next?</source>
+        <target>Xi jmiss</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2097334910632897957" datatype="html">
+        <source>New Goal</source>
+        <target>Mira Ġdida</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6802427077366147871" datatype="html">
+        <source>My Learning Pathway</source>
+        <target>Il-Perkors ta' Tagħlim Tiegħi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a96fffed3f962d61cc726e56a2a6df8e0afa556e" datatype="html">
+        <source> Click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Download My Skill Summary<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button for a full summary of your CITO Skills Checker journey: </source>
+        <target> Ikklikkja fuq il-buttuna <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Niżżel is-Sommarju tal-Ħiliet Tiegħi<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> biex tara l-għażliet tiegħek: </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="7825378388996300944" datatype="html">
+        <source>Change Goal</source>
+        <target>Biddel il-Mira</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8773382622661528773" datatype="html">
+        <source>Get Started</source>
+        <target>Ibda</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="113a82a3a9d53f8c9bc865085b8229bb559b7910" datatype="html">
+        <source>Click <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Let's Go<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> to begin!</source>
+        <target>Ikklikkja fuq <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Ibda<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> biex tibda!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9163094770908081775" datatype="html">
+        <source>Great! You want to improve your skills so that you can:</source>
+        <target>Tajjeb ħafna! Int trid ittejjeb il-ħiliet tiegħek ħalli tkun tista':</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8400257256938487791" datatype="html">
+        <source>You will now watch four short videos showing everyday tasks.</source>
+        <target>Int issa se tara erba' vidjows qosra li juru sitwazzjonijiet ta' kuljum.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6962699013778688473" datatype="html">
+        <source>Continue</source>
+        <target>Kompli</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
+          <context context-type="linenumber">62,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7230233700717619134" datatype="html">
+        <source>Previous Task</source>
+        <target>Kompitu ta' Qabel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.ts</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="progressBarLabel" datatype="html">
+        <source><x id='INTERPOLATION' equiv-text='{{ progress }}'/>% Complete!</source>
+        <target><x id='INTERPOLATION' equiv-text='{{ progress }}'/>% Lest!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.html</context>
+          <context context-type="linenumber">89,86</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-introduction-screen/scenario-introduction-screen.component.html</context>
+          <context context-type="linenumber">96,87</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.html</context>
+          <context context-type="linenumber">46,35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
+          <context context-type="linenumber">191</context>
+        </context-group>
+      </trans-unit>
+
+      
+      <trans-unit id="8052359303609067109" datatype="html">
+        <source>If you go to results you won't be able to go back</source>
+        <target>Jekk tmur għar-riżultati ma tkunx tista’ terġa lura</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="8897338744218125887" datatype="html">
+        <source>Back to task</source>
+        <target>Lura għall-kompitu</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenarios-screen/scenarios-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="3014470037743611911" datatype="html">
+        <source>You can tick more than one</source>
+        <target>Tista' tikklikkja aktar minn waħda</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-screen/scenario-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5778798780751366170" datatype="html">
+        <source>Your skills</source>
+        <target>Il-ħiliet tiegħek</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8598757320917702229" datatype="html">
+        <source> Drag the slider to share your level of knowledge </source>
+        <target> Mexxi l-vleġġa biex timmarka il-livell ta' għarfien tiegħek </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-screen/scenario-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3575696212595967398" datatype="html">
+        <source> Please select one or more of the options below </source>
+        <target> Jekk jogħġbok agħżel waħda jew aktar mill-għażliet hawn taħt </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-screen/scenario-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1760041404900452052" datatype="html">
+        <source> Please select one of the options below </source>
+        <target> jekk jogħġbok agħżel waħda mill-għażliet hawn taħt </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/scenario-screen/scenario-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="4dd41737dd07136d8ab35e6c5622f688a55230f8" datatype="html">
+        <source> Skill </source>
+        <target> Ħila </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b7a285515e41f0c8038d8b8e65b5199cb9928681" datatype="html">
+        <source> Course </source>
+        <target> Kors </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ca0a2a06d8566133de0db9c382f8d585d4c27740" datatype="html">
+        <source> Enrolment Starts </source>
+        <target> Ir-Reġistrazzjoni Tibda </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c97c5b96c7ed0ddfe44c88150aa7caf6fe9572d2" datatype="html">
+        <source> Enrolment Ends </source>
+        <target> Ir-Reġistrazzjoni Tispiċċa </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6802427077366147871" datatype="html">
+        <source> My Learning Pathway </source>
+        <target> Min Læringsvei </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="b9212a5362e6143e924b21f09de1978bdc867b09" datatype="html">
+        <source>If this is a Learning Option you are interested in, please use the contact details below to get in touch.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="316849f8dc85257c6e508e861b9b0450ad878263" datatype="html">
+        <source>If you would like to find out more, or book a course, go to the National Adult Literacy Agency webpage by pressing the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>More Info<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="4978412576633513725" datatype="html">
+        <source>You're on your way to achieving your goal to:</source>
+        <target>Qiegħed fit-triq li tikseb il-mira tiegħek biex:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2366961165420741501" datatype="html">
+        <source>Check out the courses below and find one that&#39;s right for you!</source>
+        <target>Ara l-korsijiet t'hawn taħt u sib liem wieħed huwa l-aħjar għalik!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="6269992297457029737" datatype="html">
+        <source>one</source>
+        <target>waħda</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2697298659250494160" datatype="html">
+        <source>two</source>
+        <target>żewġ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7717461822426550310" datatype="html">
+        <source>three</source>
+        <target>tliet</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3450347237775897623" datatype="html">
+        <source>four</source>
+        <target>erba'</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2725165291759197538" datatype="html">
+        <source>My Skills Summary</source>
+        <target>Is-Sommarju tal-Ħiliet Tiegħi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3810806004010265561" datatype="html">
+        <source>The balloons will give you an idea of your skill level. The bigger the balloon, the stronger your skill in this area is!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3942806569287492116" datatype="html">
+        <source>Take the next step by developing your skills even further.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5480870085982825284" datatype="html">
+        <source>You identified that you found </source>
+        <target>Int identifikajt li sibt '</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3051919120993673498" datatype="html">
+        <source><x id='PH' equiv-text='task_str'/> <x id='PH_1' equiv-text='scen.level'/></source>
+        <target><x id='PH' equiv-text='task_str'/> <x id='PH_1' equiv-text='scen.level'/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="task_action_quotation_start" datatype="html">
+        <source></source>
+        <target>'</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="task_action_quotation_end" datatype="html">
+        <source></source>
+        <target>"</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      
+      <trans-unit id="doTheseTasks" datatype="html">
+        <source>to do these tasks <x id='PH' equiv-text='this.stringManagerService.concatenateText(developDimensions)'/></source>
+        <target>biex tagħmel dawn l-affarijiet <x id='PH' equiv-text='this.stringManagerService.concatenateText(developDimensions)'/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="doTheseTasksSimple" datatype="html">
+        <source> to do these tasks </source>
+        <target> biex tagħmel dawn l-affarijiet </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="doThisTaskSimple" datatype="html">
+        <source> to do this task </source>
+        <target> biex tagħmel dawn l-affarijiet </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="doSimilarTasksSimple" datatype="html">
+        <source>to do similar tasks </source>
+        <target>biex tagħmel affarijiet simili </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1785722488475679212" datatype="html">
+        <source>You can reach your goal by developing your </source>
+        <target>Tista' tilħaq il-mira tiegħek billi tiżviluppa l-ħiliet </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4343346293920144942" datatype="html">
+        <source>with more confidence</source>
+        <target>b'aktar kunfidenza</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6087170285949181351" datatype="html">
+        <source>faster</source>
+        <target>aktar malajr</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4335393173567054239" datatype="html">
+        <source>without help.</source>
+        <target>u ma tiġi bżonn ħadd.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="doSimilarTasks" datatype="html">
+        <source>so that you can do similar tasks <x id='PH' equiv-text='this.stringManagerService.concatenateText(brushUpDimensions)'/></source>
+        <target>sabiex tkun tista' tagħmel affarijiet simili <x id='PH' equiv-text='this.stringManagerService.concatenateText(brushUpDimensions)'/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3929281485914893910" datatype="html">
+        <source>and</source>
+        <target>u</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/results-screen/results-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+      
+      <trans-unit id="and_punctuation" datatype="html">
+        <source>and</source>
+        <target>" u '</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1930770692386173711" datatype="html">
+        <source>skills</source>
+        <!--<target>ħiliet</target>-->
+        <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6660968258366310745" datatype="html">
+        <source>everyday task</source>
+        <target>sitwazzjoni ta&#39; kuljum</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3947455418373179147" datatype="html">
+        <source>everyday tasks</source>
+        <target>sitwazzjonijiet ta&#39; kuljum</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5835599036611110546" datatype="html">
+        <source>You looked at <x id='PH' equiv-text='scenario_count_str'/> <x id='PH_1' equiv-text='task_str'/></source>
+        <target>Rajt <x id='PH' equiv-text='scenario_count_str'/> <x id='PH_1' equiv-text='task_str'/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3372389991046668102" datatype="html">
+        <source>You found aspects of the following <x id='PH' equiv-text='task_str'/> challenging:</source>
+        <target>u sibt xi affarijiet mill-kompiti ta' kuljum ta' sfida:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5960096873104755868" datatype="html">
+        <source>More info</source>
+        <target>Aktar Informazzjoni</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="8266713584543975784" datatype="html">
+        <source>Please use the contact details below to get in touch and start learning today!</source>
+        <target>Jekk jogħġbok uża d-dettalji ta' kuntatt ta' hawn taħt biex tagħmel kuntatt mal-aġenzija edukattiva u tibda titgħallem illum!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5765084260695627805" datatype="html">
+        <source>If you would like to find out more, click the <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>More info<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> button below.</source>
+        <target>Jekk tixtieq issir taf aktar, agħfas fuq il-buttuna Aktar Informazzjoni t'hawn taħt.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/course-screen/course-screen.component.ts</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="8031435937841016824" datatype="html">
+        <source>Cookie Policy</source>
+        <target>Politika tal-Cookies</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="9134113812759884182" datatype="html">
+        <source>This website uses cookies to improve your experience. By clicking “Allow”, you agree to the storing of cookies on your device to enhance site navigation and analyse site usage.</source>
+        <target>Dan is-sit juża l-cookies biex itejjeb l-esperjenza tiegħek. Meta tikklikkja fuq "Aċċetta l-cookies", int taqbel li taħżen il-cookies fuq l-apparat tiegħek biex titjieb in-navigazzjoni u l-analiżi tal-użu tas-sit.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="7002955679222677443" datatype="html">
+        <source>Learn More</source>
+        <target>Tgħallem aktar.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="8116175184239166510" datatype="html">
+        <source>Decline</source>
+        <target>Irrifjuta</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="612956177103379657" datatype="html">
+        <source>Allow cookies</source>
+        <target>Aċċetta l-cookies</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="2455425732127164474" datatype="html">
+        <source>Skills Checker Cookie Policy</source>
+        <target>Politika tal-Cookies tas-CITO Skills Checker</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="2141043957790981882" datatype="html">
+        <source>Check-In, Take-Off (CITO) is an Erasmus+ project. Erasmus+ projects are funded by the European Commission. Erasmus+ fund organisations across Europe to work and learn together to improve education and training in their individual countries. The CITO project team is comprised of organisations from three countries, Malta, Ireland and Norway; the Directorate for Research, Lifelong Learning and Employability (Malta), the National Adult Literacy Agency (Ireland), Education and Training Boards Ireland (Ireland), Waterford Institute of Technology (Ireland) and Fønix (Norway).</source>
+        <target>Check-In, Take-Off (CITO) huwa proġett tal-Erasmus+. Il-proġetti tal-Erasmus+ huma ffinanzjati mill-Kummissjoni Ewropea. L-Erasmus+ jiffinanzja organizzazzjonijiet madwar l-Ewropa biex jaħdmu u jitgħallmu flimkien biex itejbu l-edukazzjoni u t-taħriġ fil-pajjiżi individwali tagħhom. It-tim tal-proġett ta' CITO huwa magħmul minn organizzazzjonijiet minn tliet pajjiżi, Malta, l-Irlanda u n-Norveġja; id-Direttorat għar-Riċerka, it-Tagħlim Tul il-Ħajja u l-Impjegabbiltà (Malta), in-National Adult Literacy Agency (l-Irlanda), l-Education and Training Boards Ireland (l-Irlanda), il-Waterford Institute of Technology (l-Irlanda) u Fønix (in-Norveġja).</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="565276666235155596" datatype="html">
+        <source>The CITO project team respect the rights of users of the Skills Checker. The Skills Checker is currently hosted at the following domains:</source>
+        <target>It-tim tal-proġett ta' CITO jirrispetta d-drittijiet tal-utent tas-CITO Skills Checker. L-Għodda għall-Verifika tal-Ħiliet bħalissa hija ospitata fuq id-dominji li ġejjin:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="4791405492497706049" datatype="html">
+        <source>We are committed to protecting your privacy in line with the Data Protection Acts 1988 and 2003 and General Data Protection Regulation (GDPR) 2018 at all times. We will not collect any personal data ( information) about you on this site without your permission or otherwise. This is in line with the Data Protection Acts 1988 and 2003 and General Data Protection Regulation (GDPR) 2018.</source>
+        <target>Aħna impenjati sabiex nipproteġu l-privatezza tiegħek skont l-Atti dwar il-Protezzjoni tad-Data tal-1988 u l-2003 u r-Regolament Ġenerali dwar il-Protezzjoni tad-Data (GDPR) tal-2018 f'kull ħin. Aħna mhu se niġbru l-ebda data personali (informazzjoni) dwarek fuq dan is-sit mingħajr il-permess tiegħek jew b'mod ieħor. Dan hu f'konformità mal-Atti dwar il-Protezzjoni tad-Data tal-1988 u l-2003 u r-Regolament Ġenerali dwar il-Protezzjoni tad-Data (GDPR) tal-2018.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="" datatype="html">
+        <source>You do not have to provide us with any personal data to use our site.</source>
+        <target>You do not have to provide us with any personal data to use our site.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="1167636642668438411" datatype="html">
+        <source>Technical data we collect</source>
+        <target>Data teknika li aħna niġbru</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="8436155816157175532" datatype="html">
+        <source>By simply visiting our site, you do not disclose (share), nor do we collect, personal data about you. The information collected about your visit is limited to technical data like:</source>
+        <target>Jekk sempliċement iżżur is-sit tagħna, int mhux se tikxef, u lanqas m'aħna se niġbru informazzjoni personali dwarek. L-informazzjoni miġbura dwar iż-żjara tiegħek hija limitata għal dik teknika bħal:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="699673127978725507" datatype="html">
+        <source>the Internet address (or IP address) of the device you used to access our site;</source>
+        <target>l-indirizz tal-Internet (jew l-indirizz IP) tal-apparat li int użajt biex taċċessa s-sit tagħna;</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="6514875505533369895" datatype="html">
+        <source>whether you reached our site using a search engine or if you clicked a link on
+another website; and</source>
+        <target>jekk wasalt għas-sit tagħna billi użajt magna tat-tiftix jew inkella kklikkjajt ħolqa minn fuq sit web ieħor; u</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5886836116348556567" datatype="html">
+        <source>the type of web browser you used and the type of device you used to access the
+Internet.</source>
+        <target>it-tip ta' brawżer tal-web u t-tip ta' apparat li int użajt biex taċċessa l-Internet.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="6989170443695223218" datatype="html">
+        <source>How we use technical information</source>
+        <target>Kif nużaw l-informazzjoni teknika</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="3735604859430966484" datatype="html">
+        <source>We use technical data for administrative and statistical purposes as well as to help us
+improve our site. This technical data does not provide us with the personal data of visitors
+to our site.</source>
+        <target>Aħna nużaw l-informazzjoni teknika għal għanijiet amministrattivi u statistiċi kif ukoll biex tgħinna ntejbu s-sit tagħna. Din l-informazzjoni teknika ma tagħtiniex data personali dwar il-viżitaturi ta' dan is-sit.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="COOKIES" datatype="html">
+        <source>Cookies</source>
+        <target>Cookies</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="3691873349554725963" datatype="html">
+        <source>Cookies we use</source>
+        <target>Cookies li aħna nużaw</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="4716125996894409130" datatype="html">
+        <source>A cookie is a small piece of data (text file) that a website – when visited by a user – asks your browser to store on your device in order to remember information about you, such as your language preference or login information. Those cookies are set by us and called first-party cookies. More specifically, we use cookies and other tracking technologies for the following purposes:</source>
+        <target>Cookie hija biċċa data żgħira (fajl tat-test) li sit web – meta ssir żjara minn utent – jistaqsi lill-brawżer tiegħek sabiex tinħażen fuq l-apparat tiegħek informazzjoni dwarek, bħal pereżempju l-preferenza tal-lingwa jew l-informazzjoni tad-dħul tiegħek. Dawn il-cookies huma stabbiliti minna u huma msejħa cookies tal-ewwel parti. Aktar speċifikament, aħna nużaw cookies u teknoloġiji ta' traċċar oħrajn għall-għanijiet li ġejjin:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="4142964108166840199" datatype="html">
+        <source>Strictly Necessary Cookies</source>
+        <target>Cookies Strettament Meħtieġa</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="5205185485145559516" datatype="html">
+        <source>These cookies are necessary for the Skills Checker to function and cannot be switched off in our systems. They are usually only set in response to actions made by you, such as setting your privacy preferences. You can set your browser to block or alert you about these cookies, but if you do so some parts of the site will not work. These cookies do not store any personally identifiable information.</source>
+        <target>Dawn il-cookies huma meħtieġa sabiex is-CITO Skills Checker jahdem u ma jistgħux jintfew fis-sistemi tagħna. Normalment, dawn jiġu ssettjati skont l-azzjonijiet li int tkun għamilt, bħal pereżempju l-istabbiliment tal-preferenzi ta' privatezza tiegħek. Int tista' tissettja l-brawżer tiegħek biex jimblokka jew javżak dwar dawn il-cookies, iżda jekk tagħmel hekk xi partijiet mis-sit mhux se jaħdmu. Dawn il-cookies ma jaħżnux informazzjoni personali li tidentifikak.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="7373212436902992135" datatype="html">
+        <source>Performance Cookies</source>
+        <target>Cookies tal-Prestazzjoni</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="2516697874652006294" datatype="html">
+        <source>These cookies allow us to count visits and traffic sources (how you ended up on the Skills Checker) so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site. All information these cookies collect is aggregated and therefore anonymous. If you do not allow these cookies we will not know when you have visited our site, and will not be able to monitor its performance.</source>
+        <target>Dawn il-cookies jippermettulna ngħoddu ż-żjarat u s-sorsi ta' traffiku (kif wasalt għand is-CITO Skills Checker) ħalli nkunu nistgħu nkejlu u ntejbu l-prestazzjoni tas-sit. Dawn jgħinuna nsiru nafu liema paġni huma l-aktar u l-anqas popolari u naraw kif il-viżitaturi jduru mas-sit. L-informazzjoni kollha li dawn il-cookies jiġbru hija aggregata u għaldaqstant anonima. Jekk int ma tippermettix dawn il-cookies aħna mhux se nkunu nafu meta int żort is-sit tagħna, u mhux se nkunu nistgħu nimmonitorjaw il-prestazzjoni tiegħu.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="COOKIESUBGROUP" datatype="html">
+        <source>Cookie Subgroup</source>
+        <target>Sottogrupp tal-Cookies</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="SESSION" datatype="html">
+        <source>Session</source>
+        <target>Sessjoni</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="FIRSTPARTY" datatype="html">
+        <source>First party</source>
+        <target>L-ewwel parti</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="LIFESPAN" datatype="html">
+        <source>Lifespan</source>
+        <target>Tul ta' ħajja</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="COOKIESUSED" datatype="html">
+        <source>Cookies used</source>
+        <target>Cookies użati</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="1DAY" datatype="html">
+        <source>1 day</source>
+        <target>Jum</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="730DAYS" datatype="html">
+        <source>730 days</source>
+        <target>730 jum</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="AFEWSECONDS" datatype="html">
+        <source>a few seconds</source>
+        <target>ftit sekondi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/screens/cookie-policy/cookie-policy.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5866254605255506989" datatype="html">
+        <source>English</source>
+        <target>Malti</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/media/media.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7618870723010461457" datatype="html">
+        <source>en</source>
+        <target>mt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/media/media.component.ts</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filename" datatype="html">
+        <source>SkillsChecker Results.png</source>
+        <target>Riżultati ta’ l-Iskills checker.png</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/data/results-saver.service.ts</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
